@@ -1,0 +1,35 @@
+"use strict";
+
+var _baseComponent = _interopRequireDefault(require("../baseComponent"));
+
+var _modelAndControler = _interopRequireDefault(require("../modelAndControler"));
+
+var _prijavaOkvir = _interopRequireDefault(require("./prijavaOkvir"));
+
+var _a = _interopRequireDefault(require("./a"));
+
+var _b = _interopRequireDefault(require("./b"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+let controler = new _modelAndControler.default();
+
+class PrviStupac extends _baseComponent.default {
+  constructor() {
+    super("div");
+    let okvir;
+    let user = JSON.parse(localStorage["user"]);
+
+    if (user == false) {
+      okvir = new _a.default();
+    } else {
+      okvir = new _b.default();
+    }
+
+    this.addChild(okvir.rootElement);
+    reload;
+  }
+
+}
+
+module.exports = PrviStupac;

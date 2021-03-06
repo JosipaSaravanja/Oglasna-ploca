@@ -1,0 +1,27 @@
+"use strict";
+
+var _ispisiOglase = _interopRequireDefault(require("./components/ispisiOglase"));
+
+var _prviStupac = _interopRequireDefault(require("./components/prviStupac"));
+
+var _baseComponent = _interopRequireDefault(require("./baseComponent"));
+
+var _modelAndControler = _interopRequireDefault(require("./modelAndControler"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+M.AutoInit();
+let controler = new _modelAndControler.default();
+let database = firebase.firestore();
+database.collection("korisnici").get().then(querySnapshot => {
+  querySnapshot.forEach(doc => {
+    let korisnik = doc.data();
+    korisnik.oglasi.forEach(el => {
+      if (el.type == "matematika") {
+        console.log(el);
+        let oglas = new _ispisiOglase.default(el.opis, el.lokacija, el.cijena, el.razina, el.ocjena.like, el.ocjena.dislike);
+        document.getElementById("").appendChild(oglas.rootElement);
+      }
+    });
+  });
+});

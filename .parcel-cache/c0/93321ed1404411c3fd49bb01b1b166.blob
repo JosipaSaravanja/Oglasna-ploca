@@ -1,0 +1,16 @@
+#example1 {
+            padding: 10px;
+            border-radius: 25px;
+        }
+        .tabs .indicator {
+ 
+ background-color:  #4db6ac ;
+
+} 
+.tabs .tab a.active {
+ 
+ background-color: #e0f2f1  !important;
+ color: red  
+
+
+}

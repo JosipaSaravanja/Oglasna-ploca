@@ -1,0 +1,32 @@
+"use strict";
+
+var _baseComponent = _interopRequireDefault(require("../baseComponent"));
+
+var _modelAndControler = _interopRequireDefault(require("../modelAndControler"));
+
+var _prijavaOkvir = _interopRequireDefault(require("./prijavaOkvir"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+let controler = new _modelAndControler.default();
+
+class Profil extends _baseComponent.default {
+  constructor() {
+    super("div");
+    let user = JSON.parse(localStorage["user"]);
+    let odjava = document.createElement("a");
+    odjava.className = "waves-effect waves-light btn-small";
+    odjava.innerHTML = "Odjavite se";
+    odjava.addEventListener("click", () => {
+      localStorage["user"] = JSON.stringify(false);
+      controler.user(user);
+      location.reload();
+    });
+    let ime = document.createElement("h5");
+    ime.innerHTML = user.username;
+    this.addChildren([ime, odjava]);
+  }
+
+}
+
+module.exports = B;

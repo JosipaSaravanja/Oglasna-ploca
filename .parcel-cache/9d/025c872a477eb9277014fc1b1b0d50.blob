@@ -1,0 +1,170 @@
+<html lang="hr">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="9cc2aa7a6c16ec1aa49a46602d472855" type="image/gif" sizes="16x16">
+        <title>Oglasna ploča</title>
+        <link rel="stylesheet" href="2956e93a6aa980f4a49ef54a163b124f">
+        <link href="333f07d3f3602cad83366eadab96e4f5" rel="stylesheet">
+        <style data-parcel-key="33a1042c367253c624097c0369ec0303">
+            #example1 {
+                padding: 10px;
+                border-radius: 25px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav class="nav-extended teal lighten-1" style="padding: 20px">
+            <div class="nav-wrapper ">
+                <a href="#" class="brand-logo"><i class="material-icons">cloud</i>Logo</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="">Sass</a></li>
+                    <li><a href="">Components</a></li>
+                    <li><a href="">JavaScript</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="">Sass</a></li>
+            <li><a href="">Components</a></li>
+            <li><a href="">JavaScript</a></li>
+        </ul>
+        <!--Uzglavlje-->
+        <br>
+
+        <div class="row">
+            <div class="col s12 l2">
+                <div class="col s12">
+                    <div class="row z-depth-5" id="example1">
+                        
+                    
+                    
+                </div>
+            </div>
+            </div>
+            <!--Prvi 'stupac' gdje se izmjenjuju prijava i korisnički račun-->
+
+            <div class="col s12 l8">
+                <div class="col s12">
+                    <div class="row z-depth-5" style="background-color: white;">
+                       
+                        <div class="col s12 l4">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="3e7601b313723656582feaf5c25ec1d4">
+                                    <a class="card-title" href="f9cd8f53e5769a87b6d245e8ef3d537c">Matematika</a>
+                                </div>
+                                <div class="card-content">
+                                    <p>I am a very simple card. I am good at containing small bits of information.
+                                        I am convenient because I require little markup to use effectively.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 l4">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="4138ebe8dcd23aee5ac4cb08f84f1e9a">
+                                    <a class="card-title" href="06bd9c8015af3c06e8b5ac4f8b9188b0">Fizika</a>
+                                </div>
+                                <div class="card-content">
+                                    <p>I am a very simple card. I am good at containing small bits of information.
+                                        I am convenient because I require little markup to use effectively.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m6 l4">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="ae4f3abf30b9b179e465c0c4d4f4401b">
+                                    <a class="card-title" href="f9cd8f53e5769a87b6d245e8ef3d537c" target="_blank">Kemija</a>
+                                </div>
+                                <div class="card-content">
+                                    <p>I am a very simple card. I am good at containing small bits of information.
+                                        I am convenient because I require little markup to use effectively.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m6 l4">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="eaf610ff2d1f31b3d5cdf0915162f9af">
+                                    <a class="card-title" href="#">Hrvatski</a>
+                                </div>
+                                <div class="card-content">
+                                    <p>I am a very simple card. I am good at containing small bits of information.
+                                        I am convenient because I require little markup to use effectively.</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col s12 m6 l4">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="331cd35cf2c3d74cb04bdbad1064ccf2">
+                                    <a class="card-title" href="#">Engleski</a>
+                                </div>
+                                <div class="card-content">
+                                    <p>I am a very simple card. I am good at containing small bits of information.
+                                        I am convenient because I require little markup to use effectively.</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col s12 m6 l4">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="818146dab68ecad40748cab15c0d614c">
+                                    <a class="card-title" href="#">Njemački</a>
+                                </div>
+                                <div class="card-content">
+                                    <p>I am a very simple card. I am good at containing small bits of information.
+                                        I am convenient because I require little markup to use effectively.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--Srednji 'stupac' s stalnim kategorijama-->
+
+            <div class="col s12 l2">
+                <div class="col s12">
+                    <div class="row z-depth-5">
+                        <!--TRenutno prazan, nesto cu tu staviti-->
+                    </div>
+                </div>
+            </div>
+            <!--Treći 'stupac'-->
+            
+        </div>
+    </body>
+    <script src="c36042de622e1ffe9dc1cc9d60f224b6"></script>
+    <script src="4a9b9d44b1719a807a71f937d90eacd0"></script>
+    <script src="a25606fa7e10e8bd992b06a11b008b00"></script>
+    <script src="755b4f8e27ed0d6c29340b92b3633073"></script>
+    <script data-parcel-key="260b0628a9f2f4c60a3ca90b3d37aaf0">
+        var firebaseConfig = {
+            apiKey: "AIzaSyCijigrea2HComQB4UawQG5yiu_dbCoNOw",
+            authDomain: "oglasnik-31138.firebaseapp.com",
+            projectId: "oglasnik-31138",
+            storageBucket: "oglasnik-31138.appspot.com",
+            messagingSenderId: "320490630753",
+            appId: "1:320490630753:web:a1940d904278416a37c420",
+            measurementId: "G-NYX4WNMZVN"
+        };
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+    <script src="6e47342c0aff50cbcd55aa1f2678e07b"></script>
+</html>

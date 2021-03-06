@@ -1,0 +1,11 @@
+var firebaseConfig = {
+        apiKey: "AIzaSyCijigrea2HComQB4UawQG5yiu_dbCoNOw",
+        authDomain: "oglasnik-31138.firebaseapp.com",
+        projectId: "oglasnik-31138",
+        storageBucket: "oglasnik-31138.appspot.com",
+        messagingSenderId: "320490630753",
+        appId: "1:320490630753:web:a1940d904278416a37c420",
+        measurementId: "G-NYX4WNMZVN"
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();

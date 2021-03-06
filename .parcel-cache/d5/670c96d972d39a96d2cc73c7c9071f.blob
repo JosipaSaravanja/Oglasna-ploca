@@ -1,0 +1,23 @@
+"use strict";
+
+var _prviStupac = _interopRequireDefault(require("./components/prviStupac"));
+
+var _baseComponent = _interopRequireDefault(require("./baseComponent"));
+
+var _modelAndControler = _interopRequireDefault(require("./modelAndControler"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+M.AutoInit();
+let controler = new _modelAndControler.default();
+/* localStorage["user"] = JSON.stringify({username: "ante"}) 
+
+
+
+
+
+
+
+/* console.log(JSON.parse(localStorage["user"])) */
+
+document.getElementById("example1").appendChild(new _prviStupac.default().rootElement);
