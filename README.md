@@ -1,2 +1,0 @@
-# Oglasna-ploca
-Za projekt
