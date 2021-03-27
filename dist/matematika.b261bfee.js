@@ -140,9 +140,9 @@
       this[globalName] = mainExports;
     }
   }
-})({"24Vv9":[function(require,module,exports) {
+})({"5YNIy":[function(require,module,exports) {
 var HMR_HOST = null;
-var HMR_PORT = 1234;
+var HMR_PORT = 58596;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d751713988987e9331980363e24189ce";
 module.bundle.HMR_BUNDLE_ID = "84e13ffbc27fad64ea242736b261bfee";
@@ -469,49 +469,7 @@ database.collection("korisnici").get().then(querySnapshot => {
 });
 document.getElementById("treciStupac").appendChild(new _componentsTreciStupacDefault.default().rootElement);
 
-},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","./components/PrviStupac":"6Tngg","./components/treciStupac":"7dnyH","./components/ispisOglasa":"7jidH"}],"5gA8y":[function(require,module,exports) {
-"use strict";
-
-exports.interopDefault = function (a) {
-  return a && a.__esModule ? a : {
-    default: a
-  };
-};
-
-exports.defineInteropFlag = function (a) {
-  Object.defineProperty(a, '__esModule', {
-    value: true
-  });
-};
-
-exports.exportAll = function (source, dest) {
-  Object.keys(source).forEach(function (key) {
-    if (key === 'default' || key === '__esModule') {
-      return;
-    } // Skip duplicate re-exports when they have the same value.
-
-
-    if (key in dest && dest[key] === source[key]) {
-      return;
-    }
-
-    Object.defineProperty(dest, key, {
-      enumerable: true,
-      get: function () {
-        return source[key];
-      }
-    });
-  });
-  return dest;
-};
-
-exports.export = function (dest, destName, get) {
-  Object.defineProperty(dest, destName, {
-    enumerable: true,
-    get: get
-  });
-};
-},{}],"6Tngg":[function(require,module,exports) {
+},{"./components/PrviStupac":"6Tngg","./components/treciStupac":"7dnyH","./components/ispisOglasa":"7jidH","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6Tngg":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
@@ -534,7 +492,7 @@ class PrviStupac extends _baseComponentDefault.default {
 }
 module.exports = PrviStupac;
 
-},{"../baseComponent":"22hEl","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","./neprijavljeni":"1YQWG","./prijavljeni":"5qvko"}],"22hEl":[function(require,module,exports) {
+},{"../baseComponent":"22hEl","./neprijavljeni":"1YQWG","./prijavljeni":"5qvko","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"22hEl":[function(require,module,exports) {
 class Component {
     constructor(rootElementTag) {
         this.rootElement = document.createElement(rootElementTag);
@@ -676,6 +634,48 @@ class Controler extends EventTarget {
 }
 let controler=new Controler
 module.exports = controler;
+},{}],"5gA8y":[function(require,module,exports) {
+"use strict";
+
+exports.interopDefault = function (a) {
+  return a && a.__esModule ? a : {
+    default: a
+  };
+};
+
+exports.defineInteropFlag = function (a) {
+  Object.defineProperty(a, '__esModule', {
+    value: true
+  });
+};
+
+exports.exportAll = function (source, dest) {
+  Object.keys(source).forEach(function (key) {
+    if (key === 'default' || key === '__esModule') {
+      return;
+    } // Skip duplicate re-exports when they have the same value.
+
+
+    if (key in dest && dest[key] === source[key]) {
+      return;
+    }
+
+    Object.defineProperty(dest, key, {
+      enumerable: true,
+      get: function () {
+        return source[key];
+      }
+    });
+  });
+  return dest;
+};
+
+exports.export = function (dest, destName, get) {
+  Object.defineProperty(dest, destName, {
+    enumerable: true,
+    get: get
+  });
+};
 },{}],"5qvko":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
@@ -734,7 +734,7 @@ class TreciStupac extends _baseComponentDefault.default {
 }
 module.exports = TreciStupac;
 
-},{"../baseComponent":"22hEl","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../modelAndControler":"5zPz0","./spremljeniOglasi":"jgwZ0","./dodajOglas":"6EMck","./noviOglas":"3ClHC"}],"jgwZ0":[function(require,module,exports) {
+},{"../baseComponent":"22hEl","./spremljeniOglasi":"jgwZ0","./dodajOglas":"6EMck","../modelAndControler":"5zPz0","./noviOglas":"3ClHC","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"jgwZ0":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
@@ -760,7 +760,7 @@ class SpremljeniOglasi extends _baseComponentDefault.default {
 }
 module.exports = SpremljeniOglasi;
 
-},{"../baseComponent":"22hEl","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","./oglasTodoCard":"6SN5t"}],"6SN5t":[function(require,module,exports) {
+},{"../baseComponent":"22hEl","./oglasTodoCard":"6SN5t","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6SN5t":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
@@ -932,7 +932,7 @@ class MojiOglasi extends _baseComponentDefault.default {
 }
 module.exports = MojiOglasi;
 
-},{"../baseComponent":"22hEl","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../modelAndControler":"5zPz0","./oglasTodoCard":"6SN5t"}],"7jidH":[function(require,module,exports) {
+},{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","./oglasTodoCard":"6SN5t","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"7jidH":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
@@ -1020,6 +1020,6 @@ class IspisOglasa extends _baseComponentDefault.default {
 }
 module.exports = IspisOglasa;
 
-},{"../baseComponent":"22hEl","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["24Vv9","KAAmh"], "KAAmh", "parcelRequire427e")
+},{"../baseComponent":"22hEl","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["5YNIy","KAAmh"], "KAAmh", "parcelRequire427e")
 
 //# sourceMappingURL=matematika.b261bfee.js.map

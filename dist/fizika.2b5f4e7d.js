@@ -140,9 +140,9 @@
       this[globalName] = mainExports;
     }
   }
-})({"5Knlq":[function(require,module,exports) {
+})({"79olZ":[function(require,module,exports) {
 var HMR_HOST = null;
-var HMR_PORT = 1234;
+var HMR_PORT = 58596;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d751713988987e9331980363e24189ce";
 module.bundle.HMR_BUNDLE_ID = "592065480af0567a109606a32b5f4e7d";
@@ -486,6 +486,6 @@ database
   });
 
   document.getElementById("treciStupac").appendChild(new TreciStupac().rootElement)  */
-},{}]},["5Knlq","3daKi"], "3daKi", "parcelRequire427e")
+},{}]},["79olZ","3daKi"], "3daKi", "parcelRequire427e")
 
 //# sourceMappingURL=fizika.2b5f4e7d.js.map
