@@ -1,9 +1,0 @@
-#example1 {
-            padding: 10px;
-            border-radius: 25px;
-        }
-        .tabs .indicator {
- 
- background-color:  teal lighten-5;
-
-}
