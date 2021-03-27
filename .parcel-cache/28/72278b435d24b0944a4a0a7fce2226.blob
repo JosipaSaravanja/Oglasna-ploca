@@ -1,0 +1,27 @@
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
+let controler = new _modelAndControlerDefault.default();
+class Prijavljeni extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    let user = JSON.parse(localStorage["user"]);
+    let odjava = document.createElement("a");
+    odjava.className = "waves-effect waves-light btn-small";
+    odjava.addEventListener("click", () => {
+      localStorage["user"] = JSON.stringify(false);
+      controler.user(user);
+      location.reload();
+    });
+    let icon = document.createElement("i");
+    icon.class = "material-icons";
+    icon.innerHTML = "exit_to_app";
+    odjava.innerHTML = `Odjavite se"`;
+    let ime = document.createElement("h5");
+    ime.innerHTML = user.username;
+    this.addChildren([ime, odjava]);
+  }
+}
+module.exports = Prijavljeni;

@@ -1,0 +1,6 @@
+
+        #example1,
+        #treciStupac {
+            padding: 10px;
+            border-radius: 25px;
+        }

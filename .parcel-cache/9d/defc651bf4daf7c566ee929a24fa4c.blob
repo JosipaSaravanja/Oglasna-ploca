@@ -1,0 +1,21 @@
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+var _a = require("./a");
+var _aDefault = _parcelHelpers.interopDefault(_a);
+var _b = require("./b");
+var _bDefault = _parcelHelpers.interopDefault(_b);
+class PrviStupac extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    let okvir;
+    let user = JSON.parse(localStorage["user"]);
+    if (user == false) {
+      okvir = new _aDefault.default();
+    } else {
+      okvir = new _bDefault.default();
+    }
+    this.addChild(okvir.rootElement);
+  }
+}
+module.exports = PrviStupac;

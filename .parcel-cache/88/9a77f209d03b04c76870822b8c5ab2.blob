@@ -1,0 +1,21 @@
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+var _neprijavljeni = require("./neprijavljeni");
+var _neprijavljeniDefault = _parcelHelpers.interopDefault(_neprijavljeni);
+var _prijavljeni = require("./prijavljeni");
+var _prijavljeniDefault = _parcelHelpers.interopDefault(_prijavljeni);
+class PrviStupac extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    let okvir;
+    let user = JSON.parse(localStorage["user"]);
+    if (user == false) {
+      okvir = new _neprijavljeniDefault.default();
+    } else {
+      okvir = new _prijavljeniDefault.default();
+    }
+    this.addChild(okvir.rootElement);
+  }
+}
+module.exports = PrviStupac;

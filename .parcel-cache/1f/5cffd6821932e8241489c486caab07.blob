@@ -1,0 +1,26 @@
+var _componentsPrviStupac = require("./components/PrviStupac");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _componentsPrviStupacDefault = _parcelHelpers.interopDefault(_componentsPrviStupac);
+var _componentsTreciStupac = require("./components/treciStupac");
+var _componentsTreciStupacDefault = _parcelHelpers.interopDefault(_componentsTreciStupac);
+var _componentsIspisOglasa = require("./components/ispisOglasa");
+var _componentsIspisOglasaDefault = _parcelHelpers.interopDefault(_componentsIspisOglasa);
+M.AutoInit();
+document.getElementById("example1").appendChild(new _componentsPrviStupacDefault.default().rootElement);
+let database = firebase.firestore();
+database.collection("korisnici").get().then(querySnapshot => {
+  querySnapshot.forEach(doc => {
+    let korisnik = doc.data();
+    korisnik.oglasi.forEach(el => {
+      if (el.predmet == "fizika") {
+        let oglas = new _componentsIspisOglasaDefault.default(korisnik.kontakt, el.opis, `${el.lokacija.županija}, ${el.lokacija.grad}`, el.cijena, el.razina, el.ocjena.like.length, el.ocjena.dislike);
+        if (el.razina == "osnovna škola") {
+          document.getElementById("osnovneSkole").appendChild(oglas.rootElement);
+        } else {
+          document.getElementById("srednjeSkole").appendChild(oglas.rootElement);
+        }
+      }
+    });
+  });
+});
+document.getElementById("treciStupac").appendChild(new _componentsTreciStupacDefault.default().rootElement);

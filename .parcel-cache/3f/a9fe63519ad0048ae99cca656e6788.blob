@@ -1,0 +1,69 @@
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+require("./spremljeniOglasi");
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
+require("./mojOglas");
+let = new _modelAndControlerDefault.default();
+class DodajOglas extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    let user = JSON.parse(localStorage["user"]);
+    let button = document.createElement("a");
+    button.className = "btn modal-trigger col s12 waves-effect waves-light btn";
+    button.href = "#modal1";
+    button.innerHTML = "Dodaj oglas";
+    document.getElementById("dodajOglas").addEventListener("click", () => {
+      this.dodajOglas();
+    });
+    /*controler.addEventListener("dodanJeOglas", (event) => {
+    this.dodanOglas(event.detail.oglas);
+    });*/
+    this.addChild(button);
+  }
+  dodajOglas() {
+    let grad = document.getElementById("grad");
+    let zupanija = document.getElementById("zupanije");
+    let opis = document.getElementById("opis");
+    let cijena = document.getElementById("cijena");
+    let type = document.getElementById("predmet");
+    let razina = document.getElementById("razina");
+    let user = JSON.parse(localStorage["user"]);
+    let database = firebase.firestore();
+    database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        let korisnik = doc.data();
+        let id = Number();
+        if (korisnik.oglasi.length == false) {
+          id = 0;
+        } else {
+          let obj = korisnik.oglasi[korisnik.oglasi.length - 1];
+          id = obj.id + 1;
+        }
+        let noviOglas = {
+          cijena: cijena.value,
+          id: id,
+          lokacija: {
+            grad: grad.value,
+            županija: zupanija.value
+          },
+          ocjena: {
+            like: Number(0),
+            dislike: Number(0)
+          },
+          opis: opis.value,
+          predmet: type.value,
+          razina: razina.value
+        };
+        let niz = korisnik.oglasi;
+        niz.push(noviOglas);
+        database.collection("korisnici").doc(doc.id).update({
+          oglasi: niz
+        });
+        controler.addOglas(noviOglas, korisnik.kontakt);
+      });
+    });
+  }
+}
+module.exports = DodajOglas;

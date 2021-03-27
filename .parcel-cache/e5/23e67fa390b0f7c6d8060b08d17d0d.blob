@@ -1,0 +1,19 @@
+class Component {
+    constructor(rootElementTag) {
+        this.rootElement = document.createElement(rootElementTag);
+    }
+
+    addChild(element) {
+        this.rootElement.appendChild(element);
+    }
+
+    addChildren(elementList) {
+        elementList.forEach(element => {
+            this.rootElement.appendChild(element);
+        })
+    }
+}
+
+module.exports = Component;
+
+//import TodoApp from "./components/todoApp";

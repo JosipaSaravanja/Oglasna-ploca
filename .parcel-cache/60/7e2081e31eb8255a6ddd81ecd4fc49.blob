@@ -1,0 +1,46 @@
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
+var _mojOglas = require("./mojOglas");
+var _mojOglasDefault = _parcelHelpers.interopDefault(_mojOglas);
+// Kad se korisnik ulogira ispisuje mu (u trecem stupcu) sve oglase koje je vec unio
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+var firebaseConfig = {
+  apiKey: "AIzaSyCoxNflUYGE6BH3y9BCfso08Dkvm0edLME",
+  authDomain: "oglasnaploca-b08b2.firebaseapp.com",
+  projectId: "oglasnaploca-b08b2",
+  storageBucket: "oglasnaploca-b08b2.appspot.com",
+  messagingSenderId: "632061917497",
+  appId: "1:632061917497:web:aa956473578b00b40150e8",
+  measurementId: "G-0SJ67RN8CD"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+let controler = new _modelAndControlerDefault.default();
+class SpremljeniOglasi extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    let sadrzaj = document.createElement("div");
+    let user = JSON.parse(localStorage["user"]);
+    let database = firebase.firestore();
+    database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
+      querySnapshot.forEach(doc => {
+        let korisnik = doc.data();
+        korisnik.oglasi.forEach(el => {
+          let oglas = new _mojOglasDefault.default(el.id, korisnik.kontakt, el.opis, el.lokacija, el.cijena, el.razina, el.ocjena.like, el.ocjena.dislike, korisnik.username);
+          console.log(el);
+          sadrzaj.appendChild(oglas.rootElement);
+        });
+      });
+    });
+    /*controler.addEventListener("dodanJeOglas", (event) => {
+    this.dodanOglas(event.detail.oglas);
+    });*/
+    this.addChild(sadrzaj);
+  }
+}
+module.exports = SpremljeniOglasi;

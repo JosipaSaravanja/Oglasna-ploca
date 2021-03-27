@@ -1,0 +1,26 @@
+class Controler extends EventTarget {
+    constructor(){
+        super();
+    }
+
+     user(user){
+        this.dispatchEvent(
+            new CustomEvent(
+                "currentUser",
+                {detail: {user: user}}
+                )
+        );
+    } 
+
+    addOglas(event){
+        alert("HELLO")
+        this.dispatchEvent(
+            new CustomEvent(
+                "newOglas",
+                {detail: {oglas: event}}
+                )
+        );
+
+    }
+}
+module.exports = Controler;

@@ -1,0 +1,22 @@
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
+var _mojOglas = require("./mojOglas");
+var _mojOglasDefault = _parcelHelpers.interopDefault(_mojOglas);
+class MojiOglasi extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    _modelAndControlerDefault.default.addEventListener("newOglas", event => {
+      this.dodanJeOglas(event.detail.oglas);
+    });
+  }
+  dodanJeOglas(el) {
+    console.log(el);
+    let oglas = new _mojOglasDefault.default(el.id, "korisnik.kontakt", el.opis, el.lokacija, el.cijena, el.razina, el.ocjena.like, el.ocjena.dislike, "korisnik.username");
+    this.addChild(oglas.rootElement);
+    ;
+  }
+}
+module.exports = MojiOglasi;
