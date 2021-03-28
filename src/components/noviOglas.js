@@ -5,7 +5,7 @@ import OglasTodoCard from "./oglasTodoCard";
 
 
 class MojiOglasi extends Component {
-  constructor() {
+  constructor() { 
     super("div");
     controler.addEventListener("newOglas",
             (event) => {
@@ -35,7 +35,7 @@ class MojiOglasi extends Component {
 module.exports = MojiOglasi;
 
 
-
+ 
 
 
 

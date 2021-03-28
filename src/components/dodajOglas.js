@@ -62,13 +62,13 @@ class DodajOglas extends Component {
           controler.addOglas(tempNiz);
           
         });
+        grad.value=""
+        zupanija.value="Bjelovarsko-bilogorska županija";
+        opis.value="";
+        cijena.value="";
+        type.value="matematika";
+        razina.value="osnovna škola"
       });
-      grad.value=""
-      zupanija.value="Bjelovarsko-bilogorska županija";
-      opis.value="";
-      cijena.value="";
-      type.value="matematika";
-      razina.value="osnovna škola"
   }
 }
 

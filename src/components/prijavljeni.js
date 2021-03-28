@@ -24,7 +24,16 @@ class Prijavljeni extends Component {
     
     let ime = document.createElement("h5");
     ime.innerHTML = user.username;
+/*     let button=document.createElement("a")
+    button.className="modal-close waves-effect waves-green btn-flat"
+    button.href="dodaj"
+
     
+    button.innerHTML="Uredi profil"
+    button.addEventListener("click", () => {
+      this.dodajOglas();
+    }); */
+
     this.addChildren([img, ime, odjava]);
 }
 }

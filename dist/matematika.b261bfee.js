@@ -140,9 +140,9 @@
       this[globalName] = mainExports;
     }
   }
-})({"5YNIy":[function(require,module,exports) {
+})({"24Vv9":[function(require,module,exports) {
 var HMR_HOST = null;
-var HMR_PORT = 58596;
+var HMR_PORT = 1234;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d751713988987e9331980363e24189ce";
 module.bundle.HMR_BUNDLE_ID = "84e13ffbc27fad64ea242736b261bfee";
@@ -700,6 +700,15 @@ class Prijavljeni extends _baseComponentDefault.default {
     odjava.innerHTML = `Odjavite se <i class="material-icons right">exit_to_app</i>`;
     let ime = document.createElement("h5");
     ime.innerHTML = user.username;
+    /*let button=document.createElement("a")
+    button.className="modal-close waves-effect waves-green btn-flat"
+    button.href="dodaj"
+    
+    
+    button.innerHTML="Uredi profil"
+    button.addEventListener("click", () => {
+    this.dodajOglas();
+    });*/
     this.addChildren([img, ime, odjava]);
   }
 }
@@ -734,7 +743,7 @@ class TreciStupac extends _baseComponentDefault.default {
 }
 module.exports = TreciStupac;
 
-},{"../baseComponent":"22hEl","./spremljeniOglasi":"jgwZ0","./dodajOglas":"6EMck","../modelAndControler":"5zPz0","./noviOglas":"3ClHC","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"jgwZ0":[function(require,module,exports) {
+},{"../baseComponent":"22hEl","./spremljeniOglasi":"jgwZ0","./dodajOglas":"6EMck","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","./noviOglas":"3ClHC"}],"jgwZ0":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
@@ -896,13 +905,13 @@ class DodajOglas extends _baseComponentDefault.default {
         tempNiz["username"] = korisnik.username;
         _modelAndControlerDefault.default.addOglas(tempNiz);
       });
+      grad.value = "";
+      zupanija.value = "Bjelovarsko-bilogorska županija";
+      opis.value = "";
+      cijena.value = "";
+      type.value = "matematika";
+      razina.value = "osnovna škola";
     });
-    grad.value = "";
-    zupanija.value = "Bjelovarsko-bilogorska županija";
-    opis.value = "";
-    cijena.value = "";
-    type.value = "matematika";
-    razina.value = "osnovna škola";
   }
 }
 module.exports = DodajOglas;
@@ -1020,6 +1029,6 @@ class IspisOglasa extends _baseComponentDefault.default {
 }
 module.exports = IspisOglasa;
 
-},{"../baseComponent":"22hEl","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["5YNIy","KAAmh"], "KAAmh", "parcelRequire427e")
+},{"../baseComponent":"22hEl","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["24Vv9","KAAmh"], "KAAmh", "parcelRequire427e")
 
 //# sourceMappingURL=matematika.b261bfee.js.map

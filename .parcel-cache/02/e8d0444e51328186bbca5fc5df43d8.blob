@@ -1,0 +1,36 @@
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
+class Prijavljeni extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    let user = JSON.parse(localStorage["user"]);
+    let img = document.createElement("div");
+    img.className = "col s12 m6 l12";
+    // img.innerHTML=`<img src="images/1.jpg" width="100%" height="100%" />`;
+    img.style.textAlign = "center";
+    let odjava = document.createElement("a");
+    odjava.className = "waves-effect waves-light btn-small";
+    odjava.addEventListener("click", () => {
+      localStorage["user"] = JSON.stringify(false);
+      _modelAndControlerDefault.default.user(user);
+      location.reload();
+    });
+    odjava.innerHTML = `Odjavite se <i class="material-icons right">exit_to_app</i>`;
+    let ime = document.createElement("h5");
+    ime.innerHTML = user.username;
+    /*let button=document.createElement("a")
+    button.className="modal-close waves-effect waves-green btn-flat"
+    button.href="dodaj"
+    
+    
+    button.innerHTML="Uredi profil"
+    button.addEventListener("click", () => {
+    this.dodajOglas();
+    });*/
+    this.addChildren([img, ime, odjava]);
+  }
+}
+module.exports = Prijavljeni;

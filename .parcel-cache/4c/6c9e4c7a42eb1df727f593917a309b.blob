@@ -1,0 +1,16 @@
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+require("./oglasTodoCard");
+class SpremljeniOglasi extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    let sadrzaj = document.createElement("div");
+    let user = JSON.parse(localStorage["user"]);
+    controler.addEventListener("newOglas", event => {
+      this.dodanJeOglas(event.detail.oglas);
+    });
+  }
+  dodanJeOglas() {}
+}
+module.exports = SpremljeniOglasi;
