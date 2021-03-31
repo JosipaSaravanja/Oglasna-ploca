@@ -1,0 +1,25 @@
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+var _oglasTodoCard = require("./oglasTodoCard");
+var _oglasTodoCardDefault = _parcelHelpers.interopDefault(_oglasTodoCard);
+class SpremljeniOglasi extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    let sadrzaj = document.createElement("div");
+    let user = JSON.parse(localStorage["user"]);
+    let database = firebase.firestore();
+    database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
+      querySnapshot.forEach(doc => {
+        let korisnik = doc.data();
+        console.log(korisnik.lokacija);
+        korisnik.oglasi.reverse().forEach(el => {
+          let oglas = new _oglasTodoCardDefault.default(el.id, korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.razina, el.ocjena.like.length, el.ocjena.dislike.length, korisnik.username);
+          sadrzaj.appendChild(oglas.rootElement);
+        });
+      });
+    });
+    this.addChild(sadrzaj);
+  }
+}
+module.exports = SpremljeniOglasi;

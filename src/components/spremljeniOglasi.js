@@ -21,7 +21,7 @@ class SpremljeniOglasi extends Component {
               el.id,
               korisnik.kontakt,
               el.opis,
-              el.lokacija,
+              korisnik.lokacija,
               el.cijena,
               el.razina,
               el.ocjena.like.length,

@@ -20,6 +20,7 @@ class Neprijavljeni extends Component {
     col2.className="col s12"
         let password=document.createElement("input")
         password.placeholder="Lozinka" 
+        password.type="password"
         col2.appendChild(password)
 
     let col3=document.createElement("div")
@@ -86,7 +87,8 @@ class Neprijavljeni extends Component {
                 username: username.value,
                 password: password.value,
                 oglasi: [],
-                kontakt: ""
+                kontakt: "",
+                lokacija:{županija: "", grad:""}
                 }
             database.collection("korisnici").add(obj)
             M.toast({html: `${username.value}, uspješno ste se registrirali `})

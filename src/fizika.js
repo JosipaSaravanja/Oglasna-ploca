@@ -1,4 +1,4 @@
-/* M.AutoInit();
+M.AutoInit();
 import PrviStupac from "./components/PrviStupac"; 
 import TreciStupac from "./components/treciStupac"; 
 
@@ -41,4 +41,4 @@ database
     });
   });
 
-  document.getElementById("treciStupac").appendChild(new TreciStupac().rootElement)  */
+  document.getElementById("treciStupac").appendChild(new TreciStupac().rootElement) 

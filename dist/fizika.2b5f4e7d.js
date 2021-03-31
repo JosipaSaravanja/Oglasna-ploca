@@ -442,50 +442,628 @@ id) /*: string*/
 }
 
 },{}],"3daKi":[function(require,module,exports) {
-/* M.AutoInit();
-import PrviStupac from "./components/PrviStupac"; 
-import TreciStupac from "./components/treciStupac"; 
-
-
-import IspisOglasa from "./components/ispisOglasa"
-
-
-document.getElementById("example1").appendChild(new PrviStupac().rootElement) 
-
-
+var _componentsPrviStupac = require("./components/PrviStupac");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _componentsPrviStupacDefault = _parcelHelpers.interopDefault(_componentsPrviStupac);
+var _componentsTreciStupac = require("./components/treciStupac");
+var _componentsTreciStupacDefault = _parcelHelpers.interopDefault(_componentsTreciStupac);
+var _componentsIspisOglasa = require("./components/ispisOglasa");
+var _componentsIspisOglasaDefault = _parcelHelpers.interopDefault(_componentsIspisOglasa);
+M.AutoInit();
+document.getElementById("example1").appendChild(new _componentsPrviStupacDefault.default().rootElement);
 let database = firebase.firestore();
-database
-  .collection("korisnici")
-  .get()
-  .then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-      let korisnik = doc.data();
-      korisnik.oglasi.forEach((el) => {
-        if (el.predmet == "fizika") {
-          let oglas = new IspisOglasa(
-            korisnik.kontakt,
-            el.opis,
-            `${el.lokacija.županija}, ${el.lokacija.grad}`,
-            el.cijena,
-            el.razina,
-            el.ocjena.like.length,
-            el.ocjena.dislike.lengt
-          );
-          if(el.razina == "osnovna škola") {
-            document
-              .getElementById("osnovneSkole")
-              .appendChild(oglas.rootElement);
-          } else {
-            document
-              .getElementById("srednjeSkole")
-              .appendChild(oglas.rootElement);
-          }
+database.collection("korisnici").get().then(querySnapshot => {
+  querySnapshot.forEach(doc => {
+    let korisnik = doc.data();
+    korisnik.oglasi.forEach(el => {
+      if (el.predmet == "fizika") {
+        let oglas = new _componentsIspisOglasaDefault.default(korisnik.kontakt, el.opis, `${el.lokacija.županija}, ${el.lokacija.grad}`, el.cijena, el.razina, el.ocjena.like.length, el.ocjena.dislike.lengt);
+        if (el.razina == "osnovna škola") {
+          document.getElementById("osnovneSkole").appendChild(oglas.rootElement);
+        } else {
+          document.getElementById("srednjeSkole").appendChild(oglas.rootElement);
         }
-      });
+      }
     });
   });
+});
+document.getElementById("treciStupac").appendChild(new _componentsTreciStupacDefault.default().rootElement);
 
-  document.getElementById("treciStupac").appendChild(new TreciStupac().rootElement)  */
-},{}]},["5Knlq","3daKi"], "3daKi", "parcelRequire427e")
+},{"./components/PrviStupac":"6Tngg","./components/treciStupac":"7dnyH","./components/ispisOglasa":"7jidH","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6Tngg":[function(require,module,exports) {
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+var _neprijavljeni = require("./neprijavljeni");
+var _neprijavljeniDefault = _parcelHelpers.interopDefault(_neprijavljeni);
+var _prijavljeni = require("./prijavljeni");
+var _prijavljeniDefault = _parcelHelpers.interopDefault(_prijavljeni);
+class PrviStupac extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    let okvir;
+    let user = JSON.parse(localStorage["user"]);
+    if (user == false) {
+      okvir = new _neprijavljeniDefault.default();
+    } else {
+      okvir = new _prijavljeniDefault.default();
+    }
+    this.addChild(okvir.rootElement);
+  }
+}
+module.exports = PrviStupac;
+
+},{"../baseComponent":"22hEl","./neprijavljeni":"1YQWG","./prijavljeni":"5qvko","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"22hEl":[function(require,module,exports) {
+class Component {
+    constructor(rootElementTag) {
+        this.rootElement = document.createElement(rootElementTag);
+    }
+
+    addChild(element) {
+        this.rootElement.appendChild(element);
+    }
+    addChildren(elementList) {
+        elementList.forEach(element => {
+            this.rootElement.appendChild(element);
+        })
+    }
+}
+
+module.exports = Component;
+
+//import TodoApp from "./components/todoApp";
+
+},{}],"1YQWG":[function(require,module,exports) {
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
+class Neprijavljeni extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    let naslov = document.createElement("h5");
+    naslov.className = "col s12";
+    naslov.innerHTML = "Prijava";
+    let col1 = document.createElement("div");
+    col1.className = "col s12";
+    let username = document.createElement("input");
+    username.placeholder = "Korisničko ime";
+    col1.appendChild(username);
+    let col2 = document.createElement("div");
+    col2.className = "col s12";
+    let password = document.createElement("input");
+    password.placeholder = "Lozinka";
+    password.type = "password";
+    col2.appendChild(password);
+    let col3 = document.createElement("div");
+    col3.className = "col s12";
+    let prijava = document.createElement("a");
+    prijava.className = "waves-effect waves-light btn-small";
+    prijava.innerHTML = "Prijava";
+    col3.appendChild(prijava);
+    let col4 = document.createElement("div");
+    col4.className = "col s12";
+    col4.innerHTML = "ILI";
+    let col5 = document.createElement("div");
+    col5.className = "col s12";
+    let registracija = document.createElement("a");
+    registracija.className = "waves-effect waves-light btn-small";
+    registracija.innerHTML = "Registracija";
+    col5.appendChild(registracija);
+    prijava.addEventListener("click", () => {
+      this.prijava(username, password);
+    });
+    registracija.addEventListener("click", () => {
+      this.registracija(username, password);
+    });
+    this.addChildren([naslov, col1, col2, col3, col4, col5]);
+  }
+  prijava(username, password) {
+    let database = firebase.firestore();
+    let prijava = false;
+    // gleda da li se korisnik uspio prijaviti tj. da li je ispravno i username i password
+    database.collection("korisnici").where("username", "==", username.value).get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        let podaci = doc.data();
+        console.log(podaci);
+        if (podaci.password == password.value) {
+          M.toast({
+            html: `Uspjesna prijava ${podaci.username}`
+          });
+          prijava = true;
+          // korisnik se prijavio
+          localStorage["user"] = JSON.stringify(podaci);
+          _modelAndControlerDefault.default.user();
+          location.reload();
+        }
+      });
+      prijava == false ? alert("Netocno korisnicko ime ili lozinka") : false;
+    });
+  }
+  registracija(username, password) {
+    let database = firebase.firestore();
+    let vecZauzeto = false;
+    // provjerava je li username vez zauzet
+    database.collection("korisnici").get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        doc.data().username == username.value ? vecZauzeto = true : false;
+      });
+      if (vecZauzeto == true) {
+        alert("Korisnicko ime koje ste upisali je već zauzeto");
+      } else {
+        let obj = {
+          username: username.value,
+          password: password.value,
+          oglasi: [],
+          kontakt: "",
+          lokacija: {
+            županija: "",
+            grad: ""
+          }
+        };
+        database.collection("korisnici").add(obj);
+        M.toast({
+          html: `${username.value}, uspješno ste se registrirali `
+        });
+        this.prijava(username, password);
+      }
+    });
+  }
+}
+module.exports = Neprijavljeni;
+
+},{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"5zPz0":[function(require,module,exports) {
+class Controler extends EventTarget {
+    constructor(){
+        super();
+    }
+
+     user(user){
+        this.dispatchEvent(
+            new CustomEvent(
+                "currentUser",
+                {detail: {user: user}}
+                )
+        );
+    } 
+
+    addOglas(event){
+        this.dispatchEvent(
+            new CustomEvent(
+                "newOglas",
+                {detail: {oglas: event}}
+                )
+        );
+
+    }
+}
+let controler=new Controler
+module.exports = controler;
+},{}],"5gA8y":[function(require,module,exports) {
+"use strict";
+
+exports.interopDefault = function (a) {
+  return a && a.__esModule ? a : {
+    default: a
+  };
+};
+
+exports.defineInteropFlag = function (a) {
+  Object.defineProperty(a, '__esModule', {
+    value: true
+  });
+};
+
+exports.exportAll = function (source, dest) {
+  Object.keys(source).forEach(function (key) {
+    if (key === 'default' || key === '__esModule') {
+      return;
+    } // Skip duplicate re-exports when they have the same value.
+
+
+    if (key in dest && dest[key] === source[key]) {
+      return;
+    }
+
+    Object.defineProperty(dest, key, {
+      enumerable: true,
+      get: function () {
+        return source[key];
+      }
+    });
+  });
+  return dest;
+};
+
+exports.export = function (dest, destName, get) {
+  Object.defineProperty(dest, destName, {
+    enumerable: true,
+    get: get
+  });
+};
+},{}],"5qvko":[function(require,module,exports) {
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+require("../modelAndControler");
+class Prijavljeni extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    let user = JSON.parse(localStorage["user"]);
+    let img = document.createElement("img");
+    img.className = "col s12 m6 l12";
+    img.src = `https://icons-for-free.com/iconfiles/png/512/eva+icons+++fill+person-1324449943844961316.png`;
+    img.style.textAlign = "center";
+    let ime = document.createElement("h5");
+    ime.className = "col s12 m6 l12";
+    ime.innerHTML = user.username;
+    let select = document.createElement("select");
+    select.id = `zupanije`;
+    select.className = "browser-default";
+    let zupanijeNiz = ["Bjelovarsko-bilogorska županija", "Brodsko-posavska županija", "Dubrovačko-neretvanska županija", "Grad Zagreb županija", "Istarska županija", "Karlovačka županija", "Koprivničko-križevačka županija", "Krapinsko-zagorska županija", "Ličko-senjska županija", "Međimurska županija", "Osječko-baranjska županija", "Požeško-slavonska županija", "Primorsko-goranska županija", "Sisačko-moslavačka županija", "Splitsko-dalmatinska županija", "Šibensko-kninska županija", "Varaždinska županija", "Virovitičko-podravska županija", "Vukovarsko-srijemska županija", "Zadarska županija", "Zagrebačka županija"];
+    zupanijeNiz.forEach(el => {
+      let option = document.createElement("option");
+      option.innerHTML = el;
+      option.value = el;
+      console.log(user.lokacija.županija);
+      select.append(option);
+    });
+    select.value = user.lokacija.županija;
+    let grad = document.createElement("input");
+    grad.innerHTML = user.lokacija.grad;
+    console.log(user.lokacija.grad);
+    grad.value = user.lokacija.grad;
+    let kontakt = document.createElement("input");
+    kontakt.innerHTML = user.kontakt;
+    console.log(user.kontakt);
+    kontakt.value = user.kontakt;
+    let password = document.createElement("input");
+    password.value = user.password;
+    password.type = "password";
+    let spremi = document.createElement("a");
+    spremi.className = "waves-effect waves-light btn-small";
+    /*spremi.addEventListener("click", () => {
+    let database = firebase.firestore();
+    database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
+    querySnapshot.forEach(function (doc) {
+    
+    database.collection("korisnici").doc(doc.id).update({
+    password: password.value,
+    lokacija:{županija: select.value, grad: grad.value},
+    kontakt: kontakt.value
+    });
+    })
+    });
+    });*/
+    spremi.style.marginBottom = "5%";
+    spremi.innerHTML = `Spremi promjene <i class="material-icons right">save</i>`;
+    let odjava = document.createElement("a");
+    odjava.className = "waves-effect waves-light btn-small";
+    odjava.addEventListener("click", () => {
+      localStorage["user"] = JSON.stringify(false);
+      location.reload();
+    });
+    odjava.innerHTML = `Odjavite se <i class="material-icons right">exit_to_app</i>`;
+    let col = document.createElement("col");
+    col.className = "col s12 m6 l12";
+    col.appendChild(select);
+    col.appendChild(grad);
+    col.appendChild(kontakt);
+    col.appendChild(password);
+    col.appendChild(spremi);
+    col.appendChild(odjava);
+    this.addChildren([img, ime, col]);
+  }
+}
+module.exports = Prijavljeni;
+
+},{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"7dnyH":[function(require,module,exports) {
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+var _spremljeniOglasi = require("./spremljeniOglasi");
+var _spremljeniOglasiDefault = _parcelHelpers.interopDefault(_spremljeniOglasi);
+var _dodajOglas = require("./dodajOglas");
+var _dodajOglasDefault = _parcelHelpers.interopDefault(_dodajOglas);
+require("../modelAndControler");
+var _noviOglas = require("./noviOglas");
+var _noviOglasDefault = _parcelHelpers.interopDefault(_noviOglas);
+class TreciStupac extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    this.rootElement.className = "row z-depth-5";
+    let sadrzaj = document.createElement("div");
+    let user = JSON.parse(localStorage["user"]);
+    if (user == false) {
+      sadrzaj.innerHTML = "";
+    } else {
+      let spremljeniOglasi = new _spremljeniOglasiDefault.default();
+      let dodajOglas = new _dodajOglasDefault.default();
+      let noviOglas = new _noviOglasDefault.default();
+      this.addChildren([dodajOglas.rootElement, noviOglas.rootElement, spremljeniOglasi.rootElement]);
+    }
+  }
+}
+module.exports = TreciStupac;
+
+},{"../baseComponent":"22hEl","./spremljeniOglasi":"jgwZ0","./dodajOglas":"6EMck","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","./noviOglas":"3ClHC"}],"jgwZ0":[function(require,module,exports) {
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+var _oglasTodoCard = require("./oglasTodoCard");
+var _oglasTodoCardDefault = _parcelHelpers.interopDefault(_oglasTodoCard);
+class SpremljeniOglasi extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    let sadrzaj = document.createElement("div");
+    let user = JSON.parse(localStorage["user"]);
+    let database = firebase.firestore();
+    database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
+      querySnapshot.forEach(doc => {
+        let korisnik = doc.data();
+        korisnik.oglasi.reverse().forEach(el => {
+          let oglas = new _oglasTodoCardDefault.default(el.id, korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.razina, el.ocjena.like.length, el.ocjena.dislike.length, korisnik.username);
+          sadrzaj.appendChild(oglas.rootElement);
+        });
+      });
+    });
+    this.addChild(sadrzaj);
+  }
+}
+module.exports = SpremljeniOglasi;
+
+},{"../baseComponent":"22hEl","./oglasTodoCard":"6SN5t","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6SN5t":[function(require,module,exports) {
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+class OglasTodoCard extends _baseComponentDefault.default {
+  constructor(id, kontakt, opis, lokacija, cijena, razina, numberOfLikes, numberOfDislikes, username) {
+    super("div");
+    this.rootElement.className = "card-panel grey lighten-5 z-depth-1";
+    this.id = id;
+    let row = document.createElement("div");
+    row.className = "row";
+    let col = document.createElement("div");
+    col.className = "col s12";
+    let opisElement = document.createElement("p");
+    opisElement.className = "black-text";
+    opisElement.innerHTML = opis;
+    let info = document.createElement("p");
+    info.innerHTML = `
+            lokacija: ${lokacija.županija}, ${lokacija.grad}<br>
+            cijena:  ${cijena} <br>
+            razredi: ${razina} <br>
+            kontakt: ${kontakt}
+        `;
+    let ocjena = document.createElement("div");
+    ocjena.className = "col s1";
+    let like = document.createElement("i");
+    like.innerHTML = "thumb_up";
+    like.className = "material-icons";
+    like.style = "vertical-align :-3px;";
+    let dislike = document.createElement("i");
+    dislike.innerHTML = "thumb_down";
+    dislike.className = "material-icons";
+    dislike.style = "vertical-align :-10px;";
+    let numberOfLikesElement = document.createElement("span");
+    numberOfLikesElement.innerHTML = numberOfLikes;
+    let numberOfDislikesElement = document.createElement("span");
+    numberOfDislikesElement.innerHTML = numberOfDislikes;
+    let col2 = document.createElement("div");
+    col2.className = "col s12";
+    let button = document.createElement("a");
+    button.className = "col s12 waves-effect waves-light btn";
+    button.innerHTML = "OBRIŠI OGLAS";
+    button.addEventListener("click", () => {
+      this.removeSelf(id, username);
+    });
+    col2.appendChild(button);
+    col.appendChild(opisElement);
+    col.appendChild(info);
+    col.appendChild(numberOfLikesElement);
+    col.appendChild(like);
+    col.appendChild(dislike);
+    col.appendChild(numberOfDislikesElement);
+    row.appendChild(col);
+    row.appendChild(col2);
+    this.addChild(row);
+  }
+  removeSelf(id, username) {
+    let parent = this.rootElement.parentNode;
+    parent.removeChild(this.rootElement);
+    let database = firebase.firestore();
+    console.log(username);
+    database.collection("korisnici").where("username", "==", username).get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        let korisnik = doc.data();
+        database.collection("korisnici").doc(doc.id).update({
+          oglasi: korisnik.oglasi.filter(item => item.id !== id)
+        });
+      });
+    });
+  }
+}
+module.exports = OglasTodoCard;
+
+},{"../baseComponent":"22hEl","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6EMck":[function(require,module,exports) {
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
+class DodajOglas extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    let button = document.createElement("a");
+    button.className = "btn modal-trigger col s12 waves-effect waves-light btn";
+    button.href = "#modal1";
+    button.innerHTML = "Dodaj oglas";
+    document.getElementById("dodajOglas").addEventListener("click", () => {
+      this.dodajOglas();
+    });
+    this.addChild(button);
+  }
+  dodajOglas() {
+    let opis = document.getElementById("opis");
+    let cijena = document.getElementById("cijena");
+    let type = document.getElementById("predmet");
+    let razina = document.getElementById("razina");
+    let user = JSON.parse(localStorage["user"]);
+    let database = firebase.firestore();
+    database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        let korisnik = doc.data();
+        let id = Number();
+        if (korisnik.oglasi.length == false) {
+          id = 0;
+        } else {
+          let obj = korisnik.oglasi[korisnik.oglasi.length - 1];
+          id = obj.id + 1;
+        }
+        let noviOglas = {
+          cijena: cijena.value,
+          id: id,
+          ocjena: {
+            like: [],
+            dislike: []
+          },
+          opis: opis.value,
+          predmet: type.value,
+          razina: razina.value
+        };
+        let niz = korisnik.oglasi;
+        niz.push(noviOglas);
+        database.collection("korisnici").doc(doc.id).update({
+          oglasi: niz
+        });
+        let tempNiz = noviOglas;
+        // U njemu se nalaze svi podaci koji su portrebni da bi novi oglasi preko addEventListenera napravili novu kartivu
+        tempNiz["kontakt"] = korisnik.kontakt;
+        tempNiz["username"] = korisnik.username;
+        tempNiz["lokacija"] = korisnik.lokacija;
+        _modelAndControlerDefault.default.addOglas(tempNiz);
+      });
+      opis.value = "";
+      cijena.value = "";
+      type.value = "matematika";
+      razina.value = "osnovna škola";
+    });
+  }
+}
+module.exports = DodajOglas;
+
+},{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"3ClHC":[function(require,module,exports) {
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
+var _oglasTodoCard = require("./oglasTodoCard");
+var _oglasTodoCardDefault = _parcelHelpers.interopDefault(_oglasTodoCard);
+class MojiOglasi extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    _modelAndControlerDefault.default.addEventListener("newOglas", event => {
+      this.dodanJeOglas(event.detail.oglas);
+    });
+  }
+  dodanJeOglas(el) {
+    console.log(el);
+    let oglas = new _oglasTodoCardDefault.default(el.id, el.kontakt, el.opis, el.lokacija, el.cijena, el.razina, el.ocjena.like.length, el.ocjena.dislike.length, el.username);
+    this.addChild(oglas.rootElement);
+    // container.insertBefore(newElement, container.firstChild)
+    ;
+  }
+}
+module.exports = MojiOglasi;
+
+},{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","./oglasTodoCard":"6SN5t","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"7jidH":[function(require,module,exports) {
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+class IspisOglasa extends _baseComponentDefault.default {
+  constructor(kontakt, opis, lokacija, cijena, razina, numberOfLikes, numberOfDislikes, id, username) {
+    super("div");
+    this.rootElement.className = "card-panel grey lighten-5 z-depth-1";
+    let row = document.createElement("div");
+    row.className = "row valign-wrapper";
+    let col = document.createElement("div");
+    col.className = "col s11";
+    let opisElement = document.createElement("p");
+    opisElement.className = "black-text";
+    opisElement.innerHTML = opis;
+    let info = document.createElement("p");
+    info.innerHTML = `
+            lokacija: ${lokacija.županija}, ${lokacija.grad}<br>
+            cijena:  ${cijena} <br>
+            razredi: ${razina} <br>
+            kontakt: ${kontakt}
+        `;
+    let ocjena = document.createElement("div");
+    ocjena.className = "col s1";
+    let like = document.createElement("i");
+    like.innerHTML = "thumb_up";
+    like.className = "material-icons";
+    like.style = "cursor: pointer; vertical-align :-3px;";
+    like.addEventListener("click", () => {
+      this.like(id, username);
+    });
+    let dislike = document.createElement("i");
+    dislike.innerHTML = "thumb_down";
+    dislike.className = "material-icons";
+    dislike.style = "cursor: pointer; vertical-align :-10px;";
+    dislike.addEventListener("click", () => {
+      this.dislike(id, username);
+    });
+    let numberOfLikesElement = document.createElement("span");
+    numberOfLikesElement.innerHTML = numberOfLikes;
+    let numberOfDislikesElement = document.createElement("span");
+    numberOfDislikesElement.innerHTML = numberOfDislikes;
+    col.appendChild(opisElement);
+    col.appendChild(info);
+    ocjena.appendChild(numberOfLikesElement);
+    ocjena.appendChild(like);
+    ocjena.appendChild(dislike);
+    ocjena.appendChild(numberOfDislikesElement);
+    row.appendChild(col);
+    row.appendChild(ocjena);
+    this.addChild(row);
+  }
+  like(id, username) {}
+  dislike() {
+    /*
+    let user = JSON.parse(localStorage["user"]);
+    database
+    .collection("korisnici")
+    .where("username", "==", username)
+    .get()
+    .then(function (querySnapshot) {
+    querySnapshot.forEach((doc) => {
+    let korisnik = doc.data();
+    korisnik.oglasi.forEach((el) => {
+    if(el.id==id){
+    el.ocjene.like.forEach((niz)=>{
+    if(niz.includes(user.username)==true){
+    niz.filter(item=> item!==user.username)
+    console.log(niz)
+    database
+    .collection("korisnici")
+    .doc(korisnik.id)
+    .update({
+    oglasi: korisnik.oglasi,
+    });
+    
+    }
+    })
+    }
+    });
+    });
+    });*/
+    alert("dislike");
+  }
+}
+module.exports = IspisOglasa;
+
+},{"../baseComponent":"22hEl","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["5Knlq","3daKi"], "3daKi", "parcelRequire427e")
 
 //# sourceMappingURL=fizika.2b5f4e7d.js.map

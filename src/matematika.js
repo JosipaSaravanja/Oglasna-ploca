@@ -21,7 +21,7 @@ database
           let oglas = new IspisOglasa(
             korisnik.kontakt,
             el.opis,
-            el.lokacija,
+            korisnik.lokacija,
             el.cijena,
             el.razina,
             el.ocjena.length,

@@ -20,8 +20,6 @@ class DodajOglas extends Component {
 
 
   dodajOglas() {
-    let grad = document.getElementById("grad");
-    let zupanija = document.getElementById("zupanije");
     let opis = document.getElementById("opis");
     let cijena = document.getElementById("cijena");
     let type = document.getElementById("predmet");
@@ -44,7 +42,6 @@ class DodajOglas extends Component {
           let noviOglas = {
             cijena: cijena.value,
             id: id,
-            lokacija: { grad: grad.value, županija: zupanija.value },
             ocjena: { like: [], dislike: [] },
             opis: opis.value,
             predmet: type.value,
@@ -59,11 +56,10 @@ class DodajOglas extends Component {
           let tempNiz=noviOglas; //U njemu se nalaze svi podaci koji su portrebni da bi novi oglasi preko addEventListenera napravili novu kartivu 
           tempNiz["kontakt"]=korisnik.kontakt;
           tempNiz["username"]= korisnik.username;
+          tempNiz["lokacija"]= korisnik.lokacija;
           controler.addOglas(tempNiz);
           
         });
-        grad.value=""
-        zupanija.value="Bjelovarsko-bilogorska županija";
         opis.value="";
         cijena.value="";
         type.value="matematika";

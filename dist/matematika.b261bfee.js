@@ -457,7 +457,7 @@ database.collection("korisnici").get().then(querySnapshot => {
     let korisnik = doc.data();
     korisnik.oglasi.forEach(el => {
       if (el.predmet == "matematika") {
-        let oglas = new _componentsIspisOglasaDefault.default(korisnik.kontakt, el.opis, el.lokacija, el.cijena, el.razina, el.ocjena.length, el.ocjena.dislike.length, el.id, korisnik.username);
+        let oglas = new _componentsIspisOglasaDefault.default(korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.razina, el.ocjena.length, el.ocjena.dislike.length, el.id, korisnik.username);
         if (el.razina == "osnovna škola") {
           document.getElementById("osnovneSkole").appendChild(oglas.rootElement);
         } else {
@@ -533,6 +533,7 @@ class Neprijavljeni extends _baseComponentDefault.default {
     col2.className = "col s12";
     let password = document.createElement("input");
     password.placeholder = "Lozinka";
+    password.type = "password";
     col2.appendChild(password);
     let col3 = document.createElement("div");
     col3.className = "col s12";
@@ -594,7 +595,11 @@ class Neprijavljeni extends _baseComponentDefault.default {
           username: username.value,
           password: password.value,
           oglasi: [],
-          kontakt: ""
+          kontakt: "",
+          lokacija: {
+            županija: "",
+            grad: ""
+          }
         };
         database.collection("korisnici").add(obj);
         M.toast({
@@ -680,36 +685,74 @@ exports.export = function (dest, destName, get) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
-var _modelAndControler = require("../modelAndControler");
-var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
+require("../modelAndControler");
 class Prijavljeni extends _baseComponentDefault.default {
   constructor() {
     super("div");
     let user = JSON.parse(localStorage["user"]);
-    let img = document.createElement("div");
+    let img = document.createElement("img");
     img.className = "col s12 m6 l12";
-    // img.innerHTML=`<img src="images/1.jpg" width="100%" height="100%" />`;
+    img.src = `https://icons-for-free.com/iconfiles/png/512/eva+icons+++fill+person-1324449943844961316.png`;
     img.style.textAlign = "center";
+    let ime = document.createElement("h5");
+    ime.className = "col s12 m6 l12";
+    ime.innerHTML = user.username;
+    let select = document.createElement("select");
+    select.id = `zupanije`;
+    select.className = "browser-default";
+    let zupanijeNiz = ["Bjelovarsko-bilogorska županija", "Brodsko-posavska županija", "Dubrovačko-neretvanska županija", "Grad Zagreb županija", "Istarska županija", "Karlovačka županija", "Koprivničko-križevačka županija", "Krapinsko-zagorska županija", "Ličko-senjska županija", "Međimurska županija", "Osječko-baranjska županija", "Požeško-slavonska županija", "Primorsko-goranska županija", "Sisačko-moslavačka županija", "Splitsko-dalmatinska županija", "Šibensko-kninska županija", "Varaždinska županija", "Virovitičko-podravska županija", "Vukovarsko-srijemska županija", "Zadarska županija", "Zagrebačka županija"];
+    zupanijeNiz.forEach(el => {
+      let option = document.createElement("option");
+      option.innerHTML = el;
+      option.value = el;
+      console.log(user.lokacija.županija);
+      select.append(option);
+    });
+    select.value = user.lokacija.županija;
+    let grad = document.createElement("input");
+    grad.innerHTML = user.lokacija.grad;
+    console.log(user.lokacija.grad);
+    grad.value = user.lokacija.grad;
+    let kontakt = document.createElement("input");
+    kontakt.innerHTML = user.kontakt;
+    console.log(user.kontakt);
+    kontakt.value = user.kontakt;
+    let password = document.createElement("input");
+    password.value = user.password;
+    password.type = "password";
+    let spremi = document.createElement("a");
+    spremi.className = "waves-effect waves-light btn-small";
+    /*spremi.addEventListener("click", () => {
+    let database = firebase.firestore();
+    database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
+    querySnapshot.forEach(function (doc) {
+    
+    database.collection("korisnici").doc(doc.id).update({
+    password: password.value,
+    lokacija:{županija: select.value, grad: grad.value},
+    kontakt: kontakt.value
+    });
+    })
+    });
+    });*/
+    spremi.style.marginBottom = "5%";
+    spremi.innerHTML = `Spremi promjene <i class="material-icons right">save</i>`;
     let odjava = document.createElement("a");
     odjava.className = "waves-effect waves-light btn-small";
     odjava.addEventListener("click", () => {
       localStorage["user"] = JSON.stringify(false);
-      _modelAndControlerDefault.default.user(user);
       location.reload();
     });
     odjava.innerHTML = `Odjavite se <i class="material-icons right">exit_to_app</i>`;
-    let ime = document.createElement("h5");
-    ime.innerHTML = user.username;
-    /*let button=document.createElement("a")
-    button.className="modal-close waves-effect waves-green btn-flat"
-    button.href="dodaj"
-    
-    
-    button.innerHTML="Uredi profil"
-    button.addEventListener("click", () => {
-    this.dodajOglas();
-    });*/
-    this.addChildren([img, ime, odjava]);
+    let col = document.createElement("col");
+    col.className = "col s12 m6 l12";
+    col.appendChild(select);
+    col.appendChild(grad);
+    col.appendChild(kontakt);
+    col.appendChild(password);
+    col.appendChild(spremi);
+    col.appendChild(odjava);
+    this.addChildren([img, ime, col]);
   }
 }
 module.exports = Prijavljeni;
@@ -759,7 +802,7 @@ class SpremljeniOglasi extends _baseComponentDefault.default {
       querySnapshot.forEach(doc => {
         let korisnik = doc.data();
         korisnik.oglasi.reverse().forEach(el => {
-          let oglas = new _oglasTodoCardDefault.default(el.id, korisnik.kontakt, el.opis, el.lokacija, el.cijena, el.razina, el.ocjena.like.length, el.ocjena.dislike.length, korisnik.username);
+          let oglas = new _oglasTodoCardDefault.default(el.id, korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.razina, el.ocjena.like.length, el.ocjena.dislike.length, korisnik.username);
           sadrzaj.appendChild(oglas.rootElement);
         });
       });
@@ -861,8 +904,6 @@ class DodajOglas extends _baseComponentDefault.default {
     this.addChild(button);
   }
   dodajOglas() {
-    let grad = document.getElementById("grad");
-    let zupanija = document.getElementById("zupanije");
     let opis = document.getElementById("opis");
     let cijena = document.getElementById("cijena");
     let type = document.getElementById("predmet");
@@ -882,10 +923,6 @@ class DodajOglas extends _baseComponentDefault.default {
         let noviOglas = {
           cijena: cijena.value,
           id: id,
-          lokacija: {
-            grad: grad.value,
-            županija: zupanija.value
-          },
           ocjena: {
             like: [],
             dislike: []
@@ -903,10 +940,9 @@ class DodajOglas extends _baseComponentDefault.default {
         // U njemu se nalaze svi podaci koji su portrebni da bi novi oglasi preko addEventListenera napravili novu kartivu
         tempNiz["kontakt"] = korisnik.kontakt;
         tempNiz["username"] = korisnik.username;
+        tempNiz["lokacija"] = korisnik.lokacija;
         _modelAndControlerDefault.default.addOglas(tempNiz);
       });
-      grad.value = "";
-      zupanija.value = "Bjelovarsko-bilogorska županija";
       opis.value = "";
       cijena.value = "";
       type.value = "matematika";
@@ -957,7 +993,6 @@ class IspisOglasa extends _baseComponentDefault.default {
     opisElement.className = "black-text";
     opisElement.innerHTML = opis;
     let info = document.createElement("p");
-    console.log(lokacija);
     info.innerHTML = `
             lokacija: ${lokacija.županija}, ${lokacija.grad}<br>
             cijena:  ${cijena} <br>

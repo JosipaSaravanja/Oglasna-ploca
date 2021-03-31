@@ -17,7 +17,6 @@ class IspisOglasa extends Component {
         opisElement.innerHTML=opis
         
         let info=document.createElement("p")
-        console.log(lokacija)
         info.innerHTML=`
             lokacija: ${lokacija.županija}, ${lokacija.grad}<br>
             cijena:  ${cijena} <br>
