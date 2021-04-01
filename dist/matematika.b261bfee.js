@@ -693,6 +693,7 @@ class Prijavljeni extends _baseComponentDefault.default {
     let img = document.createElement("img");
     img.className = "col s12 m6 l12";
     img.src = `https://icons-for-free.com/iconfiles/png/512/eva+icons+++fill+person-1324449943844961316.png`;
+    // kako povezat mapu s ovim dokumentom
     img.style.textAlign = "center";
     let ime = document.createElement("h5");
     ime.className = "col s12 m6 l12";
@@ -713,28 +714,33 @@ class Prijavljeni extends _baseComponentDefault.default {
     grad.innerHTML = user.lokacija.grad;
     console.log(user.lokacija.grad);
     grad.value = user.lokacija.grad;
+    grad.placeholder = "Grad";
     let kontakt = document.createElement("input");
     kontakt.innerHTML = user.kontakt;
     console.log(user.kontakt);
     kontakt.value = user.kontakt;
+    kontakt.placeholder = "kontakt";
     let password = document.createElement("input");
     password.value = user.password;
     password.type = "password";
+    password.placeholder = "Placeholder";
     let spremi = document.createElement("a");
     spremi.className = "waves-effect waves-light btn-small";
-    /*spremi.addEventListener("click", () => {
-    let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
-    querySnapshot.forEach(function (doc) {
-    
-    database.collection("korisnici").doc(doc.id).update({
-    password: password.value,
-    lokacija:{županija: select.value, grad: grad.value},
-    kontakt: kontakt.value
+    spremi.addEventListener("click", () => {
+      let database = firebase.firestore();
+      database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          database.collection("korisnici").doc(doc.id).update({
+            password: password.value,
+            lokacija: {
+              županija: select.value,
+              grad: grad.value
+            },
+            kontakt: kontakt.value
+          });
+        });
+      });
     });
-    })
-    });
-    });*/
     spremi.style.marginBottom = "5%";
     spremi.innerHTML = `Spremi promjene <i class="material-icons right">save</i>`;
     let odjava = document.createElement("a");
