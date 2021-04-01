@@ -63,12 +63,12 @@ class Prijavljeni extends Component {
     kontakt.innerHTML=user.kontakt 
     console.log(user.kontakt)
     kontakt.value=user.kontakt
-    kontakt.placeholder="kontakt"
+    kontakt.placeholder="Kontakt"
 
     let password=document.createElement("input")
     password.value=user.password 
     password.type="password"
-    password.placeholder="Placeholder"
+    password.placeholder="Lozinka"
 
     let spremi = document.createElement("a");
     spremi.className = "waves-effect waves-light btn-small";
@@ -81,7 +81,14 @@ class Prijavljeni extends Component {
             password: password.value,
             lokacija:{županija: select.value, grad: grad.value},
             kontakt: kontakt.value
-          });
+          }).then(() => {
+            database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
+              querySnapshot.forEach(function (doc) {
+                localStorage["user"] = JSON.stringify(doc.data());
+                location.reload()
+              })
+            });
+            })
         })
       });
     }); 

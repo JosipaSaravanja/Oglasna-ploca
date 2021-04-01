@@ -1,0 +1,15 @@
+var _componentsPrviStupac = require("./components/PrviStupac");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _componentsPrviStupacDefault = _parcelHelpers.interopDefault(_componentsPrviStupac);
+var _componentsTreciStupac = require("./components/treciStupac");
+var _componentsTreciStupacDefault = _parcelHelpers.interopDefault(_componentsTreciStupac);
+M.AutoInit();
+localStorage["user"];
+/*localStorage["user"]  = JSON.stringify({username: "ante"})
+
+
+/* console.log(JSON.parse(localStorage["user"]))*/
+document.getElementById("example1").appendChild(new _componentsPrviStupacDefault.default().rootElement);
+/*
+document.getElementById("example2").appendChild(new MojiOglasi().rootElement)*/
+document.getElementById("example2").appendChild(new _componentsTreciStupacDefault.default().rootElement);

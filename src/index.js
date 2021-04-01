@@ -7,5 +7,4 @@ localStorage["user"]
 
 /* console.log(JSON.parse(localStorage["user"])) */
 document.getElementById("example1").appendChild(new PrviStupac().rootElement) /* 
-document.getElementById("treciStupac").appendChild(new MojiOglasi().rootElement)  */
-document.getElementById("treciStupac").appendChild(new TreciStupac().rootElement) 
+document.getElementById("example2").appendChild(new MojiOglasi().rootElement)  */

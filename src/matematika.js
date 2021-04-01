@@ -43,4 +43,4 @@ database
     });
   });
 
-  document.getElementById("treciStupac").appendChild(new TreciStupac().rootElement) 
+  document.getElementById("example2").appendChild(new TreciStupac().rootElement) 

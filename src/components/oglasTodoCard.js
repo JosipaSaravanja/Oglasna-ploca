@@ -79,8 +79,16 @@ class OglasTodoCard extends Component {
 
   removeSelf(id, username) {
     let database = firebase.firestore();
-    
-    console.log(username)
+
+    let parent = this.rootElement.parentNode;
+    parent.removeChild(this.rootElement);
+
+/*     .then(() => {
+      let parent = this.rootElement.parentNode;
+      parent.removeChild(this.rootElement);
+    }); */
+
+    console.log(username);
     database
       .collection("korisnici")
       .where("username", "==", username)
@@ -89,17 +97,15 @@ class OglasTodoCard extends Component {
         querySnapshot.forEach(function (doc) {
           let korisnik = doc.data();
           database
-      .collection("korisnici")
-      .doc(doc.id)
-      .update({
-        oglasi: korisnik.oglasi.filter(item => item.id !== id),
-      });
-      
+            .collection("korisnici")
+            .doc(doc.id)
+            .update({
+              oglasi: korisnik.oglasi.filter((item) => item.id !== id),
+            })
         });
       });
-      let parent = this.rootElement.parentNode;
-      parent.removeChild(this.rootElement);
-//kako napraviti da se katrica makne NAKON sto se odrise iz div na zaslonu
+      
+    //kako napraviti da se katrica makne NAKON sto se odrise iz div na zaslonu
   }
 }
 

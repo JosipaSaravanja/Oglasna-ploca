@@ -1,0 +1,14 @@
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+require("./oglasTodoCard");
+require("../modelAndControler");
+class Filter extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    let sadrzaj = document.createElement("div");
+    sadrzaj.innerHTML = "HELLLLLLO";
+    this.addChild(sadrzaj);
+  }
+}
+module.exports = Filter;

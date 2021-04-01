@@ -467,7 +467,7 @@ database.collection("korisnici").get().then(querySnapshot => {
     });
   });
 });
-document.getElementById("treciStupac").appendChild(new _componentsTreciStupacDefault.default().rootElement);
+document.getElementById("example2").appendChild(new _componentsTreciStupacDefault.default().rootElement);
 
 },{"./components/PrviStupac":"6Tngg","./components/treciStupac":"7dnyH","./components/ispisOglasa":"7jidH","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6Tngg":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
@@ -719,11 +719,11 @@ class Prijavljeni extends _baseComponentDefault.default {
     kontakt.innerHTML = user.kontakt;
     console.log(user.kontakt);
     kontakt.value = user.kontakt;
-    kontakt.placeholder = "kontakt";
+    kontakt.placeholder = "Kontakt";
     let password = document.createElement("input");
     password.value = user.password;
     password.type = "password";
-    password.placeholder = "Placeholder";
+    password.placeholder = "Lozinka";
     let spremi = document.createElement("a");
     spremi.className = "waves-effect waves-light btn-small";
     spremi.addEventListener("click", () => {
@@ -737,6 +737,13 @@ class Prijavljeni extends _baseComponentDefault.default {
               grad: grad.value
             },
             kontakt: kontakt.value
+          }).then(() => {
+            database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
+              querySnapshot.forEach(function (doc) {
+                localStorage["user"] = JSON.stringify(doc.data());
+                location.reload();
+              });
+            });
           });
         });
       });
@@ -771,13 +778,17 @@ var _spremljeniOglasi = require("./spremljeniOglasi");
 var _spremljeniOglasiDefault = _parcelHelpers.interopDefault(_spremljeniOglasi);
 var _dodajOglas = require("./dodajOglas");
 var _dodajOglasDefault = _parcelHelpers.interopDefault(_dodajOglas);
+var _filter = require("./filter");
+var _filterDefault = _parcelHelpers.interopDefault(_filter);
 require("../modelAndControler");
 class TreciStupac extends _baseComponentDefault.default {
   constructor() {
     super("div");
-    this.rootElement.className = "row z-depth-5";
     let user = JSON.parse(localStorage["user"]);
-    if (user == false) {} else {
+    if (user == false) {
+      let filter = new _filterDefault.default();
+      this.addChild(filter.rootElement);
+    } else {
       let spremljeniOglasi = new _spremljeniOglasiDefault.default();
       let dodajOglas = new _dodajOglasDefault.default();
       this.addChildren([dodajOglas.rootElement, spremljeniOglasi.rootElement]);
@@ -786,7 +797,7 @@ class TreciStupac extends _baseComponentDefault.default {
 }
 module.exports = TreciStupac;
 
-},{"../baseComponent":"22hEl","./spremljeniOglasi":"jgwZ0","./dodajOglas":"6EMck","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"jgwZ0":[function(require,module,exports) {
+},{"../baseComponent":"22hEl","./spremljeniOglasi":"jgwZ0","./dodajOglas":"6EMck","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","./filter":"5RHnC"}],"jgwZ0":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
@@ -881,6 +892,12 @@ class OglasTodoCard extends _baseComponentDefault.default {
   }
   removeSelf(id, username) {
     let database = firebase.firestore();
+    let parent = this.rootElement.parentNode;
+    parent.removeChild(this.rootElement);
+    /*.then(() => {
+    let parent = this.rootElement.parentNode;
+    parent.removeChild(this.rootElement);
+    });*/
     console.log(username);
     database.collection("korisnici").where("username", "==", username).get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
@@ -890,8 +907,6 @@ class OglasTodoCard extends _baseComponentDefault.default {
         });
       });
     });
-    let parent = this.rootElement.parentNode;
-    parent.removeChild(this.rootElement);
   }
 }
 module.exports = OglasTodoCard;
@@ -963,7 +978,32 @@ class DodajOglas extends _baseComponentDefault.default {
 }
 module.exports = DodajOglas;
 
-},{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"7jidH":[function(require,module,exports) {
+},{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"5RHnC":[function(require,module,exports) {
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+require("./oglasTodoCard");
+require("../modelAndControler");
+class Filter extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    let form = document.createElement("form");
+    form.action = `#`;
+    let zupanijeNiz = ["Bjelovarsko-bilogorska županija", "Brodsko-posavska županija", "Dubrovačko-neretvanska županija", "Grad Zagreb županija", "Istarska županija", "Karlovačka županija", "Koprivničko-križevačka županija", "Krapinsko-zagorska županija", "Ličko-senjska županija", "Međimurska županija", "Osječko-baranjska županija", "Požeško-slavonska županija", "Primorsko-goranska županija", "Sisačko-moslavačka županija", "Splitsko-dalmatinska županija", "Šibensko-kninska županija", "Varaždinska županija", "Virovitičko-podravska županija", "Vukovarsko-srijemska županija", "Zadarska županija", "Zagrebačka županija"];
+    zupanijeNiz.forEach(el => {
+      let p = document.createElement("p");
+      p.innerHTML = `<label>
+          <input type="checkbox" />
+          <span>${el}</span>
+        </label>`;
+      form.appendChild(p);
+    });
+    this.addChild(form);
+  }
+}
+module.exports = Filter;
+
+},{"../baseComponent":"22hEl","./oglasTodoCard":"6SN5t","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"7jidH":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);

@@ -1,0 +1,223 @@
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="99604772cf1f25d66376cbe0825d0f84" type="image/gif" sizes="16x16">
+    <title>Oglasna ploča</title>
+    <link rel="stylesheet" href="d64ece83f0ed537f356f07c54e94d205">
+    <link href="b4a19141b6bc02d2306cb5f72cdb5513" rel="stylesheet">
+    <link rel="stylesheet" href="e4bf09b61ab884c61a649b52903c2aa8">
+</head>
+
+<body>
+    <nav class="nav-extended teal lighten-1" style="b24eedb8df12d9dca0ae1e2d4f578602">
+        <div class="nav-wrapper ">
+            <a href="" class="brand-logo"><i class="material-icons">cloud</i>Oglasna ploča</a>
+            <a href="" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="">Sass</a></li>
+                <li><a href="">Components</a></li>
+                <li><a href="">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="">Sass</a></li>
+        <li><a href="">Components</a></li>
+        <li><a href="">JavaScript</a></li>
+    </ul>
+    <!--Uzglavlje-->
+    <br>
+
+    <div class="row">
+        <div class="col s12 l2">
+            <div class="col s12">
+                <div class="row z-depth-5" id="example1">
+
+
+                </div>
+            </div>
+        </div>
+        <!--Prvi 'stupac' gdje se izmjenjuju prijava i korisnički račun-->
+
+        <div class="col s12 l8">
+            <div class="col s12">
+                <div class="row z-depth-5" style="695589dbfbcb584c8b38187e4ddc6421">
+
+                    <div class="col s12 l4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="016c91d842bc41e8e4c8b1c086554b50">
+                                <a class="card-title" href="bef078e5a373470d4885234856cb184f">Matematika</a>
+                            </div>
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information.
+                                    I am convenient because I require little markup to use effectively.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 l4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="3658f4d30ad7772b686b1617ae8466e1">
+                                <a class="card-title" href="18a4b4caace02601ca3ba92c08f404de">Fizika</a>
+                            </div>
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information.
+                                    I am convenient because I require little markup to use effectively.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 l4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="61c33b757a51436d1674025544c5a1f8">
+                                <a class="card-title" href="bef078e5a373470d4885234856cb184f" target="_blank">Kemija</a>
+                            </div>
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information.
+                                    I am convenient because I require little markup to use effectively.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 l4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="aefc4d6e687a6a1d3f079dbdafaa664a">
+                                <a class="card-title" href="#">Hrvatski</a>
+                            </div>
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information.
+                                    I am convenient because I require little markup to use effectively.</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col s12 l4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="bad61c022afdcfbc131262f08012ff44">
+                                <a class="card-title" href="#">Engleski</a>
+                            </div>
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information.
+                                    I am convenient because I require little markup to use effectively.</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col s12 l4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="bad61c022afdcfbc131262f08012ff44">
+                                <a class="card-title" href="#">Njemački</a>
+                            </div>
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information.
+                                    I am convenient because I require little markup to use effectively.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+<!--                     <video width="320" height="240" controls>
+                       <source src="images/njemački prezentacija.mp4" type="video/mp4">
+                       <source src="images/njemački-prezentacija.ogg" type="video/ogg">
+                      Your browser does not support the video tag.
+                      </video>
+   -->
+                </div>
+            </div>
+        </div>
+        <!--Srednji 'stupac' s stalnim kategorijama-->
+
+
+       
+        <div class="col s12 l2">
+            <div class="col s12">
+                <div class="row z-depth-5" id="tre">
+
+
+                </div>
+            </div>
+        </div>
+            <!--Treći 'stupac'-->
+
+        </div>
+        <div id="modal1" class="modal  modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Novi oglas</h4>
+                <p>
+                    </p><div class="col s12"><input id="opis" placeholder="Opis">
+                    </div>
+                    <div class="col s12"><input id="cijena" placeholder="Cijena (navedite i vrijeme npr 60 kn/45min, 70kn/60min...)"></div>
+                    
+                    <div class="col s12">
+                        <label>Odaberite predmet</label>
+                        <select class="browser-default" id="predmet">
+                            <option value="matematika">Matematika</option>
+                            <option value="fizika">Fizika</option>
+                            <option value="kemija">Kemija</option>
+                            <option value="hrvatski">Hrvatski</option>
+                            <option value="engleski">Engleski</option>
+                            <option value="njemacki">Njemački</option>
+                        </select>    
+                    </div>
+                    <div class="col s12">
+                        <label>Odaberite razinu</label>
+                        <select class="browser-default" id="razina">
+                            <option value="osnovna škola">Osnovna škola</option>
+                            <option value="srednja škola">Srednja škola</option>
+                        </select>    
+                    </div>
+                <p></p>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <a id="dodajOglas" href="#!" class="modal-close waves-effect waves-green btn-flat">Dodaj oglas</a>
+            </div>
+        </div>
+
+
+</body>
+ <!-- The core Firebase JS SDK is always required and must be listed first -->
+ <script src="32d69cd3d1e9f8a313176cd3a4ab5100"></script>
+
+ <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+ <script src="7b5d6b1466e83b2b006b60604820630b"></script>
+ 
+ <script src="3107ad81f3a96d9fa3f8f4394f4a86e9"></script>
+
+     
+<script src="450f8a1e3f020be700bf9eb223689557"></script>
+<script data-parcel-key="dcbce890953f0e19c6b9304ce816fe3f">
+   
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyCoxNflUYGE6BH3y9BCfso08Dkvm0edLME",
+    authDomain: "oglasnaploca-b08b2.firebaseapp.com",
+    projectId: "oglasnaploca-b08b2",
+    storageBucket: "oglasnaploca-b08b2.appspot.com",
+    messagingSenderId: "632061917497",
+    appId: "1:632061917497:web:aa956473578b00b40150e8",
+    measurementId: "G-0SJ67RN8CD"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+<script src="6b4bdb555d7e3a8d549ded548e319b64"></script>
+
+</html>
