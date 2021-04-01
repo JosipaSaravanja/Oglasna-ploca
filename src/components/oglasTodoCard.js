@@ -8,6 +8,7 @@ class OglasTodoCard extends Component {
     opis,
     lokacija,
     cijena,
+    predmet,
     razina,
     numberOfLikes,
     numberOfDislikes,
@@ -30,6 +31,7 @@ class OglasTodoCard extends Component {
     info.innerHTML = `
             lokacija: ${lokacija.županija}, ${lokacija.grad}<br>
             cijena:  ${cijena} <br>
+            predmet: ${predmet} <br>
             razredi: ${razina} <br>
             kontakt: ${kontakt}
         `;
@@ -76,8 +78,6 @@ class OglasTodoCard extends Component {
   }
 
   removeSelf(id, username) {
-    let parent = this.rootElement.parentNode;
-    parent.removeChild(this.rootElement);
     let database = firebase.firestore();
     
     console.log(username)
@@ -97,30 +97,9 @@ class OglasTodoCard extends Component {
       
         });
       });
-
-    /* let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", username).update({
-        oglasi: ["portal1", "portal2"]
-        })
-         */
-
-    /* .get()
-.then(function(querySnapshot) {
-querySnapshot.forEach(function(doc) {
-let korisnik = doc.data()
-
-korisnik.oglasi = korisnik.oglasi.filter(item => item.id !== id) */
-
-    /*      let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", username).get()
-.then(function(querySnapshot) {
-querySnapshot.forEach(function(doc) {
-let korisnik = doc.data()
-
-korisnik.oglasi = korisnik.oglasi.filter(item => item.id !== id)
- console.log(korisnik)
-});
-}); */
+      let parent = this.rootElement.parentNode;
+      parent.removeChild(this.rootElement);
+//kako napraviti da se katrica makne NAKON sto se odrise iz div na zaslonu
   }
 }
 

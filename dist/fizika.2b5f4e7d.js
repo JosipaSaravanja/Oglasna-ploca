@@ -766,33 +766,29 @@ var _spremljeniOglasiDefault = _parcelHelpers.interopDefault(_spremljeniOglasi);
 var _dodajOglas = require("./dodajOglas");
 var _dodajOglasDefault = _parcelHelpers.interopDefault(_dodajOglas);
 require("../modelAndControler");
-var _noviOglas = require("./noviOglas");
-var _noviOglasDefault = _parcelHelpers.interopDefault(_noviOglas);
 class TreciStupac extends _baseComponentDefault.default {
   constructor() {
     super("div");
     this.rootElement.className = "row z-depth-5";
-    let sadrzaj = document.createElement("div");
     let user = JSON.parse(localStorage["user"]);
-    if (user == false) {
-      sadrzaj.innerHTML = "";
-    } else {
+    if (user == false) {} else {
       let spremljeniOglasi = new _spremljeniOglasiDefault.default();
       let dodajOglas = new _dodajOglasDefault.default();
-      let noviOglas = new _noviOglasDefault.default();
-      this.addChildren([dodajOglas.rootElement, noviOglas.rootElement, spremljeniOglasi.rootElement]);
+      this.addChildren([dodajOglas.rootElement, spremljeniOglasi.rootElement]);
     }
   }
 }
 module.exports = TreciStupac;
 
-},{"../baseComponent":"22hEl","./spremljeniOglasi":"jgwZ0","./dodajOglas":"6EMck","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","./noviOglas":"3ClHC"}],"jgwZ0":[function(require,module,exports) {
+},{"../baseComponent":"22hEl","./spremljeniOglasi":"jgwZ0","./dodajOglas":"6EMck","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"jgwZ0":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
 var _oglasTodoCard = require("./oglasTodoCard");
 var _oglasTodoCardDefault = _parcelHelpers.interopDefault(_oglasTodoCard);
-class SpremljeniOglasi extends _baseComponentDefault.default {
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
+class MojiOglasi extends _baseComponentDefault.default {
   constructor() {
     super("div");
     let sadrzaj = document.createElement("div");
@@ -802,22 +798,30 @@ class SpremljeniOglasi extends _baseComponentDefault.default {
       querySnapshot.forEach(doc => {
         let korisnik = doc.data();
         korisnik.oglasi.reverse().forEach(el => {
-          let oglas = new _oglasTodoCardDefault.default(el.id, korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.razina, el.ocjena.like.length, el.ocjena.dislike.length, korisnik.username);
+          let oglas = new _oglasTodoCardDefault.default(el.id, korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.predmet, el.razina, el.ocjena.like.length, el.ocjena.dislike.length, korisnik.username);
           sadrzaj.appendChild(oglas.rootElement);
         });
       });
     });
+    _modelAndControlerDefault.default.addEventListener("newOglas", event => {
+      this.dodanJeOglas(event.detail.oglas);
+    });
     this.addChild(sadrzaj);
   }
+  dodanJeOglas(el) {
+    console.log(el);
+    let oglas = new _oglasTodoCardDefault.default(el.id, el.kontakt, el.opis, el.lokacija, el.cijena, el.predmet, el.razina, el.ocjena.like.length, el.ocjena.dislike.length, el.username);
+    this.addChild(oglas.rootElement);
+  }
 }
-module.exports = SpremljeniOglasi;
+module.exports = MojiOglasi;
 
-},{"../baseComponent":"22hEl","./oglasTodoCard":"6SN5t","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6SN5t":[function(require,module,exports) {
+},{"../baseComponent":"22hEl","./oglasTodoCard":"6SN5t","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../modelAndControler":"5zPz0"}],"6SN5t":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
 class OglasTodoCard extends _baseComponentDefault.default {
-  constructor(id, kontakt, opis, lokacija, cijena, razina, numberOfLikes, numberOfDislikes, username) {
+  constructor(id, kontakt, opis, lokacija, cijena, predmet, razina, numberOfLikes, numberOfDislikes, username) {
     super("div");
     this.rootElement.className = "card-panel grey lighten-5 z-depth-1";
     this.id = id;
@@ -832,6 +836,7 @@ class OglasTodoCard extends _baseComponentDefault.default {
     info.innerHTML = `
             lokacija: ${lokacija.županija}, ${lokacija.grad}<br>
             cijena:  ${cijena} <br>
+            predmet: ${predmet} <br>
             razredi: ${razina} <br>
             kontakt: ${kontakt}
         `;
@@ -869,8 +874,6 @@ class OglasTodoCard extends _baseComponentDefault.default {
     this.addChild(row);
   }
   removeSelf(id, username) {
-    let parent = this.rootElement.parentNode;
-    parent.removeChild(this.rootElement);
     let database = firebase.firestore();
     console.log(username);
     database.collection("korisnici").where("username", "==", username).get().then(function (querySnapshot) {
@@ -881,6 +884,8 @@ class OglasTodoCard extends _baseComponentDefault.default {
         });
       });
     });
+    let parent = this.rootElement.parentNode;
+    parent.removeChild(this.rootElement);
   }
 }
 module.exports = OglasTodoCard;
@@ -952,32 +957,7 @@ class DodajOglas extends _baseComponentDefault.default {
 }
 module.exports = DodajOglas;
 
-},{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"3ClHC":[function(require,module,exports) {
-var _baseComponent = require("../baseComponent");
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
-var _modelAndControler = require("../modelAndControler");
-var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
-var _oglasTodoCard = require("./oglasTodoCard");
-var _oglasTodoCardDefault = _parcelHelpers.interopDefault(_oglasTodoCard);
-class MojiOglasi extends _baseComponentDefault.default {
-  constructor() {
-    super("div");
-    _modelAndControlerDefault.default.addEventListener("newOglas", event => {
-      this.dodanJeOglas(event.detail.oglas);
-    });
-  }
-  dodanJeOglas(el) {
-    console.log(el);
-    let oglas = new _oglasTodoCardDefault.default(el.id, el.kontakt, el.opis, el.lokacija, el.cijena, el.razina, el.ocjena.like.length, el.ocjena.dislike.length, el.username);
-    this.addChild(oglas.rootElement);
-    // container.insertBefore(newElement, container.firstChild)
-    ;
-  }
-}
-module.exports = MojiOglasi;
-
-},{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","./oglasTodoCard":"6SN5t","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"7jidH":[function(require,module,exports) {
+},{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"7jidH":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
