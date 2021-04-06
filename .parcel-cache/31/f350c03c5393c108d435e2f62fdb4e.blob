@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/icon.HASH_REF_63c9c58843da3a118baa333ed07a6ed0.jpg" type="image/gif" sizes="16x16">
+    <title>Oglasna ploča</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/index.HASH_REF_1484d9a21a30cf8951b41e0f0f132b6c.css">
+    <style>.tabs .indicator {
+            background-color: #4db6ac;
+        }
+
+        .tabs .tab a.active {
+            background-color: #e0f2f1 !important;
+            color: #00897b !important;
+        }
+</style>
+</head>
+
+<body>
+    <nav class="nav-extended teal lighten-1" style="padding: 20px
+">
+        <div class="nav-wrapper ">
+            <a href="/index.html" class="brand-logo"><i class="  material-icons">cloud</i>Oglasna ploča</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="">Sass</a></li>
+        <li><a href="">Components</a></li>
+        <li><a href="">JavaScript</a></li>
+    </ul>
+    <!--Uzglavlje-->
+    <br>
+    <div class="row">
+        <div class="col s12 l8 offset-l2">
+            <div class="col s12">
+                <div class="row z-depth-5" style="background-color: white;
+">
+                    <div class="col s12 m9 l10">
+                        <h5><b>Upute za korištenje stranice: </b></h5><br>
+                        <div id="oglasi" class="section scrollspy">
+                            <p><b>1. Traženje oglasa</b><br>
+                                Ukoliko želite samo pogledati ponuđene oglase (bez da ih ocjenjujete ili objavljujete
+                                vlastite) to možete bez korisničkog računa. Otiđite na našu <a href="/index.html">početnu
+                                    stranicu </a> i odaberite klikom predmet koji vas zanima. Otvorit će se svi oglasi
+                                za taj predmet. Na vrhu možete birat osnovne škole/srednje škole, a na vrhu (na
+                                računalima) ili bočno (na ostalim uređajima) možete filtrirat oglase po županijama. </p>
+                        </div>
+
+                        <div id="prijava" class="section scrollspy">
+                            <p><b>2. Prijava ili Registracija</b><br>
+                                Prilikom kreiranja korisničkog računa trebate unijeni korisničko ime (po mogućnosti vaše
+                                stvarno ime) i lozinku te učiniti <b>Registraciju</b>. Ukoliko je uneseno korisničko ime
+                                već zauzeto trebate unijeti neko novo. Kad se prijavite ne morate unosit nikakve osobne
+                                podatke (poput lokacije i konakta) jer ih uvijek možete promjeniti, međutim ukoliko
+                                planirate objaviti oglas ti su podaci neophodni.
+                                <br>
+                                <img src="/ime.HASH_REF_793ad7d7d21a6c039232b3a808c65e15.jpg"><br>
+                                <br>Ukoliko se odlučite unijeti osobne podatke, nakon što se prijavite ispunite obrazac
+                                i pritisnite <b>Spremi promjene</b>. Podaci će se automatski promjeniti na svim oglasima
+                                koje ste ranije objavili. Također možete mjenjati lozinku, ali ne i korisničko ime.
+                                <br>
+                                <img src="/222.HASH_REF_2a8b9381a0f001b0e5dc4dff6224895e.jpg"> <br>
+                                <br><span style="color:#ef5350
+">Napomena: Samim zatvaranjem pretraživača <b>nećete</b>
+                                    se odjavit stoga se pobrinite da kada završite s korištenjem pritisnete
+                                    <b>Odjava</b>. Sljedeći put pri prijavi unesite
+                                    potrebne podatke i izvršite <b>Prijava</b>.</span>
+                            </p>
+                        </div>
+
+                        <div id="oglasi2" class="section scrollspy">
+                            <p><b>3. Objavljivanje oglasa</b> <br>
+                                Nakon prijave na desnoj strani ekrana (na računalima) ili na dnu (kod ostalih uređaja)
+                                pritisnite gumb <b>Dodaj oglas</b>. Obavezno unesite podatke koji vam se traže (predmet,
+                                razina...), jer će se prema njima kasinje filtrirati oglasi prilikiom pretrage.
+                                Lokacija, kontakt i ime autora će se automatski prikupiti iz vaših osobnih podataka.
+                                Kada unesete podatke za novi oglas pritisnite <b>Dodaj oglas</b>. Ispod prvospomenutog
+                                botuna vidjet ćete listu s svima vašim oglasima te ih po želji možete <b>trajno</b>
+                                izbrisati.<br><img src="/2222.HASH_REF_55d9c54ea0cfd2518785423080166230.jpg"><br></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 l2">
+            <div class="col s12">
+
+                <div class="col hide-on-med-and-down l2">
+                    <ul class="section table-of-contents">
+                        <li><a href="#oglasi">Traženje oglasa</a></li>
+                        <li><a href="#prijava">Prijava ili Registracija</a></li>
+                        <li><a href="#oglasi2">Objavljivanje oglasa</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--Treći 'stupac'-->
+
+    </div>
+    <!--Srednji 'stupac'-->
+
+
+    
+</body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>// modules are defined as an array
+// [ module function, map of requires ]
+//
+// map of requires is short require name -> numeric require
+//
+// anything defined in a previous bundle is accessed via the
+// orig method which is the require for previous bundles
+
+(function(modules, entry, mainEntry, parcelRequireName, globalName) {
+  /* eslint-disable no-undef */
+  var globalObject =
+    typeof globalThis !== 'undefined'
+      ? globalThis
+      : typeof self !== 'undefined'
+      ? self
+      : typeof window !== 'undefined'
+      ? window
+      : typeof global !== 'undefined'
+      ? global
+      : {};
+  /* eslint-enable no-undef */
+
+  // Save the require from previous bundle to this closure if any
+  var previousRequire =
+    typeof globalObject[parcelRequireName] === 'function' &&
+    globalObject[parcelRequireName];
+
+  var cache = previousRequire.cache || {};
+  // Do not use `require` to prevent Webpack from trying to bundle this call
+  var nodeRequire =
+    typeof module !== 'undefined' &&
+    typeof module.require === 'function' &&
+    module.require.bind(module);
+
+  function newRequire(name, jumped) {
+    if (!cache[name]) {
+      if (!modules[name]) {
+        // if we cannot find the module within our internal map or
+        // cache jump to the current global require ie. the last bundle
+        // that was added to the page.
+        var currentRequire =
+          typeof globalObject[parcelRequireName] === 'function' &&
+          globalObject[parcelRequireName];
+        if (!jumped && currentRequire) {
+          return currentRequire(name, true);
+        }
+
+        // If there are other bundles on this page the require from the
+        // previous one is saved to 'previousRequire'. Repeat this as
+        // many times as there are bundles until the module is found or
+        // we exhaust the require chain.
+        if (previousRequire) {
+          return previousRequire(name, true);
+        }
+
+        // Try the node require function if it exists.
+        if (nodeRequire && typeof name === 'string') {
+          return nodeRequire(name);
+        }
+
+        var err = new Error("Cannot find module '" + name + "'");
+        err.code = 'MODULE_NOT_FOUND';
+        throw err;
+      }
+
+      localRequire.resolve = resolve;
+      localRequire.cache = {};
+
+      var module = (cache[name] = new newRequire.Module(name));
+
+      modules[name][0].call(
+        module.exports,
+        localRequire,
+        module,
+        module.exports,
+        this
+      );
+    }
+
+    return cache[name].exports;
+
+    function localRequire(x) {
+      return newRequire(localRequire.resolve(x));
+    }
+
+    function resolve(x) {
+      return modules[name][1][x] || x;
+    }
+  }
+
+  function Module(moduleName) {
+    this.id = moduleName;
+    this.bundle = newRequire;
+    this.exports = {};
+  }
+
+  newRequire.isParcelRequire = true;
+  newRequire.Module = Module;
+  newRequire.modules = modules;
+  newRequire.cache = cache;
+  newRequire.parent = previousRequire;
+  newRequire.register = function(id, exports) {
+    modules[id] = [
+      function(require, module) {
+        module.exports = exports;
+      },
+      {},
+    ];
+  };
+
+  Object.defineProperty(newRequire, 'root', {
+    get: function() {
+      return globalObject[parcelRequireName];
+    },
+  });
+
+  globalObject[parcelRequireName] = newRequire;
+
+  for (var i = 0; i < entry.length; i++) {
+    newRequire(entry[i]);
+  }
+
+  if (mainEntry) {
+    // Expose entry point to Node, AMD or browser globals
+    // Based on https://github.com/ForbesLindesay/umd/blob/master/template.js
+    var mainExports = newRequire(mainEntry);
+
+    // CommonJS
+    if (typeof exports === 'object' && typeof module !== 'undefined') {
+      module.exports = mainExports;
+
+      // RequireJS
+    } else if (typeof define === 'function' && define.amd) {
+      define(function() {
+        return mainExports;
+      });
+
+      // <script>
+    } else if (globalName) {
+      this[globalName] = mainExports;
+    }
+  }
+})({"46Wsr":[function(require,module,exports) {
+var HMR_HOST = null;
+var HMR_PORT = 1234;
+var HMR_SECURE = false;
+var HMR_ENV_HASH = "d751713988987e9331980363e24189ce";
+module.bundle.HMR_BUNDLE_ID = "fe166887a0e220b114344a582e3fe01e";
+// @flow
+/*global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE*/
+/*::
+import type {
+HMRAsset,
+HMRMessage,
+} from '@parcel/reporter-dev-server/src/HMRServer.js';
+interface ParcelRequire {
+(string): mixed;
+cache: {|[string]: ParcelModule|};
+hotData: mixed;
+Module: any;
+parent: ?ParcelRequire;
+isParcelRequire: true;
+modules: {|[string]: [Function, {|[string]: string|}]|};
+HMR_BUNDLE_ID: string;
+root: ParcelRequire;
+}
+interface ParcelModule {
+hot: {|
+data: mixed,
+accept(cb: (Function) => void): void,
+dispose(cb: (mixed) => void): void,
+// accept(deps: Array<string> | string, cb: (Function) => void): void,
+// decline(): void,
+_acceptCallbacks: Array<(Function) => void>,
+_disposeCallbacks: Array<(mixed) => void>,
+|};
+}
+declare var module: {bundle: ParcelRequire, ...};
+declare var HMR_HOST: string;
+declare var HMR_PORT: string;
+declare var HMR_ENV_HASH: string;
+declare var HMR_SECURE: boolean;
+*/
+var OVERLAY_ID = '__parcel__error__overlay__';
+var OldModule = module.bundle.Module;
+function Module(moduleName) {
+  OldModule.call(this, moduleName);
+  this.hot = {
+    data: module.bundle.hotData,
+    _acceptCallbacks: [],
+    _disposeCallbacks: [],
+    accept: function (fn) {
+      this._acceptCallbacks.push(fn || (function () {}));
+    },
+    dispose: function (fn) {
+      this._disposeCallbacks.push(fn);
+    }
+  };
+  module.bundle.hotData = undefined;
+}
+module.bundle.Module = Module;
+var checkedAssets, /*: {|[string]: boolean|}*/
+acceptedAssets, /*: {|[string]: boolean|}*/
+/*: {|[string]: boolean|}*/
+assetsToAccept;
+function getHostname() {
+  return HMR_HOST || (location.protocol.indexOf('http') === 0 ? location.hostname : 'localhost');
+}
+function getPort() {
+  return HMR_PORT || location.port;
+}
+// eslint-disable-next-line no-redeclare
+var parent = module.bundle.parent;
+if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
+  var hostname = getHostname();
+  var port = getPort();
+  var protocol = HMR_SECURE || location.protocol == 'https:' && !(/localhost|127.0.0.1|0.0.0.0/).test(hostname) ? 'wss' : 'ws';
+  var ws = new WebSocket(protocol + '://' + hostname + (port ? ':' + port : '') + '/');
+  // $FlowFixMe
+  ws.onmessage = function (event) /*: {data: string, ...}*/
+  {
+    checkedAssets = {
+      /*: {|[string]: boolean|}*/
+    };
+    acceptedAssets = {
+      /*: {|[string]: boolean|}*/
+    };
+    assetsToAccept = [];
+    var data = /*: HMRMessage*/
+    JSON.parse(event.data);
+    if (data.type === 'update') {
+      // Remove error overlay if there is one
+      removeErrorOverlay();
+      let assets = data.assets.filter(asset => asset.envHash === HMR_ENV_HASH);
+      // Handle HMR Update
+      var handled = false;
+      assets.forEach(asset => {
+        var didAccept = asset.type === 'css' || asset.type === 'js' && hmrAcceptCheck(module.bundle.root, asset.id, asset.depsByBundle);
+        if (didAccept) {
+          handled = true;
+        }
+      });
+      if (handled) {
+        console.clear();
+        assets.forEach(function (asset) {
+          hmrApply(module.bundle.root, asset);
+        });
+        for (var i = 0; i < assetsToAccept.length; i++) {
+          var id = assetsToAccept[i][1];
+          if (!acceptedAssets[id]) {
+            hmrAcceptRun(assetsToAccept[i][0], id);
+          }
+        }
+      } else {
+        window.location.reload();
+      }
+    }
+    if (data.type === 'error') {
+      // Log parcel errors to console
+      for (let ansiDiagnostic of data.diagnostics.ansi) {
+        let stack = ansiDiagnostic.codeframe ? ansiDiagnostic.codeframe : ansiDiagnostic.stack;
+        console.error('🚨 [parcel]: ' + ansiDiagnostic.message + '\n' + stack + '\n\n' + ansiDiagnostic.hints.join('\n'));
+      }
+      // Render the fancy html overlay
+      removeErrorOverlay();
+      var overlay = createErrorOverlay(data.diagnostics.html);
+      // $FlowFixMe
+      document.body.appendChild(overlay);
+    }
+  };
+  ws.onerror = function (e) {
+    console.error(e.message);
+  };
+  ws.onclose = function (e) {
+    if (undefined !== 'test') {
+      console.warn('[parcel] 🚨 Connection to the HMR server was lost');
+    }
+  };
+}
+function removeErrorOverlay() {
+  var overlay = document.getElementById(OVERLAY_ID);
+  if (overlay) {
+    overlay.remove();
+    console.log('[parcel] ✨ Error resolved');
+  }
+}
+function createErrorOverlay(diagnostics) {
+  var overlay = document.createElement('div');
+  overlay.id = OVERLAY_ID;
+  let errorHTML = '<div style="background: black; opacity: 0.85; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; font-family: Menlo, Consolas, monospace; z-index: 9999;">';
+  for (let diagnostic of diagnostics) {
+    let stack = diagnostic.codeframe ? diagnostic.codeframe : diagnostic.stack;
+    errorHTML += `
+      <div>
+        <div style="font-size: 18px; font-weight: bold; margin-top: 20px;">
+          🚨 ${diagnostic.message}
+        </div>
+        <pre>
+          ${stack}
+        </pre>
+        <div>
+          ${diagnostic.hints.map(hint => '<div>' + hint + '</div>').join('')}
+        </div>
+      </div>
+    `;
+  }
+  errorHTML += '</div>';
+  overlay.innerHTML = errorHTML;
+  return overlay;
+}
+function getParents(bundle, id) /*: Array<[ParcelRequire, string]>*/
+{
+  var modules = bundle.modules;
+  if (!modules) {
+    return [];
+  }
+  var parents = [];
+  var k, d, dep;
+  for (k in modules) {
+    for (d in modules[k][1]) {
+      dep = modules[k][1][d];
+      if (dep === id || Array.isArray(dep) && dep[dep.length - 1] === id) {
+        parents.push([bundle, k]);
+      }
+    }
+  }
+  if (bundle.parent) {
+    parents = parents.concat(getParents(bundle.parent, id));
+  }
+  return parents;
+}
+function updateLink(link) {
+  var newLink = link.cloneNode();
+  newLink.onload = function () {
+    if (link.parentNode !== null) {
+      // $FlowFixMe
+      link.parentNode.removeChild(link);
+    }
+  };
+  newLink.setAttribute('href', // $FlowFixMe
+  link.getAttribute('href').split('?')[0] + '?' + Date.now());
+  // $FlowFixMe
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+var cssTimeout = null;
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+    for (var i = 0; i < links.length; i++) {
+      // $FlowFixMe[incompatible-type]
+      var href = /*: string*/
+      links[i].getAttribute('href');
+      var hostname = getHostname();
+      var servedFromHMRServer = hostname === 'localhost' ? new RegExp('^(https?:\\/\\/(0.0.0.0|127.0.0.1)|localhost):' + getPort()).test(href) : href.indexOf(hostname + ':' + getPort());
+      var absolute = (/^https?:\/\//i).test(href) && href.indexOf(window.location.origin) !== 0 && !servedFromHMRServer;
+      if (!absolute) {
+        updateLink(links[i]);
+      }
+    }
+    cssTimeout = null;
+  }, 50);
+}
+function hmrApply(bundle, /*: ParcelRequire*/
+asset) /*:  HMRAsset*/
+{
+  var modules = bundle.modules;
+  if (!modules) {
+    return;
+  }
+  if (asset.type === 'css') {
+    reloadCSS();
+    return;
+  }
+  let deps = asset.depsByBundle[bundle.HMR_BUNDLE_ID];
+  if (deps) {
+    var fn = new Function('require', 'module', 'exports', asset.output);
+    modules[asset.id] = [fn, deps];
+  } else if (bundle.parent) {
+    hmrApply(bundle.parent, asset);
+  }
+}
+function hmrAcceptCheck(bundle, /*: ParcelRequire*/
+id, /*: ParcelRequire*/
+/*: string*/
+depsByBundle) /*: ?{ [string]: { [string]: string } }*/
+{
+  var modules = bundle.modules;
+  if (!modules) {
+    return;
+  }
+  if (depsByBundle && !depsByBundle[bundle.HMR_BUNDLE_ID]) {
+    // If we reached the root bundle without finding where the asset should go,
+    // there's nothing to do. Mark as "accepted" so we don't reload the page.
+    if (!bundle.parent) {
+      return true;
+    }
+    return hmrAcceptCheck(bundle.parent, id, depsByBundle);
+  }
+  if (checkedAssets[id]) {
+    return;
+  }
+  checkedAssets[id] = true;
+  var cached = bundle.cache[id];
+  assetsToAccept.push([bundle, id]);
+  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
+    return true;
+  }
+  return getParents(module.bundle.root, id).some(function (v) {
+    return hmrAcceptCheck(v[0], v[1], null);
+  });
+}
+function hmrAcceptRun(bundle, /*: ParcelRequire*/
+id) /*: string*/
+{
+  var cached = bundle.cache[id];
+  bundle.hotData = {};
+  if (cached && cached.hot) {
+    cached.hot.data = bundle.hotData;
+  }
+  if (cached && cached.hot && cached.hot._disposeCallbacks.length) {
+    cached.hot._disposeCallbacks.forEach(function (cb) {
+      cb(bundle.hotData);
+    });
+  }
+  delete bundle.cache[id];
+  bundle(id);
+  cached = bundle.cache[id];
+  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
+    cached.hot._acceptCallbacks.forEach(function (cb) {
+      var assetsToAlsoAccept = cb(function () {
+        return getParents(module.bundle.root, id);
+      });
+      if (assetsToAlsoAccept && assetsToAccept.length) {
+        assetsToAccept.push.apply(assetsToAccept, assetsToAlsoAccept);
+      }
+    });
+  }
+  acceptedAssets[id] = true;
+}
+
+},{}],"2eYVF":[function(require,module,exports) {
+document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.scrollspy');
+        var instances = M.ScrollSpy.init(elems, options);
+    });
+
+    // Or with jQuery
+
+    $(document).ready(function () {
+        $('.scrollspy').scrollSpy();
+    });
+    var instance = M.ScrollSpy.getInstance(elem);
+
+    /* jQuery Method Calls
+      You can still use the old jQuery plugin method calls.
+      But you won't be able to access instance properties.
+    
+      $('.scrollspy').scrollSpy('methodName');
+    */
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyCoxNflUYGE6BH3y9BCfso08Dkvm0edLME",
+        authDomain: "oglasnaploca-b08b2.firebaseapp.com",
+        projectId: "oglasnaploca-b08b2",
+        storageBucket: "oglasnaploca-b08b2.appspot.com",
+        messagingSenderId: "632061917497",
+        appId: "1:632061917497:web:aa956473578b00b40150e8",
+        measurementId: "G-0SJ67RN8CD"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+},{}]},["46Wsr","2eYVF"], "2eYVF", "parcelRequire427e")
+
+</script>
+
+</html>

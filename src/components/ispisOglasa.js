@@ -18,10 +18,11 @@ class IspisOglasa extends Component {
         
         let info=document.createElement("p")
         info.innerHTML=`
-            lokacija: ${lokacija.županija}, ${lokacija.grad}<br>
-            cijena:  ${cijena} <br>
-            razredi: ${razina} <br>
-            kontakt: ${kontakt}
+        ${lokacija.županija}, ${lokacija.grad}<br>
+        cijena:  ${cijena} <br>
+        razredi: ${razina} <br>
+        autor: ${username}<br>
+        kontakt: ${kontakt} 
         `
 
         let ocjena=document.createElement("div")

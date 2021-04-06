@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="08ee68b812d00e127fa9e094073b753d" type="image/gif" sizes="16x16">
+    <title>Oglasna ploča</title>
+    <link rel="stylesheet" href="c33bfce7ecff96381885141f6202fc38">
+    <link href="34b262c05577a39fe2a2098b1cf7897f" rel="stylesheet">
+    <link rel="stylesheet" href="9c5450ed4353463e31c420a583dca5bc">
+    <style data-parcel-key="582f1c5c19d83ad8177de16a0b506990">
+        .tabs .indicator {
+            background-color: #4db6ac;
+        }
+
+        .tabs .tab a.active {
+            background-color: #e0f2f1 !important;
+            color: #00897b !important;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav-extended teal lighten-1" style="1b37c51de471680af1a01bb96a572aa1">
+        <div class="nav-wrapper ">
+            <a href="41ea87d0a69118c1ef043cd90529bf69" class="brand-logo"><i class="  material-icons">cloud</i>Oglasna ploča</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="">Sass</a></li>
+        <li><a href="">Components</a></li>
+        <li><a href="">JavaScript</a></li>
+    </ul>
+    <!--Uzglavlje-->
+    <br>
+    <div class="row">
+        <div class="col s12 l8 offset-l2">
+            <div class="col s12">
+                <div class="row z-depth-5" style="21a9841995c6a898f25259f9abb73eaa">
+                    <div class="col s12 m9 l10">
+                        <h5><b>Upute za korištenje stranice: </b></h5><br>
+                        <div id="oglasi" class="section scrollspy">
+                            <p><b>1. Oglasi</b><br>
+                                Ukoliko želite samo pogledati ponuđene oglase (bez da ih ocjenjujete ili objavljujete
+                                vlastite) to možete bez korisničkog računa. Otiđite na našu <a href="41ea87d0a69118c1ef043cd90529bf69">početnu
+                                    stranicu </a> i odaberite klikom predmet koji vas zanima. Otvorit će se svi oglasi
+                                za taj predmet. Na vrhu možete birat osnovne škole/srednje škole, a bočno (na
+                                računalima) ili bočno (na ostalim uređajima) možete filtrirat oglase po županijama. </p>
+                        </div>
+
+                        <div id="korisnik" class="section scrollspy">
+                            <p><b>2. Korisnički račun</b><br>
+                                Prilikom kreiranja korisničkog računa trebate unjeni korisničko ime (po mogućnosti vaše stvarno ime) i lozinku te Ako samo želite pogledati ponuđene oglase (bez da ih ocjenjujete ili objavljujete
+                                vlastite) to možete bez korisničkog računa. Otiđite na našu <a href="41ea87d0a69118c1ef043cd90529bf69">početnu
+                                    stranicu </a> i odaberite klikom predmet koji vas zanima. Otvorit će se svi oglasi
+                                za taj predmet. Na vrhu možete birat osnovne škole/srednje škole, a bočno (na
+                                računalima) ili bočno (na ostalim uređajima) možete filtrirat oglase po županijama. </p>
+                        </div>
+
+                        <div id="initialization" class="section scrollspy">
+                            <p>Content </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+        <div class="col s12 l2">
+            <div class="col s12">
+
+                    <div class="col hide-on-small-only m3 l2">
+                        <ul class="section table-of-contents">
+                            <li><a href="#oglasi">Oglasi</a></li>
+                            <li><a href="#korisnik">Structure</a></li>
+                            <li><a href="#initialization">Intialization</a></li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+            <!--Treći 'stupac'-->
+
+    </div>
+    <!--Srednji 'stupac'-->
+
+
+    
+</body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="640b2201a30899e73d85c5017ae612dc"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="a0d9ea6f1aa6976f0a48cd769c4d14ae"></script>
+
+<script src="4f7092ef6b83f6c6f817a93c839a362b"></script>
+
+
+<script src="b7100399ec56280b7a552731ce75b991"></script>
+<script data-parcel-key="a13ff0c66d3dc216fb266f4d8c965778">
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyCoxNflUYGE6BH3y9BCfso08Dkvm0edLME",
+        authDomain: "oglasnaploca-b08b2.firebaseapp.com",
+        projectId: "oglasnaploca-b08b2",
+        storageBucket: "oglasnaploca-b08b2.appspot.com",
+        messagingSenderId: "632061917497",
+        appId: "1:632061917497:web:aa956473578b00b40150e8",
+        measurementId: "G-0SJ67RN8CD"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+</script>
+
+</html>

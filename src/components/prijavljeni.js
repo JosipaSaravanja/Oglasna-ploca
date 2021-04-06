@@ -103,7 +103,7 @@ class Prijavljeni extends Component {
       localStorage["user"] = JSON.stringify(false);
       location.reload()
     });
-    odjava.innerHTML = `Odjavite se <i class="material-icons right">exit_to_app</i>`;
+    odjava.innerHTML = `Odjava<i class="material-icons right">exit_to_app</i>`;
       
     let col=document.createElement("col")
       col.className="col s12 m6 l12"

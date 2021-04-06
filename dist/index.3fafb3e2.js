@@ -445,7 +445,8 @@ id) /*: string*/
 var _componentsPrviStupac = require("./components/PrviStupac");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _componentsPrviStupacDefault = _parcelHelpers.interopDefault(_componentsPrviStupac);
-require("./components/treciStupac");
+var _componentsTreciStupac = require("./components/treciStupac");
+var _componentsTreciStupacDefault = _parcelHelpers.interopDefault(_componentsTreciStupac);
 M.AutoInit();
 localStorage["user"];
 /*localStorage["user"]  = JSON.stringify({username: "ante"})
@@ -453,6 +454,7 @@ localStorage["user"];
 
 /* console.log(JSON.parse(localStorage["user"]))*/
 document.getElementById("example1").appendChild(new _componentsPrviStupacDefault.default().rootElement);
+document.getElementById("example2").appendChild(new _componentsTreciStupacDefault.default().rootElement);
 
 },{"./components/PrviStupac":"6Tngg","./components/treciStupac":"7dnyH","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6Tngg":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
@@ -741,7 +743,7 @@ class Prijavljeni extends _baseComponentDefault.default {
       localStorage["user"] = JSON.stringify(false);
       location.reload();
     });
-    odjava.innerHTML = `Odjavite se <i class="material-icons right">exit_to_app</i>`;
+    odjava.innerHTML = `Odjava<i class="material-icons right">exit_to_app</i>`;
     let col = document.createElement("col");
     col.className = "col s12 m6 l12";
     col.appendChild(select);
@@ -836,11 +838,12 @@ class OglasTodoCard extends _baseComponentDefault.default {
     opisElement.innerHTML = opis;
     let info = document.createElement("p");
     info.innerHTML = `
-            lokacija: ${lokacija.županija}, ${lokacija.grad}<br>
+            ${lokacija.županija}, ${lokacija.grad}<br>
             cijena:  ${cijena} <br>
             predmet: ${predmet} <br>
             razredi: ${razina} <br>
-            kontakt: ${kontakt}
+            autor: ${username}<br>
+            kontakt: ${kontakt} 
         `;
     let ocjena = document.createElement("div");
     ocjena.className = "col s1";

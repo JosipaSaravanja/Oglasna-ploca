@@ -1,0 +1,16 @@
+.scroll {
+	width:68px;
+	height:69px;
+	margin: 0 auto;
+	background-image: url('39c3793e997d17b9bc79a5e5c3730c96');
+	a {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 999;
+		color: transparent;
+	}
+	
+}

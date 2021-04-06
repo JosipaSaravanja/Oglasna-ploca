@@ -756,7 +756,7 @@ class Prijavljeni extends _baseComponentDefault.default {
       localStorage["user"] = JSON.stringify(false);
       location.reload();
     });
-    odjava.innerHTML = `Odjavite se <i class="material-icons right">exit_to_app</i>`;
+    odjava.innerHTML = `Odjava<i class="material-icons right">exit_to_app</i>`;
     let col = document.createElement("col");
     col.className = "col s12 m6 l12";
     col.appendChild(select);
@@ -851,11 +851,12 @@ class OglasTodoCard extends _baseComponentDefault.default {
     opisElement.innerHTML = opis;
     let info = document.createElement("p");
     info.innerHTML = `
-            lokacija: ${lokacija.županija}, ${lokacija.grad}<br>
+            ${lokacija.županija}, ${lokacija.grad}<br>
             cijena:  ${cijena} <br>
             predmet: ${predmet} <br>
             razredi: ${razina} <br>
-            kontakt: ${kontakt}
+            autor: ${username}<br>
+            kontakt: ${kontakt} 
         `;
     let ocjena = document.createElement("div");
     ocjena.className = "col s1";
@@ -1020,10 +1021,11 @@ class IspisOglasa extends _baseComponentDefault.default {
     opisElement.innerHTML = opis;
     let info = document.createElement("p");
     info.innerHTML = `
-            lokacija: ${lokacija.županija}, ${lokacija.grad}<br>
-            cijena:  ${cijena} <br>
-            razredi: ${razina} <br>
-            kontakt: ${kontakt}
+        ${lokacija.županija}, ${lokacija.grad}<br>
+        cijena:  ${cijena} <br>
+        razredi: ${razina} <br>
+        autor: ${username}<br>
+        kontakt: ${kontakt} 
         `;
     let ocjena = document.createElement("div");
     ocjena.className = "col s1";

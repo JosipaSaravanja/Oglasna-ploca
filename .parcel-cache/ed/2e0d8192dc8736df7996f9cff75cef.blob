@@ -1,0 +1,23 @@
+.scroll {
+	width:68px;
+	height:69px;
+	margin: 0 auto;
+	background-image: url('d7b151114631c86dafae9314a30e0078');
+	a {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 999;
+		color: transparent;
+	}
+	
+}
+        .tabs .indicator {
+            background-color: #4db6ac;
+        }
+        .tabs .tab a.active {
+            background-color: #e0f2f1 !important;
+            color: #00897b !important;
+        }

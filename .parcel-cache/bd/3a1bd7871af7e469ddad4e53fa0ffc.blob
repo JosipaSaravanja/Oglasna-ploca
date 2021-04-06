@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="dd30d70adcb9e17404a3c06039a4a0bb" type="image/gif" sizes="16x16">
+    <title>Oglasna ploča</title>
+    <link rel="stylesheet" href="250a3ffb5137ff40a70150e714a0a880">
+    <link href="3bfa444968be59a37c18fb99dc903122" rel="stylesheet">
+    <link rel="stylesheet" href="f1cf87976fdea2d537e9e360e952e444">
+    <style data-parcel-key="99c840979cba411e24a308075d0e98bc">
+        
+        .tabs .indicator {
+            background-color: #4db6ac;
+        }
+
+        .tabs .tab a.active {
+            background-color: #e0f2f1 !important;
+            color: #00897b   !important;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav-extended teal lighten-1" style="dd70bbb53e5900c8a11fb91801dedaf4">
+        <div class="nav-wrapper ">
+            <a href="3870d9fb284cfbcfa659f2f68404c604" class="brand-logo"><i class="  material-icons">cloud</i>Oglasna ploča</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="">Sass</a></li>
+                <li><a href="">Components</a></li>
+                <li><a href="">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="">Sass</a></li>
+        <li><a href="">Components</a></li>
+        <li><a href="">JavaScript</a></li>
+    </ul>
+    <!--Uzglavlje-->
+    <br>
+    <div class="row">
+        <div class="col s12 l2">
+            <div class="col s12">
+                <div class="row z-depth-5" id="example1">
+
+                </div>
+            </div>
+        </div>
+        <!--Prvi 'stupac' gdje se izmjenjuju prijava i korisnički račun-->
+
+        <div class="col s12 l8">
+            <div class="col s12">
+                <div class="row z-depth-5" style="035270446453341b4889064d0ff1c56c">
+                    <div class="col s12" id="drugiStupac">
+                        <ul class="tabs">
+                            <li class="tab col s6"><a class="teal-text text-lighten-2 active" href="#osnovneSkole">Osnovne škole</a></li>
+                            <li class="tab col s6"><a class="teal-text text-lighten-2" href="#srednjeSkole">Srednje
+                                    škola</a></li>
+                        </ul>
+                    </div>
+                    <div id="osnovneSkole" class="col s12"></div>
+                    <div id="srednjeSkole" class="col s12"></div>
+                </div>
+            </div>
+        </div>
+        <!--Srednji 'stupac'-->
+
+
+       
+        <div class="col s12 l2">
+            <div class="col s12">
+                <div class="row z-depth-5" id="example2">
+
+
+                </div>
+            </div>
+        </div>
+            <!--Treći 'stupac'-->
+
+
+    </div>
+</body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="c2bfeeb44a952173ffe2f9eb2b3d5fc1"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="7c5b03de23f538c5b2def100c178e435"></script>
+
+<script src="aecdadce52fa16df08b1161d3b82df91"></script>
+
+    
+<script src="996fecd983cebe2643739b5b89bde8e2"></script>
+<script data-parcel-key="c2969ea5543bde54c4394b39b3163f55">
+  
+ // Your web app's Firebase configuration
+ // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+ var firebaseConfig = {
+   apiKey: "AIzaSyCoxNflUYGE6BH3y9BCfso08Dkvm0edLME",
+   authDomain: "oglasnaploca-b08b2.firebaseapp.com",
+   projectId: "oglasnaploca-b08b2",
+   storageBucket: "oglasnaploca-b08b2.appspot.com",
+   messagingSenderId: "632061917497",
+   appId: "1:632061917497:web:aa956473578b00b40150e8",
+   measurementId: "G-0SJ67RN8CD"
+ };
+ // Initialize Firebase
+ firebase.initializeApp(firebaseConfig);
+ firebase.analytics();
+</script>
+
+</html>
