@@ -15,7 +15,12 @@
         .tabs .indicator {
             background-color: #4db6ac;
         }
-
+#scrollspy{
+                    height: 100%;
+                    width: 100%;
+                    min-height: 100%;
+                    position: fixed;
+                }
         .tabs .tab a.active {
             background-color: #e0f2f1 !important;
             color: #00897b !important;
@@ -107,7 +112,7 @@
             <div class="col s12">
 
                 <div class="col hide-on-med-and-down l12">
-                    <ul class="section table-of-contents">
+                    <ul id="scrollspy" class="section table-of-contents">
                         <li><a href="#oglasi">Traženje oglasa</a></li>
                         <li><a href="#prijava">Prijava ili Registracija</a></li>
                         <li><a href="#oglasi2">Objavljivanje oglasa</a></li>
@@ -132,13 +137,14 @@
 <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
 
 <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
-
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+ 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.scrollspy');
-    var instances = M.ScrollSpy.init(elems, options);
+      
+  $(document).ready(function(){
+    $('.scrollspy').scrollSpy();
   });
 
 

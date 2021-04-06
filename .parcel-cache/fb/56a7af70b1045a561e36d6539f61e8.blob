@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="08ee68b812d00e127fa9e094073b753d" type="image/gif" sizes="16x16">
+    <title>Oglasna ploča</title>
+    <link rel="stylesheet" href="c33bfce7ecff96381885141f6202fc38">
+    <link href="34b262c05577a39fe2a2098b1cf7897f" rel="stylesheet">
+    <link rel="stylesheet" href="9c5450ed4353463e31c420a583dca5bc">
+    <style data-parcel-key="582f1c5c19d83ad8177de16a0b506990">
+        .tabs .indicator {
+            background-color: #4db6ac;
+        }
+
+        .tabs .tab a.active {
+            background-color: #e0f2f1 !important;
+            color: #00897b !important;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav-extended teal lighten-1" style="1b37c51de471680af1a01bb96a572aa1">
+        <div class="nav-wrapper ">
+            <a href="41ea87d0a69118c1ef043cd90529bf69" class="brand-logo"><i class="  material-icons">cloud</i>Oglasna ploča</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="">Sass</a></li>
+        <li><a href="">Components</a></li>
+        <li><a href="">JavaScript</a></li>
+    </ul>
+    <!--Uzglavlje-->
+    <br>
+    <div class="row">
+        <div class="col s12 l8 offset-l2">
+            <div class="col s12">
+                <div class="row z-depth-5" style="21a9841995c6a898f25259f9abb73eaa">
+                    <div class="col s12 ">
+                        <h5><b>Upute za korištenje stranice: </b></h5><br>
+                        <div id="oglasi" class="section scrollspy">
+                            <p><b>1. Traženje oglasa</b><br>
+                                Ukoliko želite samo pogledati ponuđene oglase (bez da ih ocjenjujete ili objavljujete
+                                vlastite) to možete bez korisničkog računa. Otiđite na našu <a href="41ea87d0a69118c1ef043cd90529bf69">početnu
+                                    stranicu </a> i odaberite klikom predmet koji vas zanima. Otvorit će se svi oglasi
+                                za taj predmet. Na vrhu možete birat osnovne škole/srednje škole, a na vrhu (na
+                                računalima) ili bočno (na ostalim uređajima) možete filtrirat oglase po županijama. </p>
+                        </div>
+
+                        <div id="prijava" class="section scrollspy">
+                            <p><b>2. Prijava ili Registracija</b><br>
+                                Prilikom kreiranja korisničkog računa trebate unijeni korisničko ime (po mogućnosti vaše
+                                parvo ime radi lakšeg kontaktiranja) i lozinku te učiniti <b>Registraciju</b>. Ukoliko
+                                je uneseno korisničko ime
+                                već zauzeto trebate unijeti neko novo. Kad se prijavite ne morate unosit nikakve osobne
+                                podatke (poput lokacije i konakta) jer ih uvijek možete promjeniti, međutim ukoliko
+                                planirate objaviti oglas ti su podaci neophodni.
+                                <br>
+                                <img src="bab1301dded62168937cc70408130447"><br>
+                                <br>Ukoliko se odlučite unijeti osobne podatke, nakon što se prijavite ispunite obrazac
+                                i pritisnite <b>Spremi promjene</b>. Podaci će se automatski promjeniti na svim oglasima
+                                koje ste ranije objavili. Također možete mjenjati lozinku, ali ne i korisničko ime.
+                                <br>
+                                <img src="bc3d8d3024ca9e48404ad7d46a8c50d1"> <br>
+                                <br><span style="b020b42322748c7c10a91f7bcdaed9a2">Napomena: Samim zatvaranjem pretraživača <b>nećete</b>
+                                    se odjavit stoga se pobrinite da kada završite s korištenjem pritisnete
+                                    <b>Odjava</b>. Sljedeći put pri prijavi unesite
+                                    potrebne podatke i izvršite <b>Prijava</b>.</span>
+                            </p>
+                        </div>
+
+                        <div id="oglasi2" class="section scrollspy">
+                            <p><b>3. Objavljivanje oglasa</b> <br>
+                                Nakon prijave na desnoj strani ekrana (na računalima) ili na dnu (kod ostalih uređaja)
+                                pritisnite gumb <b>Dodaj oglas</b>. Obavezno unesite podatke koji vam se traže (predmet,
+                                razina...), jer će se prema njima kasinje filtrirati oglasi prilikiom pretrage.
+                                Lokacija, kontakt i ime autora će se automatski prikupiti iz vaših osobnih podataka.
+                                Kada unesete podatke za novi oglas pritisnite <b>Dodaj oglas</b>. Ispod prvospomenutog
+                                botuna vidjet ćete listu s svima vašim oglasima te ih po želji možete <b>trajno</b>
+                                izbrisati.<br><img src="252528399823f239c37612abef60a6d0"><br></p>
+                        </div>
+
+                        <div id="oglasi3" class="section scrollspy">
+                            <p><b>3. Ocjenjivanje oglasa</b> <br>
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                                mollit anim id est laborum."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 l2">
+            <div class="col s12">
+
+                <div class="col hide-on-med-and-down l12">
+                    <ul class="section table-of-contents">
+                        <li><a href="#oglasi">Traženje oglasa</a></li>
+                        <li><a href="#prijava">Prijava ili Registracija</a></li>
+                        <li><a href="#oglasi2">Objavljivanje oglasa</a></li>
+                        <li><a href="#oglasi3">Ocjenjivanje oglasa</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--Treći 'stupac'-->
+
+    </div>
+    <!--Srednji 'stupac'-->
+
+
+    
+</body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="640b2201a30899e73d85c5017ae612dc"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="a0d9ea6f1aa6976f0a48cd769c4d14ae"></script>
+
+<script src="4f7092ef6b83f6c6f817a93c839a362b"></script>
+<script type="text/javascript" src="3d737c9b0414b23373e9708fc18ba602"></script>
+ 
+
+<script src="b7100399ec56280b7a552731ce75b991"></script>
+<script data-parcel-key="4b2f49e269921455c00d1df187ce4b3e">
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.scrollspy');
+    var instances = M.ScrollSpy.init(elems, options);
+  });
+     
+   
+  $(document).ready(function(){
+    $('.scrollspy').scrollSpy();
+  });
+
+
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyCoxNflUYGE6BH3y9BCfso08Dkvm0edLME",
+        authDomain: "oglasnaploca-b08b2.firebaseapp.com",
+        projectId: "oglasnaploca-b08b2",
+        storageBucket: "oglasnaploca-b08b2.appspot.com",
+        messagingSenderId: "632061917497",
+        appId: "1:632061917497:web:aa956473578b00b40150e8",
+        measurementId: "G-0SJ67RN8CD"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+</script>
+
+</html>

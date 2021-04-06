@@ -14,7 +14,12 @@
     <style>.tabs .indicator {
             background-color: #4db6ac;
         }
-
+#scrollspy{
+                    height: 100%;
+                    width: 100%;
+                    min-height: 100%;
+                    position: fixed;
+                }
         .tabs .tab a.active {
             background-color: #e0f2f1 !important;
             color: #00897b !important;
@@ -109,7 +114,7 @@
             <div class="col s12">
 
                 <div class="col hide-on-med-and-down l12">
-                    <ul class="section table-of-contents">
+                    <ul id="scrollspy" class="section table-of-contents">
                         <li><a href="#oglasi">Traženje oglasa</a></li>
                         <li><a href="#prijava">Prijava ili Registracija</a></li>
                         <li><a href="#oglasi2">Objavljivanje oglasa</a></li>
@@ -134,7 +139,8 @@
 <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
 
 <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
-
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+ 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script>// modules are defined as an array
@@ -279,12 +285,12 @@
       this[globalName] = mainExports;
     }
   }
-})({"3oTxb":[function(require,module,exports) {
+})({"3X0L5":[function(require,module,exports) {
 var HMR_HOST = null;
 var HMR_PORT = 1234;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d751713988987e9331980363e24189ce";
-module.bundle.HMR_BUNDLE_ID = "c6b6e6f6f542af4ee9e326eae2145886";
+module.bundle.HMR_BUNDLE_ID = "56c256cdab0461249b59910ce06436b5";
 // @flow
 /*global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE*/
 /*::
@@ -580,10 +586,9 @@ id) /*: string*/
   acceptedAssets[id] = true;
 }
 
-},{}],"3J4Iw":[function(require,module,exports) {
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.scrollspy');
-    var instances = M.ScrollSpy.init(elems, options);
+},{}],"2UhUj":[function(require,module,exports) {
+$(document).ready(function(){
+    $('.scrollspy').scrollSpy();
   });
 
 
@@ -602,7 +607,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
-},{}]},["3oTxb","3J4Iw"], "3J4Iw", "parcelRequire427e")
+},{}]},["3X0L5","2UhUj"], "2UhUj", "parcelRequire427e")
 
 </script>
 

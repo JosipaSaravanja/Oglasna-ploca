@@ -6,8 +6,8 @@ import controler from "../modelAndControler";
 class Filter extends Component {
   constructor() {
     super("div");
-    let form=document.createElement("form")
-    form.action=`#`
+    this.form=document.createElement("form")
+    this.form.action=`#`
       let zupanijeNiz=[
         "Bjelovarsko-bilogorska županija",
         "Brodsko-posavska županija",
@@ -32,14 +32,27 @@ class Filter extends Component {
         "Zagrebačka županija"]
       zupanijeNiz.forEach(el=>{
           let p=document.createElement("p")
-          p.innerHTML=`<label>
-          <input type="checkbox" />
-          <span>${el}</span>
-        </label>`
-        form.appendChild(p)
+          let label=document.createElement("label")
+          let input=document.createElement("input")
+          input.type="checkbox"
+          input.className="checkboxes"
+          let span=document.createElement("span")
+          span.innerHTML=el
+          label.appendChild(input)
+          label.appendChild(span)
+          p.appendChild(label)
+        this.form.appendChild(p)
       })
-    
-    this.addChild(form);
+     /*  $('.abc').click(()=>{alert("HELLO")}); */
+     /*  let button=document.createElement("a")
+      button.className="waves-effect waves-light btn"
+      button.innerHTML="Filtriraj"
+      button.addEventListener("click", this.filtriraj())
+
+       */
+    this.addChildren([this.form]);
+  }
+  filtriraj(){
   }
 }
 

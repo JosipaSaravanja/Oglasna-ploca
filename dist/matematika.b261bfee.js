@@ -992,19 +992,32 @@ require("../modelAndControler");
 class Filter extends _baseComponentDefault.default {
   constructor() {
     super("div");
-    let form = document.createElement("form");
-    form.action = `#`;
+    this.form = document.createElement("form");
+    this.form.action = `#`;
     let zupanijeNiz = ["Bjelovarsko-bilogorska županija", "Brodsko-posavska županija", "Dubrovačko-neretvanska županija", "Grad Zagreb županija", "Istarska županija", "Karlovačka županija", "Koprivničko-križevačka županija", "Krapinsko-zagorska županija", "Ličko-senjska županija", "Međimurska županija", "Osječko-baranjska županija", "Požeško-slavonska županija", "Primorsko-goranska županija", "Sisačko-moslavačka županija", "Splitsko-dalmatinska županija", "Šibensko-kninska županija", "Varaždinska županija", "Virovitičko-podravska županija", "Vukovarsko-srijemska županija", "Zadarska županija", "Zagrebačka županija"];
     zupanijeNiz.forEach(el => {
       let p = document.createElement("p");
-      p.innerHTML = `<label>
-          <input type="checkbox" />
-          <span>${el}</span>
-        </label>`;
-      form.appendChild(p);
+      let label = document.createElement("label");
+      let input = document.createElement("input");
+      input.type = "checkbox";
+      input.className = "checkboxes";
+      let span = document.createElement("span");
+      span.innerHTML = el;
+      label.appendChild(input);
+      label.appendChild(span);
+      p.appendChild(label);
+      this.form.appendChild(p);
     });
-    this.addChild(form);
+    /*$('.abc').click(()=>{alert("HELLO")});*/
+    /*let button=document.createElement("a")
+    button.className="waves-effect waves-light btn"
+    button.innerHTML="Filtriraj"
+    button.addEventListener("click", this.filtriraj())
+    
+    */
+    this.addChildren([this.form]);
   }
+  filtriraj() {}
 }
 module.exports = Filter;
 

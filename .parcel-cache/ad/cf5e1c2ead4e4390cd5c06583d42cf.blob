@@ -1,0 +1,14 @@
+.tabs .indicator {
+            background-color: #4db6ac;
+        }
+#scrolspy{}
+                    height: 100%;
+                    width: 100%;
+                    min-height: 100%;
+                    position: fixed;
+                    top:0;
+                }
+        .tabs .tab a.active {
+            background-color: #e0f2f1 !important;
+            color: #00897b !important;
+        }
