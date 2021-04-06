@@ -683,7 +683,6 @@ class Prijavljeni extends _baseComponentDefault.default {
     // kako povezat mapu s ovim dokumentom
     img.style.textAlign = "center";
     let ime = document.createElement("h5");
-    ime.className = "col s12 m6 l12";
     ime.innerHTML = user.username;
     let select = document.createElement("select");
     select.id = `zupanije`;
@@ -744,15 +743,16 @@ class Prijavljeni extends _baseComponentDefault.default {
       location.reload();
     });
     odjava.innerHTML = `Odjava<i class="material-icons right">exit_to_app</i>`;
-    let col = document.createElement("col");
+    let col = document.createElement("div");
     col.className = "col s12 m6 l12";
-    col.appendChild(select);
-    col.appendChild(grad);
-    col.appendChild(kontakt);
-    col.appendChild(password);
-    col.appendChild(spremi);
-    col.appendChild(odjava);
-    this.addChildren([img, ime, col]);
+    let niz = [ime, select, grad, kontakt, password, spremi, odjava];
+    for (let i = 0; i < 7; i++) {
+      let div = document.createElement("div");
+      div.appendChild(niz[i]);
+      col.appendChild(div);
+    }
+    // svaki element je u svom div-u tako da svaki ima "vlastiti" red
+    this.addChildren([img, col]);
   }
 }
 module.exports = Prijavljeni;
@@ -797,12 +797,14 @@ class MojiOglasi extends _baseComponentDefault.default {
     super("div");
     let sadrzaj = document.createElement("div");
     let user = JSON.parse(localStorage["user"]);
+    console.log("HEELLO");
+    console.log(user);
     let database = firebase.firestore();
     database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
       querySnapshot.forEach(doc => {
         let korisnik = doc.data();
         korisnik.oglasi.reverse().forEach(el => {
-          let oglas = new _oglasTodoCardDefault.default(el.id, korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.predmet, el.razina, el.ocjena.like.length, el.ocjena.dislike.length, korisnik.username);
+          let oglas = new _oglasTodoCardDefault.default(el.id, korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.predmet, el.razina, el.ocjena.like, el.ocjena.dislike, korisnik.username);
           sadrzaj.appendChild(oglas.rootElement);
         });
       });
@@ -825,7 +827,7 @@ var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
 class OglasTodoCard extends _baseComponentDefault.default {
-  constructor(id, kontakt, opis, lokacija, cijena, predmet, razina, numberOfLikes, numberOfDislikes, username) {
+  constructor(id, kontakt, opis, lokacija, cijena, predmet, razina, likes, dislikes, username) {
     super("div");
     this.rootElement.className = "card-panel grey lighten-5 z-depth-1";
     this.id = id;
@@ -849,16 +851,18 @@ class OglasTodoCard extends _baseComponentDefault.default {
     ocjena.className = "col s1";
     let like = document.createElement("i");
     like.innerHTML = "thumb_up";
-    like.className = "material-icons";
+    like.className = "tooltipped material-icons";
     like.style = "vertical-align :-3px;";
+    like.dataPosition = "bottom";
+    like.dataTooltip = "I am a tooltip";
     let dislike = document.createElement("i");
     dislike.innerHTML = "thumb_down";
     dislike.className = "material-icons";
     dislike.style = "vertical-align :-10px;";
     let numberOfLikesElement = document.createElement("span");
-    numberOfLikesElement.innerHTML = numberOfLikes;
+    numberOfLikesElement.innerHTML = likes.length;
     let numberOfDislikesElement = document.createElement("span");
-    numberOfDislikesElement.innerHTML = numberOfDislikes;
+    numberOfDislikesElement.innerHTML = dislikes.length;
     let col2 = document.createElement("div");
     col2.className = "col s12";
     let button = document.createElement("a");

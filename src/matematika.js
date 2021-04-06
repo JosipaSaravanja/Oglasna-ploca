@@ -1,4 +1,5 @@
 M.AutoInit();
+
 import PrviStupac from "./components/PrviStupac"; 
 import TreciStupac from "./components/treciStupac"; 
 
@@ -24,8 +25,8 @@ database
             korisnik.lokacija,
             el.cijena,
             el.razina,
-            el.ocjena.length,
-            el.ocjena.dislike.length,
+            el.ocjena.like,
+            el.ocjena.dislike,
             el.id,
             korisnik.username
           );

@@ -10,8 +10,8 @@ class OglasTodoCard extends Component {
     cijena,
     predmet,
     razina,
-    numberOfLikes,
-    numberOfDislikes,
+    likes,
+    dislikes,
     username
   ) {
     super("div");
@@ -42,19 +42,21 @@ class OglasTodoCard extends Component {
 
     let like = document.createElement("i");
     like.innerHTML = "thumb_up";
-    like.className = "material-icons";
+    like.className = "tooltipped material-icons";
     like.style = "vertical-align :-3px;";
-
+    like.dataPosition="bottom" 
+    like.dataTooltip="I am a tooltip"
+    
     let dislike = document.createElement("i");
     dislike.innerHTML = "thumb_down";
     dislike.className = "material-icons";
     dislike.style = "vertical-align :-10px;";
 
     let numberOfLikesElement = document.createElement("span");
-    numberOfLikesElement.innerHTML = numberOfLikes;
+    numberOfLikesElement.innerHTML = likes.length;
 
     let numberOfDislikesElement = document.createElement("span");
-    numberOfDislikesElement.innerHTML = numberOfDislikes;
+    numberOfDislikesElement.innerHTML = dislikes.length;
 
     let col2 = document.createElement("div");
     col2.className = "col s12";

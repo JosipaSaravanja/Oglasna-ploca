@@ -8,7 +8,8 @@ class MojiOglasi extends Component {
     super("div");
     let sadrzaj = document.createElement("div");
     let user = JSON.parse(localStorage["user"]);
-
+console.log("HEELLO")
+console.log(user)
     let database = firebase.firestore();
     database
       .collection("korisnici")
@@ -26,8 +27,8 @@ class MojiOglasi extends Component {
               el.cijena,
               el.predmet,
               el.razina,
-              el.ocjena.like.length,
-              el.ocjena.dislike.length,
+              el.ocjena.like,
+              el.ocjena.dislike,
               korisnik.username
             );
             sadrzaj.appendChild(oglas.rootElement);

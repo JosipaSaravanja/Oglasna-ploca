@@ -696,7 +696,6 @@ class Prijavljeni extends _baseComponentDefault.default {
     // kako povezat mapu s ovim dokumentom
     img.style.textAlign = "center";
     let ime = document.createElement("h5");
-    ime.className = "col s12 m6 l12";
     ime.innerHTML = user.username;
     let select = document.createElement("select");
     select.id = `zupanije`;
@@ -757,15 +756,16 @@ class Prijavljeni extends _baseComponentDefault.default {
       location.reload();
     });
     odjava.innerHTML = `Odjava<i class="material-icons right">exit_to_app</i>`;
-    let col = document.createElement("col");
+    let col = document.createElement("div");
     col.className = "col s12 m6 l12";
-    col.appendChild(select);
-    col.appendChild(grad);
-    col.appendChild(kontakt);
-    col.appendChild(password);
-    col.appendChild(spremi);
-    col.appendChild(odjava);
-    this.addChildren([img, ime, col]);
+    let niz = [ime, select, grad, kontakt, password, spremi, odjava];
+    for (let i = 0; i < 7; i++) {
+      let div = document.createElement("div");
+      div.appendChild(niz[i]);
+      col.appendChild(div);
+    }
+    // svaki element je u svom div-u tako da svaki ima "vlastiti" red
+    this.addChildren([img, col]);
   }
 }
 module.exports = Prijavljeni;
@@ -810,12 +810,14 @@ class MojiOglasi extends _baseComponentDefault.default {
     super("div");
     let sadrzaj = document.createElement("div");
     let user = JSON.parse(localStorage["user"]);
+    console.log("HEELLO");
+    console.log(user);
     let database = firebase.firestore();
     database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
       querySnapshot.forEach(doc => {
         let korisnik = doc.data();
         korisnik.oglasi.reverse().forEach(el => {
-          let oglas = new _oglasTodoCardDefault.default(el.id, korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.predmet, el.razina, el.ocjena.like.length, el.ocjena.dislike.length, korisnik.username);
+          let oglas = new _oglasTodoCardDefault.default(el.id, korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.predmet, el.razina, el.ocjena.like, el.ocjena.dislike, korisnik.username);
           sadrzaj.appendChild(oglas.rootElement);
         });
       });
@@ -838,7 +840,7 @@ var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
 class OglasTodoCard extends _baseComponentDefault.default {
-  constructor(id, kontakt, opis, lokacija, cijena, predmet, razina, numberOfLikes, numberOfDislikes, username) {
+  constructor(id, kontakt, opis, lokacija, cijena, predmet, razina, likes, dislikes, username) {
     super("div");
     this.rootElement.className = "card-panel grey lighten-5 z-depth-1";
     this.id = id;
@@ -862,16 +864,18 @@ class OglasTodoCard extends _baseComponentDefault.default {
     ocjena.className = "col s1";
     let like = document.createElement("i");
     like.innerHTML = "thumb_up";
-    like.className = "material-icons";
+    like.className = "tooltipped material-icons";
     like.style = "vertical-align :-3px;";
+    like.dataPosition = "bottom";
+    like.dataTooltip = "I am a tooltip";
     let dislike = document.createElement("i");
     dislike.innerHTML = "thumb_down";
     dislike.className = "material-icons";
     dislike.style = "vertical-align :-10px;";
     let numberOfLikesElement = document.createElement("span");
-    numberOfLikesElement.innerHTML = numberOfLikes;
+    numberOfLikesElement.innerHTML = likes.length;
     let numberOfDislikesElement = document.createElement("span");
-    numberOfDislikesElement.innerHTML = numberOfDislikes;
+    numberOfDislikesElement.innerHTML = dislikes.length;
     let col2 = document.createElement("div");
     col2.className = "col s12";
     let button = document.createElement("a");
@@ -1009,8 +1013,9 @@ var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
 class IspisOglasa extends _baseComponentDefault.default {
-  constructor(kontakt, opis, lokacija, cijena, razina, numberOfLikes, numberOfDislikes, id, username) {
+  constructor(kontakt, opis, lokacija, cijena, razina, likes, dislikes, id, username) {
     super("div");
+    let user = JSON.parse(localStorage["user"]);
     this.rootElement.className = "card-panel grey lighten-5 z-depth-1";
     let row = document.createElement("div");
     row.className = "row valign-wrapper";
@@ -1044,9 +1049,11 @@ class IspisOglasa extends _baseComponentDefault.default {
       this.dislike(id, username);
     });
     let numberOfLikesElement = document.createElement("span");
-    numberOfLikesElement.innerHTML = numberOfLikes;
+    numberOfLikesElement.innerHTML = likes.length;
+    likes.includes(user.username) ? like.style.color = "#64b5f6 " : false;
     let numberOfDislikesElement = document.createElement("span");
-    numberOfDislikesElement.innerHTML = numberOfDislikes;
+    numberOfDislikesElement.innerHTML = dislikes.length;
+    dislikes.includes(user.username) ? dislike.style.color = "#e57373" : false;
     col.appendChild(opisElement);
     col.appendChild(info);
     ocjena.appendChild(numberOfLikesElement);
@@ -1057,37 +1064,59 @@ class IspisOglasa extends _baseComponentDefault.default {
     row.appendChild(ocjena);
     this.addChild(row);
   }
-  like(id, username) {}
-  dislike() {
-    /*
+  like(id, username) {
     let user = JSON.parse(localStorage["user"]);
-    database
-    .collection("korisnici")
-    .where("username", "==", username)
-    .get()
-    .then(function (querySnapshot) {
-    querySnapshot.forEach((doc) => {
-    let korisnik = doc.data();
-    korisnik.oglasi.forEach((el) => {
-    if(el.id==id){
-    el.ocjene.like.forEach((niz)=>{
-    if(niz.includes(user.username)==true){
-    niz.filter(item=> item!==user.username)
-    console.log(niz)
-    database
-    .collection("korisnici")
-    .doc(korisnik.id)
-    .update({
-    oglasi: korisnik.oglasi,
+    let database = firebase.firestore();
+    database.collection("korisnici").where("username", "==", username).get().then(function (querySnapshot) {
+      querySnapshot.forEach(doc => {
+        let korisnik = doc.data();
+        korisnik.oglasi.map(oglas => {
+          if (oglas.id == id) {
+            console.log(oglas);
+            if (oglas.ocjena.like.includes(user.username)) {
+              oglas.ocjena.like = oglas.ocjena.like.filter(item => item !== "korisnik3");
+              console.log(oglas);
+            } else {
+              oglas.ocjena.like.push(user.username);
+              console.log(oglas);
+            }
+          }
+        });
+        console.log(korisnik.oglasi);
+        database.collection("korisnici").doc(doc.id).update({
+          oglasi: korisnik.oglasi
+        }).then(function () {
+          alert("GLASOVALI STE");
+        });
+      });
     });
-    
-    }
-    })
-    }
+  }
+  dislike(id, username) {
+    let user = JSON.parse(localStorage["user"]);
+    let database = firebase.firestore();
+    database.collection("korisnici").where("username", "==", username).get().then(function (querySnapshot) {
+      querySnapshot.forEach(doc => {
+        let korisnik = doc.data();
+        korisnik.oglasi.map(oglas => {
+          if (oglas.id == id) {
+            console.log(oglas);
+            if (oglas.ocjena.dislike.includes(user.username)) {
+              oglas.ocjena.dislike = oglas.ocjena.dislike.filter(item => item !== "korisnik3");
+              console.log(oglas);
+            } else {
+              oglas.ocjena.dislike.push(user.username);
+              console.log(oglas);
+            }
+          }
+        });
+        console.log(korisnik.oglasi);
+        database.collection("korisnici").doc(doc.id).update({
+          oglasi: korisnik.oglasi
+        }).then(function () {
+          alert("GLASOVALI STE");
+        });
+      });
     });
-    });
-    });*/
-    alert("dislike");
   }
 }
 module.exports = IspisOglasa;

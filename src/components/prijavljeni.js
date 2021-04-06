@@ -12,9 +12,7 @@ class Prijavljeni extends Component {
     img.className="col s12 m6 l12"
     img.src=`https://icons-for-free.com/iconfiles/png/512/eva+icons+++fill+person-1324449943844961316.png`;//kako povezat mapu s ovim dokumentom
     img.style.textAlign="center"
-    
     let ime = document.createElement("h5");
-    ime.className="col s12 m6 l12"
     ime.innerHTML = user.username;
 
     
@@ -104,17 +102,16 @@ class Prijavljeni extends Component {
       location.reload()
     });
     odjava.innerHTML = `Odjava<i class="material-icons right">exit_to_app</i>`;
-      
-    let col=document.createElement("col")
-      col.className="col s12 m6 l12"
-      col.appendChild(select)
-      col.appendChild(grad)
-      col.appendChild(kontakt)
-      col.appendChild(password)
-      col.appendChild(spremi)
-      col.appendChild(odjava)
+    let col=document.createElement("div")
+    col.className="col s12 m6 l12"
+      let niz=[ime, select,grad,kontakt,password,spremi,odjava]
+      for(let i=0; i<7; i++){
+        let div=document.createElement("div")
+          div.appendChild(niz[i])
+          col.appendChild(div)
+      }//svaki element je u svom div-u tako da svaki ima "vlastiti" red
+      this.addChildren([img, col]);
 
-    this.addChildren([img, ime, col]);
 }
 }
 
