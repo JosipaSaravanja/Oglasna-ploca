@@ -626,6 +626,18 @@ class Controler extends EventTarget {
                 )
         );
     } 
+/*     ocjena(ocjena, pomak, username,id){
+        this.dispatchEvent(
+            new CustomEvent(
+                "ocjenjenOglas",
+                {detail: {user:{
+                    ocjena:ocjena,
+                    pomak:pomak,
+                    username:username, 
+                    id:id}}}
+                )
+        );
+    } */
 
     addOglas(event){
         this.dispatchEvent(
@@ -810,8 +822,6 @@ class MojiOglasi extends _baseComponentDefault.default {
     super("div");
     let sadrzaj = document.createElement("div");
     let user = JSON.parse(localStorage["user"]);
-    console.log("HEELLO");
-    console.log(user);
     let database = firebase.firestore();
     database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
       querySnapshot.forEach(doc => {
@@ -863,15 +873,14 @@ class OglasTodoCard extends _baseComponentDefault.default {
     let ocjena = document.createElement("div");
     ocjena.className = "col s1";
     let like = document.createElement("i");
-    like.innerHTML = "thumb_up";
-    like.className = "tooltipped material-icons";
-    like.style = "vertical-align :-3px;";
-    like.dataPosition = "bottom";
-    like.dataTooltip = "I am a tooltip";
+    like.innerHTML = "thumb_down";
+    like.className = "material-icons";
+    like.style = "cursor: pointer; vertical-align :-10px;";
+    // like.addEventListener("click", /* */)
     let dislike = document.createElement("i");
-    dislike.innerHTML = "thumb_down";
+    dislike.innerHTML = "thumb_up";
     dislike.className = "material-icons";
-    dislike.style = "vertical-align :-10px;";
+    dislike.style = "cursor: pointer; vertical-align :-3px;";
     let numberOfLikesElement = document.createElement("span");
     numberOfLikesElement.innerHTML = likes.length;
     let numberOfDislikesElement = document.createElement("span");
@@ -888,8 +897,8 @@ class OglasTodoCard extends _baseComponentDefault.default {
     col.appendChild(opisElement);
     col.appendChild(info);
     col.appendChild(numberOfLikesElement);
-    col.appendChild(like);
     col.appendChild(dislike);
+    col.appendChild(like);
     col.appendChild(numberOfDislikesElement);
     row.appendChild(col);
     row.appendChild(col2);
@@ -1025,6 +1034,7 @@ module.exports = Filter;
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+require("../modelAndControler");
 class IspisOglasa extends _baseComponentDefault.default {
   constructor(kontakt, opis, lokacija, cijena, razina, likes, dislikes, id, username) {
     super("div");
@@ -1047,37 +1057,40 @@ class IspisOglasa extends _baseComponentDefault.default {
         `;
     let ocjena = document.createElement("div");
     ocjena.className = "col s1";
-    let like = document.createElement("i");
-    like.innerHTML = "thumb_up";
-    like.className = "material-icons";
-    like.style = "cursor: pointer; vertical-align :-3px;";
-    like.addEventListener("click", () => {
-      this.like(id, username);
+    this.id = id;
+    this.like = document.createElement("i");
+    this.like.innerHTML = "thumb_up";
+    this.like.className = "material-icons";
+    this.like.style = "cursor: pointer; vertical-align :-3px;";
+    this.like.addEventListener("click", () => {
+      this.likeFunc(id, username);
+      this.like.style.color == "#64b5f6" ? this.like.style.color = "red" : this.like.style.color = "#64b5f6";
     });
-    let dislike = document.createElement("i");
-    dislike.innerHTML = "thumb_down";
-    dislike.className = "material-icons";
-    dislike.style = "cursor: pointer; vertical-align :-10px;";
-    dislike.addEventListener("click", () => {
-      this.dislike(id, username);
+    this.dislike = document.createElement("i");
+    this.dislike.innerHTML = "thumb_down";
+    this.dislike.className = "material-icons";
+    this.dislike.style = "cursor: pointer; vertical-align :-10px;";
+    this.dislike.addEventListener("click", () => {
+      this.dislikeFunc(id, username);
     });
     let numberOfLikesElement = document.createElement("span");
     numberOfLikesElement.innerHTML = likes.length;
-    likes.includes(user.username) ? like.style.color = "#64b5f6 " : false;
+    likes.includes(user.username) ? this.like.style.color = "#64b5f6 " : false;
     let numberOfDislikesElement = document.createElement("span");
-    numberOfDislikesElement.innerHTML = dislikes.length;
-    dislikes.includes(user.username) ? dislike.style.color = "#e57373" : false;
+    this.nod = Number(dislikes.length);
+    numberOfDislikesElement.innerHTML = this.nod;
+    dislikes.includes(user.username) ? this.dislike.style.color = "#e57373" : false;
     col.appendChild(opisElement);
     col.appendChild(info);
     ocjena.appendChild(numberOfLikesElement);
-    ocjena.appendChild(like);
-    ocjena.appendChild(dislike);
+    ocjena.appendChild(this.like);
+    ocjena.appendChild(this.dislike);
     ocjena.appendChild(numberOfDislikesElement);
     row.appendChild(col);
     row.appendChild(ocjena);
     this.addChild(row);
   }
-  like(id, username) {
+  likeFunc(id, username) {
     let user = JSON.parse(localStorage["user"]);
     let database = firebase.firestore();
     database.collection("korisnici").where("username", "==", username).get().then(function (querySnapshot) {
@@ -1098,13 +1111,11 @@ class IspisOglasa extends _baseComponentDefault.default {
         console.log(korisnik.oglasi);
         database.collection("korisnici").doc(doc.id).update({
           oglasi: korisnik.oglasi
-        }).then(function () {
-          alert("GLASOVALI STE");
-        });
+        }).then(() => {});
       });
     });
   }
-  dislike(id, username) {
+  dislikeFunc(id, username) {
     let user = JSON.parse(localStorage["user"]);
     let database = firebase.firestore();
     database.collection("korisnici").where("username", "==", username).get().then(function (querySnapshot) {
@@ -1125,15 +1136,13 @@ class IspisOglasa extends _baseComponentDefault.default {
         console.log(korisnik.oglasi);
         database.collection("korisnici").doc(doc.id).update({
           oglasi: korisnik.oglasi
-        }).then(function () {
-          alert("GLASOVALI STE");
-        });
+        }).then(() => {});
       });
     });
   }
 }
 module.exports = IspisOglasa;
 
-},{"../baseComponent":"22hEl","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["24Vv9","KAAmh"], "KAAmh", "parcelRequire427e")
+},{"../baseComponent":"22hEl","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../modelAndControler":"5zPz0"}]},["24Vv9","KAAmh"], "KAAmh", "parcelRequire427e")
 
 //# sourceMappingURL=matematika.b261bfee.js.map

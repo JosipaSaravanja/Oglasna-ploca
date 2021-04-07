@@ -8,8 +8,6 @@ class MojiOglasi extends Component {
     super("div");
     let sadrzaj = document.createElement("div");
     let user = JSON.parse(localStorage["user"]);
-console.log("HEELLO")
-console.log(user)
     let database = firebase.firestore();
     database
       .collection("korisnici")

@@ -23,25 +23,25 @@
 </head>
 
 <body>
-    <nav class="nav-extended">
-        <div class="nav-wrapper">
-            <a href="/index.html" class="brand-logo"><i class="  material-icons">cloud</i>Oglasna ploča</a>
-          <ul class="right hide-on-small">
-            <li><a href="/upute.html">Korištenje</a></li>
-          </ul>
-        </div><!-- 
-        <div class="nav-contenthide-on-small">
-          <span class="nav-title">Matematika</span>
+    
+    <nav class="nav-extended teal lighten-1" style="padding: 20px
+">
+        <div class="nav-wrapper ">
+            <a href="" class="brand-logo"><i class="material-icons">cloud</i>Oglasna ploča</a>
+            <a href="" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/upute.html">Korištenje</a></li>
+                <li><a href="">Components</a></li>
+                <li><a href="">JavaScript</a></li>
+            </ul>
         </div>
-        <div style="text-align:center" class="nav-content">
-          <span class="nav-title">Matematika</span>
-        </div> -->
-        
-        
-  <ul class="sidenav" href="index.html" id="mobile-demo">
-  </ul>
+    </nav>
 
-      </nav>
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="">Sass</a></li>
+        <li><a href="">Components</a></li>
+        <li><a href="">JavaScript</a></li>
+    </ul>
     <!--Uzglavlje-->
     <br>
     <div class="row">
@@ -77,8 +77,6 @@
         <div class="col s12 l2">
             <div class="col s12">
                 <div id="example2">
-
-
                 </div>
             </div>
         </div>
@@ -120,15 +118,15 @@
             <a id="dodajOglas" href="#!" class="modal-close waves-effect waves-green btn-flat">Dodaj oglas</a>
         </div>
     </div>
+    
 </body>
 <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 
@@ -275,12 +273,12 @@
       this[globalName] = mainExports;
     }
   }
-})({"4D12D":[function(require,module,exports) {
+})({"2tAeR":[function(require,module,exports) {
 var HMR_HOST = null;
 var HMR_PORT = 1234;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d751713988987e9331980363e24189ce";
-module.bundle.HMR_BUNDLE_ID = "36c7549ca02413a4cdc6916703e40a5d";
+module.bundle.HMR_BUNDLE_ID = "571147ec794700abfc2e8f4978b77426";
 // @flow
 /*global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE*/
 /*::
@@ -576,24 +574,26 @@ id) /*: string*/
   acceptedAssets[id] = true;
 }
 
-},{}],"5310r":[function(require,module,exports) {
-// Or with jQuery
-
- // Your web app's Firebase configuration
- // For Firebase JS SDK v7.20.0 and later, measurementId is optional
- var firebaseConfig = {
-   apiKey: "AIzaSyCoxNflUYGE6BH3y9BCfso08Dkvm0edLME",
-   authDomain: "oglasnaploca-b08b2.firebaseapp.com",
-   projectId: "oglasnaploca-b08b2",
-   storageBucket: "oglasnaploca-b08b2.appspot.com",
-   messagingSenderId: "632061917497",
-   appId: "1:632061917497:web:aa956473578b00b40150e8",
-   measurementId: "G-0SJ67RN8CD"
- };
- // Initialize Firebase
- firebase.initializeApp(firebaseConfig);
- firebase.analytics();
-},{}]},["4D12D","5310r"], "5310r", "parcelRequire427e")
+},{}],"1AIOs":[function(require,module,exports) {
+// Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyA_bA0LS0eefdaWyqKe-qyL7U-zHuoOe-k",
+    authDomain: "oglasna-ploca.firebaseapp.com",
+    projectId: "oglasna-ploca",
+    storageBucket: "oglasna-ploca.appspot.com",
+    messagingSenderId: "738452914857",
+    appId: "1:738452914857:web:e02497ec7cfbd129e59fb8",
+    measurementId: "G-2L3E02TT43"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  
+  $(document).ready(function(){
+    $('.tooltipped').tooltip();
+  });
+},{}]},["2tAeR","1AIOs"], "1AIOs", "parcelRequire427e")
 
 </script>
 <script src="/matematika.b261bfee.js"></script>

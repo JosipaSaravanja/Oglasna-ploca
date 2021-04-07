@@ -1,5 +1,6 @@
 //Ispisuje čitatelju oglase koji postoje (da pronađe što mu treba), svaki predmet ga posebno poziva s svojim oglasima (nor matematika.js s korisnik.oglasi gdje je predmet ="matematika)")
 import Component from "../baseComponent";
+import controler from "../modelAndControler";
 
 class IspisOglasa extends Component {
   constructor(
@@ -39,46 +40,47 @@ class IspisOglasa extends Component {
 
     let ocjena = document.createElement("div");
     ocjena.className = "col s1";
+this.id=id
+    this.like = document.createElement("i");
+    this.like.innerHTML = "thumb_up";
+    this.like.className = "material-icons";
+    this.like.style = "cursor: pointer; vertical-align :-3px;";
 
-    let like = document.createElement("i");
-    like.innerHTML = "thumb_up";
-    like.className = "material-icons";
-    like.style = "cursor: pointer; vertical-align :-3px;";
-
-    like.addEventListener("click", () => {
-      this.like(id, username);
-      //like.style.color="#64b5f6 "?like.style.color="black":like.style.color="#64b5f6 "
+    this.like.addEventListener("click", () => {
+      this.likeFunc(id, username);
+      this.like.style.color=="#64b5f6" ?this.like.style.color="red":this.like.style.color="#64b5f6"
       
     });
 
-    let dislike = document.createElement("i");
-    dislike.innerHTML = "thumb_down";
-    dislike.className = "material-icons";
-    dislike.style = "cursor: pointer; vertical-align :-10px;";
-    dislike.addEventListener("click", () => {
-      this.dislike(id, username);
+    this.dislike = document.createElement("i");
+    this.dislike.innerHTML = "thumb_down";
+    this.dislike.className = "material-icons";
+    this.dislike.style = "cursor: pointer; vertical-align :-10px;";
+    this.dislike.addEventListener("click", () => {
+      this.dislikeFunc(id, username);
     });
 
     let numberOfLikesElement = document.createElement("span");
     numberOfLikesElement.innerHTML = likes.length;
-    likes.includes(user.username)? like.style.color="#64b5f6 ": false
+    likes.includes(user.username)? this.like.style.color="#64b5f6 ": false
 
     let numberOfDislikesElement = document.createElement("span");
-    numberOfDislikesElement.innerHTML = dislikes.length;
-    dislikes.includes(user.username)? dislike.style.color="#e57373" : false
+    this.nod=Number(dislikes.length);
+    numberOfDislikesElement.innerHTML =this.nod
+    dislikes.includes(user.username)? this.dislike.style.color="#e57373" : false
 
     col.appendChild(opisElement);
     col.appendChild(info);
     ocjena.appendChild(numberOfLikesElement);
-    ocjena.appendChild(like);
-    ocjena.appendChild(dislike);
+    ocjena.appendChild(this.like);
+    ocjena.appendChild(this.dislike);
     ocjena.appendChild(numberOfDislikesElement);
     row.appendChild(col);
     row.appendChild(ocjena);
+    
     this.addChild(row);
   }
-
-  like(id, username) {
+  likeFunc(id, username) {
     let user = JSON.parse(localStorage["user"]);
 
     let database = firebase.firestore();
@@ -104,14 +106,12 @@ class IspisOglasa extends Component {
             console.log(korisnik.oglasi)
             database.collection("korisnici").doc(doc.id).update({
               oglasi: korisnik.oglasi
-            }).then(function(){
-              alert("GLASOVALI STE")
-            }); 
+            }).then(()=>{}); 
           
         });
       });
   }
-  dislike(id, username) {
+  dislikeFunc(id, username) {
     let user = JSON.parse(localStorage["user"]);
 
     let database = firebase.firestore();
@@ -128,17 +128,19 @@ class IspisOglasa extends Component {
               if (oglas.ocjena.dislike.includes(user.username)) {
                 oglas.ocjena.dislike=oglas.ocjena.dislike.filter((item) => item !== "korisnik3")
                 console.log(oglas)
+                //promjena
               } else {
                 oglas.ocjena.dislike.push(user.username)
                 console.log(oglas)
+                //proimjena
               } 
             
             }})
             console.log(korisnik.oglasi)
             database.collection("korisnici").doc(doc.id).update({
               oglasi: korisnik.oglasi
-            }).then(function(){
-              alert("GLASOVALI STE")
+            }).then(()=>{
+              
             }); 
           
         });

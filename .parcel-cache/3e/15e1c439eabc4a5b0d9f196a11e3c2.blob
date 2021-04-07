@@ -1,0 +1,24 @@
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+       color: blue !important;
+       background-color: white;
+}
+
+        .tabs .indicator {
+            background-color: #4db6ac;
+        }
+#scrollspy{
+                    height: 100%;
+                    width: 100%;
+                    min-height: 100%;
+                    position: fixed;
+                }
+        .tabs .tab a.active {
+            background-color: #e0f2f1 !important;
+            color: #00897b !important;
+        }
+        
+        .table-of-contents a.active {
+            font-weight: 500;
+            padding-left: 18px;
+            border-bottom: 2px solid white;
+          }

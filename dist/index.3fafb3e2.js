@@ -611,6 +611,18 @@ class Controler extends EventTarget {
                 )
         );
     } 
+/*     ocjena(ocjena, pomak, username,id){
+        this.dispatchEvent(
+            new CustomEvent(
+                "ocjenjenOglas",
+                {detail: {user:{
+                    ocjena:ocjena,
+                    pomak:pomak,
+                    username:username, 
+                    id:id}}}
+                )
+        );
+    } */
 
     addOglas(event){
         this.dispatchEvent(
@@ -795,8 +807,6 @@ class MojiOglasi extends _baseComponentDefault.default {
     super("div");
     let sadrzaj = document.createElement("div");
     let user = JSON.parse(localStorage["user"]);
-    console.log("HEELLO");
-    console.log(user);
     let database = firebase.firestore();
     database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
       querySnapshot.forEach(doc => {
@@ -848,15 +858,14 @@ class OglasTodoCard extends _baseComponentDefault.default {
     let ocjena = document.createElement("div");
     ocjena.className = "col s1";
     let like = document.createElement("i");
-    like.innerHTML = "thumb_up";
-    like.className = "tooltipped material-icons";
-    like.style = "vertical-align :-3px;";
-    like.dataPosition = "bottom";
-    like.dataTooltip = "I am a tooltip";
+    like.innerHTML = "thumb_down";
+    like.className = "material-icons";
+    like.style = "cursor: pointer; vertical-align :-10px;";
+    // like.addEventListener("click", /* */)
     let dislike = document.createElement("i");
-    dislike.innerHTML = "thumb_down";
+    dislike.innerHTML = "thumb_up";
     dislike.className = "material-icons";
-    dislike.style = "vertical-align :-10px;";
+    dislike.style = "cursor: pointer; vertical-align :-3px;";
     let numberOfLikesElement = document.createElement("span");
     numberOfLikesElement.innerHTML = likes.length;
     let numberOfDislikesElement = document.createElement("span");
@@ -873,8 +882,8 @@ class OglasTodoCard extends _baseComponentDefault.default {
     col.appendChild(opisElement);
     col.appendChild(info);
     col.appendChild(numberOfLikesElement);
-    col.appendChild(like);
     col.appendChild(dislike);
+    col.appendChild(like);
     col.appendChild(numberOfDislikesElement);
     row.appendChild(col);
     row.appendChild(col2);

@@ -41,16 +41,15 @@ class OglasTodoCard extends Component {
     ocjena.className = "col s1";
 
     let like = document.createElement("i");
-    like.innerHTML = "thumb_up";
-    like.className = "tooltipped material-icons";
-    like.style = "vertical-align :-3px;";
-    like.dataPosition="bottom" 
-    like.dataTooltip="I am a tooltip"
-    
+    like.innerHTML = "thumb_down";
+    like.className = "material-icons";
+    like.style = "cursor: pointer; vertical-align :-10px;";
+    //like.addEventListener("click", /* */)
+
     let dislike = document.createElement("i");
-    dislike.innerHTML = "thumb_down";
+    dislike.innerHTML = "thumb_up";
     dislike.className = "material-icons";
-    dislike.style = "vertical-align :-10px;";
+    dislike.style = "cursor: pointer; vertical-align :-3px;";
 
     let numberOfLikesElement = document.createElement("span");
     numberOfLikesElement.innerHTML = likes.length;
@@ -72,14 +71,13 @@ class OglasTodoCard extends Component {
     col.appendChild(opisElement);
     col.appendChild(info);
     col.appendChild(numberOfLikesElement);
-    col.appendChild(like);
     col.appendChild(dislike);
+    col.appendChild(like);
     col.appendChild(numberOfDislikesElement);
     row.appendChild(col);
     row.appendChild(col2);
     this.addChild(row);
   }
-
   removeSelf(id, username) {
     let database = firebase.firestore();
 
