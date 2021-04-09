@@ -467,14 +467,7 @@ var _prijavljeniDefault = _parcelHelpers.interopDefault(_prijavljeni);
 class PrviStupac extends _baseComponentDefault.default {
   constructor() {
     super("div");
-    let okvir;
-    let user = JSON.parse(localStorage["user"]);
-    if (user == false) {
-      okvir = new _neprijavljeniDefault.default();
-    } else {
-      okvir = new _prijavljeniDefault.default();
-    }
-    this.addChild(okvir.rootElement);
+    JSON.parse(localStorage["user"]) == false ? this.addChild(new _neprijavljeniDefault.default().rootElement) : this.addChild(new _prijavljeniDefault.default().rootElement);
   }
 }
 module.exports = PrviStupac;
@@ -688,17 +681,14 @@ class Prijavljeni extends _baseComponentDefault.default {
       let option = document.createElement("option");
       option.innerHTML = el;
       option.value = el;
-      console.log(this.user.lokacija.županija);
       this.select.appendChild(option);
     });
     this.select.value = this.user.lokacija.županija;
     this.grad = document.createElement("input");
     this.grad.placeholder = "Grad";
-    console.log(this.user.lokacija.grad);
     this.grad.value = this.user.lokacija.grad;
     this.kontakt = document.createElement("input");
     this.kontakt.placeholder = "Kontakt";
-    console.log(this.user.kontakt);
     this.kontakt.value = this.user.kontakt;
     this.password = document.createElement("input");
     this.password.placeholder = "Lozinka";
@@ -996,7 +986,7 @@ class MojiOglasi extends _baseComponentDefault.default {
   }
   dodanJeOglas(el) {
     console.log(el);
-    let oglas = new _oglasTodoCardDefault.default(el.id, el.kontakt, el.opis, el.lokacija, el.cijena, el.predmet, el.razina, el.ocjena.like.length, el.ocjena.dislike.length, el.username);
+    let oglas = new _oglasTodoCardDefault.default(el.id, el.kontakt, el.opis, el.lokacija, el.cijena, el.predmet, el.razina, el.ocjena.like, el.ocjena.dislike, el.username);
     this.noviOglasi.appendChild(oglas.rootElement);
   }
 }

@@ -51,8 +51,8 @@ class MojiOglasi extends Component {
       el.cijena,
       el.predmet,
       el.razina,
-      el.ocjena.like.length,
-      el.ocjena.dislike.length,
+      el.ocjena.like,
+      el.ocjena.dislike,
       el.username
     );
     this.noviOglasi.appendChild(oglas.rootElement);

@@ -45,7 +45,6 @@ class Prijavljeni extends Component {
         let option=document.createElement("option");
         option.innerHTML=el;
         option.value=el;
-        console.log(this.user.lokacija.županija);
         this.select.appendChild(option);
       })
       this.select.value=this.user.lokacija.županija;
@@ -53,12 +52,10 @@ class Prijavljeni extends Component {
       
     this.grad=document.createElement("input");
     this.grad.placeholder="Grad";
-    console.log(this.user.lokacija.grad);
     this.grad.value=this.user.lokacija.grad ;
  
     this.kontakt=document.createElement("input");
     this.kontakt.placeholder="Kontakt";
-    console.log(this.user.kontakt);
     this.kontakt.value=this.user.kontakt;
 
     this.password=document.createElement("input");

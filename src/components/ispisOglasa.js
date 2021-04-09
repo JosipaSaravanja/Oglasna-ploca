@@ -49,7 +49,7 @@ class IspisOglasa extends Component {
       this.like.style.color = "rgb(100, 181, 246)";
     }
     this.like.addEventListener("click", () => {
-      this.likeFunc();
+      this.user!==false?this.likeFunc(): M.toast({ html: `Morate se prijaviti da biste ocjenjivali oglase.` });;
     });
 
     this.dislike = document.createElement("i");
@@ -57,7 +57,7 @@ class IspisOglasa extends Component {
     this.dislike.className = "material-icons";
     this.dislike.style = "cursor: pointer; vertical-align :-10px;";
     this.dislike.addEventListener("click", () => {
-      this.dislikeFunc();
+      this.user!==false?this.dislikeFunc(): M.toast({ html: `Morate se prijaviti da biste ocjenjivali oglase.` });;
     });
 
     this.numberOfLikesElement = document.createElement("span");
@@ -95,25 +95,39 @@ class IspisOglasa extends Component {
           korisnik.oglasi.map((oglas) => {
             if (oglas.id == this.id) {//pronađi oglas prema id
               if (oglas.ocjena.like.includes(this.user.username)) {
-                oglas.ocjena.like = oglas.ocjena.like.filter((item) => item !== this.user.username); //ukloni korisnika iz liste osoba koje su like-ale
-                this.like.style.color = "black"; //makni boju s like icone
-                this.numberOfLikesElement.innerHTML =Number(this.numberOfLikesElement.innerHTML) - 1; //i smanji broj pored njega
+                oglas.ocjena.like = oglas.ocjena.like.filter(
+                  (item) => item !== this.user.username //ukloni korisnika iz liste osoba koje su like-ale
+                );
               } else {
                 oglas.ocjena.like.push(this.user.username); //dodaj korisnika u listu osoba koje su like-ale oglas
-                this.like.style.color = "rgb(100, 181, 246)"; //pretvori u plavo
-                this.numberOfLikesElement.innerHTML = Number(this.numberOfLikesElement.innerHTML) + 1; //i povećaj broj pored
-                if (this.dislike.style.color == "rgb(229, 115, 115)") {//ako je korisnik već prije dislike-ao oglas treba to poništit da ne like-a i dislike-a isti oglas
-                  oglas.ocjena.dislike = oglas.ocjena.dislike.filter((item) => item !== this.user.username);
-                  this.numberOfDislikesElement.innerHTML =Number(this.numberOfDislikesElement.innerHTML) - 1;
-                  this.dislike.style.color = "black";
-                }
+                this.dislike.style.color == "rgb(229, 115, 115)"//ako je korisnik već prije dislike-ao oglas treba to poništit da ne like-a i dislike-a isti oglas
+                  ? (oglas.ocjena.dislike = oglas.ocjena.dislike.filter(
+                      (item) => item !== this.user.username
+                    ))
+                  : false;
               }
             }
           });
           console.log(korisnik.oglasi);
-          database.collection("korisnici").doc(doc.id).update({
-            oglasi: korisnik.oglasi,
-          });
+          database
+            .collection("korisnici")
+            .doc(doc.id)
+            .update({
+              oglasi: korisnik.oglasi,
+            })
+            .then(() => {
+              if (this.like.style.color == "rgb(100, 181, 246)") {//makni boju s like icone
+                this.like.style.color = "black";
+                this.numberOfLikesElement.innerHTML =Number(this.numberOfLikesElement.innerHTML) - 1; //umanjio broj pored za jedan
+              } else {
+                this.like.style.color = "rgb(100, 181, 246)"; //pretvori u plavo
+                this.numberOfLikesElement.innerHTML = Number(this.numberOfLikesElement.innerHTML) + 1; //povećaj broj pored
+                if (this.dislike.style.color == "rgb(229, 115, 115)") {//ako je korisnik već prije dislike-ao oglas treba to poništit da ne like-a i dislike-a isti oglas
+                  this.numberOfDislikesElement.innerHTML = Number(this.numberOfDislikesElement.innerHTML) - 1;
+                  this.dislike.style.color = "black";
+                }
+              }
+            });
         });
       });
   }
@@ -129,19 +143,17 @@ class IspisOglasa extends Component {
           korisnik.oglasi.map((oglas) => {
             if (oglas.id == this.id) {
               if (oglas.ocjena.dislike.includes(this.user.username)) {
-                oglas.ocjena.dislike = oglas.ocjena.dislike.filter((item) => item !== this.user.username); //ukloni korisnika iz liste osoba koje su dislike-ale
-                this.dislike.style.color="black";//makni boju s dislike icone
-                this.numberOfDislikesElement.innerHTML=Number(this.numberOfDislikesElement.innerHTML)-1; //smanji broj pored njega
+                oglas.ocjena.dislike = oglas.ocjena.dislike.filter(
+                  (item) => item !== this.user.username
+                ); //ukloni korisnika iz liste osoba koje su dislike-ale
               } else {
                 oglas.ocjena.dislike.push(this.user.username); //dodaj korisnika u listu osoba koje su dislike-ale oglas
-                this.dislike.style.color = "rgb(229, 115, 115)"; //pretvori u crveno
-                this.numberOfDislikesElement.innerHTML=Number(this.numberOfDislikesElement.innerHTML)+1; //povećaj broj pored njega
-                console.log(this.like.style.color)
-                if(this.like.style.color == "rgb(100, 181, 246)"){
-                  oglas.ocjena.like = oglas.ocjena.like.filter((item) => item !== this.user.username);//ako je korisnik već prije like-ao oglas treba to poništit da ne like-a i dislike-a isti oglas
-                  this.numberOfLikesElement.innerHTML =Number(this.numberOfLikesElement.innerHTML) - 1;
-                  this.like.style.color = "black"
-                }
+                
+                this.like.style.color == "rgb(100, 181, 246)" //ako je korisnik već prije like-ao oglas treba to poništit da ne like-a i dislike-a isti oglas
+                  ? (oglas.ocjena.like = oglas.ocjena.like.filter(
+                      (item) => item !== this.user.username
+                    ))
+                  : false;
               }
             }
           });
@@ -152,6 +164,19 @@ class IspisOglasa extends Component {
             .update({
               oglasi: korisnik.oglasi,
             })
+            .then(() => {
+              if (this.dislike.style.color == "rgb(229, 115, 115)") {
+                this.dislike.style.color = "black"; //makni boju s dislike icone
+                this.numberOfDislikesElement.innerHTML =Number(this.numberOfDislikesElement.innerHTML) - 1; //smanji broj pored njega
+              } else {
+                this.dislike.style.color = "rgb(229, 115, 115)"; //pretvori u crveno
+                this.numberOfDislikesElement.innerHTML = Number(this.numberOfDislikesElement.innerHTML) + 1; //povećaj broj pored njega
+                if (this.like.style.color == "rgb(100, 181, 246)") { //ako je korisnik već prije like-ao oglas treba to poništit da ne like-a i dislike-a isti oglas
+                  this.numberOfLikesElement.innerHTML =Number(this.numberOfLikesElement.innerHTML) - 1;
+                  this.like.style.color = "black";
+                }
+              }
+            });
         });
       });
   }

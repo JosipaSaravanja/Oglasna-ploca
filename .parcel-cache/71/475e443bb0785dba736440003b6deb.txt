@@ -1,13 +1,4 @@
-21126
-55C:\Users\korisnik\Desktop\Oglasna-ploca\korištenje.html132624668702692079 0
-68C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\lodash.debounce132613397821500856 1
-74C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\hsl-regex\.travis.yml130671323320000000 0
-93C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\svgo\node_modules\color-convert\route.js121436361000000000 0
-61C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\cssstyle132613397716251846 1
-120C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\cssnano-preset-default\node_modules\postcss\lib\css-syntax-error.js121436361000000000 0
-101C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\caniuse-lite\data\features\keyboardevent-code.js121436361000000000 0
-84C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\fastest-levenshtein\.prettierrc121436361000000000 0
-66C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\es-abstract\5132613397740053308 1
+21123
 57C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\atob132613397623277680 1
 91C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\core-js\modules\esnext.iterator.map.js121436361000000000 0
 98C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\resolve\test\module_dir\ymodules\aaa\index.js121436361000000000 0
@@ -25,7 +16,7 @@
 111C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\regenerate-unicode-properties\Script_Extensions\Tagalog.js121436361000000000 0
 90C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-minify-gradients\package.json132612560605269330 0
 63C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\is-extglob132613397781052083 1
-44C:\Users\korisnik\Desktop\Oglasna-ploca\dist132624710597818718 1
+44C:\Users\korisnik\Desktop\Oglasna-ploca\dist132624731664817193 1
 74C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\picomatch\lib\scan.js121436361000000000 0
 61C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\arr-diff132613397619338636 1
 100C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\regenerate-unicode-properties\Script\Mandaic.js121436361000000000 0
@@ -38,7 +29,7 @@
 79C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\string-hash\component.json131313260540000000 0
 105C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\unicode-match-property-value-ecmascript\package.json132612560594353245 0
 73C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\lodash\_baseHasIn.js121436361000000000 0
-51C:\Users\korisnik\Desktop\Oglasna-ploca\fizika.html132624673355990676 0
+51C:\Users\korisnik\Desktop\Oglasna-ploca\fizika.html132624729457874885 0
 71C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\emphasize\index.js121436361000000000 0
 101C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\regenerate-unicode-properties\Script\Katakana.js121436361000000000 0
 89C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\core-js\stable\number\parse-float.js121436361000000000 0
@@ -61,11 +52,11 @@
 94C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\highlight.js\scss\atelier-cave-light.scss121436361000000000 0
 88C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\node-addon-api\package-support.json121436361000000000 0
 108C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\posthtml\node_modules\posthtml-parser\coverage\base.css121436361000000000 0
-46C:\Users\korisnik\Desktop\Oglasna-ploca\images132624626009423236 1
+46C:\Users\korisnik\Desktop\Oglasna-ploca\images132624730522747230 1
 75C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\domhandler\lib\node.js131385971350000000 0
 83C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\core-js\stable\set-interval.js121436361000000000 0
 113C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-discard-duplicates\node_modules\postcss\lib\parse.js121436361000000000 0
-50C:\Users\korisnik\Desktop\Oglasna-ploca\index.html132624667784841249 0
+50C:\Users\korisnik\Desktop\Oglasna-ploca\index.html132624731393413677 0
 99C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\@parcel\babel-ast-utils\test\fixtures\class.js121436361000000000 0
 114C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-discard-overridden\node_modules\postcss\lib\result.js121436361000000000 0
 69C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\es-abstract\2015132613397726878368 1
@@ -145,7 +136,7 @@
 75C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\miller-rabin\lib\mr.js131510237310000000 0
 84C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\core-js\features\weak-set\of.js121436361000000000 0
 120C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-minify-font-values\node_modules\postcss\docs\source-maps.md121436361000000000 0
-55C:\Users\korisnik\Desktop\Oglasna-ploca\matematika.html132624673336511280 0
+55C:\Users\korisnik\Desktop\Oglasna-ploca\matematika.html132624729563949773 0
 90C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\electron-to-chromium\full-versions.js121436361000000000 0
 74C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-normalize-url132613397905000550 1
 84C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\cssstyle\lib\properties\flex.js121436361000000000 0
@@ -191,7 +182,7 @@
 98C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\caniuse-lite\data\features\input-selection.js121436361000000000 0
 60C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\ieee754132613397774876930 1
 103C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\core-js-compat\node_modules\semver\functions\eq.js121436361000000000 0
-69C:\Users\korisnik\Desktop\Oglasna-ploca\src\components\ispisOglasa.js132624710596131404 0
+69C:\Users\korisnik\Desktop\Oglasna-ploca\src\components\ispisOglasa.js132624728547533426 0
 55C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\pn132613397841575517 1
 78C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\css-tree\lib\syntax\scope132613397700663478 1
 52C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules132621820687269557 1
@@ -240,7 +231,7 @@
 91C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\sprintf-js\dist\angular-sprintf.min.js130810088230000000 0
 99C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\resolve\test\resolver\symlinked\package\bar.js121436361000000000 0
 125C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\regenerate-unicode-properties\Binary_Property\Changes_When_Casemapped.js121436361000000000 0
-50C:\Users\korisnik\Desktop\Oglasna-ploca\upute.html132624667912558321 0
+50C:\Users\korisnik\Desktop\Oglasna-ploca\upute.html132624729605533336 0
 82C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\uncss\node_modules\color-name132613397971191825 1
 91C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\core-js\internals\well-known-symbol.js121436361000000000 0
 95C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\@nodelib\fs.scandir\src\providers\async.ts121436361000000000 0
@@ -292,11 +283,6 @@
 64C:\Users\korisnik\Desktop\Oglasna-ploca\src\modelAndControler.js132624596934831821 0
 122C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-normalize-display-values\node_modules\postcss\lib\tokenize.js121436361000000000 0
 98C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\stylehacks\node_modules\postcss\lib\result.js121436361000000000 0
-135C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-normalize-string\node_modules\chalk\node_modules\supports-color\browser.js131663821590000000 0
-86C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\babel-plugin-polyfill-regenerator132613397625849127 1
-78C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\is-absolute-url\readme.md131218946930000000 0
-107C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\@parcel\reporter-dev-server\node_modules\ws\browser.js121436361000000000 0
-113C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-unique-selectors\node_modules\chalk\types\index.d.ts121436361000000000 0
 88C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\svgo\plugins\removeScriptElement.js121436361000000000 0
 74C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\whatwg-url\lib\URL.js121436361000000000 0
 79C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\lodash\_iteratorToArray.js121436361000000000 0
@@ -304,6 +290,11 @@
 112C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-discard-overridden\node_modules\chalk\index.js.flow121436361000000000 0
 111C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-ordered-values\node_modules\supports-color\license121436361000000000 0
 68C:\Users\korisnik\Desktop\Oglasna-ploca\src\components\dodajOglas.js132624614565797352 0
+135C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-normalize-string\node_modules\chalk\node_modules\supports-color\browser.js131663821590000000 0
+86C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\babel-plugin-polyfill-regenerator132613397625849127 1
+78C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\is-absolute-url\readme.md131218946930000000 0
+107C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\@parcel\reporter-dev-server\node_modules\ws\browser.js121436361000000000 0
+113C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-unique-selectors\node_modules\chalk\types\index.d.ts121436361000000000 0
 134C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-discard-duplicates\node_modules\chalk\node_modules\supports-color\license131408182550000000 0
 72C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\terser\node_modules132613397966893417 1
 71C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\color\package.json132612560608760251 0
@@ -352,7 +343,7 @@
 61C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\argparse132613397618522655 1
 84C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\caniuse-lite\data\regions\MC.js121436361000000000 0
 122C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-merge-rules\node_modules\postcss-selector-parser\package.json132612560594423040 0
-68C:\Users\korisnik\Desktop\Oglasna-ploca\src\components\mojiOglasi.js132624595635782320 0
+68C:\Users\korisnik\Desktop\Oglasna-ploca\src\components\mojiOglasi.js132624726919565904 0
 97C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\jsdom\lib\jsdom\living\generated\Document.js121436361000000000 0
 111C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\cssnano-preset-default\node_modules\color-convert\index.js121436361000000000 0
 95C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\stylehacks\node_modules\has-flag\readme.md131593942790000000 0
@@ -370,7 +361,7 @@
 71C:\Users\korisnik\Desktop\Oglasna-ploca\src\components\neprijavljeni.js132624591089828174 0
 111C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-merge-longhand\node_modules\postcss\lib\comment.js121436361000000000 0
 65C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\pn\README.md131594427500000000 0
-69C:\Users\korisnik\Desktop\Oglasna-ploca\src\components\prijavljeni.js132624665155483669 0
+69C:\Users\korisnik\Desktop\Oglasna-ploca\src\components\prijavljeni.js132624725391246525 0
 76C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\lodash\toPlainObject.js121436361000000000 0
 102C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\uncss\node_modules\postcss-selector-parser\API.md121436361000000000 0
 67C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\lodash\cond.js121436361000000000 0
@@ -1130,9 +1121,12 @@
 84C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\es-abstract\2016\HasProperty.js121436361000000000 0
 68C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\vendors\license121436361000000000 0
 73C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\verror\lib\verror.js131382167760000000 0
+95C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-selector-parser\dist\util\index.js121436361000000000 0
+89C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\posix-character-classes\package.json132612560630925981 0
+79C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\regenerate\LICENSE-MIT.txt121436361000000000 0
+71C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\saxes\lib\saxes.js121436361000000000 0
 99C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\@parcel\transformer-js\lib\esmodule-helpers.js121436361000000000 0
 100C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\cssstyle\lib\properties\backgroundAttachment.js121436361000000000 0
-52C:\Users\korisnik\Desktop\Oglasna-ploca\images\a.jpg132622001201563083 0
 84C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\posthtml-parser\.idea\jsLinters132613397928453633 1
 66C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\lodash\get.js121436361000000000 0
 64C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\cross-spawn132613397690659295 1
@@ -1295,6 +1289,14 @@
 81C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\nanoid\async\index.native.js121436361000000000 0
 85C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\cosmiconfig\dist\getDirectory.js121436361000000000 0
 69C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\follow-redirects132613397751253883 1
+68C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\lodash.debounce132613397821500856 1
+74C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\hsl-regex\.travis.yml130671323320000000 0
+93C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\svgo\node_modules\color-convert\route.js121436361000000000 0
+61C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\cssstyle132613397716251846 1
+120C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\cssnano-preset-default\node_modules\postcss\lib\css-syntax-error.js121436361000000000 0
+101C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\caniuse-lite\data\features\keyboardevent-code.js121436361000000000 0
+84C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\fastest-levenshtein\.prettierrc121436361000000000 0
+66C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\es-abstract\5132613397740053308 1
 105C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\snapdragon-node\node_modules\is-descriptor\README.md131325353560000000 0
 92C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\purgecss\node_modules\commander\LICENSE121436361000000000 0
 107C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-discard-overridden\node_modules\chalk\index.js121436361000000000 0
@@ -2945,7 +2947,7 @@
 111C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\@parcel\transformer-html\node_modules\domhandler\readme.md121436361000000000 0
 59C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\wrappy132613397981692095 1
 79C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\react-refresh\package.json132612560614701375 0
-61C:\Users\korisnik\Desktop\Oglasna-ploca\dist\ime.08c65e15.jpg132624710597428180 0
+61C:\Users\korisnik\Desktop\Oglasna-ploca\dist\ime.08c65e15.jpg132624731662603408 0
 97C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\expand-brackets\node_modules\define-property132613397744653440 1
 120C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-normalize-repeat-style\node_modules\color-convert\README.md121436361000000000 0
 73C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\safe-buffer\index.js121436361000000000 0
@@ -3273,7 +3275,7 @@
 81C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\whatwg-url\lib\public-api.js121436361000000000 0
 86C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\core-js\features\composite-key.js121436361000000000 0
 79C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\whatwg-url\lib\URL-impl.js121436361000000000 0
-71C:\Users\korisnik\Desktop\Oglasna-ploca\dist\matematika.b261bfee.js.map132624710597778837 0
+71C:\Users\korisnik\Desktop\Oglasna-ploca\dist\matematika.b261bfee.js.map132624731664661375 0
 113C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-unique-selectors\node_modules\color-convert\index.js121436361000000000 0
 109C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\regenerate-unicode-properties\Binary_Property\Radical.js121436361000000000 0
 90C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\uri-js\dist\esnext\regexps-uri.js.map121436361000000000 0
@@ -3396,10 +3398,10 @@
 97C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-svgo\node_modules\chalk\node_modules132613397920192577 1
 97C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\core-js\features\typed-array\reduce-right.js121436361000000000 0
 66C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\uuid\index.js121436361000000000 0
+75C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\source-map-url\LICENSE121436361000000000 0
+95C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\caniuse-lite\data\features\css-overflow.js121436361000000000 0
 115C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-normalize-string\node_modules\postcss\lib\postcss.d.ts121436361000000000 0
 86C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\core-js\es\array\virtual\every.js121436361000000000 0
-95C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\caniuse-lite\data\features\css-overflow.js121436361000000000 0
-75C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\source-map-url\LICENSE121436361000000000 0
 83C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\w3c-xmlserializer\lib\index.js121436361000000000 0
 109C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\@parcel\package-manager\test\fixtures\packages\peers-2.0132613397587978720 1
 75C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\lodash\_baseFlatten.js121436361000000000 0
@@ -4579,7 +4581,7 @@
 73C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\ret\lib\positions.js131132065910000000 0
 111C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-modules-scope\node_modules\postcss\docs\guidelines132613397885188939 1
 103C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\snapdragon-node\node_modules\is-descriptor\LICENSE131452119970000000 0
-63C:\Users\korisnik\Desktop\Oglasna-ploca\dist\fizika.2b5f4e7d.js132624710597717440 0
+63C:\Users\korisnik\Desktop\Oglasna-ploca\dist\fizika.2b5f4e7d.js132624731664661375 0
 111C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\tslib\test\validateModuleExportsMatchCommonJS\package.json121436361000000000 0
 102C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\jsdom\lib\jsdom\living\generated\PopStateEvent.js121436361000000000 0
 84C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\sprintf-js\dist\sprintf.min.map130810088230000000 0
@@ -5906,10 +5908,6 @@
 73C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\saxes\lib\saxes.d.ts121436361000000000 0
 83C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\request-promise-native\LICENSE121436361000000000 0
 83C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\core-js\internals\is-object.js121436361000000000 0
-95C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-selector-parser\dist\util\index.js121436361000000000 0
-89C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\posix-character-classes\package.json132612560630925981 0
-79C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\regenerate\LICENSE-MIT.txt121436361000000000 0
-71C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\saxes\lib\saxes.js121436361000000000 0
 60C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\sax\lib132613397951456326 1
 96C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\core-js-compat\node_modules\.bin\semver.ps1132612560685666755 0
 76C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\@babel\traverse\LICENSE121012626000000000 0
@@ -5978,7 +5976,7 @@
 80C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\elliptic\node_modules\bn.js132613397723496506 1
 75C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\rgba-regex\.travis.yml130673243740000000 0
 116C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-discard-overridden\node_modules\postcss\lib\tokenize.js121436361000000000 0
-68C:\Users\korisnik\Desktop\Oglasna-ploca\dist\talijanski.d8f613c7.jpg132624710597798763 0
+68C:\Users\korisnik\Desktop\Oglasna-ploca\dist\talijanski.d8f613c7.jpg132624731662759654 0
 104C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\cssnano-preset-default\node_modules\postcss\LICENSE121436361000000000 0
 98C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\@parcel\babel-ast-utils\test\fixtures\loop.js121436361000000000 0
 72C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\rgba-regex\index.js130673248410000000 0
@@ -6051,7 +6049,7 @@
 69C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\ret\lib\types.js131132070470000000 0
 75C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\mdn-data\l10n\index.js121436361000000000 0
 76C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\restore-cursor\index.js121436361000000000 0
-66C:\Users\korisnik\Desktop\Oglasna-ploca\dist\njemacki.5e59a567.jpg132622048747625796 0
+66C:\Users\korisnik\Desktop\Oglasna-ploca\dist\njemacki.5e59a567.jpg132624731116104753 0
 75C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\restore-cursor\license121436361000000000 0
 125C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-reduce-transforms\node_modules\postcss-value-parser\package.json132612560617379036 0
 80C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\restore-cursor\package.json132612560608896544 0
@@ -6150,7 +6148,7 @@
 76C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\resolve\test\subdirs.js121436361000000000 0
 106C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\base\node_modules\is-accessor-descriptor\package.json132612560637932794 0
 101C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-reduce-initial\node_modules\postcss\docs132613397914692719 1
-62C:\Users\korisnik\Desktop\Oglasna-ploca\dist\index.3fafb3e2.js132624710597717440 0
+62C:\Users\korisnik\Desktop\Oglasna-ploca\dist\index.3fafb3e2.js132624731664661375 0
 95C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\es-abstract\2016\RequireObjectCoercible.js121436361000000000 0
 77C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\resolve\test\symlinks.js121436361000000000 0
 94C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\@babel\runtime\helpers\esm\createClass.js121012626000000000 0
@@ -7003,7 +7001,7 @@
 100C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\regenerate-unicode-properties\Script\Makasar.js121436361000000000 0
 86C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\es-abstract\2017\IsPropertyKey.js121436361000000000 0
 111C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\posthtml\node_modules\dom-serializer\lib\foreignNames.d.ts121436361000000000 0
-66C:\Users\korisnik\Desktop\Oglasna-ploca\dist\engleski.6f0d71c9.jpg132624710597607717 0
+66C:\Users\korisnik\Desktop\Oglasna-ploca\dist\engleski.6f0d71c9.jpg132624731663228251 0
 103C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\regenerate-unicode-properties\Script\Manichaean.js121436361000000000 0
 100C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\regenerate-unicode-properties\Script\Marchen.js121436361000000000 0
 76C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\ajv\lib\dotjs\custom.js121436361000000000 0
@@ -8089,7 +8087,7 @@
 113C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-normalize-whitespace\node_modules\chalk\package.json132612560619872379 0
 91C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\core-js\es\string\virtual\fontcolor.js121436361000000000 0
 88C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\es-abstract\2019\thisNumberValue.js121436361000000000 0
-63C:\Users\korisnik\Desktop\Oglasna-ploca\dist\index.0f132b6c.css132624710597707518 0
+63C:\Users\korisnik\Desktop\Oglasna-ploca\dist\index.0f132b6c.css132624731664661375 0
 79C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\lodash\fp\toSafeInteger.js121436361000000000 0
 97C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-svgo\node_modules\chalk\templates.js121436361000000000 0
 111C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-normalize-string\node_modules\postcss\CHANGELOG.md121436361000000000 0
@@ -10788,7 +10786,7 @@
 124C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-merge-rules\node_modules\postcss-selector-parser\dist\parser.js121436361000000000 0
 124C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-merge-rules\node_modules\postcss-selector-parser\dist\selectors132613397866247669 1
 131C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-merge-rules\node_modules\postcss-selector-parser\dist\sortAscending.js121436361000000000 0
-66C:\Users\korisnik\Desktop\Oglasna-ploca\dist\hrvatski.2eea2b30.jpg132624710597458096 0
+66C:\Users\korisnik\Desktop\Oglasna-ploca\dist\hrvatski.2eea2b30.jpg132624731663228251 0
 126C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-merge-rules\node_modules\postcss-selector-parser\dist\tokenize.js121436361000000000 0
 83C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\css-selector-tokenizer\LICENSE121436361000000000 0
 128C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-merge-rules\node_modules\postcss-selector-parser\dist\tokenTypes.js121436361000000000 0
@@ -11328,7 +11326,7 @@
 122C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-discard-comments\node_modules\postcss\lib\css-syntax-error.js121436361000000000 0
 110C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\jsdom\lib\jsdom\living\navigator\NavigatorPlugins-impl.js121436361000000000 0
 110C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-discard-comments\node_modules\postcss\lib\list.js121436361000000000 0
-67C:\Users\korisnik\Desktop\Oglasna-ploca\dist\matematika.b261bfee.js132624710597707518 0
+67C:\Users\korisnik\Desktop\Oglasna-ploca\dist\matematika.b261bfee.js132624731664661375 0
 119C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-discard-comments\node_modules\postcss\lib\map-generator.js121436361000000000 0
 125C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\@parcel\transformer-posthtml\node_modules\posthtml-render\lib\index.d.ts121436361000000000 0
 110C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-discard-comments\node_modules\postcss\lib\node.js121436361000000000 0
@@ -11436,8 +11434,8 @@
 117C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-convert-values\node_modules\postcss\lib\map-generator.js121436361000000000 0
 91C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\core-js\features\number\from-string.js121436361000000000 0
 109C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-convert-values\node_modules\postcss\lib\parse.js121436361000000000 0
-71C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\lodash\_baseSum.js121436361000000000 0
 113C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-convert-values\node_modules\postcss\lib\processor.js121436361000000000 0
+71C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\lodash\_baseSum.js121436361000000000 0
 96C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\jsdom\lib\jsdom\living\generated\BarProp.js121436361000000000 0
 110C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-convert-values\node_modules\postcss\lib\result.js121436361000000000 0
 108C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\postcss-convert-values\node_modules\postcss\lib\root.js121436361000000000 0
@@ -13782,7 +13780,7 @@
 77C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\balanced-match\README.md131417254890000000 0
 95C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\highlight.js\scss\atelier-heath-light.scss121436361000000000 0
 97C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\jsdom\lib\jsdom\living\generated\SVGTests.js121436361000000000 0
-61C:\Users\korisnik\Desktop\Oglasna-ploca\dist\222.6224895e.jpg132624710597428180 0
+61C:\Users\korisnik\Desktop\Oglasna-ploca\dist\222.6224895e.jpg132624731662603408 0
 104C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\jsdom\lib\jsdom\living\generated\SVGTitleElement.js121436361000000000 0
 96C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\jsdom\lib\jsdom\living\generated\UIEvent.js121436361000000000 0
 103C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\htmlparser2\node_modules\entities\maps\decode.json121436361000000000 0
@@ -14496,7 +14494,7 @@
 99C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\core-js\modules\esnext.iterator.constructor.js121436361000000000 0
 78C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\html-encoding-sniffer\lib132613397766396092 1
 86C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\html-encoding-sniffer\LICENSE.txt131531913160000000 0
-68C:\Users\korisnik\Desktop\Oglasna-ploca\dist\matematika.22d98de8.jpg132624710597587748 0
+68C:\Users\korisnik\Desktop\Oglasna-ploca\dist\matematika.22d98de8.jpg132624731662759654 0
 87C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\html-encoding-sniffer\package.json132612560587426409 0
 103C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\html-encoding-sniffer\lib\html-encoding-sniffer.js131210653110000000 0
 92C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\@babel\plugin-syntax-typescript\LICENSE121012626000000000 0
@@ -15544,7 +15542,6 @@
 83C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\es-abstract\2020\InLeapYear.js121436361000000000 0
 93C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\es-abstract\2020\IsAccessorDescriptor.js121436361000000000 0
 80C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\es-abstract\2020\IsArray.js121436361000000000 0
-52C:\Users\korisnik\Desktop\Oglasna-ploca\images\b.jpg132622001888617434 0
 92C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\es-abstract\2020\IsBigIntElementType.js121436361000000000 0
 83C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\es-abstract\2020\IsCallable.js121436361000000000 0
 91C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\es-abstract\2020\IsConcatSpreadable.js121436361000000000 0
@@ -17003,7 +17000,7 @@
 104C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\core-js-compat\node_modules\semver\functions\lte.js121436361000000000 0
 106C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\core-js-compat\node_modules\semver\functions\parse.js121436361000000000 0
 109C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\core-js-compat\node_modules\semver\functions\rcompare.js121436361000000000 0
-67C:\Users\korisnik\Desktop\Oglasna-ploca\dist\korištenje.30168d5f.js132624710597707518 0
+67C:\Users\korisnik\Desktop\Oglasna-ploca\dist\korištenje.30168d5f.js132624728549095953 0
 110C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\core-js-compat\node_modules\semver\functions\satisfies.js121436361000000000 0
 105C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\core-js-compat\node_modules\semver\functions\sort.js121436361000000000 0
 106C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\core-js-compat\node_modules\semver\functions\valid.js121436361000000000 0
@@ -18014,7 +18011,7 @@
 89C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\command-exists\lib\command-exists.js121436361000000000 0
 99C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\@babel\compat-data\data\corejs2-built-ins.json121012626000000000 0
 76C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\combined-stream\License121436361000000000 0
-66C:\Users\korisnik\Desktop\Oglasna-ploca\dist\latinski.15daa77a.jpg132624710597808753 0
+66C:\Users\korisnik\Desktop\Oglasna-ploca\dist\latinski.15daa77a.jpg132624731662759654 0
 90C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\@parcel\babylon-walk\src\traverse2.js121436361000000000 0
 72C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\colorette\index.cjs121436361000000000 0
 75C:\Users\korisnik\Desktop\Oglasna-ploca\node_modules\colorette\package.json132612560670519448 0
@@ -21095,28 +21092,28 @@
 55C:\Users\korisnik\Desktop\Oglasna-ploca\images\icon.jpg132583001708083638 0
 61C:\Users\korisnik\Desktop\Oglasna-ploca\images\talijanski.jpg132622006667523477 0
 59C:\Users\korisnik\Desktop\Oglasna-ploca\dist\1.c2515ae8.png132613309401783953 0
-62C:\Users\korisnik\Desktop\Oglasna-ploca\dist\2222.80166230.jpg132624710597438154 0
+62C:\Users\korisnik\Desktop\Oglasna-ploca\dist\2222.80166230.jpg132624731662603408 0
 59C:\Users\korisnik\Desktop\Oglasna-ploca\dist\a.aa0d7c9c.jpg132622043879849486 0
-67C:\Users\korisnik\Desktop\Oglasna-ploca\dist\biologija.2fb95ee5.jpg132624710597577840 0
+67C:\Users\korisnik\Desktop\Oglasna-ploca\dist\biologija.2fb95ee5.jpg132624731662759654 0
 59C:\Users\korisnik\Desktop\Oglasna-ploca\dist\c.edac2677.jpg132622046615480894 0
 67C:\Users\korisnik\Desktop\Oglasna-ploca\dist\engleski2.351adfb0.jpg132622003712333832 0
-67C:\Users\korisnik\Desktop\Oglasna-ploca\dist\fizika.2b5f4e7d.js.map132624710597798763 0
-64C:\Users\korisnik\Desktop\Oglasna-ploca\dist\fizika.6aa82463.jpg132624710597587748 0
-56C:\Users\korisnik\Desktop\Oglasna-ploca\dist\fizika.html132624710597717440 0
+67C:\Users\korisnik\Desktop\Oglasna-ploca\dist\fizika.2b5f4e7d.js.map132624731664817193 0
+64C:\Users\korisnik\Desktop\Oglasna-ploca\dist\fizika.6aa82463.jpg132624731663228251 0
+56C:\Users\korisnik\Desktop\Oglasna-ploca\dist\fizika.html132624731664661375 0
 65C:\Users\korisnik\Desktop\Oglasna-ploca\dist\fizika3.8dddd993.jpg132622001416620589 0
 59C:\Users\korisnik\Desktop\Oglasna-ploca\dist\g.eeda7ae2.jpg132622046615389254 0
 59C:\Users\korisnik\Desktop\Oglasna-ploca\dist\h.514729e5.jpg132622046615479005 0
 65C:\Users\korisnik\Desktop\Oglasna-ploca\dist\hrvatski.ca687853.js132624615542250232 0
 67C:\Users\korisnik\Desktop\Oglasna-ploca\dist\hrvatski2.5d09e761.jpg132622002592919186 0
-62C:\Users\korisnik\Desktop\Oglasna-ploca\dist\icon.d07a6ed0.jpg132624710597587748 0
-67C:\Users\korisnik\Desktop\Oglasna-ploca\dist\index.0f132b6c.css.map132624710597778837 0
-66C:\Users\korisnik\Desktop\Oglasna-ploca\dist\index.3fafb3e2.js.map132624710597798763 0
-55C:\Users\korisnik\Desktop\Oglasna-ploca\dist\index.html132624710597697447 0
+62C:\Users\korisnik\Desktop\Oglasna-ploca\dist\icon.d07a6ed0.jpg132624731662603408 0
+67C:\Users\korisnik\Desktop\Oglasna-ploca\dist\index.0f132b6c.css.map132624731664661375 0
+66C:\Users\korisnik\Desktop\Oglasna-ploca\dist\index.3fafb3e2.js.map132624731664817193 0
+55C:\Users\korisnik\Desktop\Oglasna-ploca\dist\index.html132624731664661375 0
 67C:\Users\korisnik\Desktop\Oglasna-ploca\dist\kemija.57dc482a.js.map132624615542371079 0
-64C:\Users\korisnik\Desktop\Oglasna-ploca\dist\kemija.99ff632d.jpg132624710597557840 0
-71C:\Users\korisnik\Desktop\Oglasna-ploca\dist\korištenje.30168d5f.js.map132624710597778837 0
-60C:\Users\korisnik\Desktop\Oglasna-ploca\dist\korištenje.html132624710597707518 0
-60C:\Users\korisnik\Desktop\Oglasna-ploca\dist\matematika.html132624710597697447 0
+64C:\Users\korisnik\Desktop\Oglasna-ploca\dist\kemija.99ff632d.jpg132624731663228251 0
+71C:\Users\korisnik\Desktop\Oglasna-ploca\dist\korištenje.30168d5f.js.map132624728549225603 0
+60C:\Users\korisnik\Desktop\Oglasna-ploca\dist\korištenje.html132624728549095953 0
+60C:\Users\korisnik\Desktop\Oglasna-ploca\dist\matematika.html132624731664661375 0
 70C:\Users\korisnik\Desktop\Oglasna-ploca\dist\matematika23.71fc5567.jpg132622000413417529 0
 79C:\Users\korisnik\Desktop\Oglasna-ploca\dist\njemacki prezentacija.5ddb2179.wmv132617787318643001 0
 79C:\Users\korisnik\Desktop\Oglasna-ploca\dist\njemacki prezentacija.90e9c8c5.mp4132617791187316448 0
@@ -21124,4 +21121,4 @@
 69C:\Users\korisnik\Desktop\Oglasna-ploca\dist\njemacki.7dc47236.js.map132624615542351149 0
 62C:\Users\korisnik\Desktop\Oglasna-ploca\dist\upute.c5404925.js132621834047253795 0
 66C:\Users\korisnik\Desktop\Oglasna-ploca\dist\upute.c5404925.js.map132621834047423346 0
-55C:\Users\korisnik\Desktop\Oglasna-ploca\dist\upute.html132624710597707518 0
+55C:\Users\korisnik\Desktop\Oglasna-ploca\dist\upute.html132624731664661375 0
