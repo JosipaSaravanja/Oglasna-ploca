@@ -445,16 +445,18 @@ id) /*: string*/
 var _componentsPrviStupac = require("./components/PrviStupac");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _componentsPrviStupacDefault = _parcelHelpers.interopDefault(_componentsPrviStupac);
-require("./components/treciStupac");
+var _componentsTreciStupac = require("./components/treciStupac");
+var _componentsTreciStupacDefault = _parcelHelpers.interopDefault(_componentsTreciStupac);
 M.AutoInit();
-localStorage["user"];
-/*localStorage["user"]  = JSON.stringify({username: "ante"})
-
-
-/* console.log(JSON.parse(localStorage["user"]))*/
 document.getElementById("example1").appendChild(new _componentsPrviStupacDefault.default().rootElement);
+// Popunjava prvi stupac
+if (JSON.parse(localStorage["user"]) !== false) {
+  // Ukoliko je netko prijavljen popunjava treći stupac
+  document.getElementById("example2").appendChild(new _componentsTreciStupacDefault.default().rootElement);
+}
+console.log(JSON.parse(localStorage["user"]));
 
-},{"./components/PrviStupac":"6Tngg","./components/treciStupac":"7dnyH","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6Tngg":[function(require,module,exports) {
+},{"./components/PrviStupac":"6Tngg","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","./components/treciStupac":"7dnyH"}],"6Tngg":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
@@ -501,53 +503,45 @@ module.exports = Component;
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
-var _modelAndControler = require("../modelAndControler");
-var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
+require("../modelAndControler");
 class Neprijavljeni extends _baseComponentDefault.default {
   constructor() {
     super("div");
     let naslov = document.createElement("h5");
-    naslov.className = "col s12";
     naslov.innerHTML = "Prijava";
-    let col1 = document.createElement("div");
-    col1.className = "col s12";
-    let username = document.createElement("input");
-    username.placeholder = "Korisničko ime";
-    col1.appendChild(username);
-    let col2 = document.createElement("div");
-    col2.className = "col s12";
-    let password = document.createElement("input");
-    password.placeholder = "Lozinka";
-    password.type = "password";
-    col2.appendChild(password);
-    let col3 = document.createElement("div");
-    col3.className = "col s12";
+    this.username = document.createElement("input");
+    this.username.placeholder = "Korisničko ime";
+    this.password = document.createElement("input");
+    this.password.placeholder = "Lozinka";
+    this.password.type = "password";
     let prijava = document.createElement("a");
     prijava.className = "waves-effect waves-light btn-small";
     prijava.innerHTML = "Prijava";
-    col3.appendChild(prijava);
-    let col4 = document.createElement("div");
-    col4.className = "col s12";
-    col4.innerHTML = "ILI";
-    let col5 = document.createElement("div");
-    col5.className = "col s12";
+    prijava.addEventListener("click", () => {
+      this.prijava(this.password);
+    });
+    let ili = document.createElement("p");
+    ili.innerHTML = "ILI";
     let registracija = document.createElement("a");
     registracija.className = "waves-effect waves-light btn-small";
     registracija.innerHTML = "Registracija";
-    col5.appendChild(registracija);
-    prijava.addEventListener("click", () => {
-      this.prijava(username, password);
-    });
     registracija.addEventListener("click", () => {
-      this.registracija(username, password);
+      this.registracija(this.password);
     });
-    this.addChildren([naslov, col1, col2, col3, col4, col5]);
+    let niz = [naslov, this.username, this.password, prijava, ili, registracija];
+    niz.forEach(el => {
+      console.log(el);
+      let col = document.createElement("div");
+      col.className = "col s12";
+      col.appendChild(el);
+      this.addChild(col);
+    });
   }
-  prijava(username, password) {
+  prijava(password) {
     let database = firebase.firestore();
     let prijava = false;
     // gleda da li se korisnik uspio prijaviti tj. da li je ispravno i username i password
-    database.collection("korisnici").where("username", "==", username.value).get().then(function (querySnapshot) {
+    database.collection("korisnici").where("username", "==", this.username.value).get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
         let podaci = doc.data();
         console.log(podaci);
@@ -558,26 +552,25 @@ class Neprijavljeni extends _baseComponentDefault.default {
           prijava = true;
           // korisnik se prijavio
           localStorage["user"] = JSON.stringify(podaci);
-          _modelAndControlerDefault.default.user();
           location.reload();
         }
       });
       prijava == false ? alert("Netocno korisnicko ime ili lozinka") : false;
     });
   }
-  registracija(username, password) {
+  registracija(password) {
     let database = firebase.firestore();
     let vecZauzeto = false;
-    // provjerava je li username vez zauzet
+    // provjerava je li username već zauzet
     database.collection("korisnici").get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
-        doc.data().username == username.value ? vecZauzeto = true : false;
+        doc.data().username == this.username.value ? vecZauzeto = true : false;
       });
       if (vecZauzeto == true) {
         alert("Korisnicko ime koje ste upisali je već zauzeto");
       } else {
         let obj = {
-          username: username.value,
+          username: this.username.value,
           password: password.value,
           oglasi: [],
           kontakt: "",
@@ -587,10 +580,11 @@ class Neprijavljeni extends _baseComponentDefault.default {
           }
         };
         database.collection("korisnici").add(obj);
+        // dodaje novi docu firebase
         M.toast({
-          html: `${username.value}, uspješno ste se registrirali `
+          html: `${this.username.value}, uspješno ste se registrirali `
         });
-        this.prijava(username, password);
+        this.prijava(password);
       }
     });
   }
@@ -603,14 +597,6 @@ class Controler extends EventTarget {
         super();
     }
 
-     user(user){
-        this.dispatchEvent(
-            new CustomEvent(
-                "currentUser",
-                {detail: {user: user}}
-                )
-        );
-    } 
 /*     ocjena(ocjena, pomak, username,id){
         this.dispatchEvent(
             new CustomEvent(
@@ -690,59 +676,38 @@ class Prijavljeni extends _baseComponentDefault.default {
     let img = document.createElement("img");
     img.className = "col s12 m6 l12";
     img.src = `https://icons-for-free.com/iconfiles/png/512/eva+icons+++fill+person-1324449943844961316.png`;
-    // kako povezat mapu s ovim dokumentom
+    // kako povezat mapu s ovim dokumentom?
     img.style.textAlign = "center";
     let ime = document.createElement("h5");
     ime.innerHTML = user.username;
-    let select = document.createElement("select");
-    select.id = `zupanije`;
-    select.className = "browser-default";
+    this.select = document.createElement("select");
+    this.select.id = `zupanije`;
+    this.select.className = "browser-default";
     let zupanijeNiz = ["Bjelovarsko-bilogorska županija", "Brodsko-posavska županija", "Dubrovačko-neretvanska županija", "Grad Zagreb županija", "Istarska županija", "Karlovačka županija", "Koprivničko-križevačka županija", "Krapinsko-zagorska županija", "Ličko-senjska županija", "Međimurska županija", "Osječko-baranjska županija", "Požeško-slavonska županija", "Primorsko-goranska županija", "Sisačko-moslavačka županija", "Splitsko-dalmatinska županija", "Šibensko-kninska županija", "Varaždinska županija", "Virovitičko-podravska županija", "Vukovarsko-srijemska županija", "Zadarska županija", "Zagrebačka županija"];
     zupanijeNiz.forEach(el => {
       let option = document.createElement("option");
       option.innerHTML = el;
       option.value = el;
       console.log(user.lokacija.županija);
-      select.append(option);
+      this.select.appendChild(option);
     });
-    select.value = user.lokacija.županija;
-    let grad = document.createElement("input");
-    grad.innerHTML = user.lokacija.grad;
+    this.select.value = user.lokacija.županija;
+    this.grad = document.createElement("input");
+    this.grad.placeholder = "Grad";
     console.log(user.lokacija.grad);
-    grad.value = user.lokacija.grad;
-    grad.placeholder = "Grad";
-    let kontakt = document.createElement("input");
-    kontakt.innerHTML = user.kontakt;
+    this.grad.value = user.lokacija.grad;
+    this.kontakt = document.createElement("input");
+    this.kontakt.placeholder = "Kontakt";
     console.log(user.kontakt);
-    kontakt.value = user.kontakt;
-    kontakt.placeholder = "Kontakt";
-    let password = document.createElement("input");
-    password.value = user.password;
-    password.type = "password";
-    password.placeholder = "Lozinka";
+    this.kontakt.value = user.kontakt;
+    this.password = document.createElement("input");
+    this.password.placeholder = "Lozinka";
+    this.password.value = user.password;
+    this.password.type = "password";
     let spremi = document.createElement("a");
     spremi.className = "waves-effect waves-light btn-small";
     spremi.addEventListener("click", () => {
-      let database = firebase.firestore();
-      database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
-          database.collection("korisnici").doc(doc.id).update({
-            password: password.value,
-            lokacija: {
-              županija: select.value,
-              grad: grad.value
-            },
-            kontakt: kontakt.value
-          }).then(() => {
-            database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
-              querySnapshot.forEach(function (doc) {
-                localStorage["user"] = JSON.stringify(doc.data());
-                location.reload();
-              });
-            });
-          });
-        });
-      });
+      this.spremi(user, this.password, this.select, this.grad, this.kontakt);
     });
     spremi.style.marginBottom = "5%";
     spremi.innerHTML = `Spremi promjene <i class="material-icons right">save</i>`;
@@ -755,14 +720,37 @@ class Prijavljeni extends _baseComponentDefault.default {
     odjava.innerHTML = `Odjava<i class="material-icons right">exit_to_app</i>`;
     let col = document.createElement("div");
     col.className = "col s12 m6 l12";
-    let niz = [ime, select, grad, kontakt, password, spremi, odjava];
-    for (let i = 0; i < 7; i++) {
+    let niz = [ime, this.select, this.grad, this.kontakt, this.password, spremi, odjava];
+    niz.forEach(el => {
       let div = document.createElement("div");
-      div.appendChild(niz[i]);
+      div.appendChild(el);
       col.appendChild(div);
-    }
-    // svaki element je u svom div-u tako da svaki ima "vlastiti" red
+    });
+    // svaki element je u svom div-u tako da svaki ima "vlastiti" red te je sve spremljeno u col s m6 pa slika i ostalo stoje jedno do drugoga na meduium ekranima
     this.addChildren([img, col]);
+  }
+  spremi(user, password, select, grad, kontakt) {
+    let database = firebase.firestore();
+    database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        database.collection("korisnici").doc(doc.id).update({
+          password: password.value,
+          lokacija: {
+            županija: select.value,
+            grad: grad.value
+          },
+          kontakt: kontakt.value
+        }).then(() => {
+          database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+              localStorage["user"] = JSON.stringify(doc.data());
+              // localStorage["user"] poprimi nove podatke nakon što ih je korisnik update-ao
+              location.reload();
+            });
+          });
+        });
+      });
+    });
   }
 }
 module.exports = Prijavljeni;
@@ -771,8 +759,8 @@ module.exports = Prijavljeni;
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
-var _spremljeniOglasi = require("./spremljeniOglasi");
-var _spremljeniOglasiDefault = _parcelHelpers.interopDefault(_spremljeniOglasi);
+var _mojiOglasi = require("./mojiOglasi");
+var _mojiOglasiDefault = _parcelHelpers.interopDefault(_mojiOglasi);
 var _dodajOglas = require("./dodajOglas");
 var _dodajOglasDefault = _parcelHelpers.interopDefault(_dodajOglas);
 var _filter = require("./filter");
@@ -781,56 +769,123 @@ require("../modelAndControler");
 class TreciStupac extends _baseComponentDefault.default {
   constructor() {
     super("div");
-    let user = JSON.parse(localStorage["user"]);
-    if (user == false) {
-      let filter = new _filterDefault.default();
-      this.addChild(filter.rootElement);
-    } else {
-      let spremljeniOglasi = new _spremljeniOglasiDefault.default();
-      let dodajOglas = new _dodajOglasDefault.default();
-      this.addChildren([dodajOglas.rootElement, spremljeniOglasi.rootElement]);
-    }
+    JSON.parse(localStorage["user"]) == false ? this.addChild(new _filterDefault.default().rootElement) : this.addChildren([new _dodajOglasDefault.default().rootElement, new _mojiOglasiDefault.default().rootElement]);
   }
 }
 module.exports = TreciStupac;
 
-},{"../baseComponent":"22hEl","./spremljeniOglasi":"jgwZ0","./dodajOglas":"6EMck","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","./filter":"5RHnC"}],"jgwZ0":[function(require,module,exports) {
+},{"../baseComponent":"22hEl","./dodajOglas":"6EMck","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","./filter":"5RHnC","./mojiOglasi":"1LZQR"}],"6EMck":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
-var _oglasTodoCard = require("./oglasTodoCard");
-var _oglasTodoCardDefault = _parcelHelpers.interopDefault(_oglasTodoCard);
 var _modelAndControler = require("../modelAndControler");
 var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
-class MojiOglasi extends _baseComponentDefault.default {
+class DodajOglas extends _baseComponentDefault.default {
   constructor() {
     super("div");
-    let sadrzaj = document.createElement("div");
+    let button = document.createElement("a");
+    button.className = "btn modal-trigger col s12 waves-effect waves-light btn";
+    button.href = "#modal1";
+    // otvara modal1 iz html tj. obrazac za novi oglas
+    button.innerHTML = "Dodaj oglas";
+    document.getElementById("dodajOglas").addEventListener("click", () => {
+      this.dodajOglas();
+    });
+    this.addChild(button);
+  }
+  dodajOglas() {
+    let opis = document.getElementById("opis");
+    let cijena = document.getElementById("cijena");
+    let type = document.getElementById("predmet");
+    let razina = document.getElementById("razina");
+    // prikuplja podatke iz modal1
     let user = JSON.parse(localStorage["user"]);
     let database = firebase.firestore();
     database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
-      querySnapshot.forEach(doc => {
+      querySnapshot.forEach(function (doc) {
         let korisnik = doc.data();
-        korisnik.oglasi.reverse().forEach(el => {
-          let oglas = new _oglasTodoCardDefault.default(el.id, korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.predmet, el.razina, el.ocjena.like, el.ocjena.dislike, korisnik.username);
-          sadrzaj.appendChild(oglas.rootElement);
+        let id = Number();
+        // id za oglas
+        if (korisnik.oglasi.length == false) {
+          id = 0;
+        } else {
+          let obj = korisnik.oglasi[korisnik.oglasi.length - 1];
+          // trazi posljednje uneseni oglas
+          id = obj.id + 1;
+        }
+        let noviOglas = {
+          cijena: cijena.value,
+          id: id,
+          ocjena: {
+            like: [],
+            dislike: []
+          },
+          opis: opis.value,
+          predmet: type.value,
+          razina: razina.value
+        };
+        korisnik.oglasi.push(noviOglas);
+        // trenutni niz oglasa push prima novonapravljeni oglas
+        database.collection("korisnici").doc(doc.id).update({
+          // update-a korisnik.oglasi u firebase-u
+          oglasi: korisnik.oglasi
         });
+        let tempNiz = noviOglas;
+        // U njemu se nalaze svi podaci koji su portrebni da bi preko addEventListenera napravili karticu s podacima o oglasu
+        tempNiz["kontakt"] = korisnik.kontakt;
+        tempNiz["username"] = korisnik.username;
+        tempNiz["lokacija"] = korisnik.lokacija;
+        _modelAndControlerDefault.default.addOglas(tempNiz);
       });
+      opis.value = "";
+      cijena.value = "";
+      type.value = "";
+      // kako da napravim da je value odmah na pocetku ="", ja sam probala napravit u matematika.html jedan option s samim praznim prostorom
+      razina.value = "";
     });
-    _modelAndControlerDefault.default.addEventListener("newOglas", event => {
-      this.dodanJeOglas(event.detail.oglas);
-    });
-    this.addChild(sadrzaj);
-  }
-  dodanJeOglas(el) {
-    console.log(el);
-    let oglas = new _oglasTodoCardDefault.default(el.id, el.kontakt, el.opis, el.lokacija, el.cijena, el.predmet, el.razina, el.ocjena.like.length, el.ocjena.dislike.length, el.username);
-    this.addChild(oglas.rootElement);
   }
 }
-module.exports = MojiOglasi;
+module.exports = DodajOglas;
 
-},{"../baseComponent":"22hEl","./oglasTodoCard":"6SN5t","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../modelAndControler":"5zPz0"}],"6SN5t":[function(require,module,exports) {
+},{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"5RHnC":[function(require,module,exports) {
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+require("./oglasTodoCard");
+require("../modelAndControler");
+class Filter extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    this.form = document.createElement("form");
+    this.form.action = `#`;
+    let zupanijeNiz = ["Bjelovarsko-bilogorska županija", "Brodsko-posavska županija", "Dubrovačko-neretvanska županija", "Grad Zagreb županija", "Istarska županija", "Karlovačka županija", "Koprivničko-križevačka županija", "Krapinsko-zagorska županija", "Ličko-senjska županija", "Međimurska županija", "Osječko-baranjska županija", "Požeško-slavonska županija", "Primorsko-goranska županija", "Sisačko-moslavačka županija", "Splitsko-dalmatinska županija", "Šibensko-kninska županija", "Varaždinska županija", "Virovitičko-podravska županija", "Vukovarsko-srijemska županija", "Zadarska županija", "Zagrebačka županija"];
+    zupanijeNiz.forEach(el => {
+      let p = document.createElement("p");
+      let label = document.createElement("label");
+      let input = document.createElement("input");
+      input.type = "checkbox";
+      input.className = "checkboxes";
+      let span = document.createElement("span");
+      span.innerHTML = el;
+      label.appendChild(input);
+      label.appendChild(span);
+      p.appendChild(label);
+      this.form.appendChild(p);
+    });
+    /*$('.abc').click(()=>{alert("HELLO")});*/
+    /*let button=document.createElement("a")
+    button.className="waves-effect waves-light btn"
+    button.innerHTML="Filtriraj"
+    button.addEventListener("click", this.filtriraj())
+    
+    */
+    this.addChildren([this.form]);
+  }
+  filtriraj() {}
+}
+module.exports = Filter;
+
+},{"../baseComponent":"22hEl","./oglasTodoCard":"6SN5t","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6SN5t":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
@@ -910,110 +965,43 @@ class OglasTodoCard extends _baseComponentDefault.default {
 }
 module.exports = OglasTodoCard;
 
-},{"../baseComponent":"22hEl","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6EMck":[function(require,module,exports) {
+},{"../baseComponent":"22hEl","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"1LZQR":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+var _oglasTodoCard = require("./oglasTodoCard");
+var _oglasTodoCardDefault = _parcelHelpers.interopDefault(_oglasTodoCard);
 var _modelAndControler = require("../modelAndControler");
 var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
-class DodajOglas extends _baseComponentDefault.default {
+class MojiOglasi extends _baseComponentDefault.default {
   constructor() {
     super("div");
-    let button = document.createElement("a");
-    button.className = "btn modal-trigger col s12 waves-effect waves-light btn";
-    button.href = "#modal1";
-    button.innerHTML = "Dodaj oglas";
-    document.getElementById("dodajOglas").addEventListener("click", () => {
-      this.dodajOglas();
-    });
-    this.addChild(button);
-  }
-  dodajOglas() {
-    let opis = document.getElementById("opis");
-    let cijena = document.getElementById("cijena");
-    let type = document.getElementById("predmet");
-    let razina = document.getElementById("razina");
+    let sadrzaj = document.createElement("div");
+    this.noviOglasi = document.createElement("div");
     let user = JSON.parse(localStorage["user"]);
     let database = firebase.firestore();
     database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
-      querySnapshot.forEach(function (doc) {
+      querySnapshot.forEach(doc => {
         let korisnik = doc.data();
-        let id = Number();
-        if (korisnik.oglasi.length == false) {
-          id = 0;
-        } else {
-          let obj = korisnik.oglasi[korisnik.oglasi.length - 1];
-          id = obj.id + 1;
-        }
-        let noviOglas = {
-          cijena: cijena.value,
-          id: id,
-          ocjena: {
-            like: [],
-            dislike: []
-          },
-          opis: opis.value,
-          predmet: type.value,
-          razina: razina.value
-        };
-        let niz = korisnik.oglasi;
-        niz.push(noviOglas);
-        database.collection("korisnici").doc(doc.id).update({
-          oglasi: niz
+        korisnik.oglasi.reverse().forEach(el => {
+          // pronalazi sve oglase korisnika i ispisuje ih od kraja tako da su oni nedavno uneseni na vrhu
+          let oglas = new _oglasTodoCardDefault.default(el.id, korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.predmet, el.razina, el.ocjena.like, el.ocjena.dislike, korisnik.username);
+          sadrzaj.appendChild(oglas.rootElement);
         });
-        let tempNiz = noviOglas;
-        // U njemu se nalaze svi podaci koji su portrebni da bi novi oglasi preko addEventListenera napravili novu kartivu
-        tempNiz["kontakt"] = korisnik.kontakt;
-        tempNiz["username"] = korisnik.username;
-        tempNiz["lokacija"] = korisnik.lokacija;
-        _modelAndControlerDefault.default.addOglas(tempNiz);
       });
-      opis.value = "";
-      cijena.value = "";
-      type.value = "matematika";
-      razina.value = "osnovna škola";
     });
+    _modelAndControlerDefault.default.addEventListener("newOglas", event => {
+      this.dodanJeOglas(event.detail.oglas);
+    });
+    this.addChildren([this.noviOglasi, sadrzaj]);
+  }
+  dodanJeOglas(el) {
+    console.log(el);
+    let oglas = new _oglasTodoCardDefault.default(el.id, el.kontakt, el.opis, el.lokacija, el.cijena, el.predmet, el.razina, el.ocjena.like.length, el.ocjena.dislike.length, el.username);
+    this.noviOglasi.appendChild(oglas.rootElement);
   }
 }
-module.exports = DodajOglas;
-
-},{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"5RHnC":[function(require,module,exports) {
-var _baseComponent = require("../baseComponent");
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
-require("./oglasTodoCard");
-require("../modelAndControler");
-class Filter extends _baseComponentDefault.default {
-  constructor() {
-    super("div");
-    this.form = document.createElement("form");
-    this.form.action = `#`;
-    let zupanijeNiz = ["Bjelovarsko-bilogorska županija", "Brodsko-posavska županija", "Dubrovačko-neretvanska županija", "Grad Zagreb županija", "Istarska županija", "Karlovačka županija", "Koprivničko-križevačka županija", "Krapinsko-zagorska županija", "Ličko-senjska županija", "Međimurska županija", "Osječko-baranjska županija", "Požeško-slavonska županija", "Primorsko-goranska županija", "Sisačko-moslavačka županija", "Splitsko-dalmatinska županija", "Šibensko-kninska županija", "Varaždinska županija", "Virovitičko-podravska županija", "Vukovarsko-srijemska županija", "Zadarska županija", "Zagrebačka županija"];
-    zupanijeNiz.forEach(el => {
-      let p = document.createElement("p");
-      let label = document.createElement("label");
-      let input = document.createElement("input");
-      input.type = "checkbox";
-      input.className = "checkboxes";
-      let span = document.createElement("span");
-      span.innerHTML = el;
-      label.appendChild(input);
-      label.appendChild(span);
-      p.appendChild(label);
-      this.form.appendChild(p);
-    });
-    /*$('.abc').click(()=>{alert("HELLO")});*/
-    /*let button=document.createElement("a")
-    button.className="waves-effect waves-light btn"
-    button.innerHTML="Filtriraj"
-    button.addEventListener("click", this.filtriraj())
-    
-    */
-    this.addChildren([this.form]);
-  }
-  filtriraj() {}
-}
-module.exports = Filter;
+module.exports = MojiOglasi;
 
 },{"../baseComponent":"22hEl","./oglasTodoCard":"6SN5t","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["3Imd1","5rkFb"], "5rkFb", "parcelRequire427e")
 

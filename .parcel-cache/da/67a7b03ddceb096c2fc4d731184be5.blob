@@ -1,0 +1,91 @@
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
+class Neprijavljeni extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    let naslov = document.createElement("h5");
+    naslov.innerHTML = "Prijava";
+    this.username = document.createElement("input");
+    this.username.placeholder = "Korisničko ime";
+    this.password = document.createElement("input");
+    this.password.placeholder = "Lozinka";
+    this.password.type = "password";
+    let prijava = document.createElement("a");
+    prijava.className = "waves-effect waves-light btn-small";
+    prijava.innerHTML = "Prijava";
+    prijava.addEventListener("click", () => {
+      this.prijava(this.password);
+    });
+    let ili = document.createElement("p");
+    ili.innerHTML = "ILI";
+    let registracija = document.createElement("a");
+    registracija.className = "waves-effect waves-light btn-small";
+    registracija.innerHTML = "Registracija";
+    registracija.addEventListener("click", () => {
+      this.registracija(password);
+    });
+    let niz = [naslov, this.username, this.password, prijava, ili, registracija];
+    niz.forEach(el => {
+      console.log(el);
+      let col = document.createElement("div");
+      col.className = "col s12";
+      col.appendChild(el);
+      this.addChild(col);
+    });
+  }
+  prijava(password) {
+    let database = firebase.firestore();
+    let prijava = false;
+    // gleda da li se korisnik uspio prijaviti tj. da li je ispravno i username i password
+    database.collection("korisnici").where("username", "==", this.username.value).get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        let podaci = doc.data();
+        console.log(podaci);
+        if (podaci.password == password.value) {
+          M.toast({
+            html: `Uspjesna prijava ${podaci.username}`
+          });
+          prijava = true;
+          // korisnik se prijavio
+          localStorage["user"] = JSON.stringify(podaci);
+          _modelAndControlerDefault.default.user();
+          location.reload();
+        }
+      });
+      prijava == false ? alert("Netocno korisnicko ime ili lozinka") : false;
+    });
+  }
+  registracija(password) {
+    let database = firebase.firestore();
+    let vecZauzeto = false;
+    // provjerava je li username vez zauzet
+    database.collection("korisnici").get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        doc.data().username == username.value ? vecZauzeto = true : false;
+      });
+      if (vecZauzeto == true) {
+        alert("Korisnicko ime koje ste upisali je već zauzeto");
+      } else {
+        let obj = {
+          username: username.value,
+          password: password.value,
+          oglasi: [],
+          kontakt: "",
+          lokacija: {
+            županija: "",
+            grad: ""
+          }
+        };
+        database.collection("korisnici").add(obj);
+        M.toast({
+          html: `${username.value}, uspješno ste se registrirali `
+        });
+        this.prijava(username, password);
+      }
+    });
+  }
+}
+module.exports = Neprijavljeni;

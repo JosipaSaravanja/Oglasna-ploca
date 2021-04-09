@@ -1,0 +1,23 @@
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+var _spremljeniOglasi = require("./spremljeniOglasi");
+var _spremljeniOglasiDefault = _parcelHelpers.interopDefault(_spremljeniOglasi);
+var _dodajOglas = require("./dodajOglas");
+var _dodajOglasDefault = _parcelHelpers.interopDefault(_dodajOglas);
+require("./filter");
+require("../modelAndControler");
+class TreciStupac extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    let user = JSON.parse(localStorage["user"]);
+    if (user == false) {
+      let filter = this.addChild(filter.rootElement);
+    } else {
+      let spremljeniOglasi = new _spremljeniOglasiDefault.default();
+      let dodajOglas = new _dodajOglasDefault.default();
+      this.addChildren([dodajOglas.rootElement, spremljeniOglasi.rootElement]);
+    }
+  }
+}
+module.exports = TreciStupac;

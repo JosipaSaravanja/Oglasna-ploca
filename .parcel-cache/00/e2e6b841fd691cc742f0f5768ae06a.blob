@@ -1,0 +1,12 @@
+var _componentsPrviStupac = require("./components/PrviStupac");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _componentsPrviStupacDefault = _parcelHelpers.interopDefault(_componentsPrviStupac);
+require("./components/treciStupac");
+M.AutoInit();
+localStorage["user"];
+/*localStorage["user"]  = JSON.stringify({username: "ante"})
+
+
+/* console.log(JSON.parse(localStorage["user"]))*/
+document.getElementById("example1").appendChild(new _componentsPrviStupacDefault.default().rootElement);
+if (JSON.parse(localStorage["user"]) == false) {}

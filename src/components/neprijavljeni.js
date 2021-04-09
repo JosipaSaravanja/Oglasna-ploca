@@ -1,103 +1,95 @@
-//Itgled prevog stupca ukoliko nitko nije prijavljen
+//Izgled prvog stupca ukoliko nitko nije prijavljen
 import Component from "../baseComponent";
 import controler from "../modelAndControler";
 
 class Neprijavljeni extends Component {
   constructor() {
     super("div");
-    
-    let naslov=document.createElement("h5")
-    naslov.className="col s12"
-    naslov.innerHTML="Prijava"
 
-    let col1=document.createElement("div")
-    col1.className="col s12"
-        let username=document.createElement("input")
-        username.placeholder="Korisničko ime" 
-        col1.appendChild(username)
+    let naslov = document.createElement("h5");
+    naslov.innerHTML = "Prijava";
 
-    let col2=document.createElement("div")
-    col2.className="col s12"
-        let password=document.createElement("input")
-        password.placeholder="Lozinka" 
-        password.type="password"
-        col2.appendChild(password)
+    this.username = document.createElement("input");
+    this.username.placeholder = "Korisničko ime";
 
-    let col3=document.createElement("div")
-    col3.className="col s12"
-        let prijava=document.createElement("a")
-        prijava.className="waves-effect waves-light btn-small"
-        prijava.innerHTML="Prijava"
-        col3.appendChild(prijava)
+    this.password = document.createElement("input");
+    this.password.placeholder = "Lozinka";
+    this.password.type = "password";
 
-    let col4=document.createElement("div")
-    col4.className="col s12"
-    col4.innerHTML="ILI"
+    let prijava = document.createElement("a");
+    prijava.className = "waves-effect waves-light btn-small";
+    prijava.innerHTML = "Prijava";
+    prijava.addEventListener("click", () => {
+      this.prijava(this.password);
+    });
 
-    let col5=document.createElement("div")
-    col5.className="col s12"
-        let registracija=document.createElement("a")
-        registracija.className="waves-effect waves-light btn-small"
-        registracija.innerHTML="Registracija"
-        col5.appendChild(registracija)
-    
-    prijava.addEventListener("click", () => {this.prijava(username, password)});
-    registracija.addEventListener("click", () => {this.registracija(username, password)});
-        
-    this.addChildren([
-            naslov,
-            col1, 
-            col2,
-            col3,
-            col4,
-            col5
-        ]);
+    let ili = document.createElement("p");
+    ili.innerHTML = "ILI";
+
+    let registracija = document.createElement("a");
+    registracija.className = "waves-effect waves-light btn-small";
+    registracija.innerHTML = "Registracija";
+    registracija.addEventListener("click", () => {
+      this.registracija(this.password);
+    });
+
+    let niz = [naslov, this.username, this.password, prijava, ili, registracija];
+    niz.forEach((el) => {
+      console.log(el);
+      let col = document.createElement("div");
+      col.className = "col s12";
+      col.appendChild(el);
+      this.addChild(col);
+    });     
   }
-  prijava(username, password){
+  prijava(password) {
     let database = firebase.firestore();
-    let prijava=false //gleda da li se korisnik uspio prijaviti tj. da li je ispravno i username i password
-    database.collection("korisnici").where("username", "==", username.value).get().then(function (querySnapshot) {
+    let prijava = false; //gleda da li se korisnik uspio prijaviti tj. da li je ispravno i username i password
+    database
+      .collection("korisnici")
+      .where("username", "==", this.username.value)
+      .get()
+      .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
           let podaci = doc.data();
-          console.log(podaci)
-          if(podaci.password==password.value){
-            M.toast({html: `Uspjesna prijava ${podaci.username}`});
-              prijava=true //korisnik se prijavio
-              localStorage["user"] = JSON.stringify(podaci);
-              controler.user();
-              location.reload()
+          console.log(podaci);
+          if (podaci.password == password.value) {
+            M.toast({ html: `Uspjesna prijava ${podaci.username}` });
+            prijava = true; //korisnik se prijavio
+            localStorage["user"] = JSON.stringify(podaci);
+            location.reload();
           }
         });
-        prijava==false ? alert("Netocno korisnicko ime ili lozinka") : false; //korisnik se nije prijavio
+        prijava == false ? alert("Netocno korisnicko ime ili lozinka") : false; //korisnik se nije prijavio
       });
-    
-    }
+  }
 
-    registracija(username, password){
+  registracija(password) {
     let database = firebase.firestore();
-    let vecZauzeto=false //provjerava je li username vez zauzet
-    database.collection("korisnici").get().then((querySnapshot) => {
+    let vecZauzeto = false; //provjerava je li username već zauzet
+    database
+      .collection("korisnici")
+      .get()
+      .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            doc.data().username==username.value? vecZauzeto=true : false;
+          doc.data().username == this.username.value ? vecZauzeto = true : false; //ukoliko je korisnicko ime vec zauzeto mjenja se vrijadnost vecZauzeto
         });
-        if(vecZauzeto== true){
-            alert("Korisnicko ime koje ste upisali je već zauzeto")
-        } else{
-            let obj={
-                username: username.value,
-                password: password.value,
-                oglasi: [],
-                kontakt: "",
-                lokacija:{županija: "", grad:""}
-                }
-            database.collection("korisnici").add(obj)
-            M.toast({html: `${username.value}, uspješno ste se registrirali `})
-            this.prijava(username, password)
-          
+        if (vecZauzeto == true) {
+          alert("Korisnicko ime koje ste upisali je već zauzeto");
+        } else {
+          let obj = {
+            username: this.username.value,
+            password: password.value,
+            oglasi: [],
+            kontakt: "",
+            lokacija: { županija: "", grad: "" },
+          };
+          database.collection("korisnici").add(obj);//dodaje novi docu firebase
+          M.toast({ html: `${this.username.value}, uspješno ste se registrirali ` });
+          this.prijava(password); //automatski se i prijavi
         }
-        });
-        
-    } 
+      });
+  }
 }
 
 module.exports = Neprijavljeni;

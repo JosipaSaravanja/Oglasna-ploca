@@ -1,23 +1,15 @@
-//Gleda je li korisnik prijavljen ili ne te utječe na izgled prvog stupca
+//Gleda je li korisnik prijavljen ili ne te tako mijenja izgled prvog stupca
 import Component from "../baseComponent";
-/* import Prijava from "./a";
-import ProfilOkvir from "./b";  */
-import Neprijavljeni from "./neprijavljeni"
-import Prijavljeni from "./prijavljeni"
+import Neprijavljeni from "./neprijavljeni";
+import Prijavljeni from "./prijavljeni";
 
 class PrviStupac extends Component {
   constructor() {
     super("div");
-    let okvir;
-  let user = JSON.parse(localStorage["user"]);
-  if (user == false) {
-    okvir=new Neprijavljeni();
-  } else {
-    okvir=new Prijavljeni()
-  }
-  this.addChild(okvir.rootElement)
+    let user=JSON.parse(localStorage["user"]) ;
+    user== false ? this.addChild(new Neprijavljeni().rootElement):this.addChild(new Prijavljeni().rootElement);
+    //Ukoliko je netko prijavljen this.addChild s podacima, a u suprotnom this.addChild s okvirom za prijavu
 }
-
 }
 
 module.exports = PrviStupac;

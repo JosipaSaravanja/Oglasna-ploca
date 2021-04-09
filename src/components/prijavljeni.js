@@ -1,4 +1,4 @@
-//Izgled dprvog stuopca ukoliko je netko prijavljen
+//Izgled prvog stupca ukoliko je netko prijavljen
 import Component from "../baseComponent";
 import controler from "../modelAndControler";
 
@@ -8,17 +8,17 @@ class Prijavljeni extends Component {
     super("div");
     let user = JSON.parse(localStorage["user"]);
 
-    let img=document.createElement("img")
-    img.className="col s12 m6 l12"
-    img.src=`https://icons-for-free.com/iconfiles/png/512/eva+icons+++fill+person-1324449943844961316.png`;//kako povezat mapu s ovim dokumentom
-    img.style.textAlign="center"
+    let img=document.createElement("img");
+    img.className="col s12 m6 l12";
+    img.src=`https://icons-for-free.com/iconfiles/png/512/eva+icons+++fill+person-1324449943844961316.png`;//kako povezat mapu s ovim dokumentom?
+    img.style.textAlign="center";
+
     let ime = document.createElement("h5");
     ime.innerHTML = user.username;
 
-    
-    let select=document.createElement("select")
-      select.id=`zupanije`
-      select.className="browser-default"
+    this.select=document.createElement("select")
+      this.select.id=`zupanije`
+      this.select.className="browser-default"
       let zupanijeNiz=[
         "Bjelovarsko-bilogorska županija",
         "Brodsko-posavska županija",
@@ -42,77 +42,73 @@ class Prijavljeni extends Component {
         "Zadarska županija",
         "Zagrebačka županija"]
       zupanijeNiz.forEach(el=>{
-          let option=document.createElement("option")
-          option.innerHTML=el
-          option.value=el
-          console.log(user.lokacija.županija)
-        select.append(option)
+        let option=document.createElement("option");
+        option.innerHTML=el;
+        option.value=el;
+        console.log(user.lokacija.županija);
+        this.select.appendChild(option);
       })
-      select.value=user.lokacija.županija
+      this.select.value=user.lokacija.županija;
       
       
-    let grad=document.createElement("input")
-    grad.innerHTML=user.lokacija.grad 
-    console.log(user.lokacija.grad)
-    grad.value=user.lokacija.grad 
-    grad.placeholder="Grad"
+    this.grad=document.createElement("input");
+    this.grad.placeholder="Grad";
+    console.log(user.lokacija.grad);
+    this.grad.value=user.lokacija.grad ;
  
-    let kontakt=document.createElement("input")
-    kontakt.innerHTML=user.kontakt 
-    console.log(user.kontakt)
-    kontakt.value=user.kontakt
-    kontakt.placeholder="Kontakt"
+    this.kontakt=document.createElement("input");
+    this.kontakt.placeholder="Kontakt";
+    console.log(user.kontakt);
+    this.kontakt.value=user.kontakt;
 
-    let password=document.createElement("input")
-    password.value=user.password 
-    password.type="password"
-    password.placeholder="Lozinka"
+    this.password=document.createElement("input");
+    this.password.placeholder="Lozinka";
+    this.password.value=user.password;
+    this.password.type="password";
 
     let spremi = document.createElement("a");
     spremi.className = "waves-effect waves-light btn-small";
-     spremi.addEventListener("click", () => {
-      let database = firebase.firestore();
-      database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
-         
-          database.collection("korisnici").doc(doc.id).update({
-            password: password.value,
-            lokacija:{županija: select.value, grad: grad.value},
-            kontakt: kontakt.value
-          }).then(() => {
-            database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
-              querySnapshot.forEach(function (doc) {
-                localStorage["user"] = JSON.stringify(doc.data());
-                location.reload()
-              })
-            });
-            })
-        })
-      });
-    }); 
-
-    spremi.style.marginBottom="5%"
+    spremi.addEventListener("click", ()=>{this.spremi(user, this.password, this.select, this.grad, this.kontakt)})
+    spremi.style.marginBottom="5%";
     spremi.innerHTML = `Spremi promjene <i class="material-icons right">save</i>`;
       
-    
     let odjava = document.createElement("a");
     odjava.className = "waves-effect waves-light btn-small";
     odjava.addEventListener("click", () => {
       localStorage["user"] = JSON.stringify(false);
-      location.reload()
+      location.reload();
     });
     odjava.innerHTML = `Odjava<i class="material-icons right">exit_to_app</i>`;
-    let col=document.createElement("div")
-    col.className="col s12 m6 l12"
-      let niz=[ime, select,grad,kontakt,password,spremi,odjava]
-      for(let i=0; i<7; i++){
-        let div=document.createElement("div")
-          div.appendChild(niz[i])
-          col.appendChild(div)
-      }//svaki element je u svom div-u tako da svaki ima "vlastiti" red
-      this.addChildren([img, col]);
 
+    let col=document.createElement("div");
+    col.className="col s12 m6 l12";
+      let niz=[ime, this.select, this.grad, this.kontakt, this.password, spremi, odjava];
+      niz.forEach(el=>{
+        let div=document.createElement("div");
+          div.appendChild(el);
+          col.appendChild(div);
+      })//svaki element je u svom div-u tako da svaki ima "vlastiti" red te je sve spremljeno u col s m6 pa slika i ostalo stoje jedno do drugoga na meduium ekranima
+      this.addChildren([img, col]);
 }
+  spremi(user, password, select, grad, kontakt){
+    let database = firebase.firestore();
+    database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        database.collection("korisnici").doc(doc.id).update({
+          password: password.value,
+          lokacija:{županija: select.value, grad: grad.value},
+          kontakt: kontakt.value
+        }).then(() => {
+          database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+              localStorage["user"] = JSON.stringify(doc.data());//localStorage["user"] poprimi nove podatke nakon što ih je korisnik update-ao
+               location.reload() 
+            })
+          });
+          })
+      })
+    });
+  } 
 }
 
 module.exports = Prijavljeni;
