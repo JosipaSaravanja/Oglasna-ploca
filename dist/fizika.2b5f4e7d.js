@@ -450,15 +450,18 @@ var _componentsTreciStupacDefault = _parcelHelpers.interopDefault(_componentsTre
 var _componentsIspisOglasa = require("./components/ispisOglasa");
 var _componentsIspisOglasaDefault = _parcelHelpers.interopDefault(_componentsIspisOglasa);
 M.AutoInit();
-document.getElementById("example1").appendChild(new _componentsPrviStupacDefault.default().rootElement);
+document.getElementById("stupac1").appendChild(new _componentsPrviStupacDefault.default().rootElement);
+// Dodaje sadržaj prvom stupcu
 let database = firebase.firestore();
 database.collection("korisnici").get().then(querySnapshot => {
   querySnapshot.forEach(doc => {
     let korisnik = doc.data();
     korisnik.oglasi.forEach(el => {
       if (el.predmet == "fizika") {
-        let oglas = new _componentsIspisOglasaDefault.default(korisnik.kontakt, el.opis, `${el.lokacija.županija}, ${el.lokacija.grad}`, el.cijena, el.razina, el.ocjena.like.length, el.ocjena.dislike.lengt);
+        let oglas = new _componentsIspisOglasaDefault.default(// za svaki oglas kojem je predmet="fizika" kreira katricu
+        korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.razina, el.ocjena.like, el.ocjena.dislike, el.id, korisnik.username);
         if (el.razina == "osnovna škola") {
+          // karticu prema razini ubacuje u div za osnovne ili srednje škole
           document.getElementById("osnovneSkole").appendChild(oglas.rootElement);
         } else {
           document.getElementById("srednjeSkole").appendChild(oglas.rootElement);
@@ -467,7 +470,7 @@ database.collection("korisnici").get().then(querySnapshot => {
     });
   });
 });
-document.getElementById("example2").appendChild(new _componentsTreciStupacDefault.default().rootElement);
+document.getElementById("stupac3").appendChild(new _componentsTreciStupacDefault.default().rootElement);
 
 },{"./components/PrviStupac":"6Tngg","./components/treciStupac":"7dnyH","./components/ispisOglasa":"7jidH","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6Tngg":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
@@ -905,8 +908,8 @@ var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
 class OglasTodoCard extends _baseComponentDefault.default {
   constructor(id, kontakt, opis, lokacija, cijena, predmet, razina, likes, dislikes, username) {
     super("div");
+    let user = JSON.parse(localStorage["user"]);
     this.rootElement.className = "card-panel grey lighten-5 z-depth-1";
-    this.id = id;
     let row = document.createElement("div");
     row.className = "row";
     let col = document.createElement("div");
@@ -959,18 +962,15 @@ class OglasTodoCard extends _baseComponentDefault.default {
   }
   removeSelf(id, username) {
     let database = firebase.firestore();
-    let parent = this.rootElement.parentNode;
-    parent.removeChild(this.rootElement);
-    /*.then(() => {
-    let parent = this.rootElement.parentNode;
-    parent.removeChild(this.rootElement);
-    });*/
-    console.log(username);
-    database.collection("korisnici").where("username", "==", username).get().then(function (querySnapshot) {
-      querySnapshot.forEach(function (doc) {
+    database.collection("korisnici").where("username", "==", username).get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
         let korisnik = doc.data();
-        database.collection("korisnici").doc(doc.id).update({
+        database.collection("korisnici").doc(doc.id).// pronalazi korisnika
+        update({
           oglasi: korisnik.oglasi.filter(item => item.id !== id)
+        }).then(() => {
+          let parent = this.rootElement.parentNode;
+          parent.removeChild(this.rootElement);
         });
       });
     });
@@ -1048,9 +1048,11 @@ class IspisOglasa extends _baseComponentDefault.default {
     this.like.innerHTML = "thumb_up";
     this.like.className = "material-icons";
     this.like.style = "cursor: pointer; vertical-align :-3px;";
+    if (likes.includes(user.username)) {
+      this.like.style.color = "#64b5f6";
+    }
     this.like.addEventListener("click", () => {
       this.likeFunc(id, username);
-      this.like.style.color == "#64b5f6" ? this.like.style.color = "red" : this.like.style.color = "#64b5f6";
     });
     this.dislike = document.createElement("i");
     this.dislike.innerHTML = "thumb_down";
@@ -1059,19 +1061,18 @@ class IspisOglasa extends _baseComponentDefault.default {
     this.dislike.addEventListener("click", () => {
       this.dislikeFunc(id, username);
     });
-    let numberOfLikesElement = document.createElement("span");
-    numberOfLikesElement.innerHTML = likes.length;
-    likes.includes(user.username) ? this.like.style.color = "#64b5f6 " : false;
-    let numberOfDislikesElement = document.createElement("span");
-    this.nod = Number(dislikes.length);
-    numberOfDislikesElement.innerHTML = this.nod;
+    this.numberOfLikesElement = document.createElement("span");
+    this.numberOfLikesElement.innerHTML = likes.length;
+    likes.includes(user.username) ? this.like.style.color = "#64b5f6" : false;
+    this.numberOfDislikesElement = document.createElement("span");
+    this.numberOfDislikesElement.innerHTML = Number(dislikes.length);
     dislikes.includes(user.username) ? this.dislike.style.color = "#e57373" : false;
     col.appendChild(opisElement);
     col.appendChild(info);
-    ocjena.appendChild(numberOfLikesElement);
+    ocjena.appendChild(this.numberOfLikesElement);
     ocjena.appendChild(this.like);
     ocjena.appendChild(this.dislike);
-    ocjena.appendChild(numberOfDislikesElement);
+    ocjena.appendChild(this.numberOfDislikesElement);
     row.appendChild(col);
     row.appendChild(ocjena);
     this.addChild(row);
@@ -1079,14 +1080,14 @@ class IspisOglasa extends _baseComponentDefault.default {
   likeFunc(id, username) {
     let user = JSON.parse(localStorage["user"]);
     let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", username).get().then(function (querySnapshot) {
+    database.collection("korisnici").where("username", "==", username).get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         let korisnik = doc.data();
         korisnik.oglasi.map(oglas => {
           if (oglas.id == id) {
             console.log(oglas);
             if (oglas.ocjena.like.includes(user.username)) {
-              oglas.ocjena.like = oglas.ocjena.like.filter(item => item !== "korisnik3");
+              oglas.ocjena.like = oglas.ocjena.like.filter(item => item !== user.username);
               console.log(oglas);
             } else {
               oglas.ocjena.like.push(user.username);
@@ -1097,21 +1098,23 @@ class IspisOglasa extends _baseComponentDefault.default {
         console.log(korisnik.oglasi);
         database.collection("korisnici").doc(doc.id).update({
           oglasi: korisnik.oglasi
-        }).then(() => {});
+        }).then(() => {
+          this.like.style.color == "rgb(100, 181, 246)" ? this.like.style.color = "black" : this.like.style.color = "#64b5f6";
+        });
       });
     });
   }
   dislikeFunc(id, username) {
     let user = JSON.parse(localStorage["user"]);
     let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", username).get().then(function (querySnapshot) {
+    database.collection("korisnici").where("username", "==", username).get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         let korisnik = doc.data();
         korisnik.oglasi.map(oglas => {
           if (oglas.id == id) {
             console.log(oglas);
             if (oglas.ocjena.dislike.includes(user.username)) {
-              oglas.ocjena.dislike = oglas.ocjena.dislike.filter(item => item !== "korisnik3");
+              oglas.ocjena.dislike = oglas.ocjena.dislike.filter(item => item !== user.username);
               console.log(oglas);
             } else {
               oglas.ocjena.dislike.push(user.username);
@@ -1122,7 +1125,10 @@ class IspisOglasa extends _baseComponentDefault.default {
         console.log(korisnik.oglasi);
         database.collection("korisnici").doc(doc.id).update({
           oglasi: korisnik.oglasi
-        }).then(() => {});
+        }).then(() => {
+          console.log(this.dislike.style.color);
+          this.dislike.style.color == "rgb(229, 115, 115)" ? this.dislike.style.color = "black" : this.dislike.style.color = "rgb(229, 115, 115)";
+        });
       });
     });
   }

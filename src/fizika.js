@@ -1,13 +1,10 @@
 M.AutoInit();
+
 import PrviStupac from "./components/PrviStupac"; 
 import TreciStupac from "./components/treciStupac"; 
+import IspisOglasa from "./components/ispisOglasa";
 
-
-import IspisOglasa from "./components/ispisOglasa"
-
-
-document.getElementById("example1").appendChild(new PrviStupac().rootElement) 
-
+document.getElementById("stupac1").appendChild(new PrviStupac().rootElement); //Dodaje sadržaj prvom stupcu
 
 let database = firebase.firestore();
 database
@@ -18,16 +15,18 @@ database
       let korisnik = doc.data();
       korisnik.oglasi.forEach((el) => {
         if (el.predmet == "fizika") {
-          let oglas = new IspisOglasa(
+          let oglas = new IspisOglasa( //za svaki oglas kojem je predmet="fizika" kreira katricu
             korisnik.kontakt,
             el.opis,
-            `${el.lokacija.županija}, ${el.lokacija.grad}`,
+            korisnik.lokacija,
             el.cijena,
             el.razina,
-            el.ocjena.like.length,
-            el.ocjena.dislike.lengt
+            el.ocjena.like,
+            el.ocjena.dislike,
+            el.id,
+            korisnik.username
           );
-          if(el.razina == "osnovna škola") {
+          if(el.razina == "osnovna škola") { //karticu prema razini ubacuje u div za osnovne ili srednje škole
             document
               .getElementById("osnovneSkole")
               .appendChild(oglas.rootElement);
@@ -41,4 +40,4 @@ database
     });
   });
 
-  document.getElementById("example2").appendChild(new TreciStupac().rootElement) 
+  document.getElementById("stupac3").appendChild(new TreciStupac().rootElement) //dodaje promjenjivi sadržaj trećeg stupca

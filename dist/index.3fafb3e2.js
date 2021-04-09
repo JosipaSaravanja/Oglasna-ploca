@@ -448,11 +448,11 @@ var _componentsPrviStupacDefault = _parcelHelpers.interopDefault(_componentsPrvi
 var _componentsTreciStupac = require("./components/treciStupac");
 var _componentsTreciStupacDefault = _parcelHelpers.interopDefault(_componentsTreciStupac);
 M.AutoInit();
-document.getElementById("example1").appendChild(new _componentsPrviStupacDefault.default().rootElement);
+document.getElementById("stupac1").appendChild(new _componentsPrviStupacDefault.default().rootElement);
 // Popunjava prvi stupac
 if (JSON.parse(localStorage["user"]) !== false) {
   // Ukoliko je netko prijavljen popunjava treći stupac
-  document.getElementById("example2").appendChild(new _componentsTreciStupacDefault.default().rootElement);
+  document.getElementById("stupac3").appendChild(new _componentsTreciStupacDefault.default().rootElement);
 }
 console.log(JSON.parse(localStorage["user"]));
 
@@ -892,8 +892,8 @@ var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
 class OglasTodoCard extends _baseComponentDefault.default {
   constructor(id, kontakt, opis, lokacija, cijena, predmet, razina, likes, dislikes, username) {
     super("div");
+    let user = JSON.parse(localStorage["user"]);
     this.rootElement.className = "card-panel grey lighten-5 z-depth-1";
-    this.id = id;
     let row = document.createElement("div");
     row.className = "row";
     let col = document.createElement("div");
@@ -946,18 +946,15 @@ class OglasTodoCard extends _baseComponentDefault.default {
   }
   removeSelf(id, username) {
     let database = firebase.firestore();
-    let parent = this.rootElement.parentNode;
-    parent.removeChild(this.rootElement);
-    /*.then(() => {
-    let parent = this.rootElement.parentNode;
-    parent.removeChild(this.rootElement);
-    });*/
-    console.log(username);
-    database.collection("korisnici").where("username", "==", username).get().then(function (querySnapshot) {
-      querySnapshot.forEach(function (doc) {
+    database.collection("korisnici").where("username", "==", username).get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
         let korisnik = doc.data();
-        database.collection("korisnici").doc(doc.id).update({
+        database.collection("korisnici").doc(doc.id).// pronalazi korisnika
+        update({
           oglasi: korisnik.oglasi.filter(item => item.id !== id)
+        }).then(() => {
+          let parent = this.rootElement.parentNode;
+          parent.removeChild(this.rootElement);
         });
       });
     });

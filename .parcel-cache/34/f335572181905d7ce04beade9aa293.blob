@@ -1,0 +1,32 @@
+#stupac1,
+#stupac3 {
+  padding: 10px;
+  border-radius: 25px;
+}
+.tabs .indicator {
+  background-color: #4db6ac;
+}
+
+.tabs .tab a.active {
+  background-color: #e0f2f1 !important;
+  color: #00897b !important;
+}
+
+.page-footer {
+  background-color: #26a69a;
+}
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:focus,
+.nav-pills > li.active > a:hover {
+  color: blue !important;
+  background-color: white;
+}
+
+#scrollspy {
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  position: fixed;
+}
+

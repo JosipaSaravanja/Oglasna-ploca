@@ -18,7 +18,6 @@ class DodajOglas extends Component {
   }
 
 
-
   dodajOglas() {
     let opis = document.getElementById("opis");
     let cijena = document.getElementById("cijena");

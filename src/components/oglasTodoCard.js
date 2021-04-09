@@ -15,8 +15,8 @@ class OglasTodoCard extends Component {
     username
   ) {
     super("div");
+    let user=JSON.parse(localStorage["user"]) ;
     this.rootElement.className = "card-panel grey lighten-5 z-depth-1";
-    this.id = id;
     let row = document.createElement("div");
     row.className = "row";
 
@@ -76,37 +76,31 @@ class OglasTodoCard extends Component {
     col.appendChild(numberOfDislikesElement);
     row.appendChild(col);
     row.appendChild(col2);
-    this.addChild(row);
+    this.addChild(row);//kreira karticu za svaki oglas nakon što su mu poslani podatci
   }
+
   removeSelf(id, username) {
     let database = firebase.firestore();
-
-    let parent = this.rootElement.parentNode;
-    parent.removeChild(this.rootElement);
-
-/*     .then(() => {
-      let parent = this.rootElement.parentNode;
-      parent.removeChild(this.rootElement);
-    }); */
-
-    console.log(username);
     database
       .collection("korisnici")
       .where("username", "==", username)
       .get()
-      .then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
+      .then((querySnapshot)=> {
+        querySnapshot.forEach((doc)=> {
           let korisnik = doc.data();
           database
             .collection("korisnici")
-            .doc(doc.id)
+            .doc(doc.id)//pronalazi korisnika 
             .update({
-              oglasi: korisnik.oglasi.filter((item) => item.id !== id),
-            })
+              oglasi: korisnik.oglasi.filter((item) => item.id !== id),//filtrira array oglasi tako da ukloni onaj s id-om oglasa koji želimo ukoloniti
+            }).then(() => {
+              let parent = this.rootElement.parentNode;
+              parent.removeChild(this.rootElement);
+            });
         });
       });
       
-    //kako napraviti da se katrica makne NAKON sto se odrise iz div na zaslonu
+    //kako napraviti da se katrica makne NAKON sto se odrise iz div na zaslonu ne mogu s this. jer mi ga ne pronalazi
   }
 }
 

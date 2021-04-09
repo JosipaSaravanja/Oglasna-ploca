@@ -1,0 +1,5 @@
+nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover, a.active {
+            border-left: 2px solid #4db6ac !important;
+            ;
+        } 
+        /*Maleni dodatak za scrollspy koji je samo u ovom html dokumentu*/

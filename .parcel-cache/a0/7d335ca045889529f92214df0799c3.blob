@@ -1,0 +1,9 @@
+a.active {
+          border-left:  5px solid red !important;;
+        }
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:focus,
+.nav-pills > li.active > a:hover {
+  color: blue !important;
+  background-color: white;
+}

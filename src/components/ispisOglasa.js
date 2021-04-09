@@ -40,17 +40,19 @@ class IspisOglasa extends Component {
 
     let ocjena = document.createElement("div");
     ocjena.className = "col s1";
-this.id=id
+    this.id=id
     this.like = document.createElement("i");
     this.like.innerHTML = "thumb_up";
     this.like.className = "material-icons";
     this.like.style = "cursor: pointer; vertical-align :-3px;";
-
-    this.like.addEventListener("click", () => {
+    if(likes.includes(user.username)){
+      this.like.style.color="#64b5f6"
+    } 
+   this.like.addEventListener("click", () => {
       this.likeFunc(id, username);
-      this.like.style.color=="#64b5f6" ?this.like.style.color="red":this.like.style.color="#64b5f6"
+      //this.like.style.color=="#64b5f6" ?this.like.style.color="red":this.like.style.color="#64b5f6"
       
-    });
+    }); 
 
     this.dislike = document.createElement("i");
     this.dislike.innerHTML = "thumb_down";
@@ -60,21 +62,20 @@ this.id=id
       this.dislikeFunc(id, username);
     });
 
-    let numberOfLikesElement = document.createElement("span");
-    numberOfLikesElement.innerHTML = likes.length;
-    likes.includes(user.username)? this.like.style.color="#64b5f6 ": false
+    this.numberOfLikesElement = document.createElement("span");
+    this.numberOfLikesElement.innerHTML = likes.length;
+    likes.includes(user.username)? this.like.style.color="#64b5f6" : false
 
-    let numberOfDislikesElement = document.createElement("span");
-    this.nod=Number(dislikes.length);
-    numberOfDislikesElement.innerHTML =this.nod
+    this.numberOfDislikesElement = document.createElement("span");
+    this.numberOfDislikesElement.innerHTML =Number(dislikes.length)
     dislikes.includes(user.username)? this.dislike.style.color="#e57373" : false
 
     col.appendChild(opisElement);
     col.appendChild(info);
-    ocjena.appendChild(numberOfLikesElement);
+    ocjena.appendChild(this.numberOfLikesElement);
     ocjena.appendChild(this.like);
     ocjena.appendChild(this.dislike);
-    ocjena.appendChild(numberOfDislikesElement);
+    ocjena.appendChild(this.numberOfDislikesElement);
     row.appendChild(col);
     row.appendChild(ocjena);
     
@@ -88,25 +89,28 @@ this.id=id
       .collection("korisnici")
       .where("username", "==", username)
       .get()
-      .then(function (querySnapshot) {
+      .then((querySnapshot)=> {
         querySnapshot.forEach((doc) => {
           let korisnik = doc.data(); 
           korisnik.oglasi.map(oglas=>{
             if(oglas.id==id){
               console.log(oglas)
               if (oglas.ocjena.like.includes(user.username)) {
-                oglas.ocjena.like=oglas.ocjena.like.filter((item) => item !== "korisnik3")
+                oglas.ocjena.like=oglas.ocjena.like.filter((item) => item !== user.username)
                 console.log(oglas)
               } else {
                 oglas.ocjena.like.push(user.username)
                 console.log(oglas)
               } 
-            
             }})
             console.log(korisnik.oglasi)
             database.collection("korisnici").doc(doc.id).update({
               oglasi: korisnik.oglasi
-            }).then(()=>{}); 
+            }).then(()=>{
+              this.like.style.color=="rgb(100, 181, 246)" ?this.like.style.color="black":this.like.style.color="#64b5f6"
+              /* 
+              this.numberOfLikesElement.innerHTML=Number(this.numberOfLikesElement.innerHTML)+1; */
+            }); 
           
         });
       });
@@ -116,36 +120,34 @@ this.id=id
 
     let database = firebase.firestore();
     database
-      .collection("korisnici")
-      .where("username", "==", username)
-      .get()
-      .then(function (querySnapshot) {
-        querySnapshot.forEach((doc) => {
-          let korisnik = doc.data(); 
-          korisnik.oglasi.map(oglas=>{
-            if(oglas.id==id){
+    .collection("korisnici")
+    .where("username", "==", username)
+    .get()
+    .then((querySnapshot) =>{
+      querySnapshot.forEach((doc) => {
+        let korisnik = doc.data(); 
+        korisnik.oglasi.map(oglas=>{
+          if(oglas.id==id){
+            console.log(oglas)
+            if (oglas.ocjena.dislike.includes(user.username)) {
+              oglas.ocjena.dislike=oglas.ocjena.dislike.filter((item) => item !== user.username)
               console.log(oglas)
-              if (oglas.ocjena.dislike.includes(user.username)) {
-                oglas.ocjena.dislike=oglas.ocjena.dislike.filter((item) => item !== "korisnik3")
-                console.log(oglas)
-                //promjena
-              } else {
-                oglas.ocjena.dislike.push(user.username)
-                console.log(oglas)
-                //proimjena
-              } 
-            
-            }})
-            console.log(korisnik.oglasi)
-            database.collection("korisnici").doc(doc.id).update({
-              oglasi: korisnik.oglasi
-            }).then(()=>{
-              
-            }); 
-          
-        });
+            } else {
+              oglas.ocjena.dislike.push(user.username)
+              console.log(oglas)
+            } 
+          }})
+          console.log(korisnik.oglasi)
+          database.collection("korisnici").doc(doc.id).update({
+            oglasi: korisnik.oglasi
+          }).then(()=>{
+            console.log(this.dislike.style.color)
+            this.dislike.style.color=="rgb(229, 115, 115)" ?this.dislike.style.color="black":this.dislike.style.color="rgb(229, 115, 115)"
+          }); 
+        
       });
-  }
+    });
+}
 }
 
 module.exports = IspisOglasa;

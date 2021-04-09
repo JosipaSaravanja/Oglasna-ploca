@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="99604772cf1f25d66376cbe0825d0f84" type="image/gif" sizes="16x16"><!--ikona-->
+    <title>Oglasna ploča</title>
+    <link rel="stylesheet" href="d64ece83f0ed537f356f07c54e94d205">
+    <link href="b4a19141b6bc02d2306cb5f72cdb5513" rel="stylesheet">
+    <link rel="stylesheet" href="e4bf09b61ab884c61a649b52903c2aa8"><!--poveznica na glavni css-->
+</head>
+
+<body>
+    <nav class="nav-extended teal lighten-1" style="96719393169ded5a3965efa7a1922bbb">
+        <div class="nav-wrapper ">
+            <a href="" class="brand-logo"><i class="material-icons">cloud</i>Oglasnik</a>
+            <a href="" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="b2733622728c2ecba2781d6ab978c4b5">Korištenje</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!--Zaglavlje kada je zaslon large-->
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="">Sass</a></li>
+        <li><a href="">Components</a></li>
+        <li><a href="">JavaScript</a></li>
+    </ul>
+    <!--Zaglavlje kada je zaslon medium i manji--><br>
+
+    <div class="row">
+        <div class="col s12 l2">
+            <div class="col s12">
+                <div class="row z-depth-5" id="example1">
+
+
+                </div>
+            </div>
+        </div>
+        <!--Prvi 'stupac' gdje se izmjenjuju prijava i korisnički račun-->
+
+        <div class="col s12 l8">
+            <div class="col s12"> 
+                <div class="row z-depth-5" style="b16d465ea070432a068518c55f8ee62c">
+
+                    <div class="col s12 l4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="6cc68be76dcccb49d09d55b934e9e5e8">
+                                <a class="card-title" href="404672567943d303a2ed3322a22e8c7f">Matematika</a>
+                            </div>
+                            <div class="card-content">
+                                <p>Oglasi za repeticije iz matematike.</p>
+                            </div>
+                        </div>
+                    </div><!--standarne kartice uz pomoć materialize-a za svaki predmet-->
+
+                    <div class="col s12 l4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="668b73d9cc65bc602e710ddf306f0ff7">
+                                <a class="card-title" href="18a4b4caace02601ca3ba92c08f404de">Fizika</a>
+                            </div>
+                            <div class="card-content">
+                                <p>Oglasi za repeticije iz fizike.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 l4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="2af46db3b0623fc57bb776822ba14fe0">
+                                <a class="card-title" href="35e52788b71b246a4b2b50a8f778ab36">Kemija</a>
+                            </div>
+                            <div class="card-content">
+                                <p>Oglasi za repeticije iz kemije.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 l4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="78dead3e6c3cdb2decfcafdd26f6faea">
+                                <a class="card-title" href="16506d7b8821c2e59c9390ca6fa7c51e">Biologija</a>
+                            </div>
+                            <div class="card-content">
+                                <p>Oglasi za repeticije iz biologije.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 l4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="6764903313f3577f5f858d2949a663eb">
+                                <a class="card-title" href="abb8c7634ef916d22db6bd72bfb1953f">Hrvatski</a>
+                            </div>
+                            <div class="card-content">
+                                <p>Oglasi za repeticije iz hrvatskog jezika.</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col s12 l4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="93340ccbd1795003ed3af965221fec94">
+                                <a class="card-title" href="b0fcf4791ccf75c16d7d138f163451ad">Engleski</a>
+                            </div>
+                            <div class="card-content">
+                                <p>Oglasi za repeticije iz engleskog jezika.</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col s12 l4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="297f9548e6d8cfbfefab9e45951ddb0d"><!--ne želi povezat?-->
+                                <a class="card-title" href="16506d7b8821c2e59c9390ca6fa7c51e">Njemački</a>
+                            </div>
+                            <div class="card-content">
+                                <p>Oglasi za repeticije iz njemačkog jezika.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 l4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="428197932d81a8bf081078a9add8596f">
+                                <a class="card-title" href="16506d7b8821c2e59c9390ca6fa7c51e">Latinski</a>
+                            </div>
+                            <div class="card-content">
+                                <p>Oglasi za repeticije iz latinskog jezika.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 l4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="3a2a045277b2d9fdf04bb9f2648e3189">
+                                <a class="card-title" href="16506d7b8821c2e59c9390ca6fa7c51e">Talijanski</a>
+                            </div>
+                            <div class="card-content">
+                                <p>Oglasi za repeticije iz talijanskog jezika.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <!--Srednji 'stupac' s stalnim kategorijama-->
+
+
+       
+        <div class="col s12 l2">
+            <div class="col s12">
+                <div id="stupac1">
+
+
+                </div>
+            </div>
+        </div>
+            <!--Treći 'stupac'-->
+
+        </div>
+
+        
+        <div id="modal1" class="modal  modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Novi oglas</h4>
+                <p>
+                    </p><div class="col s12"><input id="opis" placeholder="Opis">
+                    </div>
+                    <div class="col s12"><input id="cijena" placeholder="Cijena (navedite i vrijeme npr 60 kn/45min, 70kn/60min...)"></div>
+                    
+                    <div class="col s12">
+                        <label>Odaberite predmet</label>
+                        <select class="browser-default" id="predmet">
+                            <option value="matematika">Matematika</option>
+                            <option value="fizika">Fizika</option>
+                            <option value="kemija">Kemija</option>
+                            <option value="hrvatski">Hrvatski</option>
+                            <option value="engleski">Engleski</option>
+                            <option value="njemacki">Njemački</option>
+                        </select>    
+                    </div>
+                    <div class="col s12">
+                        <label>Odaberite razinu</label>
+                        <select class="browser-default" id="razina">
+                            <option value="osnovna škola">Osnovna škola</option>
+                            <option value="srednja škola">Srednja škola</option>
+                        </select>    
+                    </div>
+                <p></p>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <a id="dodajOglas" href="#!" class="modal-close waves-effect waves-green btn-flat">Dodaj oglas</a>
+            </div>
+        </div>
+        <!--obrazac za unos novod oglasa. Postaje vidljiv samo na gumb iz dodajOglas.js Jel to treba biti pisano ovdje ili u DOM?-->
+
+        <footer class="page-footer">
+            <div class="container">
+              <div class="row">
+                <div class="col l6 s12">
+                  <h5 class="white-text">Footer Content</h5>
+                  <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                  <h5 class="white-text">Links</h5>
+                  <ul>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="footer-copyright">
+              <div class="container">
+              © 2021 Copyright Text
+              <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+              </div>
+            </div>
+          </footer><!--footer iz materialize-a-->
+</body>
+
+<script src="8bda26ece0671c7eb88c9f7787cc3185"></script>
+<script src="90de26ac4cdbb62a8b59670d00e3dfa6"></script>
+<script src="fe63793fd853359f065e82184be29c0e"></script> <!--poveznice za firebase-->
+
+<script src="450f8a1e3f020be700bf9eb223689557"></script> <!--poveznica za materialize-->
+<script data-parcel-key="7bb46141658a940717f34db1cc385186">
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyA_bA0LS0eefdaWyqKe-qyL7U-zHuoOe-k",
+    authDomain: "oglasna-ploca.firebaseapp.com",
+    projectId: "oglasna-ploca",
+    storageBucket: "oglasna-ploca.appspot.com",
+    messagingSenderId: "738452914857",
+    appId: "1:738452914857:web:e02497ec7cfbd129e59fb8",
+    measurementId: "G-2L3E02TT43"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+</script>
+<script src="6b4bdb555d7e3a8d549ded548e319b64"></script><!--poveznica za js-->
+</html>
