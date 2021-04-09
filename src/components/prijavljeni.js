@@ -6,7 +6,7 @@ import controler from "../modelAndControler";
 class Prijavljeni extends Component {
   constructor() {
     super("div");
-    let user = JSON.parse(localStorage["user"]);
+    this.user = JSON.parse(localStorage["user"]);
 
     let img=document.createElement("img");
     img.className="col s12 m6 l12";
@@ -14,7 +14,7 @@ class Prijavljeni extends Component {
     img.style.textAlign="center";
 
     let ime = document.createElement("h5");
-    ime.innerHTML = user.username;
+    ime.innerHTML = this.user.username;
 
     this.select=document.createElement("select")
       this.select.id=`zupanije`
@@ -45,30 +45,30 @@ class Prijavljeni extends Component {
         let option=document.createElement("option");
         option.innerHTML=el;
         option.value=el;
-        console.log(user.lokacija.županija);
+        console.log(this.user.lokacija.županija);
         this.select.appendChild(option);
       })
-      this.select.value=user.lokacija.županija;
+      this.select.value=this.user.lokacija.županija;
       
       
     this.grad=document.createElement("input");
     this.grad.placeholder="Grad";
-    console.log(user.lokacija.grad);
-    this.grad.value=user.lokacija.grad ;
+    console.log(this.user.lokacija.grad);
+    this.grad.value=this.user.lokacija.grad ;
  
     this.kontakt=document.createElement("input");
     this.kontakt.placeholder="Kontakt";
-    console.log(user.kontakt);
-    this.kontakt.value=user.kontakt;
+    console.log(this.user.kontakt);
+    this.kontakt.value=this.user.kontakt;
 
     this.password=document.createElement("input");
     this.password.placeholder="Lozinka";
-    this.password.value=user.password;
+    this.password.value=this.user.password;
     this.password.type="password";
 
     let spremi = document.createElement("a");
     spremi.className = "waves-effect waves-light btn-small";
-    spremi.addEventListener("click", ()=>{this.spremi(user, this.password, this.select, this.grad, this.kontakt)})
+    spremi.addEventListener("click", ()=>{this.spremi(this.user, this.password, this.select, this.grad, this.kontakt)})
     spremi.style.marginBottom="5%";
     spremi.innerHTML = `Spremi promjene <i class="material-icons right">save</i>`;
       
@@ -90,19 +90,21 @@ class Prijavljeni extends Component {
       })//svaki element je u svom div-u tako da svaki ima "vlastiti" red te je sve spremljeno u col s m6 pa slika i ostalo stoje jedno do drugoga na meduium ekranima
       this.addChildren([img, col]);
 }
-  spremi(user, password, select, grad, kontakt){
+  spremi(){
+    let user = JSON.parse(localStorage["user"]);
     let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
-      querySnapshot.forEach(function (doc) {
+    database.collection("korisnici").where("username", "==", this.user.username).get().then((querySnapshot)=> {
+      querySnapshot.forEach((doc)=>{
+        console.log(this)
         database.collection("korisnici").doc(doc.id).update({
-          password: password.value,
-          lokacija:{županija: select.value, grad: grad.value},
-          kontakt: kontakt.value
+          password: this.password.value,
+          lokacija:{županija: this.select.value, grad: this.grad.value},
+          kontakt: this.kontakt.value
         }).then(() => {
-          database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
+          database.collection("korisnici").where("username", "==", this.user.username).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
               localStorage["user"] = JSON.stringify(doc.data());//localStorage["user"] poprimi nove podatke nakon što ih je korisnik update-ao
-               location.reload() 
+              location.reload() 
             })
           });
           })

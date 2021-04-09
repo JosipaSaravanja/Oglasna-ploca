@@ -1,6 +1,5 @@
 //Ispisuje čitatelju oglase koji postoje (da pronađe što mu treba), svaki predmet ga posebno poziva s svojim oglasima (nor matematika.js s korisnik.oglasi gdje je predmet ="matematika)")
 import Component from "../baseComponent";
-import controler from "../modelAndControler";
 
 class IspisOglasa extends Component {
   constructor(
@@ -15,7 +14,7 @@ class IspisOglasa extends Component {
     username
   ) {
     super("div");
-    let user = JSON.parse(localStorage["user"]);
+    this.user = JSON.parse(localStorage["user"]);
 
     this.rootElement.className = "card-panel grey lighten-5 z-depth-1";
 
@@ -40,35 +39,38 @@ class IspisOglasa extends Component {
 
     let ocjena = document.createElement("div");
     ocjena.className = "col s1";
-    this.id=id
+    this.id = id;
+    this.username = username;
     this.like = document.createElement("i");
     this.like.innerHTML = "thumb_up";
     this.like.className = "material-icons";
     this.like.style = "cursor: pointer; vertical-align :-3px;";
-    if(likes.includes(user.username)){
-      this.like.style.color="#64b5f6"
-    } 
-   this.like.addEventListener("click", () => {
-      this.likeFunc(id, username);
-      //this.like.style.color=="#64b5f6" ?this.like.style.color="red":this.like.style.color="#64b5f6"
-      
-    }); 
+    if (likes.includes(this.user.username)) {
+      this.like.style.color = "rgb(100, 181, 246)";
+    }
+    this.like.addEventListener("click", () => {
+      this.likeFunc();
+    });
 
     this.dislike = document.createElement("i");
     this.dislike.innerHTML = "thumb_down";
     this.dislike.className = "material-icons";
     this.dislike.style = "cursor: pointer; vertical-align :-10px;";
     this.dislike.addEventListener("click", () => {
-      this.dislikeFunc(id, username);
+      this.dislikeFunc();
     });
 
     this.numberOfLikesElement = document.createElement("span");
     this.numberOfLikesElement.innerHTML = likes.length;
-    likes.includes(user.username)? this.like.style.color="#64b5f6" : false
+    likes.includes(this.user.username)
+      ? (this.like.style.color = "rgb(100, 181, 246)")
+      : false;
 
     this.numberOfDislikesElement = document.createElement("span");
-    this.numberOfDislikesElement.innerHTML =Number(dislikes.length)
-    dislikes.includes(user.username)? this.dislike.style.color="#e57373" : false
+    this.numberOfDislikesElement.innerHTML = Number(dislikes.length);
+    dislikes.includes(this.user.username)
+      ? (this.dislike.style.color = "rgb(229, 115, 115)")
+      : false;
 
     col.appendChild(opisElement);
     col.appendChild(info);
@@ -78,76 +80,81 @@ class IspisOglasa extends Component {
     ocjena.appendChild(this.numberOfDislikesElement);
     row.appendChild(col);
     row.appendChild(ocjena);
-    
+
     this.addChild(row);
   }
-  likeFunc(id, username) {
-    let user = JSON.parse(localStorage["user"]);
-
+  likeFunc() {
     let database = firebase.firestore();
     database
       .collection("korisnici")
-      .where("username", "==", username)
+      .where("username", "==", this.username)
       .get()
-      .then((querySnapshot)=> {
+      .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          let korisnik = doc.data(); 
-          korisnik.oglasi.map(oglas=>{
-            if(oglas.id==id){
-              console.log(oglas)
-              if (oglas.ocjena.like.includes(user.username)) {
-                oglas.ocjena.like=oglas.ocjena.like.filter((item) => item !== user.username)
-                console.log(oglas)
+          let korisnik = doc.data();
+          korisnik.oglasi.map((oglas) => {
+            if (oglas.id == this.id) {//pronađi oglas prema id
+              if (oglas.ocjena.like.includes(this.user.username)) {
+                oglas.ocjena.like = oglas.ocjena.like.filter((item) => item !== this.user.username); //ukloni korisnika iz liste osoba koje su like-ale
+                this.like.style.color = "black"; //makni boju s like icone
+                this.numberOfLikesElement.innerHTML =Number(this.numberOfLikesElement.innerHTML) - 1; //i smanji broj pored njega
               } else {
-                oglas.ocjena.like.push(user.username)
-                console.log(oglas)
-              } 
-            }})
-            console.log(korisnik.oglasi)
-            database.collection("korisnici").doc(doc.id).update({
-              oglasi: korisnik.oglasi
-            }).then(()=>{
-              this.like.style.color=="rgb(100, 181, 246)" ?this.like.style.color="black":this.like.style.color="#64b5f6"
-              /* 
-              this.numberOfLikesElement.innerHTML=Number(this.numberOfLikesElement.innerHTML)+1; */
-            }); 
-          
+                oglas.ocjena.like.push(this.user.username); //dodaj korisnika u listu osoba koje su like-ale oglas
+                this.like.style.color = "rgb(100, 181, 246)"; //pretvori u plavo
+                this.numberOfLikesElement.innerHTML = Number(this.numberOfLikesElement.innerHTML) + 1; //i povećaj broj pored
+                if (this.dislike.style.color == "rgb(229, 115, 115)") {//ako je korisnik već prije dislike-ao oglas treba to poništit da ne like-a i dislike-a isti oglas
+                  oglas.ocjena.dislike = oglas.ocjena.dislike.filter((item) => item !== this.user.username);
+                  this.numberOfDislikesElement.innerHTML =Number(this.numberOfDislikesElement.innerHTML) - 1;
+                  this.dislike.style.color = "black";
+                }
+              }
+            }
+          });
+          console.log(korisnik.oglasi);
+          database.collection("korisnici").doc(doc.id).update({
+            oglasi: korisnik.oglasi,
+          });
         });
       });
   }
-  dislikeFunc(id, username) {
-    let user = JSON.parse(localStorage["user"]);
-
+  dislikeFunc() {
     let database = firebase.firestore();
     database
-    .collection("korisnici")
-    .where("username", "==", username)
-    .get()
-    .then((querySnapshot) =>{
-      querySnapshot.forEach((doc) => {
-        let korisnik = doc.data(); 
-        korisnik.oglasi.map(oglas=>{
-          if(oglas.id==id){
-            console.log(oglas)
-            if (oglas.ocjena.dislike.includes(user.username)) {
-              oglas.ocjena.dislike=oglas.ocjena.dislike.filter((item) => item !== user.username)
-              console.log(oglas)
-            } else {
-              oglas.ocjena.dislike.push(user.username)
-              console.log(oglas)
-            } 
-          }})
-          console.log(korisnik.oglasi)
-          database.collection("korisnici").doc(doc.id).update({
-            oglasi: korisnik.oglasi
-          }).then(()=>{
-            console.log(this.dislike.style.color)
-            this.dislike.style.color=="rgb(229, 115, 115)" ?this.dislike.style.color="black":this.dislike.style.color="rgb(229, 115, 115)"
-          }); 
-        
+      .collection("korisnici")
+      .where("username", "==", this.username)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          let korisnik = doc.data();
+          korisnik.oglasi.map((oglas) => {
+            if (oglas.id == this.id) {
+              if (oglas.ocjena.dislike.includes(this.user.username)) {
+                oglas.ocjena.dislike = oglas.ocjena.dislike.filter((item) => item !== this.user.username); //ukloni korisnika iz liste osoba koje su dislike-ale
+                this.dislike.style.color="black";//makni boju s dislike icone
+                this.numberOfDislikesElement.innerHTML=Number(this.numberOfDislikesElement.innerHTML)-1; //smanji broj pored njega
+              } else {
+                oglas.ocjena.dislike.push(this.user.username); //dodaj korisnika u listu osoba koje su dislike-ale oglas
+                this.dislike.style.color = "rgb(229, 115, 115)"; //pretvori u crveno
+                this.numberOfDislikesElement.innerHTML=Number(this.numberOfDislikesElement.innerHTML)+1; //povećaj broj pored njega
+                console.log(this.like.style.color)
+                if(this.like.style.color == "rgb(100, 181, 246)"){
+                  oglas.ocjena.like = oglas.ocjena.like.filter((item) => item !== this.user.username);//ako je korisnik već prije like-ao oglas treba to poništit da ne like-a i dislike-a isti oglas
+                  this.numberOfLikesElement.innerHTML =Number(this.numberOfLikesElement.innerHTML) - 1;
+                  this.like.style.color = "black"
+                }
+              }
+            }
+          });
+          console.log(korisnik.oglasi);
+          database
+            .collection("korisnici")
+            .doc(doc.id)
+            .update({
+              oglasi: korisnik.oglasi,
+            })
+        });
       });
-    });
-}
+  }
 }
 
 module.exports = IspisOglasa;

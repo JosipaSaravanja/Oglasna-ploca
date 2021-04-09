@@ -688,14 +688,14 @@ require("../modelAndControler");
 class Prijavljeni extends _baseComponentDefault.default {
   constructor() {
     super("div");
-    let user = JSON.parse(localStorage["user"]);
+    this.user = JSON.parse(localStorage["user"]);
     let img = document.createElement("img");
     img.className = "col s12 m6 l12";
     img.src = `https://icons-for-free.com/iconfiles/png/512/eva+icons+++fill+person-1324449943844961316.png`;
     // kako povezat mapu s ovim dokumentom?
     img.style.textAlign = "center";
     let ime = document.createElement("h5");
-    ime.innerHTML = user.username;
+    ime.innerHTML = this.user.username;
     this.select = document.createElement("select");
     this.select.id = `zupanije`;
     this.select.className = "browser-default";
@@ -704,26 +704,26 @@ class Prijavljeni extends _baseComponentDefault.default {
       let option = document.createElement("option");
       option.innerHTML = el;
       option.value = el;
-      console.log(user.lokacija.županija);
+      console.log(this.user.lokacija.županija);
       this.select.appendChild(option);
     });
-    this.select.value = user.lokacija.županija;
+    this.select.value = this.user.lokacija.županija;
     this.grad = document.createElement("input");
     this.grad.placeholder = "Grad";
-    console.log(user.lokacija.grad);
-    this.grad.value = user.lokacija.grad;
+    console.log(this.user.lokacija.grad);
+    this.grad.value = this.user.lokacija.grad;
     this.kontakt = document.createElement("input");
     this.kontakt.placeholder = "Kontakt";
-    console.log(user.kontakt);
-    this.kontakt.value = user.kontakt;
+    console.log(this.user.kontakt);
+    this.kontakt.value = this.user.kontakt;
     this.password = document.createElement("input");
     this.password.placeholder = "Lozinka";
-    this.password.value = user.password;
+    this.password.value = this.user.password;
     this.password.type = "password";
     let spremi = document.createElement("a");
     spremi.className = "waves-effect waves-light btn-small";
     spremi.addEventListener("click", () => {
-      this.spremi(user, this.password, this.select, this.grad, this.kontakt);
+      this.spremi(this.user, this.password, this.select, this.grad, this.kontakt);
     });
     spremi.style.marginBottom = "5%";
     spremi.innerHTML = `Spremi promjene <i class="material-icons right">save</i>`;
@@ -745,19 +745,21 @@ class Prijavljeni extends _baseComponentDefault.default {
     // svaki element je u svom div-u tako da svaki ima "vlastiti" red te je sve spremljeno u col s m6 pa slika i ostalo stoje jedno do drugoga na meduium ekranima
     this.addChildren([img, col]);
   }
-  spremi(user, password, select, grad, kontakt) {
+  spremi() {
+    let user = JSON.parse(localStorage["user"]);
     let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
-      querySnapshot.forEach(function (doc) {
+    database.collection("korisnici").where("username", "==", this.user.username).get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        console.log(this);
         database.collection("korisnici").doc(doc.id).update({
-          password: password.value,
+          password: this.password.value,
           lokacija: {
-            županija: select.value,
-            grad: grad.value
+            županija: this.select.value,
+            grad: this.grad.value
           },
-          kontakt: kontakt.value
+          kontakt: this.kontakt.value
         }).then(() => {
-          database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
+          database.collection("korisnici").where("username", "==", this.user.username).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
               localStorage["user"] = JSON.stringify(doc.data());
               // localStorage["user"] poprimi nove podatke nakon što ih je korisnik update-ao
@@ -1020,11 +1022,10 @@ module.exports = MojiOglasi;
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
-require("../modelAndControler");
 class IspisOglasa extends _baseComponentDefault.default {
   constructor(kontakt, opis, lokacija, cijena, razina, likes, dislikes, id, username) {
     super("div");
-    let user = JSON.parse(localStorage["user"]);
+    this.user = JSON.parse(localStorage["user"]);
     this.rootElement.className = "card-panel grey lighten-5 z-depth-1";
     let row = document.createElement("div");
     row.className = "row valign-wrapper";
@@ -1044,29 +1045,30 @@ class IspisOglasa extends _baseComponentDefault.default {
     let ocjena = document.createElement("div");
     ocjena.className = "col s1";
     this.id = id;
+    this.username = username;
     this.like = document.createElement("i");
     this.like.innerHTML = "thumb_up";
     this.like.className = "material-icons";
     this.like.style = "cursor: pointer; vertical-align :-3px;";
-    if (likes.includes(user.username)) {
-      this.like.style.color = "#64b5f6";
+    if (likes.includes(this.user.username)) {
+      this.like.style.color = "rgb(100, 181, 246)";
     }
     this.like.addEventListener("click", () => {
-      this.likeFunc(id, username);
+      this.likeFunc();
     });
     this.dislike = document.createElement("i");
     this.dislike.innerHTML = "thumb_down";
     this.dislike.className = "material-icons";
     this.dislike.style = "cursor: pointer; vertical-align :-10px;";
     this.dislike.addEventListener("click", () => {
-      this.dislikeFunc(id, username);
+      this.dislikeFunc();
     });
     this.numberOfLikesElement = document.createElement("span");
     this.numberOfLikesElement.innerHTML = likes.length;
-    likes.includes(user.username) ? this.like.style.color = "#64b5f6" : false;
+    likes.includes(this.user.username) ? this.like.style.color = "rgb(100, 181, 246)" : false;
     this.numberOfDislikesElement = document.createElement("span");
     this.numberOfDislikesElement.innerHTML = Number(dislikes.length);
-    dislikes.includes(user.username) ? this.dislike.style.color = "#e57373" : false;
+    dislikes.includes(this.user.username) ? this.dislike.style.color = "rgb(229, 115, 115)" : false;
     col.appendChild(opisElement);
     col.appendChild(info);
     ocjena.appendChild(this.numberOfLikesElement);
@@ -1077,57 +1079,76 @@ class IspisOglasa extends _baseComponentDefault.default {
     row.appendChild(ocjena);
     this.addChild(row);
   }
-  likeFunc(id, username) {
-    let user = JSON.parse(localStorage["user"]);
+  likeFunc() {
     let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", username).get().then(querySnapshot => {
+    database.collection("korisnici").where("username", "==", this.username).get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         let korisnik = doc.data();
         korisnik.oglasi.map(oglas => {
-          if (oglas.id == id) {
-            console.log(oglas);
-            if (oglas.ocjena.like.includes(user.username)) {
-              oglas.ocjena.like = oglas.ocjena.like.filter(item => item !== user.username);
-              console.log(oglas);
+          if (oglas.id == this.id) {
+            // pronađi oglas prema id
+            if (oglas.ocjena.like.includes(this.user.username)) {
+              oglas.ocjena.like = oglas.ocjena.like.filter(item => item !== this.user.username);
+              // ukloni korisnika iz liste osoba koje su like-ale
+              this.like.style.color = "black";
+              // makni boju s like icone
+              this.numberOfLikesElement.innerHTML = Number(this.numberOfLikesElement.innerHTML) - 1;
             } else {
-              oglas.ocjena.like.push(user.username);
-              console.log(oglas);
+              oglas.ocjena.like.push(this.user.username);
+              // dodaj korisnika u listu osoba koje su like-ale oglas
+              this.like.style.color = "rgb(100, 181, 246)";
+              // pretvori u plavo
+              this.numberOfLikesElement.innerHTML = Number(this.numberOfLikesElement.innerHTML) + 1;
+              // i povećaj broj pored
+              if (this.dislike.style.color == "rgb(229, 115, 115)") {
+                // ako je korisnik već prije dislike-ao oglas treba to poništit da ne like-a i dislike-a isti oglas
+                oglas.ocjena.dislike = oglas.ocjena.dislike.filter(item => item !== this.user.username);
+                this.numberOfDislikesElement.innerHTML = Number(this.numberOfDislikesElement.innerHTML) - 1;
+                this.dislike.style.color = "black";
+              }
             }
           }
         });
         console.log(korisnik.oglasi);
         database.collection("korisnici").doc(doc.id).update({
           oglasi: korisnik.oglasi
-        }).then(() => {
-          this.like.style.color == "rgb(100, 181, 246)" ? this.like.style.color = "black" : this.like.style.color = "#64b5f6";
         });
       });
     });
   }
-  dislikeFunc(id, username) {
-    let user = JSON.parse(localStorage["user"]);
+  dislikeFunc() {
     let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", username).get().then(querySnapshot => {
+    database.collection("korisnici").where("username", "==", this.username).get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         let korisnik = doc.data();
         korisnik.oglasi.map(oglas => {
-          if (oglas.id == id) {
-            console.log(oglas);
-            if (oglas.ocjena.dislike.includes(user.username)) {
-              oglas.ocjena.dislike = oglas.ocjena.dislike.filter(item => item !== user.username);
-              console.log(oglas);
+          if (oglas.id == this.id) {
+            if (oglas.ocjena.dislike.includes(this.user.username)) {
+              oglas.ocjena.dislike = oglas.ocjena.dislike.filter(item => item !== this.user.username);
+              // ukloni korisnika iz liste osoba koje su dislike-ale
+              this.dislike.style.color = "black";
+              // makni boju s dislike icone
+              this.numberOfDislikesElement.innerHTML = Number(this.numberOfDislikesElement.innerHTML) - 1;
             } else {
-              oglas.ocjena.dislike.push(user.username);
-              console.log(oglas);
+              oglas.ocjena.dislike.push(this.user.username);
+              // dodaj korisnika u listu osoba koje su dislike-ale oglas
+              this.dislike.style.color = "rgb(229, 115, 115)";
+              // pretvori u crveno
+              this.numberOfDislikesElement.innerHTML = Number(this.numberOfDislikesElement.innerHTML) + 1;
+              // povećaj broj pored njega
+              console.log(this.like.style.color);
+              if (this.like.style.color == "rgb(100, 181, 246)") {
+                oglas.ocjena.like = oglas.ocjena.like.filter(item => item !== this.user.username);
+                // ako je korisnik već prije like-ao oglas treba to poništit da ne like-a i dislike-a isti oglas
+                this.numberOfLikesElement.innerHTML = Number(this.numberOfLikesElement.innerHTML) - 1;
+                this.like.style.color = "black";
+              }
             }
           }
         });
         console.log(korisnik.oglasi);
         database.collection("korisnici").doc(doc.id).update({
           oglasi: korisnik.oglasi
-        }).then(() => {
-          console.log(this.dislike.style.color);
-          this.dislike.style.color == "rgb(229, 115, 115)" ? this.dislike.style.color = "black" : this.dislike.style.color = "rgb(229, 115, 115)";
         });
       });
     });
@@ -1135,6 +1156,6 @@ class IspisOglasa extends _baseComponentDefault.default {
 }
 module.exports = IspisOglasa;
 
-},{"../baseComponent":"22hEl","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../modelAndControler":"5zPz0"}]},["24Vv9","KAAmh"], "KAAmh", "parcelRequire427e")
+},{"../baseComponent":"22hEl","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["24Vv9","KAAmh"], "KAAmh", "parcelRequire427e")
 
 //# sourceMappingURL=matematika.b261bfee.js.map

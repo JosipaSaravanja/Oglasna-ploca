@@ -1,0 +1,138 @@
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+class IspisOglasa extends _baseComponentDefault.default {
+  constructor(kontakt, opis, lokacija, cijena, razina, likes, dislikes, id, username) {
+    super("div");
+    let user = JSON.parse(localStorage["user"]);
+    this.rootElement.className = "card-panel grey lighten-5 z-depth-1";
+    let row = document.createElement("div");
+    row.className = "row valign-wrapper";
+    let col = document.createElement("div");
+    col.className = "col s11";
+    let opisElement = document.createElement("p");
+    opisElement.className = "black-text";
+    opisElement.innerHTML = opis;
+    let info = document.createElement("p");
+    info.innerHTML = `
+        ${lokacija.županija}, ${lokacija.grad}<br>
+        cijena:  ${cijena} <br>
+        razredi: ${razina} <br>
+        autor: ${username}<br>
+        kontakt: ${kontakt} 
+        `;
+    let ocjena = document.createElement("div");
+    ocjena.className = "col s1";
+    this.id = id;
+    this.like = document.createElement("i");
+    this.like.innerHTML = "thumb_up";
+    this.like.className = "material-icons";
+    this.like.style = "cursor: pointer; vertical-align :-3px;";
+    if (likes.includes(user.username)) {
+      this.like.style.color = "#64b5f6";
+    }
+    this.like.addEventListener("click", () => {
+      this.likeFunc(id, username);
+    });
+    this.dislike = document.createElement("i");
+    this.dislike.innerHTML = "thumb_down";
+    this.dislike.className = "material-icons";
+    this.dislike.style = "cursor: pointer; vertical-align :-10px;";
+    this.dislike.addEventListener("click", () => {
+      this.dislikeFunc(id, username);
+    });
+    this.numberOfLikesElement = document.createElement("span");
+    this.numberOfLikesElement.innerHTML = likes.length;
+    likes.includes(user.username) ? this.like.style.color = "#64b5f6" : false;
+    this.numberOfDislikesElement = document.createElement("span");
+    this.numberOfDislikesElement.innerHTML = Number(dislikes.length);
+    dislikes.includes(user.username) ? this.dislike.style.color = "#e57373" : false;
+    col.appendChild(opisElement);
+    col.appendChild(info);
+    ocjena.appendChild(this.numberOfLikesElement);
+    ocjena.appendChild(this.like);
+    ocjena.appendChild(this.dislike);
+    ocjena.appendChild(this.numberOfDislikesElement);
+    row.appendChild(col);
+    row.appendChild(ocjena);
+    this.addChild(row);
+  }
+  likeFunc(id, username) {
+    let user = JSON.parse(localStorage["user"]);
+    let database = firebase.firestore();
+    database.collection("korisnici").where("username", "==", username).get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        let korisnik = doc.data();
+        korisnik.oglasi.map(oglas => {
+          if (oglas.id == id) {
+            console.log(oglas);
+            if (oglas.ocjena.like.includes(user.username)) {
+              oglas.ocjena.like = oglas.ocjena.like.filter(item => item !== user.username);
+              console.log(oglas);
+            } else {
+              oglas.ocjena.like.push(user.username);
+              console.log(oglas);
+            }
+          }
+        });
+        console.log(korisnik.oglasi);
+        database.collection("korisnici").doc(doc.id).update({
+          oglasi: korisnik.oglasi
+        }).then(() => {
+          if (this.like.style.color == "rgb(100, 181, 246)") {
+            // ako je icona thumb_up plava
+            this.like.style.color = "black";
+            // pretvori u crno
+            this.numberOfLikesElement.innerHTML = Number(this.numberOfLikesElement.innerHTML) - 1;
+          } else {
+            this.like.style.color = "#64b5f6";
+            // pretvori u plavo
+            this.numberOfLikesElement.innerHTML = Number(this.numberOfLikesElement.innerHTML) + 1;
+            // i povećaj broj pored
+            this.dislike.style.color == "rgb(229, 115, 115)" ? this.dislikeFunc(id, username) : false;
+          }
+        });
+      });
+    });
+  }
+  dislikeFunc(id, username) {
+    let user = JSON.parse(localStorage["user"]);
+    let database = firebase.firestore();
+    database.collection("korisnici").where("username", "==", username).get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        let korisnik = doc.data();
+        korisnik.oglasi.map(oglas => {
+          if (oglas.id == id) {
+            console.log(oglas);
+            if (oglas.ocjena.dislike.includes(user.username)) {
+              oglas.ocjena.dislike = oglas.ocjena.dislike.filter(item => item !== user.username);
+              console.log(oglas);
+            } else {
+              oglas.ocjena.dislike.push(user.username);
+              console.log(oglas);
+            }
+          }
+        });
+        console.log(korisnik.oglasi);
+        database.collection("korisnici").doc(doc.id).update({
+          oglasi: korisnik.oglasi
+        }).then(() => {
+          if (this.dislike.style.color == "rgb(229, 115, 115)") {
+            // ako icona thumb_down svijetli crveno
+            this.dislike.style.color = "black";
+            // oboji je u crno
+            this.numberOfDislikesElement.innerHTML = Number(this.numberOfDislikesElement.innerHTML) - 1;
+          } else {
+            this.dislike.style.color = "rgb(229, 115, 115)";
+            // oboji crveno
+            this.numberOfDislikesElement.innerHTML = Number(this.numberOfDislikesElement.innerHTML) + 1;
+            // dodaj jedan glas
+            this.like.style.color == "rgb(100, 181, 246)" ? // ako je korisnik već like-ao ovaj oglas
+            this.likeFunc(id, username) : false;
+          }
+        });
+      });
+    });
+  }
+}
+module.exports = IspisOglasa;
