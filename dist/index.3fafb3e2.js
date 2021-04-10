@@ -495,8 +495,6 @@ class Component {
 
 module.exports = Component;
 
-//import TodoApp from "./components/todoApp";
-
 },{}],"1YQWG":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
@@ -516,7 +514,7 @@ class Neprijavljeni extends _baseComponentDefault.default {
     prijava.className = "waves-effect waves-light btn-small";
     prijava.innerHTML = "Prijava";
     prijava.addEventListener("click", () => {
-      this.prijava(this.password);
+      this.prijava();
     });
     let ili = document.createElement("p");
     ili.innerHTML = "ILI";
@@ -535,15 +533,15 @@ class Neprijavljeni extends _baseComponentDefault.default {
       this.addChild(col);
     });
   }
-  prijava(password) {
+  prijava() {
     let database = firebase.firestore();
     let prijava = false;
     // gleda da li se korisnik uspio prijaviti tj. da li je ispravno i username i password
-    database.collection("korisnici").where("username", "==", this.username.value).get().then(function (querySnapshot) {
-      querySnapshot.forEach(function (doc) {
+    database.collection("korisnici").where("username", "==", this.username.value).get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
         let podaci = doc.data();
         console.log(podaci);
-        if (podaci.password == password.value) {
+        if (podaci.password == this.password.value) {
           M.toast({
             html: `Uspjesna prijava ${podaci.username}`
           });
@@ -556,7 +554,7 @@ class Neprijavljeni extends _baseComponentDefault.default {
       prijava == false ? alert("Netocno korisnicko ime ili lozinka") : false;
     });
   }
-  registracija(password) {
+  registracija() {
     let database = firebase.firestore();
     let vecZauzeto = false;
     // provjerava je li username već zauzet
@@ -565,11 +563,14 @@ class Neprijavljeni extends _baseComponentDefault.default {
         doc.data().username == this.username.value ? vecZauzeto = true : false;
       });
       if (vecZauzeto == true) {
-        alert("Korisnicko ime koje ste upisali je već zauzeto");
+        M.toast({
+          html: `Korisnicko ime koje ste upisali je već zauzeto`
+        });
       } else {
         let obj = {
+          id: "",
           username: this.username.value,
-          password: password.value,
+          password: this.password.value,
           oglasi: [],
           kontakt: "",
           lokacija: {
@@ -577,12 +578,16 @@ class Neprijavljeni extends _baseComponentDefault.default {
             grad: ""
           }
         };
-        database.collection("korisnici").add(obj);
-        // dodaje novi docu firebase
-        M.toast({
-          html: `${this.username.value}, uspješno ste se registrirali `
+        database.collection("korisnici").add(obj).then(doc => {
+          database.collection("korisnici").doc(doc.id).update({
+            id: doc.id
+          }).then(() => {
+            M.toast({
+              html: `${this.username.value}, uspješno ste se registrirali `
+            });
+            this.prijava();
+          });
         });
-        this.prijava(password);
       }
     });
   }
@@ -593,7 +598,7 @@ module.exports = Neprijavljeni;
 class Controler extends EventTarget {
     constructor(){
         super();
-        this.user=JSON.parse(localStorage["user"]) ;
+        this.user=JSON.parse(localStorage["user"]);
         console.log(this.user)
     }
 
@@ -691,7 +696,7 @@ class Prijavljeni extends _baseComponentDefault.default {
     let spremi = document.createElement("a");
     spremi.className = "waves-effect waves-light btn-small";
     spremi.addEventListener("click", () => {
-      this.spremi(this.user, this.password, this.select, this.grad, this.kontakt);
+      this.spremi();
     });
     spremi.style.marginBottom = "5%";
     spremi.innerHTML = `Spremi promjene <i class="material-icons right">save</i>`;
@@ -714,26 +719,20 @@ class Prijavljeni extends _baseComponentDefault.default {
     this.addChildren([img, col]);
   }
   spremi() {
-    let user = JSON.parse(localStorage["user"]);
     let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", _modelAndControlerDefault.default.user.username).get().then(querySnapshot => {
-      querySnapshot.forEach(doc => {
-        console.log(this);
-        database.collection("korisnici").doc(doc.id).update({
-          password: this.password.value,
-          lokacija: {
-            županija: this.select.value,
-            grad: this.grad.value
-          },
-          kontakt: this.kontakt.value
-        }).then(() => {
-          database.collection("korisnici").where("username", "==", _modelAndControlerDefault.default.user.username).get().then(function (querySnapshot) {
-            querySnapshot.forEach(function (doc) {
-              localStorage["user"] = JSON.stringify(doc.data());
-              // localStorage["user"] poprimi nove podatke nakon što ih je korisnik update-ao
-              location.reload();
-            });
-          });
+    database.collection("korisnici").doc(_modelAndControlerDefault.default.user.id).update({
+      password: this.password.value,
+      lokacija: {
+        županija: this.select.value,
+        grad: this.grad.value
+      },
+      kontakt: this.kontakt.value
+    }).then(() => {
+      database.collection("korisnici").where("username", "==", _modelAndControlerDefault.default.user.username).get().then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          localStorage["user"] = JSON.stringify(doc.data());
+          // localStorage["user"] poprimi nove podatke nakon što ih je korisnik update-ao
+          location.reload();
         });
       });
     });
@@ -875,12 +874,13 @@ module.exports = Filter;
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
 class OglasTodoCard extends _baseComponentDefault.default {
-  constructor(id, kontakt, opis, lokacija, cijena, predmet, razina, date, likes, dislikes, username) {
+  constructor(id, opis, cijena, predmet, razina, date, likes, dislikes) {
     super("div");
     this.rootElement.className = "card-panel grey lighten-5 z-depth-1";
     this.id = id;
-    this.username = username;
     let row = document.createElement("div");
     row.className = "row";
     let col = document.createElement("div");
@@ -890,13 +890,13 @@ class OglasTodoCard extends _baseComponentDefault.default {
     opisElement.innerHTML = opis;
     let info = document.createElement("p");
     info.innerHTML = `
-            ${lokacija.županija}, ${lokacija.grad}<br>
+            ${_modelAndControlerDefault.default.user.lokacija.županija}, ${_modelAndControlerDefault.default.user.lokacija.grad}<br>
             cijena:  ${cijena} <br>
             predmet: ${predmet} <br>
             razredi: ${razina} <br>
             datum: ${date} <br>
-            autor: ${username}<br>
-            kontakt: ${kontakt} 
+            autor: ${_modelAndControlerDefault.default.user.username}<br>
+            kontakt: ${_modelAndControlerDefault.default.user.kontakt} 
         `;
     let ocjena = document.createElement("div");
     ocjena.className = "col s1";
@@ -934,7 +934,7 @@ class OglasTodoCard extends _baseComponentDefault.default {
   }
   removeSelf() {
     let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", this.username).get().then(querySnapshot => {
+    database.collection("korisnici").where("username", "==", _modelAndControlerDefault.default.user.username).get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         let korisnik = doc.data();
         database.collection("korisnici").doc(doc.id).// pronalazi korisnika
@@ -950,7 +950,7 @@ class OglasTodoCard extends _baseComponentDefault.default {
 }
 module.exports = OglasTodoCard;
 
-},{"../baseComponent":"22hEl","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"1LZQR":[function(require,module,exports) {
+},{"../baseComponent":"22hEl","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../modelAndControler":"5zPz0"}],"1LZQR":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
@@ -961,28 +961,28 @@ var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler
 class MojiOglasi extends _baseComponentDefault.default {
   constructor() {
     super("div");
-    let sadrzaj = document.createElement("div");
+    this.spremljeniOglasi = document.createElement("div");
     this.noviOglasi = document.createElement("div");
     let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", _modelAndControlerDefault.default.user.username).get().then(function (querySnapshot) {
+    database.collection("korisnici").where("username", "==", _modelAndControlerDefault.default.user.username).get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         let korisnik = doc.data();
-        korisnik.oglasi.reverse().forEach(el => {
+        korisnik.oglasi.forEach(el => {
           // pronalazi sve oglase korisnika i ispisuje ih od kraja tako da su oni nedavno uneseni na vrhu
-          let oglas = new _oglasTodoCardDefault.default(el.id, korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.predmet, el.razina, el.date, el.ocjena.like, el.ocjena.dislike, korisnik.username);
-          sadrzaj.appendChild(oglas.rootElement);
+          let oglas = new _oglasTodoCardDefault.default(el.id, el.opis, el.cijena, el.predmet, el.razina, el.date, el.ocjena.like, el.ocjena.dislike);
+          this.spremljeniOglasi.insertBefore(oglas.rootElement, this.spremljeniOglasi.firstChild);
         });
       });
     });
     _modelAndControlerDefault.default.addEventListener("newOglas", event => {
       this.dodanJeOglas(event.detail.oglas);
     });
-    this.addChildren([this.noviOglasi, sadrzaj]);
+    this.addChildren([this.noviOglasi, this.spremljeniOglasi]);
   }
   dodanJeOglas(el) {
     console.log(el);
-    let oglas = new _oglasTodoCardDefault.default(el.id, el.kontakt, el.opis, el.lokacija, el.cijena, el.predmet, el.razina, el.date, el.ocjena.like, el.ocjena.dislike, el.username);
-    this.noviOglasi.appendChild(oglas.rootElement);
+    let oglas = new _oglasTodoCardDefault.default(el.id, el.opis, el.cijena, el.predmet, el.razina, el.date, el.ocjena.like, el.ocjena.dislike);
+    this.noviOglasi.insertBefore(oglas.rootElement, this.noviOglasi.firstChild);
   }
 }
 module.exports = MojiOglasi;

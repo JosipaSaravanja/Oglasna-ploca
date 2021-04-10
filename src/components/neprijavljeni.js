@@ -20,7 +20,7 @@ class Neprijavljeni extends Component {
     prijava.className = "waves-effect waves-light btn-small";
     prijava.innerHTML = "Prijava";
     prijava.addEventListener("click", () => {
-      this.prijava(this.password);
+      this.prijava();
     });
 
     let ili = document.createElement("p");
@@ -42,18 +42,18 @@ class Neprijavljeni extends Component {
       this.addChild(col);
     });     
   }
-  prijava(password) {
+  prijava() {
     let database = firebase.firestore();
     let prijava = false; //gleda da li se korisnik uspio prijaviti tj. da li je ispravno i username i password
     database
       .collection("korisnici")
       .where("username", "==", this.username.value)
       .get()
-      .then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
+      .then((querySnapshot)=> {
+        querySnapshot.forEach((doc)=> {
           let podaci = doc.data();
           console.log(podaci);
-          if (podaci.password == password.value) {
+          if (podaci.password == this.password.value) {
             M.toast({ html: `Uspjesna prijava ${podaci.username}` });
             prijava = true; //korisnik se prijavio
             localStorage["user"] = JSON.stringify(podaci);
@@ -64,7 +64,7 @@ class Neprijavljeni extends Component {
       });
   }
 
-  registracija(password) {
+  registracija() {
     let database = firebase.firestore();
     let vecZauzeto = false; //provjerava je li username već zauzet
     database
@@ -75,18 +75,23 @@ class Neprijavljeni extends Component {
           doc.data().username == this.username.value ? vecZauzeto = true : false; //ukoliko je korisnicko ime vec zauzeto mjenja se vrijadnost vecZauzeto
         });
         if (vecZauzeto == true) {
-          alert("Korisnicko ime koje ste upisali je već zauzeto");
+          M.toast({ html: `Korisnicko ime koje ste upisali je već zauzeto` });
         } else {
           let obj = {
+            id: "",
             username: this.username.value,
-            password: password.value,
+            password: this.password.value,
             oglasi: [],
             kontakt: "",
             lokacija: { županija: "", grad: "" },
           };
-          database.collection("korisnici").add(obj);//dodaje novi docu firebase
-          M.toast({ html: `${this.username.value}, uspješno ste se registrirali ` });
-          this.prijava(password); //automatski se i prijavi
+          database.collection("korisnici").add(obj).then((doc)=>{
+            database.collection("korisnici").doc(doc.id).update({
+              id: doc.id,
+            }).then(()=>{
+            M.toast({ html: `${this.username.value}, uspješno ste se registrirali ` });
+            this.prijava(); })//automatski se i prijavi
+          })//dodaje novi doc u firebase
         }
       });
   }

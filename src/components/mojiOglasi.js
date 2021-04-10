@@ -6,31 +6,30 @@ import controler from "../modelAndControler";
 class MojiOglasi extends Component {
   constructor() {
     super("div");
-    let sadrzaj = document.createElement("div");
+    this.spremljeniOglasi = document.createElement("div");
     this.noviOglasi=document.createElement("div");
     let database = firebase.firestore();
     database
       .collection("korisnici")
       .where("username", "==", controler.user.username)
       .get()
-      .then(function (querySnapshot) {
+      .then((querySnapshot) =>{
         querySnapshot.forEach((doc) => { 
           let korisnik = doc.data();
-          korisnik.oglasi.reverse().forEach((el) => {//pronalazi sve oglase korisnika i ispisuje ih od kraja tako da su oni nedavno uneseni na vrhu
+          korisnik.oglasi.forEach((el) => {//pronalazi sve oglase korisnika i ispisuje ih od kraja tako da su oni nedavno uneseni na vrhu
             let oglas = new OglasTodoCard(
               el.id,
-              korisnik.kontakt,
               el.opis,
-              korisnik.lokacija,
               el.cijena,
               el.predmet,
               el.razina,
               el.date,
               el.ocjena.like,
               el.ocjena.dislike,
-              korisnik.username
             );
-            sadrzaj.appendChild(oglas.rootElement); //zasto mi ne pronalazi this
+            this.spremljeniOglasi.insertBefore(
+              oglas.rootElement, 
+              this.spremljeniOglasi.firstChild) 
           });
         });
       });
@@ -38,26 +37,24 @@ class MojiOglasi extends Component {
     controler.addEventListener("newOglas", (event) => {
       this.dodanJeOglas(event.detail.oglas); //reagira kada je kreiran novi oglas
     });
-    this.addChildren([this.noviOglasi, sadrzaj]);
+    this.addChildren([this.noviOglasi, this.spremljeniOglasi]);
   }
 
   dodanJeOglas(el) {
     console.log(el);
     let oglas = new OglasTodoCard(
       el.id,
-      el.kontakt,
       el.opis,
-      el.lokacija,
       el.cijena,
       el.predmet,
       el.razina,
       el.date,
       el.ocjena.like,
       el.ocjena.dislike,
-      el.username
     );
-    this.noviOglasi.appendChild(oglas.rootElement);
-  } //kako staviti da se novi oglas stavi na početak this.novihOglasa?
+    this.noviOglasi.insertBefore(
+      oglas.rootElement, 
+      this.noviOglasi.firstChild);}
 }
 
 module.exports = MojiOglasi;

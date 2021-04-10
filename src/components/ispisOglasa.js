@@ -29,7 +29,6 @@ class IspisOglasa extends Component {
     opisElement.className = "black-text";
     opisElement.innerHTML = opis;
 
-    console.log(date)
     let info = document.createElement("p");
     info.innerHTML = `
         ${lokacija.županija}, ${lokacija.grad}<br>
@@ -48,9 +47,10 @@ class IspisOglasa extends Component {
     this.like.innerHTML = "thumb_up";
     this.like.className = "material-icons";
     this.like.style = "cursor: pointer; vertical-align :-3px;";
-    if (likes.includes(controler.user.username)) {
-      this.like.style.color = "rgb(100, 181, 246)";
-    }
+    likes.includes(controler.user.username)
+      ? (this.like.style.color = "rgb(100, 181, 246)")
+      : false;
+
     this.like.addEventListener("click", () => {
       controler.user!==false?this.likeFunc(): M.toast({ html: `Morate se prijaviti da biste ocjenjivali oglase.` });;
     });
@@ -58,6 +58,10 @@ class IspisOglasa extends Component {
     this.dislike = document.createElement("i");
     this.dislike.innerHTML = "thumb_down";
     this.dislike.className = "material-icons";
+    dislikes.includes(controler.user.username)
+      ? (this.dislike.style.color = "rgb(229, 115, 115)")
+      : false;
+
     this.dislike.style = "cursor: pointer; vertical-align :-10px;";
     this.dislike.addEventListener("click", () => {
       controler.user!==false?this.dislikeFunc(): M.toast({ html: `Morate se prijaviti da biste ocjenjivali oglase.` });;
@@ -65,16 +69,11 @@ class IspisOglasa extends Component {
 
     this.numberOfLikesElement = document.createElement("span");
     this.numberOfLikesElement.innerHTML = likes.length;
-    likes.includes(controler.user.username)
-      ? (this.like.style.color = "rgb(100, 181, 246)")
-      : false;
+    
 
     this.numberOfDislikesElement = document.createElement("span");
     this.numberOfDislikesElement.innerHTML = Number(dislikes.length);
-    dislikes.includes(controler.user.username)
-      ? (this.dislike.style.color = "rgb(229, 115, 115)")
-      : false;
-
+    
     col.appendChild(opisElement);
     col.appendChild(info);
     ocjena.appendChild(this.numberOfLikesElement);
@@ -135,6 +134,7 @@ class IspisOglasa extends Component {
       });
   }
   dislikeFunc() {
+    console.log(controler.user.id)
     let database = firebase.firestore();
     database
       .collection("korisnici")

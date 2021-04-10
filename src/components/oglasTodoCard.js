@@ -1,24 +1,21 @@
 //Kreira kartice koje se nalaze u trecem stupcu s podacima koje je dobio
 import Component from "../baseComponent";
+import controler from "../modelAndControler";
 
 class OglasTodoCard extends Component {
   constructor(
     id,
-    kontakt,
     opis,
-    lokacija,
     cijena,
     predmet,
     razina,
     date,
     likes,
     dislikes,
-    username
   ) {
     super("div");
     this.rootElement.className = "card-panel grey lighten-5 z-depth-1";
     this.id=id;
-    this.username=username;
     let row = document.createElement("div");
     row.className = "row";
 
@@ -31,13 +28,13 @@ class OglasTodoCard extends Component {
 
     let info = document.createElement("p");
     info.innerHTML = `
-            ${lokacija.županija}, ${lokacija.grad}<br>
+            ${controler.user.lokacija.županija}, ${controler.user.lokacija.grad}<br>
             cijena:  ${cijena} <br>
             predmet: ${predmet} <br>
             razredi: ${razina} <br>
             datum: ${date} <br>
-            autor: ${username}<br>
-            kontakt: ${kontakt} 
+            autor: ${controler.user.username}<br>
+            kontakt: ${controler.user.kontakt} 
         `;
 
     let ocjena = document.createElement("div");
@@ -86,7 +83,7 @@ class OglasTodoCard extends Component {
     let database = firebase.firestore();
     database
       .collection("korisnici")
-      .where("username", "==", this.username)
+      .where("username", "==", controler.user.username)
       .get()
       .then((querySnapshot)=> {
         querySnapshot.forEach((doc)=> {

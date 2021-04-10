@@ -63,7 +63,7 @@ class Prijavljeni extends Component {
 
     let spremi = document.createElement("a");
     spremi.className = "waves-effect waves-light btn-small";
-    spremi.addEventListener("click", ()=>{this.spremi(this.user, this.password, this.select, this.grad, this.kontakt)})
+    spremi.addEventListener("click", ()=>{this.spremi()})
     spremi.style.marginBottom="5%";
     spremi.innerHTML = `Spremi promjene <i class="material-icons right">save</i>`;
       
@@ -86,12 +86,8 @@ class Prijavljeni extends Component {
       this.addChildren([img, col]);
 }
   spremi(){
-    let user = JSON.parse(localStorage["user"]);
     let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", controler.user.username).get().then((querySnapshot)=> {
-      querySnapshot.forEach((doc)=>{
-        console.log(this)
-        database.collection("korisnici").doc(doc.id).update({
+        database.collection("korisnici").doc(controler.user.id).update({
           password: this.password.value,
           lokacija:{županija: this.select.value, grad: this.grad.value},
           kontakt: this.kontakt.value
@@ -103,8 +99,6 @@ class Prijavljeni extends Component {
             })
           });
           })
-      })
-    });
   } 
 }
 
