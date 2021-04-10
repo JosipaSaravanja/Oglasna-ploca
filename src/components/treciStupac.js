@@ -8,7 +8,7 @@ import controler from "../modelAndControler";
 class TreciStupac extends Component {
   constructor() {
     super("div");
-    JSON.parse(localStorage["user"]) == false
+    controler.user == false
       ? this.addChild(new Filter().rootElement)
       : this.addChildren([
           new DodajOglas().rootElement,

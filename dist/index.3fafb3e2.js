@@ -447,16 +447,19 @@ var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _componentsPrviStupacDefault = _parcelHelpers.interopDefault(_componentsPrviStupac);
 var _componentsTreciStupac = require("./components/treciStupac");
 var _componentsTreciStupacDefault = _parcelHelpers.interopDefault(_componentsTreciStupac);
+var _modelAndControler = require("./modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
 M.AutoInit();
 document.getElementById("stupac1").appendChild(new _componentsPrviStupacDefault.default().rootElement);
 // Popunjava prvi stupac
-if (JSON.parse(localStorage["user"]) !== false) {
+if (_modelAndControlerDefault.default.user !== false) {
   // Ukoliko je netko prijavljen popunjava treći stupac
   document.getElementById("stupac3").appendChild(new _componentsTreciStupacDefault.default().rootElement);
 }
 console.log(JSON.parse(localStorage["user"]));
+console.log(localStorage["user"]);
 
-},{"./components/PrviStupac":"6Tngg","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","./components/treciStupac":"7dnyH"}],"6Tngg":[function(require,module,exports) {
+},{"./components/PrviStupac":"6Tngg","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","./components/treciStupac":"7dnyH","./modelAndControler":"5zPz0"}],"6Tngg":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
@@ -464,15 +467,17 @@ var _neprijavljeni = require("./neprijavljeni");
 var _neprijavljeniDefault = _parcelHelpers.interopDefault(_neprijavljeni);
 var _prijavljeni = require("./prijavljeni");
 var _prijavljeniDefault = _parcelHelpers.interopDefault(_prijavljeni);
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
 class PrviStupac extends _baseComponentDefault.default {
   constructor() {
     super("div");
-    JSON.parse(localStorage["user"]) == false ? this.addChild(new _neprijavljeniDefault.default().rootElement) : this.addChild(new _prijavljeniDefault.default().rootElement);
+    _modelAndControlerDefault.default.user == false ? this.addChild(new _neprijavljeniDefault.default().rootElement) : this.addChild(new _prijavljeniDefault.default().rootElement);
   }
 }
 module.exports = PrviStupac;
 
-},{"../baseComponent":"22hEl","./neprijavljeni":"1YQWG","./prijavljeni":"5qvko","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"22hEl":[function(require,module,exports) {
+},{"../baseComponent":"22hEl","./neprijavljeni":"1YQWG","./prijavljeni":"5qvko","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../modelAndControler":"5zPz0"}],"22hEl":[function(require,module,exports) {
 class Component {
     constructor(rootElementTag) {
         this.rootElement = document.createElement(rootElementTag);
@@ -588,20 +593,9 @@ module.exports = Neprijavljeni;
 class Controler extends EventTarget {
     constructor(){
         super();
+        this.user=JSON.parse(localStorage["user"]) ;
+        console.log(this.user)
     }
-
-/*     ocjena(ocjena, pomak, username,id){
-        this.dispatchEvent(
-            new CustomEvent(
-                "ocjenjenOglas",
-                {detail: {user:{
-                    ocjena:ocjena,
-                    pomak:pomak,
-                    username:username, 
-                    id:id}}}
-                )
-        );
-    } */
 
     addOglas(event){
         this.dispatchEvent(
@@ -661,18 +655,18 @@ exports.export = function (dest, destName, get) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
-require("../modelAndControler");
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
 class Prijavljeni extends _baseComponentDefault.default {
   constructor() {
     super("div");
-    this.user = JSON.parse(localStorage["user"]);
     let img = document.createElement("img");
     img.className = "col s12 m6 l12";
     img.src = `https://icons-for-free.com/iconfiles/png/512/eva+icons+++fill+person-1324449943844961316.png`;
     // kako povezat mapu s ovim dokumentom?
     img.style.textAlign = "center";
     let ime = document.createElement("h5");
-    ime.innerHTML = this.user.username;
+    ime.innerHTML = _modelAndControlerDefault.default.user.username;
     this.select = document.createElement("select");
     this.select.id = `zupanije`;
     this.select.className = "browser-default";
@@ -683,16 +677,16 @@ class Prijavljeni extends _baseComponentDefault.default {
       option.value = el;
       this.select.appendChild(option);
     });
-    this.select.value = this.user.lokacija.županija;
+    this.select.value = _modelAndControlerDefault.default.user.lokacija.županija;
     this.grad = document.createElement("input");
     this.grad.placeholder = "Grad";
-    this.grad.value = this.user.lokacija.grad;
+    this.grad.value = _modelAndControlerDefault.default.user.lokacija.grad;
     this.kontakt = document.createElement("input");
     this.kontakt.placeholder = "Kontakt";
-    this.kontakt.value = this.user.kontakt;
+    this.kontakt.value = _modelAndControlerDefault.default.user.kontakt;
     this.password = document.createElement("input");
     this.password.placeholder = "Lozinka";
-    this.password.value = this.user.password;
+    this.password.value = _modelAndControlerDefault.default.user.password;
     this.password.type = "password";
     let spremi = document.createElement("a");
     spremi.className = "waves-effect waves-light btn-small";
@@ -722,7 +716,7 @@ class Prijavljeni extends _baseComponentDefault.default {
   spremi() {
     let user = JSON.parse(localStorage["user"]);
     let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", this.user.username).get().then(querySnapshot => {
+    database.collection("korisnici").where("username", "==", _modelAndControlerDefault.default.user.username).get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         console.log(this);
         database.collection("korisnici").doc(doc.id).update({
@@ -733,7 +727,7 @@ class Prijavljeni extends _baseComponentDefault.default {
           },
           kontakt: this.kontakt.value
         }).then(() => {
-          database.collection("korisnici").where("username", "==", this.user.username).get().then(function (querySnapshot) {
+          database.collection("korisnici").where("username", "==", _modelAndControlerDefault.default.user.username).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
               localStorage["user"] = JSON.stringify(doc.data());
               // localStorage["user"] poprimi nove podatke nakon što ih je korisnik update-ao
@@ -757,11 +751,12 @@ var _dodajOglas = require("./dodajOglas");
 var _dodajOglasDefault = _parcelHelpers.interopDefault(_dodajOglas);
 var _filter = require("./filter");
 var _filterDefault = _parcelHelpers.interopDefault(_filter);
-require("../modelAndControler");
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
 class TreciStupac extends _baseComponentDefault.default {
   constructor() {
     super("div");
-    JSON.parse(localStorage["user"]) == false ? this.addChild(new _filterDefault.default().rootElement) : this.addChildren([new _dodajOglasDefault.default().rootElement, new _mojiOglasiDefault.default().rootElement]);
+    _modelAndControlerDefault.default.user == false ? this.addChild(new _filterDefault.default().rootElement) : this.addChildren([new _dodajOglasDefault.default().rootElement, new _mojiOglasiDefault.default().rootElement]);
   }
 }
 module.exports = TreciStupac;
@@ -791,9 +786,8 @@ class DodajOglas extends _baseComponentDefault.default {
     let type = document.getElementById("predmet");
     let razina = document.getElementById("razina");
     // prikuplja podatke iz modal1
-    let user = JSON.parse(localStorage["user"]);
     let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
+    database.collection("korisnici").where("username", "==", _modelAndControlerDefault.default.user.username).get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
         let korisnik = doc.data();
         let id = Number();
@@ -814,7 +808,8 @@ class DodajOglas extends _baseComponentDefault.default {
           },
           opis: opis.value,
           predmet: type.value,
-          razina: razina.value
+          razina: razina.value,
+          date: new Date().getMonth() + 1 + ". " + new Date().getDate() + ". " + new Date().getFullYear() + "."
         };
         korisnik.oglasi.push(noviOglas);
         // trenutni niz oglasa push prima novonapravljeni oglas
@@ -831,9 +826,8 @@ class DodajOglas extends _baseComponentDefault.default {
       });
       opis.value = "";
       cijena.value = "";
-      type.value = "";
-      // kako da napravim da je value odmah na pocetku ="", ja sam probala napravit u matematika.html jedan option s samim praznim prostorom
-      razina.value = "";
+      type.value = "matematika";
+      razina.value = "osnovna škola";
     });
   }
 }
@@ -882,10 +876,11 @@ var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
 class OglasTodoCard extends _baseComponentDefault.default {
-  constructor(id, kontakt, opis, lokacija, cijena, predmet, razina, likes, dislikes, username) {
+  constructor(id, kontakt, opis, lokacija, cijena, predmet, razina, date, likes, dislikes, username) {
     super("div");
-    let user = JSON.parse(localStorage["user"]);
     this.rootElement.className = "card-panel grey lighten-5 z-depth-1";
+    this.id = id;
+    this.username = username;
     let row = document.createElement("div");
     row.className = "row";
     let col = document.createElement("div");
@@ -899,6 +894,7 @@ class OglasTodoCard extends _baseComponentDefault.default {
             cijena:  ${cijena} <br>
             predmet: ${predmet} <br>
             razredi: ${razina} <br>
+            datum: ${date} <br>
             autor: ${username}<br>
             kontakt: ${kontakt} 
         `;
@@ -923,7 +919,7 @@ class OglasTodoCard extends _baseComponentDefault.default {
     button.className = "col s12 waves-effect waves-light btn";
     button.innerHTML = "OBRIŠI OGLAS";
     button.addEventListener("click", () => {
-      this.removeSelf(id, username);
+      this.removeSelf();
     });
     col2.appendChild(button);
     col.appendChild(opisElement);
@@ -936,14 +932,14 @@ class OglasTodoCard extends _baseComponentDefault.default {
     row.appendChild(col2);
     this.addChild(row);
   }
-  removeSelf(id, username) {
+  removeSelf() {
     let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", username).get().then(querySnapshot => {
+    database.collection("korisnici").where("username", "==", this.username).get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         let korisnik = doc.data();
         database.collection("korisnici").doc(doc.id).// pronalazi korisnika
         update({
-          oglasi: korisnik.oglasi.filter(item => item.id !== id)
+          oglasi: korisnik.oglasi.filter(item => item.id !== this.id)
         }).then(() => {
           let parent = this.rootElement.parentNode;
           parent.removeChild(this.rootElement);
@@ -967,14 +963,13 @@ class MojiOglasi extends _baseComponentDefault.default {
     super("div");
     let sadrzaj = document.createElement("div");
     this.noviOglasi = document.createElement("div");
-    let user = JSON.parse(localStorage["user"]);
     let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
+    database.collection("korisnici").where("username", "==", _modelAndControlerDefault.default.user.username).get().then(function (querySnapshot) {
       querySnapshot.forEach(doc => {
         let korisnik = doc.data();
         korisnik.oglasi.reverse().forEach(el => {
           // pronalazi sve oglase korisnika i ispisuje ih od kraja tako da su oni nedavno uneseni na vrhu
-          let oglas = new _oglasTodoCardDefault.default(el.id, korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.predmet, el.razina, el.ocjena.like, el.ocjena.dislike, korisnik.username);
+          let oglas = new _oglasTodoCardDefault.default(el.id, korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.predmet, el.razina, el.date, el.ocjena.like, el.ocjena.dislike, korisnik.username);
           sadrzaj.appendChild(oglas.rootElement);
         });
       });
@@ -986,7 +981,7 @@ class MojiOglasi extends _baseComponentDefault.default {
   }
   dodanJeOglas(el) {
     console.log(el);
-    let oglas = new _oglasTodoCardDefault.default(el.id, el.kontakt, el.opis, el.lokacija, el.cijena, el.predmet, el.razina, el.ocjena.like, el.ocjena.dislike, el.username);
+    let oglas = new _oglasTodoCardDefault.default(el.id, el.kontakt, el.opis, el.lokacija, el.cijena, el.predmet, el.razina, el.date, el.ocjena.like, el.ocjena.dislike, el.username);
     this.noviOglasi.appendChild(oglas.rootElement);
   }
 }

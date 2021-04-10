@@ -1,0 +1,18 @@
+body  {
+  background-image: url("56af868f131b13d2742732b7a3cf7a03");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  opacity: 
+}
+
+         a.active {
+            border-left: 2px solid #4db6ac !important;
+            ;
+        }
+
+         a:hover{
+            border-left: 1px solid #4db6ac !important;
+            ;
+        }
+
+         /*Maleni dodatak za scrollspy koji je samo u ovom html dokumentu*/

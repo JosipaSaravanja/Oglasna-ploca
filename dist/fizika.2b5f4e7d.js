@@ -459,12 +459,12 @@ database.collection("korisnici").get().then(querySnapshot => {
     korisnik.oglasi.forEach(el => {
       if (el.predmet == "fizika") {
         let oglas = new _componentsIspisOglasaDefault.default(// za svaki oglas kojem je predmet="fizika" kreira katricu
-        korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.razina, el.ocjena.like, el.ocjena.dislike, el.id, korisnik.username);
+        korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.razina, el.date, el.ocjena.like, el.ocjena.dislike, el.id, korisnik.username);
         if (el.razina == "osnovna škola") {
           // karticu prema razini ubacuje u div za osnovne ili srednje škole
-          document.getElementById("osnovneSkole").appendChild(oglas.rootElement);
+          document.getElementById("osnovneSkole").insertBefore(oglas.rootElement, document.getElementById("osnovneSkole").firstChild);
         } else {
-          document.getElementById("srednjeSkole").appendChild(oglas.rootElement);
+          document.getElementById("srednjeSkole").insertBefore(oglas.rootElement, document.getElementById("srednjeSkole").firstChild);
         }
       }
     });
@@ -480,15 +480,17 @@ var _neprijavljeni = require("./neprijavljeni");
 var _neprijavljeniDefault = _parcelHelpers.interopDefault(_neprijavljeni);
 var _prijavljeni = require("./prijavljeni");
 var _prijavljeniDefault = _parcelHelpers.interopDefault(_prijavljeni);
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
 class PrviStupac extends _baseComponentDefault.default {
   constructor() {
     super("div");
-    JSON.parse(localStorage["user"]) == false ? this.addChild(new _neprijavljeniDefault.default().rootElement) : this.addChild(new _prijavljeniDefault.default().rootElement);
+    _modelAndControlerDefault.default.user == false ? this.addChild(new _neprijavljeniDefault.default().rootElement) : this.addChild(new _prijavljeniDefault.default().rootElement);
   }
 }
 module.exports = PrviStupac;
 
-},{"../baseComponent":"22hEl","./neprijavljeni":"1YQWG","./prijavljeni":"5qvko","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"22hEl":[function(require,module,exports) {
+},{"../baseComponent":"22hEl","./neprijavljeni":"1YQWG","./prijavljeni":"5qvko","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../modelAndControler":"5zPz0"}],"22hEl":[function(require,module,exports) {
 class Component {
     constructor(rootElementTag) {
         this.rootElement = document.createElement(rootElementTag);
@@ -604,20 +606,9 @@ module.exports = Neprijavljeni;
 class Controler extends EventTarget {
     constructor(){
         super();
+        this.user=JSON.parse(localStorage["user"]) ;
+        console.log(this.user)
     }
-
-/*     ocjena(ocjena, pomak, username,id){
-        this.dispatchEvent(
-            new CustomEvent(
-                "ocjenjenOglas",
-                {detail: {user:{
-                    ocjena:ocjena,
-                    pomak:pomak,
-                    username:username, 
-                    id:id}}}
-                )
-        );
-    } */
 
     addOglas(event){
         this.dispatchEvent(
@@ -677,18 +668,18 @@ exports.export = function (dest, destName, get) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
-require("../modelAndControler");
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
 class Prijavljeni extends _baseComponentDefault.default {
   constructor() {
     super("div");
-    this.user = JSON.parse(localStorage["user"]);
     let img = document.createElement("img");
     img.className = "col s12 m6 l12";
     img.src = `https://icons-for-free.com/iconfiles/png/512/eva+icons+++fill+person-1324449943844961316.png`;
     // kako povezat mapu s ovim dokumentom?
     img.style.textAlign = "center";
     let ime = document.createElement("h5");
-    ime.innerHTML = this.user.username;
+    ime.innerHTML = _modelAndControlerDefault.default.user.username;
     this.select = document.createElement("select");
     this.select.id = `zupanije`;
     this.select.className = "browser-default";
@@ -699,16 +690,16 @@ class Prijavljeni extends _baseComponentDefault.default {
       option.value = el;
       this.select.appendChild(option);
     });
-    this.select.value = this.user.lokacija.županija;
+    this.select.value = _modelAndControlerDefault.default.user.lokacija.županija;
     this.grad = document.createElement("input");
     this.grad.placeholder = "Grad";
-    this.grad.value = this.user.lokacija.grad;
+    this.grad.value = _modelAndControlerDefault.default.user.lokacija.grad;
     this.kontakt = document.createElement("input");
     this.kontakt.placeholder = "Kontakt";
-    this.kontakt.value = this.user.kontakt;
+    this.kontakt.value = _modelAndControlerDefault.default.user.kontakt;
     this.password = document.createElement("input");
     this.password.placeholder = "Lozinka";
-    this.password.value = this.user.password;
+    this.password.value = _modelAndControlerDefault.default.user.password;
     this.password.type = "password";
     let spremi = document.createElement("a");
     spremi.className = "waves-effect waves-light btn-small";
@@ -738,7 +729,7 @@ class Prijavljeni extends _baseComponentDefault.default {
   spremi() {
     let user = JSON.parse(localStorage["user"]);
     let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", this.user.username).get().then(querySnapshot => {
+    database.collection("korisnici").where("username", "==", _modelAndControlerDefault.default.user.username).get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         console.log(this);
         database.collection("korisnici").doc(doc.id).update({
@@ -749,7 +740,7 @@ class Prijavljeni extends _baseComponentDefault.default {
           },
           kontakt: this.kontakt.value
         }).then(() => {
-          database.collection("korisnici").where("username", "==", this.user.username).get().then(function (querySnapshot) {
+          database.collection("korisnici").where("username", "==", _modelAndControlerDefault.default.user.username).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
               localStorage["user"] = JSON.stringify(doc.data());
               // localStorage["user"] poprimi nove podatke nakon što ih je korisnik update-ao
@@ -773,11 +764,12 @@ var _dodajOglas = require("./dodajOglas");
 var _dodajOglasDefault = _parcelHelpers.interopDefault(_dodajOglas);
 var _filter = require("./filter");
 var _filterDefault = _parcelHelpers.interopDefault(_filter);
-require("../modelAndControler");
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
 class TreciStupac extends _baseComponentDefault.default {
   constructor() {
     super("div");
-    JSON.parse(localStorage["user"]) == false ? this.addChild(new _filterDefault.default().rootElement) : this.addChildren([new _dodajOglasDefault.default().rootElement, new _mojiOglasiDefault.default().rootElement]);
+    _modelAndControlerDefault.default.user == false ? this.addChild(new _filterDefault.default().rootElement) : this.addChildren([new _dodajOglasDefault.default().rootElement, new _mojiOglasiDefault.default().rootElement]);
   }
 }
 module.exports = TreciStupac;
@@ -807,9 +799,8 @@ class DodajOglas extends _baseComponentDefault.default {
     let type = document.getElementById("predmet");
     let razina = document.getElementById("razina");
     // prikuplja podatke iz modal1
-    let user = JSON.parse(localStorage["user"]);
     let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
+    database.collection("korisnici").where("username", "==", _modelAndControlerDefault.default.user.username).get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
         let korisnik = doc.data();
         let id = Number();
@@ -830,7 +821,8 @@ class DodajOglas extends _baseComponentDefault.default {
           },
           opis: opis.value,
           predmet: type.value,
-          razina: razina.value
+          razina: razina.value,
+          date: new Date().getMonth() + 1 + ". " + new Date().getDate() + ". " + new Date().getFullYear() + "."
         };
         korisnik.oglasi.push(noviOglas);
         // trenutni niz oglasa push prima novonapravljeni oglas
@@ -847,9 +839,8 @@ class DodajOglas extends _baseComponentDefault.default {
       });
       opis.value = "";
       cijena.value = "";
-      type.value = "";
-      // kako da napravim da je value odmah na pocetku ="", ja sam probala napravit u matematika.html jedan option s samim praznim prostorom
-      razina.value = "";
+      type.value = "matematika";
+      razina.value = "osnovna škola";
     });
   }
 }
@@ -898,10 +889,11 @@ var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
 class OglasTodoCard extends _baseComponentDefault.default {
-  constructor(id, kontakt, opis, lokacija, cijena, predmet, razina, likes, dislikes, username) {
+  constructor(id, kontakt, opis, lokacija, cijena, predmet, razina, date, likes, dislikes, username) {
     super("div");
-    let user = JSON.parse(localStorage["user"]);
     this.rootElement.className = "card-panel grey lighten-5 z-depth-1";
+    this.id = id;
+    this.username = username;
     let row = document.createElement("div");
     row.className = "row";
     let col = document.createElement("div");
@@ -915,6 +907,7 @@ class OglasTodoCard extends _baseComponentDefault.default {
             cijena:  ${cijena} <br>
             predmet: ${predmet} <br>
             razredi: ${razina} <br>
+            datum: ${date} <br>
             autor: ${username}<br>
             kontakt: ${kontakt} 
         `;
@@ -939,7 +932,7 @@ class OglasTodoCard extends _baseComponentDefault.default {
     button.className = "col s12 waves-effect waves-light btn";
     button.innerHTML = "OBRIŠI OGLAS";
     button.addEventListener("click", () => {
-      this.removeSelf(id, username);
+      this.removeSelf();
     });
     col2.appendChild(button);
     col.appendChild(opisElement);
@@ -952,14 +945,14 @@ class OglasTodoCard extends _baseComponentDefault.default {
     row.appendChild(col2);
     this.addChild(row);
   }
-  removeSelf(id, username) {
+  removeSelf() {
     let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", username).get().then(querySnapshot => {
+    database.collection("korisnici").where("username", "==", this.username).get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         let korisnik = doc.data();
         database.collection("korisnici").doc(doc.id).// pronalazi korisnika
         update({
-          oglasi: korisnik.oglasi.filter(item => item.id !== id)
+          oglasi: korisnik.oglasi.filter(item => item.id !== this.id)
         }).then(() => {
           let parent = this.rootElement.parentNode;
           parent.removeChild(this.rootElement);
@@ -983,14 +976,13 @@ class MojiOglasi extends _baseComponentDefault.default {
     super("div");
     let sadrzaj = document.createElement("div");
     this.noviOglasi = document.createElement("div");
-    let user = JSON.parse(localStorage["user"]);
     let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", user.username).get().then(function (querySnapshot) {
+    database.collection("korisnici").where("username", "==", _modelAndControlerDefault.default.user.username).get().then(function (querySnapshot) {
       querySnapshot.forEach(doc => {
         let korisnik = doc.data();
         korisnik.oglasi.reverse().forEach(el => {
           // pronalazi sve oglase korisnika i ispisuje ih od kraja tako da su oni nedavno uneseni na vrhu
-          let oglas = new _oglasTodoCardDefault.default(el.id, korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.predmet, el.razina, el.ocjena.like, el.ocjena.dislike, korisnik.username);
+          let oglas = new _oglasTodoCardDefault.default(el.id, korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.predmet, el.razina, el.date, el.ocjena.like, el.ocjena.dislike, korisnik.username);
           sadrzaj.appendChild(oglas.rootElement);
         });
       });
@@ -1002,7 +994,7 @@ class MojiOglasi extends _baseComponentDefault.default {
   }
   dodanJeOglas(el) {
     console.log(el);
-    let oglas = new _oglasTodoCardDefault.default(el.id, el.kontakt, el.opis, el.lokacija, el.cijena, el.predmet, el.razina, el.ocjena.like, el.ocjena.dislike, el.username);
+    let oglas = new _oglasTodoCardDefault.default(el.id, el.kontakt, el.opis, el.lokacija, el.cijena, el.predmet, el.razina, el.date, el.ocjena.like, el.ocjena.dislike, el.username);
     this.noviOglasi.appendChild(oglas.rootElement);
   }
 }
@@ -1012,10 +1004,11 @@ module.exports = MojiOglasi;
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
 class IspisOglasa extends _baseComponentDefault.default {
-  constructor(kontakt, opis, lokacija, cijena, razina, likes, dislikes, id, username) {
+  constructor(kontakt, opis, lokacija, cijena, razina, date, likes, dislikes, id, username) {
     super("div");
-    this.user = JSON.parse(localStorage["user"]);
     this.rootElement.className = "card-panel grey lighten-5 z-depth-1";
     let row = document.createElement("div");
     row.className = "row valign-wrapper";
@@ -1024,11 +1017,13 @@ class IspisOglasa extends _baseComponentDefault.default {
     let opisElement = document.createElement("p");
     opisElement.className = "black-text";
     opisElement.innerHTML = opis;
+    console.log(date);
     let info = document.createElement("p");
     info.innerHTML = `
         ${lokacija.županija}, ${lokacija.grad}<br>
         cijena:  ${cijena} <br>
         razredi: ${razina} <br>
+        datum: ${date} <br>
         autor: ${username}<br>
         kontakt: ${kontakt} 
         `;
@@ -1040,11 +1035,11 @@ class IspisOglasa extends _baseComponentDefault.default {
     this.like.innerHTML = "thumb_up";
     this.like.className = "material-icons";
     this.like.style = "cursor: pointer; vertical-align :-3px;";
-    if (likes.includes(this.user.username)) {
+    if (likes.includes(_modelAndControlerDefault.default.user.username)) {
       this.like.style.color = "rgb(100, 181, 246)";
     }
     this.like.addEventListener("click", () => {
-      this.user !== false ? this.likeFunc() : M.toast({
+      _modelAndControlerDefault.default.user !== false ? this.likeFunc() : M.toast({
         html: `Morate se prijaviti da biste ocjenjivali oglase.`
       });
       ;
@@ -1054,17 +1049,17 @@ class IspisOglasa extends _baseComponentDefault.default {
     this.dislike.className = "material-icons";
     this.dislike.style = "cursor: pointer; vertical-align :-10px;";
     this.dislike.addEventListener("click", () => {
-      this.user !== false ? this.dislikeFunc() : M.toast({
+      _modelAndControlerDefault.default.user !== false ? this.dislikeFunc() : M.toast({
         html: `Morate se prijaviti da biste ocjenjivali oglase.`
       });
       ;
     });
     this.numberOfLikesElement = document.createElement("span");
     this.numberOfLikesElement.innerHTML = likes.length;
-    likes.includes(this.user.username) ? this.like.style.color = "rgb(100, 181, 246)" : false;
+    likes.includes(_modelAndControlerDefault.default.user.username) ? this.like.style.color = "rgb(100, 181, 246)" : false;
     this.numberOfDislikesElement = document.createElement("span");
     this.numberOfDislikesElement.innerHTML = Number(dislikes.length);
-    dislikes.includes(this.user.username) ? this.dislike.style.color = "rgb(229, 115, 115)" : false;
+    dislikes.includes(_modelAndControlerDefault.default.user.username) ? this.dislike.style.color = "rgb(229, 115, 115)" : false;
     col.appendChild(opisElement);
     col.appendChild(info);
     ocjena.appendChild(this.numberOfLikesElement);
@@ -1083,13 +1078,13 @@ class IspisOglasa extends _baseComponentDefault.default {
         korisnik.oglasi.map(oglas => {
           if (oglas.id == this.id) {
             // pronađi oglas prema id
-            if (oglas.ocjena.like.includes(this.user.username)) {
-              oglas.ocjena.like = oglas.ocjena.like.filter(item => item !== this.user.username);
+            if (oglas.ocjena.like.includes(_modelAndControlerDefault.default.user.username)) {
+              oglas.ocjena.like = oglas.ocjena.like.filter(item => item !== _modelAndControlerDefault.default.user.username);
             } else {
-              oglas.ocjena.like.push(this.user.username);
+              oglas.ocjena.like.push(_modelAndControlerDefault.default.user.username);
               // dodaj korisnika u listu osoba koje su like-ale oglas
               this.dislike.style.color == "rgb(229, 115, 115)" ? // ako je korisnik već prije dislike-ao oglas treba to poništit da ne like-a i dislike-a isti oglas
-              oglas.ocjena.dislike = oglas.ocjena.dislike.filter(item => item !== this.user.username) : false;
+              oglas.ocjena.dislike = oglas.ocjena.dislike.filter(item => item !== _modelAndControlerDefault.default.user.username) : false;
             }
           }
         });
@@ -1123,13 +1118,13 @@ class IspisOglasa extends _baseComponentDefault.default {
         let korisnik = doc.data();
         korisnik.oglasi.map(oglas => {
           if (oglas.id == this.id) {
-            if (oglas.ocjena.dislike.includes(this.user.username)) {
-              oglas.ocjena.dislike = oglas.ocjena.dislike.filter(item => item !== this.user.username);
+            if (oglas.ocjena.dislike.includes(_modelAndControlerDefault.default.user.username)) {
+              oglas.ocjena.dislike = oglas.ocjena.dislike.filter(item => item !== _modelAndControlerDefault.default.user.username);
             } else {
-              oglas.ocjena.dislike.push(this.user.username);
+              oglas.ocjena.dislike.push(_modelAndControlerDefault.default.user.username);
               // dodaj korisnika u listu osoba koje su dislike-ale oglas
               this.like.style.color == "rgb(100, 181, 246)" ? // ako je korisnik već prije like-ao oglas treba to poništit da ne like-a i dislike-a isti oglas
-              oglas.ocjena.like = oglas.ocjena.like.filter(item => item !== this.user.username) : false;
+              oglas.ocjena.like = oglas.ocjena.like.filter(item => item !== _modelAndControlerDefault.default.user.username) : false;
             }
           }
         });
@@ -1159,6 +1154,6 @@ class IspisOglasa extends _baseComponentDefault.default {
 }
 module.exports = IspisOglasa;
 
-},{"../baseComponent":"22hEl","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["5Knlq","3daKi"], "3daKi", "parcelRequire427e")
+},{"../baseComponent":"22hEl","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../modelAndControler":"5zPz0"}]},["5Knlq","3daKi"], "3daKi", "parcelRequire427e")
 
 //# sourceMappingURL=fizika.2b5f4e7d.js.map

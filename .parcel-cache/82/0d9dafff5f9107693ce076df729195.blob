@@ -1,0 +1,7 @@
+.card-image img {
+  opacity: 0.75;
+}
+
+img:hover {
+  opacity: 1.0;
+}

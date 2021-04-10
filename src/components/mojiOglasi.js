@@ -8,11 +8,10 @@ class MojiOglasi extends Component {
     super("div");
     let sadrzaj = document.createElement("div");
     this.noviOglasi=document.createElement("div");
-    let user = JSON.parse(localStorage["user"]);
     let database = firebase.firestore();
     database
       .collection("korisnici")
-      .where("username", "==", user.username)
+      .where("username", "==", controler.user.username)
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach((doc) => { 
@@ -26,6 +25,7 @@ class MojiOglasi extends Component {
               el.cijena,
               el.predmet,
               el.razina,
+              el.date,
               el.ocjena.like,
               el.ocjena.dislike,
               korisnik.username
@@ -51,6 +51,7 @@ class MojiOglasi extends Component {
       el.cijena,
       el.predmet,
       el.razina,
+      el.date,
       el.ocjena.like,
       el.ocjena.dislike,
       el.username

@@ -1,0 +1,30 @@
+var _componentsPrviStupac = require("./components/PrviStupac");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _componentsPrviStupacDefault = _parcelHelpers.interopDefault(_componentsPrviStupac);
+var _componentsTreciStupac = require("./components/treciStupac");
+var _componentsTreciStupacDefault = _parcelHelpers.interopDefault(_componentsTreciStupac);
+var _componentsIspisOglasa = require("./components/ispisOglasa");
+var _componentsIspisOglasaDefault = _parcelHelpers.interopDefault(_componentsIspisOglasa);
+M.AutoInit();
+document.getElementById("stupac1").appendChild(new _componentsPrviStupacDefault.default().rootElement);
+// Dodaje sadržaj prvom stupcu
+let database = firebase.firestore();
+database.collection("korisnici").get().then(querySnapshot => {
+  querySnapshot.forEach(doc => {
+    let korisnik = doc.data();
+    korisnik.oglasi.reverse().forEach(el => {
+      if (el.predmet == "matematika") {
+        let oglas = new _componentsIspisOglasaDefault.default(// za svaki oglas kojem je predmet="matematika" kreira katricu
+        korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.razina, el.ocjena.like, el.ocjena.dislike, el.id, korisnik.username);
+        if (el.razina == "osnovna škola") {
+          // karticu prema razini ubacuje u div za osnovne ili srednje škole
+          document.getElementById("osnovneSkole").insertBefore(newFreeformLabel, container.firstChild);
+          document.getElementById("osnovneSkole").appendChild(oglas.rootElement);
+        } else {
+          document.getElementById("srednjeSkole").appendChild(oglas.rootElement);
+        }
+      }
+    });
+  });
+});
+document.getElementById("stupac3").appendChild(new _componentsTreciStupacDefault.default().rootElement);

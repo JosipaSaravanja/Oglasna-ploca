@@ -6,15 +6,13 @@ import controler from "../modelAndControler";
 class Prijavljeni extends Component {
   constructor() {
     super("div");
-    this.user = JSON.parse(localStorage["user"]);
-
     let img=document.createElement("img");
     img.className="col s12 m6 l12";
     img.src=`https://icons-for-free.com/iconfiles/png/512/eva+icons+++fill+person-1324449943844961316.png`;//kako povezat mapu s ovim dokumentom?
     img.style.textAlign="center";
 
     let ime = document.createElement("h5");
-    ime.innerHTML = this.user.username;
+    ime.innerHTML = controler.user.username;
 
     this.select=document.createElement("select")
       this.select.id=`zupanije`
@@ -47,20 +45,20 @@ class Prijavljeni extends Component {
         option.value=el;
         this.select.appendChild(option);
       })
-      this.select.value=this.user.lokacija.županija;
+      this.select.value=controler.user.lokacija.županija;
       
       
     this.grad=document.createElement("input");
     this.grad.placeholder="Grad";
-    this.grad.value=this.user.lokacija.grad ;
+    this.grad.value=controler.user.lokacija.grad ;
  
     this.kontakt=document.createElement("input");
     this.kontakt.placeholder="Kontakt";
-    this.kontakt.value=this.user.kontakt;
+    this.kontakt.value=controler.user.kontakt;
 
     this.password=document.createElement("input");
     this.password.placeholder="Lozinka";
-    this.password.value=this.user.password;
+    this.password.value=controler.user.password;
     this.password.type="password";
 
     let spremi = document.createElement("a");
@@ -90,7 +88,7 @@ class Prijavljeni extends Component {
   spremi(){
     let user = JSON.parse(localStorage["user"]);
     let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", this.user.username).get().then((querySnapshot)=> {
+    database.collection("korisnici").where("username", "==", controler.user.username).get().then((querySnapshot)=> {
       querySnapshot.forEach((doc)=>{
         console.log(this)
         database.collection("korisnici").doc(doc.id).update({
@@ -98,7 +96,7 @@ class Prijavljeni extends Component {
           lokacija:{županija: this.select.value, grad: this.grad.value},
           kontakt: this.kontakt.value
         }).then(() => {
-          database.collection("korisnici").where("username", "==", this.user.username).get().then(function (querySnapshot) {
+          database.collection("korisnici").where("username", "==", controler.user.username).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
               localStorage["user"] = JSON.stringify(doc.data());//localStorage["user"] poprimi nove podatke nakon što ih je korisnik update-ao
               location.reload() 

@@ -21,19 +21,21 @@ database
             korisnik.lokacija,
             el.cijena,
             el.razina,
+            el.date,
             el.ocjena.like,
             el.ocjena.dislike,
             el.id,
             korisnik.username
           );
           if(el.razina == "osnovna škola") { //karticu prema razini ubacuje u div za osnovne ili srednje škole
-            document
-              .getElementById("osnovneSkole")
-              .appendChild(oglas.rootElement);
+            document.getElementById("osnovneSkole").insertBefore(
+              oglas.rootElement, 
+              document.getElementById("osnovneSkole").firstChild);
+
           } else {
-            document
-              .getElementById("srednjeSkole")
-              .appendChild(oglas.rootElement);
+            document.getElementById("srednjeSkole").insertBefore(
+            oglas.rootElement, 
+            document.getElementById("srednjeSkole").firstChild);
           }
         }
       });

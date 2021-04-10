@@ -10,13 +10,15 @@ class OglasTodoCard extends Component {
     cijena,
     predmet,
     razina,
+    date,
     likes,
     dislikes,
     username
   ) {
     super("div");
-    let user=JSON.parse(localStorage["user"]) ;
     this.rootElement.className = "card-panel grey lighten-5 z-depth-1";
+    this.id=id;
+    this.username=username;
     let row = document.createElement("div");
     row.className = "row";
 
@@ -33,6 +35,7 @@ class OglasTodoCard extends Component {
             cijena:  ${cijena} <br>
             predmet: ${predmet} <br>
             razredi: ${razina} <br>
+            datum: ${date} <br>
             autor: ${username}<br>
             kontakt: ${kontakt} 
         `;
@@ -64,7 +67,7 @@ class OglasTodoCard extends Component {
     button.className = "col s12 waves-effect waves-light btn";
     button.innerHTML = "OBRIŠI OGLAS";
     button.addEventListener("click", () => {
-      this.removeSelf(id, username);
+      this.removeSelf();
     });
     col2.appendChild(button);
 
@@ -79,11 +82,11 @@ class OglasTodoCard extends Component {
     this.addChild(row);//kreira karticu za svaki oglas nakon što su mu poslani podatci
   }
 
-  removeSelf(id, username) {
+  removeSelf() {
     let database = firebase.firestore();
     database
       .collection("korisnici")
-      .where("username", "==", username)
+      .where("username", "==", this.username)
       .get()
       .then((querySnapshot)=> {
         querySnapshot.forEach((doc)=> {
@@ -92,7 +95,7 @@ class OglasTodoCard extends Component {
             .collection("korisnici")
             .doc(doc.id)//pronalazi korisnika 
             .update({
-              oglasi: korisnik.oglasi.filter((item) => item.id !== id),//filtrira array oglasi tako da ukloni onaj s id-om oglasa koji želimo ukoloniti
+              oglasi: korisnik.oglasi.filter((item) => item.id !== this.id),//filtrira array oglasi tako da ukloni onaj s id-om oglasa koji želimo ukoloniti
             }).then(() => {
               let parent = this.rootElement.parentNode;
               parent.removeChild(this.rootElement);

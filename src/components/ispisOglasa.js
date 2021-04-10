@@ -1,5 +1,6 @@
 //Ispisuje čitatelju oglase koji postoje (da pronađe što mu treba), svaki predmet ga posebno poziva s svojim oglasima (nor matematika.js s korisnik.oglasi gdje je predmet ="matematika)")
 import Component from "../baseComponent";
+import controler from "../modelAndControler";
 
 class IspisOglasa extends Component {
   constructor(
@@ -8,13 +9,13 @@ class IspisOglasa extends Component {
     lokacija,
     cijena,
     razina,
+    date,
     likes,
     dislikes,
     id,
     username
   ) {
     super("div");
-    this.user = JSON.parse(localStorage["user"]);
 
     this.rootElement.className = "card-panel grey lighten-5 z-depth-1";
 
@@ -28,11 +29,13 @@ class IspisOglasa extends Component {
     opisElement.className = "black-text";
     opisElement.innerHTML = opis;
 
+    console.log(date)
     let info = document.createElement("p");
     info.innerHTML = `
         ${lokacija.županija}, ${lokacija.grad}<br>
         cijena:  ${cijena} <br>
         razredi: ${razina} <br>
+        datum: ${date} <br>
         autor: ${username}<br>
         kontakt: ${kontakt} 
         `;
@@ -45,11 +48,11 @@ class IspisOglasa extends Component {
     this.like.innerHTML = "thumb_up";
     this.like.className = "material-icons";
     this.like.style = "cursor: pointer; vertical-align :-3px;";
-    if (likes.includes(this.user.username)) {
+    if (likes.includes(controler.user.username)) {
       this.like.style.color = "rgb(100, 181, 246)";
     }
     this.like.addEventListener("click", () => {
-      this.user!==false?this.likeFunc(): M.toast({ html: `Morate se prijaviti da biste ocjenjivali oglase.` });;
+      controler.user!==false?this.likeFunc(): M.toast({ html: `Morate se prijaviti da biste ocjenjivali oglase.` });;
     });
 
     this.dislike = document.createElement("i");
@@ -57,18 +60,18 @@ class IspisOglasa extends Component {
     this.dislike.className = "material-icons";
     this.dislike.style = "cursor: pointer; vertical-align :-10px;";
     this.dislike.addEventListener("click", () => {
-      this.user!==false?this.dislikeFunc(): M.toast({ html: `Morate se prijaviti da biste ocjenjivali oglase.` });;
+      controler.user!==false?this.dislikeFunc(): M.toast({ html: `Morate se prijaviti da biste ocjenjivali oglase.` });;
     });
 
     this.numberOfLikesElement = document.createElement("span");
     this.numberOfLikesElement.innerHTML = likes.length;
-    likes.includes(this.user.username)
+    likes.includes(controler.user.username)
       ? (this.like.style.color = "rgb(100, 181, 246)")
       : false;
 
     this.numberOfDislikesElement = document.createElement("span");
     this.numberOfDislikesElement.innerHTML = Number(dislikes.length);
-    dislikes.includes(this.user.username)
+    dislikes.includes(controler.user.username)
       ? (this.dislike.style.color = "rgb(229, 115, 115)")
       : false;
 
@@ -94,15 +97,15 @@ class IspisOglasa extends Component {
           let korisnik = doc.data();
           korisnik.oglasi.map((oglas) => {
             if (oglas.id == this.id) {//pronađi oglas prema id
-              if (oglas.ocjena.like.includes(this.user.username)) {
+              if (oglas.ocjena.like.includes(controler.user.username)) {
                 oglas.ocjena.like = oglas.ocjena.like.filter(
-                  (item) => item !== this.user.username //ukloni korisnika iz liste osoba koje su like-ale
+                  (item) => item !== controler.user.username //ukloni korisnika iz liste osoba koje su like-ale
                 );
               } else {
-                oglas.ocjena.like.push(this.user.username); //dodaj korisnika u listu osoba koje su like-ale oglas
+                oglas.ocjena.like.push(controler.user.username); //dodaj korisnika u listu osoba koje su like-ale oglas
                 this.dislike.style.color == "rgb(229, 115, 115)"//ako je korisnik već prije dislike-ao oglas treba to poništit da ne like-a i dislike-a isti oglas
                   ? (oglas.ocjena.dislike = oglas.ocjena.dislike.filter(
-                      (item) => item !== this.user.username
+                      (item) => item !== controler.user.username
                     ))
                   : false;
               }
@@ -142,16 +145,16 @@ class IspisOglasa extends Component {
           let korisnik = doc.data();
           korisnik.oglasi.map((oglas) => {
             if (oglas.id == this.id) {
-              if (oglas.ocjena.dislike.includes(this.user.username)) {
+              if (oglas.ocjena.dislike.includes(controler.user.username)) {
                 oglas.ocjena.dislike = oglas.ocjena.dislike.filter(
-                  (item) => item !== this.user.username
+                  (item) => item !== controler.user.username
                 ); //ukloni korisnika iz liste osoba koje su dislike-ale
               } else {
-                oglas.ocjena.dislike.push(this.user.username); //dodaj korisnika u listu osoba koje su dislike-ale oglas
+                oglas.ocjena.dislike.push(controler.user.username); //dodaj korisnika u listu osoba koje su dislike-ale oglas
                 
                 this.like.style.color == "rgb(100, 181, 246)" //ako je korisnik već prije like-ao oglas treba to poništit da ne like-a i dislike-a isti oglas
                   ? (oglas.ocjena.like = oglas.ocjena.like.filter(
-                      (item) => item !== this.user.username
+                      (item) => item !== controler.user.username
                     ))
                   : false;
               }

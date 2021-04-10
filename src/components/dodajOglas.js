@@ -25,9 +25,8 @@ class DodajOglas extends Component {
     let razina = document.getElementById("razina");
     //prikuplja podatke iz modal1
 
-    let user = JSON.parse(localStorage["user"]);
     let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", user.username).get()
+    database.collection("korisnici").where("username", "==", controler.user.username).get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
           let korisnik = doc.data();
@@ -45,6 +44,7 @@ class DodajOglas extends Component {
             opis: opis.value,
             predmet: type.value,
             razina: razina.value,
+            date: new Date().getMonth()+1 +". " +new Date().getDate() +". " +new Date().getFullYear() +"."
           };
           korisnik.oglasi.push(noviOglas); //trenutni niz oglasa push prima novonapravljeni oglas 
           database.collection("korisnici").doc(doc.id).update({ //update-a korisnik.oglasi u firebase-u
@@ -60,8 +60,8 @@ class DodajOglas extends Component {
         });
         opis.value="";
         cijena.value="";
-        type.value="";//kako da napravim da je value odmah na pocetku ="", ja sam probala napravit u matematika.html jedan option s samim praznim prostorom
-        razina.value=""; //briše values inputima da budu spremni za novi unos
+        type.value="matematika";
+        razina.value="osnovna škola"; //briše values inputima da budu spremni za novi unos
       });
   }
 }
