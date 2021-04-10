@@ -2,7 +2,6 @@
 import Component from "../baseComponent";
 import controler from "../modelAndControler";
 
-
 class Prijavljeni extends Component {
   constructor() {
     super("div");
@@ -10,7 +9,7 @@ class Prijavljeni extends Component {
     img.className="col s12 m6 l12";
     img.src=`https://icons-for-free.com/iconfiles/png/512/eva+icons+++fill+person-1324449943844961316.png`;//kako povezat mapu s ovim dokumentom?
     img.style.textAlign="center";
-
+    
     let ime = document.createElement("h5");
     ime.innerHTML = controler.user.username;
 
