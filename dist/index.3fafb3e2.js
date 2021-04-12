@@ -450,6 +450,7 @@ var _componentsTreciStupacDefault = _parcelHelpers.interopDefault(_componentsTre
 var _modelAndControler = require("./modelAndControler");
 var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
 M.AutoInit();
+localStorage["user"] = false;
 document.getElementById("stupac1").appendChild(new _componentsPrviStupacDefault.default().rootElement);
 // Popunjava prvi stupac
 if (_modelAndControlerDefault.default.user !== false) {
@@ -459,7 +460,7 @@ if (_modelAndControlerDefault.default.user !== false) {
 console.log(JSON.parse(localStorage["user"]));
 console.log(localStorage["user"]);
 
-},{"./components/PrviStupac":"6Tngg","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","./components/treciStupac":"7dnyH","./modelAndControler":"5zPz0"}],"6Tngg":[function(require,module,exports) {
+},{"./components/PrviStupac":"6Tngg","./components/treciStupac":"7dnyH","./modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6Tngg":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
@@ -610,6 +611,15 @@ class Controler extends EventTarget {
                 )
         );
 
+    }
+
+    zupanija(event){
+        this.dispatchEvent(
+            new CustomEvent(
+                "zupanije",
+                {detail: {zupanija: event}}
+                )
+        );
     }
 }
 let controler=new Controler
@@ -808,7 +818,7 @@ class DodajOglas extends _baseComponentDefault.default {
           opis: opis.value,
           predmet: type.value,
           razina: razina.value,
-          date: new Date().getMonth() + 1 + ". " + new Date().getDate() + ". " + new Date().getFullYear() + "."
+          date: new Date().getDate() + ". " + (new Date().getMonth() + 1) + ". " + new Date().getFullYear() + "."
         };
         korisnik.oglasi.push(noviOglas);
         // trenutni niz oglasa push prima novonapravljeni oglas
@@ -837,25 +847,23 @@ var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
 require("./oglasTodoCard");
-require("../modelAndControler");
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
 class Filter extends _baseComponentDefault.default {
   constructor() {
     super("div");
-    this.form = document.createElement("form");
-    this.form.action = `#`;
-    let zupanijeNiz = ["Bjelovarsko-bilogorska županija", "Brodsko-posavska županija", "Dubrovačko-neretvanska županija", "Grad Zagreb županija", "Istarska županija", "Karlovačka županija", "Koprivničko-križevačka županija", "Krapinsko-zagorska županija", "Ličko-senjska županija", "Međimurska županija", "Osječko-baranjska županija", "Požeško-slavonska županija", "Primorsko-goranska županija", "Sisačko-moslavačka županija", "Splitsko-dalmatinska županija", "Šibensko-kninska županija", "Varaždinska županija", "Virovitičko-podravska županija", "Vukovarsko-srijemska županija", "Zadarska županija", "Zagrebačka županija"];
+    this.select = document.createElement("select");
+    this.select.id = `zupanije`;
+    this.select.className = "browser-default";
+    let zupanijeNiz = ["Sve županije", "Bjelovarsko-bilogorska županija", "Brodsko-posavska županija", "Dubrovačko-neretvanska županija", "Grad Zagreb županija", "Istarska županija", "Karlovačka županija", "Koprivničko-križevačka županija", "Krapinsko-zagorska županija", "Ličko-senjska županija", "Međimurska županija", "Osječko-baranjska županija", "Požeško-slavonska županija", "Primorsko-goranska županija", "Sisačko-moslavačka županija", "Splitsko-dalmatinska županija", "Šibensko-kninska županija", "Varaždinska županija", "Virovitičko-podravska županija", "Vukovarsko-srijemska županija", "Zadarska županija", "Zagrebačka županija"];
     zupanijeNiz.forEach(el => {
-      let p = document.createElement("p");
-      let label = document.createElement("label");
-      let input = document.createElement("input");
-      input.type = "checkbox";
-      input.className = "checkboxes";
-      let span = document.createElement("span");
-      span.innerHTML = el;
-      label.appendChild(input);
-      label.appendChild(span);
-      p.appendChild(label);
-      this.form.appendChild(p);
+      let option = document.createElement("option");
+      option.innerHTML = el;
+      option.value = el;
+      this.select.appendChild(option);
+    });
+    this.select.addEventListener("change", () => {
+      _modelAndControlerDefault.default.zupanija(this.select.value);
     });
     /*$('.abc').click(()=>{alert("HELLO")});*/
     /*let button=document.createElement("a")
@@ -864,7 +872,7 @@ class Filter extends _baseComponentDefault.default {
     button.addEventListener("click", this.filtriraj())
     
     */
-    this.addChildren([this.form]);
+    this.addChildren([this.select]);
   }
   filtriraj() {}
 }

@@ -44,7 +44,7 @@ class DodajOglas extends Component {
             opis: opis.value,
             predmet: type.value,
             razina: razina.value,
-            date: new Date().getMonth()+1 +". " +new Date().getDate() +". " +new Date().getFullYear() +"."
+            date: new Date().getDate() +". " +(new Date().getMonth()+1) +". " +new Date().getFullYear() +"."
           };
           korisnik.oglasi.push(noviOglas); //trenutni niz oglasa push prima novonapravljeni oglas 
           database.collection("korisnici").doc(doc.id).update({ //update-a korisnik.oglasi u firebase-u

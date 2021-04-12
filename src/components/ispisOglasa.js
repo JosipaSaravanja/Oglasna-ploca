@@ -24,7 +24,7 @@ class IspisOglasa extends Component {
 
     let col = document.createElement("div");
     col.className = "col s11";
-
+this.lokacija=lokacija
     let opisElement = document.createElement("p");
     opisElement.className = "black-text";
     opisElement.innerHTML = opis;
@@ -36,7 +36,7 @@ class IspisOglasa extends Component {
         razredi: ${razina} <br>
         datum: ${date} <br>
         autor: ${username}<br>
-        kontakt: ${kontakt} 
+        kontakt: ${kontakt} <br>
         `;
 
     let ocjena = document.createElement("div");
@@ -48,7 +48,7 @@ class IspisOglasa extends Component {
     this.like.className = "material-icons";
     this.like.style = "cursor: pointer; vertical-align :-3px;";
     likes.includes(controler.user.username)
-      ? (this.like.style.color = "rgb(100, 181, 246)")
+      ? this.like.style.color = "rgb(100, 181, 246)"
       : false;
 
     this.like.addEventListener("click", () => {
@@ -58,8 +58,9 @@ class IspisOglasa extends Component {
     this.dislike = document.createElement("i");
     this.dislike.innerHTML = "thumb_down";
     this.dislike.className = "material-icons";
+    console.log(dislikes)
     dislikes.includes(controler.user.username)
-      ? (this.dislike.style.color = "rgb(229, 115, 115)")
+      ? this.dislike.style.color = "rgb(229, 115, 115)"
       : false;
 
     this.dislike.style = "cursor: pointer; vertical-align :-10px;";
@@ -84,7 +85,17 @@ class IspisOglasa extends Component {
     row.appendChild(ocjena);
 
     this.addChild(row);
+    
+    controler.addEventListener("zupanije", (event) => {
+      this.zupanijaFilter(event.detail.zupanija); //reagira kada je kreiran novi oglas
+    });
   }
+  zupanijaFilter(zupanija){
+    this.rootElement.style.display="block"
+    console.log(this.lokacija.županija)
+    if(zupanija!=="Sve županije" && this.lokacija.županija!==zupanija){
+      this.rootElement.style.display="none"}
+    }
   likeFunc() {
     let database = firebase.firestore();
     database
@@ -96,6 +107,7 @@ class IspisOglasa extends Component {
           let korisnik = doc.data();
           korisnik.oglasi.map((oglas) => {
             if (oglas.id == this.id) {//pronađi oglas prema id
+              console.log(controler.user.username)
               if (oglas.ocjena.like.includes(controler.user.username)) {
                 oglas.ocjena.like = oglas.ocjena.like.filter(
                   (item) => item !== controler.user.username //ukloni korisnika iz liste osoba koje su like-ale
@@ -145,6 +157,7 @@ class IspisOglasa extends Component {
           let korisnik = doc.data();
           korisnik.oglasi.map((oglas) => {
             if (oglas.id == this.id) {
+              console.log(controler.user.username)
               if (oglas.ocjena.dislike.includes(controler.user.username)) {
                 oglas.ocjena.dislike = oglas.ocjena.dislike.filter(
                   (item) => item !== controler.user.username
@@ -160,6 +173,7 @@ class IspisOglasa extends Component {
               }
             }
           });
+          console.log(doc.id)
           console.log(korisnik.oglasi);
           database
             .collection("korisnici")

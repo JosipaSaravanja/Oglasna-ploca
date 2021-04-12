@@ -6,9 +6,12 @@ import controler from "../modelAndControler";
 class Filter extends Component {
   constructor() {
     super("div");
-    this.form=document.createElement("form")
-    this.form.action=`#`
+    
+    this.select=document.createElement("select")
+      this.select.id=`zupanije`
+      this.select.className="browser-default"
       let zupanijeNiz=[
+        "Sve županije", 
         "Bjelovarsko-bilogorska županija",
         "Brodsko-posavska županija",
         "Dubrovačko-neretvanska županija",
@@ -31,17 +34,13 @@ class Filter extends Component {
         "Zadarska županija",
         "Zagrebačka županija"]
       zupanijeNiz.forEach(el=>{
-          let p=document.createElement("p")
-          let label=document.createElement("label")
-          let input=document.createElement("input")
-          input.type="checkbox"
-          input.className="checkboxes"
-          let span=document.createElement("span")
-          span.innerHTML=el
-          label.appendChild(input)
-          label.appendChild(span)
-          p.appendChild(label)
-        this.form.appendChild(p)
+        let option=document.createElement("option");
+        option.innerHTML=el;
+        option.value=el;
+        this.select.appendChild(option);
+      })
+      this.select.addEventListener("change", ()=>{
+        controler.zupanija(this.select.value)
       })
      /*  $('.abc').click(()=>{alert("HELLO")}); */
      /*  let button=document.createElement("a")
@@ -50,7 +49,7 @@ class Filter extends Component {
       button.addEventListener("click", this.filtriraj())
 
        */
-    this.addChildren([this.form]);
+    this.addChildren([this.select]);
   }
   filtriraj(){
   }

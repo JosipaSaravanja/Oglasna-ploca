@@ -28,14 +28,10 @@ database
             korisnik.username
           );
           if(el.razina == "osnovna škola") { //karticu prema razini ubacuje u div za osnovne ili srednje škole
-            document.getElementById("osnovneSkole").insertBefore(
-              oglas.rootElement, 
-              document.getElementById("osnovneSkole").firstChild);
+            document.getElementById("osnovneSkole").appendChild(oglas.rootElement);
 
           } else {
-            document.getElementById("srednjeSkole").insertBefore(
-            oglas.rootElement, 
-            document.getElementById("srednjeSkole").firstChild);
+            document.getElementById("srednjeSkole").appendChild(oglas.rootElement);
           }
         }
       });

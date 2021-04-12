@@ -462,9 +462,9 @@ database.collection("korisnici").get().then(querySnapshot => {
         korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.razina, el.date, el.ocjena.like, el.ocjena.dislike, el.id, korisnik.username);
         if (el.razina == "osnovna škola") {
           // karticu prema razini ubacuje u div za osnovne ili srednje škole
-          document.getElementById("osnovneSkole").insertBefore(oglas.rootElement, document.getElementById("osnovneSkole").firstChild);
+          document.getElementById("osnovneSkole").appendChild(oglas.rootElement);
         } else {
-          document.getElementById("srednjeSkole").insertBefore(oglas.rootElement, document.getElementById("srednjeSkole").firstChild);
+          document.getElementById("srednjeSkole").appendChild(oglas.rootElement);
         }
       }
     });
@@ -623,6 +623,15 @@ class Controler extends EventTarget {
                 )
         );
 
+    }
+
+    zupanija(event){
+        this.dispatchEvent(
+            new CustomEvent(
+                "zupanije",
+                {detail: {zupanija: event}}
+                )
+        );
     }
 }
 let controler=new Controler
@@ -821,7 +830,7 @@ class DodajOglas extends _baseComponentDefault.default {
           opis: opis.value,
           predmet: type.value,
           razina: razina.value,
-          date: new Date().getMonth() + 1 + ". " + new Date().getDate() + ". " + new Date().getFullYear() + "."
+          date: new Date().getDate() + ". " + (new Date().getMonth() + 1) + ". " + new Date().getFullYear() + "."
         };
         korisnik.oglasi.push(noviOglas);
         // trenutni niz oglasa push prima novonapravljeni oglas
@@ -850,25 +859,23 @@ var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
 require("./oglasTodoCard");
-require("../modelAndControler");
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
 class Filter extends _baseComponentDefault.default {
   constructor() {
     super("div");
-    this.form = document.createElement("form");
-    this.form.action = `#`;
-    let zupanijeNiz = ["Bjelovarsko-bilogorska županija", "Brodsko-posavska županija", "Dubrovačko-neretvanska županija", "Grad Zagreb županija", "Istarska županija", "Karlovačka županija", "Koprivničko-križevačka županija", "Krapinsko-zagorska županija", "Ličko-senjska županija", "Međimurska županija", "Osječko-baranjska županija", "Požeško-slavonska županija", "Primorsko-goranska županija", "Sisačko-moslavačka županija", "Splitsko-dalmatinska županija", "Šibensko-kninska županija", "Varaždinska županija", "Virovitičko-podravska županija", "Vukovarsko-srijemska županija", "Zadarska županija", "Zagrebačka županija"];
+    this.select = document.createElement("select");
+    this.select.id = `zupanije`;
+    this.select.className = "browser-default";
+    let zupanijeNiz = ["Sve županije", "Bjelovarsko-bilogorska županija", "Brodsko-posavska županija", "Dubrovačko-neretvanska županija", "Grad Zagreb županija", "Istarska županija", "Karlovačka županija", "Koprivničko-križevačka županija", "Krapinsko-zagorska županija", "Ličko-senjska županija", "Međimurska županija", "Osječko-baranjska županija", "Požeško-slavonska županija", "Primorsko-goranska županija", "Sisačko-moslavačka županija", "Splitsko-dalmatinska županija", "Šibensko-kninska županija", "Varaždinska županija", "Virovitičko-podravska županija", "Vukovarsko-srijemska županija", "Zadarska županija", "Zagrebačka županija"];
     zupanijeNiz.forEach(el => {
-      let p = document.createElement("p");
-      let label = document.createElement("label");
-      let input = document.createElement("input");
-      input.type = "checkbox";
-      input.className = "checkboxes";
-      let span = document.createElement("span");
-      span.innerHTML = el;
-      label.appendChild(input);
-      label.appendChild(span);
-      p.appendChild(label);
-      this.form.appendChild(p);
+      let option = document.createElement("option");
+      option.innerHTML = el;
+      option.value = el;
+      this.select.appendChild(option);
+    });
+    this.select.addEventListener("change", () => {
+      _modelAndControlerDefault.default.zupanija(this.select.value);
     });
     /*$('.abc').click(()=>{alert("HELLO")});*/
     /*let button=document.createElement("a")
@@ -877,7 +884,7 @@ class Filter extends _baseComponentDefault.default {
     button.addEventListener("click", this.filtriraj())
     
     */
-    this.addChildren([this.form]);
+    this.addChildren([this.select]);
   }
   filtriraj() {}
 }
@@ -1014,6 +1021,7 @@ class IspisOglasa extends _baseComponentDefault.default {
     row.className = "row valign-wrapper";
     let col = document.createElement("div");
     col.className = "col s11";
+    this.lokacija = lokacija;
     let opisElement = document.createElement("p");
     opisElement.className = "black-text";
     opisElement.innerHTML = opis;
@@ -1024,7 +1032,7 @@ class IspisOglasa extends _baseComponentDefault.default {
         razredi: ${razina} <br>
         datum: ${date} <br>
         autor: ${username}<br>
-        kontakt: ${kontakt} 
+        kontakt: ${kontakt} <br>
         `;
     let ocjena = document.createElement("div");
     ocjena.className = "col s1";
@@ -1044,6 +1052,7 @@ class IspisOglasa extends _baseComponentDefault.default {
     this.dislike = document.createElement("i");
     this.dislike.innerHTML = "thumb_down";
     this.dislike.className = "material-icons";
+    console.log(dislikes);
     dislikes.includes(_modelAndControlerDefault.default.user.username) ? this.dislike.style.color = "rgb(229, 115, 115)" : false;
     this.dislike.style = "cursor: pointer; vertical-align :-10px;";
     this.dislike.addEventListener("click", () => {
@@ -1065,6 +1074,16 @@ class IspisOglasa extends _baseComponentDefault.default {
     row.appendChild(col);
     row.appendChild(ocjena);
     this.addChild(row);
+    _modelAndControlerDefault.default.addEventListener("zupanije", event => {
+      this.zupanijaFilter(event.detail.zupanija);
+    });
+  }
+  zupanijaFilter(zupanija) {
+    this.rootElement.style.display = "block";
+    console.log(this.lokacija.županija);
+    if (zupanija !== "Sve županije" && this.lokacija.županija !== zupanija) {
+      this.rootElement.style.display = "none";
+    }
   }
   likeFunc() {
     let database = firebase.firestore();
@@ -1074,6 +1093,7 @@ class IspisOglasa extends _baseComponentDefault.default {
         korisnik.oglasi.map(oglas => {
           if (oglas.id == this.id) {
             // pronađi oglas prema id
+            console.log(_modelAndControlerDefault.default.user.username);
             if (oglas.ocjena.like.includes(_modelAndControlerDefault.default.user.username)) {
               oglas.ocjena.like = oglas.ocjena.like.filter(item => item !== _modelAndControlerDefault.default.user.username);
             } else {
@@ -1115,6 +1135,7 @@ class IspisOglasa extends _baseComponentDefault.default {
         let korisnik = doc.data();
         korisnik.oglasi.map(oglas => {
           if (oglas.id == this.id) {
+            console.log(_modelAndControlerDefault.default.user.username);
             if (oglas.ocjena.dislike.includes(_modelAndControlerDefault.default.user.username)) {
               oglas.ocjena.dislike = oglas.ocjena.dislike.filter(item => item !== _modelAndControlerDefault.default.user.username);
             } else {
@@ -1125,6 +1146,7 @@ class IspisOglasa extends _baseComponentDefault.default {
             }
           }
         });
+        console.log(doc.id);
         console.log(korisnik.oglasi);
         database.collection("korisnici").doc(doc.id).update({
           oglasi: korisnik.oglasi
