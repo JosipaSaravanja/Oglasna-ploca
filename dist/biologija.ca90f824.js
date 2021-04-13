@@ -140,9 +140,9 @@
       this[globalName] = mainExports;
     }
   }
-})({"5XyD4":[function(require,module,exports) {
+})({"71CDx":[function(require,module,exports) {
 var HMR_HOST = null;
-var HMR_PORT = 50714;
+var HMR_PORT = 50808;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d751713988987e9331980363e24189ce";
 module.bundle.HMR_BUNDLE_ID = "144c1641080c3f7612decb19ca90f824";
@@ -1170,6 +1170,6 @@ class PredmetOglasiCard extends _baseComponentDefault.default {
 }
 module.exports = PredmetOglasiCard;
 
-},{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["5XyD4","1EzCt"], "1EzCt", "parcelRequire427e")
+},{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["71CDx","1EzCt"], "1EzCt", "parcelRequire427e")
 
 //# sourceMappingURL=biologija.ca90f824.js.map

@@ -140,9 +140,9 @@
       this[globalName] = mainExports;
     }
   }
-})({"7swYK":[function(require,module,exports) {
+})({"2Z5z5":[function(require,module,exports) {
 var HMR_HOST = null;
-var HMR_PORT = 50714;
+var HMR_PORT = 50808;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d751713988987e9331980363e24189ce";
 module.bundle.HMR_BUNDLE_ID = "03ce64c955930325ccf4a29015055b93";
@@ -1170,6 +1170,6 @@ class PredmetOglasiCard extends _baseComponentDefault.default {
 }
 module.exports = PredmetOglasiCard;
 
-},{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["7swYK","1Iplh"], "1Iplh", "parcelRequire427e")
+},{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["2Z5z5","1Iplh"], "1Iplh", "parcelRequire427e")
 
 //# sourceMappingURL=latinski.15055b93.js.map

@@ -140,9 +140,9 @@
       this[globalName] = mainExports;
     }
   }
-})({"4q8pp":[function(require,module,exports) {
+})({"7lX6R":[function(require,module,exports) {
 var HMR_HOST = null;
-var HMR_PORT = 50714;
+var HMR_PORT = 50853;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d751713988987e9331980363e24189ce";
 module.bundle.HMR_BUNDLE_ID = "0fa2489aa94c8731ee2aee9f3fafb3e2";
@@ -1000,6 +1000,6 @@ class MojiOglasi extends _baseComponentDefault.default {
 }
 module.exports = MojiOglasi;
 
-},{"../baseComponent":"22hEl","./oglasTodoCard":"6SN5t","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["4q8pp","5rkFb"], "5rkFb", "parcelRequire427e")
+},{"../baseComponent":"22hEl","./oglasTodoCard":"6SN5t","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["7lX6R","5rkFb"], "5rkFb", "parcelRequire427e")
 
 //# sourceMappingURL=index.3fafb3e2.js.map

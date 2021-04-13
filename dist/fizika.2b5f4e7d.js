@@ -140,9 +140,9 @@
       this[globalName] = mainExports;
     }
   }
-})({"5EEoV":[function(require,module,exports) {
+})({"5A1xd":[function(require,module,exports) {
 var HMR_HOST = null;
-var HMR_PORT = 50714;
+var HMR_PORT = 50808;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d751713988987e9331980363e24189ce";
 module.bundle.HMR_BUNDLE_ID = "592065480af0567a109606a32b5f4e7d";
@@ -1170,6 +1170,6 @@ class PredmetOglasiCard extends _baseComponentDefault.default {
 }
 module.exports = PredmetOglasiCard;
 
-},{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["5EEoV","3daKi"], "3daKi", "parcelRequire427e")
+},{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["5A1xd","3daKi"], "3daKi", "parcelRequire427e")
 
 //# sourceMappingURL=fizika.2b5f4e7d.js.map
