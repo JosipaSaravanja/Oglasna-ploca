@@ -140,9 +140,9 @@
       this[globalName] = mainExports;
     }
   }
-})({"4r1LW":[function(require,module,exports) {
+})({"5EEoV":[function(require,module,exports) {
 var HMR_HOST = null;
-var HMR_PORT = 52234;
+var HMR_PORT = 50714;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d751713988987e9331980363e24189ce";
 module.bundle.HMR_BUNDLE_ID = "592065480af0567a109606a32b5f4e7d";
@@ -458,13 +458,13 @@ database.collection("korisnici").get().then(querySnapshot => {
     let korisnik = doc.data();
     korisnik.oglasi.forEach(el => {
       if (el.predmet == "fizika") {
-        let oglas = new _componentsPredmetOglasiCardDefault.default(// za svaki oglas kojem je predmet="fizika" kreira katricu
+        let oglas = new _componentsPredmetOglasiCardDefault.default(// za svaki oglas kojem je predmet="matematika" kreira katricu
         korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.razina, el.date, el.ocjena.like, el.ocjena.dislike, el.id, korisnik.username);
         if (el.razina == "osnovna škola") {
           // karticu prema razini ubacuje u div za osnovne ili srednje škole
-          document.getElementById("osnovneSkole").insertBefore(oglas.rootElement, document.getElementById("osnovneSkole").firstChild);
+          document.getElementById("osnovneSkole").appendChild(oglas.rootElement);
         } else {
-          document.getElementById("srednjeSkole").insertBefore(oglas.rootElement, document.getElementById("srednjeSkole").firstChild);
+          document.getElementById("srednjeSkole").appendChild(oglas.rootElement);
         }
       }
     });
@@ -472,7 +472,7 @@ database.collection("korisnici").get().then(querySnapshot => {
 });
 document.getElementById("stupac3").appendChild(new _componentsTreciStupacDefault.default().rootElement);
 
-},{"./components/PrviStupac":"6Tngg","./components/treciStupac":"7dnyH","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","./components/predmetOglasiCard":"6BAjC"}],"6Tngg":[function(require,module,exports) {
+},{"./components/PrviStupac":"6Tngg","./components/treciStupac":"7dnyH","./components/predmetOglasiCard":"6BAjC","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6Tngg":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
@@ -1170,6 +1170,6 @@ class PredmetOglasiCard extends _baseComponentDefault.default {
 }
 module.exports = PredmetOglasiCard;
 
-},{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["4r1LW","3daKi"], "3daKi", "parcelRequire427e")
+},{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["5EEoV","3daKi"], "3daKi", "parcelRequire427e")
 
 //# sourceMappingURL=fizika.2b5f4e7d.js.map
