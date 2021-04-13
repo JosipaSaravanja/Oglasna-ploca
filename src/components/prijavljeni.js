@@ -69,7 +69,7 @@ class Prijavljeni extends Component {
     let odjava = document.createElement("a");
     odjava.className = "waves-effect waves-light btn-small";
     odjava.addEventListener("click", () => {
-      localStorage["user"] = JSON.stringify(false);
+      localStorage.setItem('user', false);
       location.reload();
     });
     odjava.innerHTML = `Odjava<i class="material-icons right">exit_to_app</i>`;

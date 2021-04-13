@@ -140,9 +140,9 @@
       this[globalName] = mainExports;
     }
   }
-})({"3Imd1":[function(require,module,exports) {
+})({"55Jgn":[function(require,module,exports) {
 var HMR_HOST = null;
-var HMR_PORT = 1234;
+var HMR_PORT = 52234;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d751713988987e9331980363e24189ce";
 module.bundle.HMR_BUNDLE_ID = "0fa2489aa94c8731ee2aee9f3fafb3e2";
@@ -450,7 +450,8 @@ var _componentsTreciStupacDefault = _parcelHelpers.interopDefault(_componentsTre
 var _modelAndControler = require("./modelAndControler");
 var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
 M.AutoInit();
-localStorage["user"] = false;
+/*
+localStorage["user"]= false;*/
 document.getElementById("stupac1").appendChild(new _componentsPrviStupacDefault.default().rootElement);
 // Popunjava prvi stupac
 if (_modelAndControlerDefault.default.user !== false) {
@@ -515,7 +516,9 @@ class Neprijavljeni extends _baseComponentDefault.default {
     prijava.className = "waves-effect waves-light btn-small";
     prijava.innerHTML = "Prijava";
     prijava.addEventListener("click", () => {
-      this.prijava();
+      this.username.value !== "" && this.password.value !== false ? this.prijava() : M.toast({
+        html: `Isputnite polja za Korisinčko ime i Lozinku`
+      });
     });
     let ili = document.createElement("p");
     ili.innerHTML = "ILI";
@@ -523,11 +526,12 @@ class Neprijavljeni extends _baseComponentDefault.default {
     registracija.className = "waves-effect waves-light btn-small";
     registracija.innerHTML = "Registracija";
     registracija.addEventListener("click", () => {
-      this.registracija(this.password);
+      this.username.value !== "" && this.password.value !== false ? this.registracija() : M.toast({
+        html: `Isputnite polja za Korisinčko ime i Lozinku`
+      });
     });
     let niz = [naslov, this.username, this.password, prijava, ili, registracija];
     niz.forEach(el => {
-      console.log(el);
       let col = document.createElement("div");
       col.className = "col s12";
       col.appendChild(el);
@@ -541,7 +545,6 @@ class Neprijavljeni extends _baseComponentDefault.default {
     database.collection("korisnici").where("username", "==", this.username.value).get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         let podaci = doc.data();
-        console.log(podaci);
         if (podaci.password == this.password.value) {
           M.toast({
             html: `Uspjesna prijava ${podaci.username}`
@@ -552,7 +555,9 @@ class Neprijavljeni extends _baseComponentDefault.default {
           location.reload();
         }
       });
-      prijava == false ? alert("Netocno korisnicko ime ili lozinka") : false;
+      prijava == false ? M.toast({
+        html: `KNetocno korisnicko ime ili lozinka`
+      }) : false;
     });
   }
   registracija() {
@@ -598,7 +603,8 @@ module.exports = Neprijavljeni;
 },{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"5zPz0":[function(require,module,exports) {
 class Controler extends EventTarget {
     constructor(){
-        super();
+        super(); 
+        localStorage.getItem('user')== null?localStorage.setItem('user', false): false;
         this.user=JSON.parse(localStorage["user"]);
         console.log(this.user)
     }
@@ -713,7 +719,7 @@ class Prijavljeni extends _baseComponentDefault.default {
     let odjava = document.createElement("a");
     odjava.className = "waves-effect waves-light btn-small";
     odjava.addEventListener("click", () => {
-      localStorage["user"] = JSON.stringify(false);
+      localStorage.setItem('user', false);
       location.reload();
     });
     odjava.innerHTML = `Odjava<i class="material-icons right">exit_to_app</i>`;
@@ -988,13 +994,12 @@ class MojiOglasi extends _baseComponentDefault.default {
     this.addChildren([this.noviOglasi, this.spremljeniOglasi]);
   }
   dodanJeOglas(el) {
-    console.log(el);
     let oglas = new _oglasTodoCardDefault.default(el.id, el.opis, el.cijena, el.predmet, el.razina, el.date, el.ocjena.like, el.ocjena.dislike);
     this.noviOglasi.insertBefore(oglas.rootElement, this.noviOglasi.firstChild);
   }
 }
 module.exports = MojiOglasi;
 
-},{"../baseComponent":"22hEl","./oglasTodoCard":"6SN5t","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["3Imd1","5rkFb"], "5rkFb", "parcelRequire427e")
+},{"../baseComponent":"22hEl","./oglasTodoCard":"6SN5t","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["55Jgn","5rkFb"], "5rkFb", "parcelRequire427e")
 
 //# sourceMappingURL=index.3fafb3e2.js.map

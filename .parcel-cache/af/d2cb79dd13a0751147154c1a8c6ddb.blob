@@ -1,0 +1,34 @@
+class Controler extends EventTarget {
+    constructor(){
+        super();
+        if(localStorage.getItem('user')==cccccccc null){
+            
+        JSON.parse(localStorage["user"])=false;
+        }else{
+            
+        this.user=JSON.parse(localStorage["user"]);
+        }
+        console.log(this.user)
+    }
+
+    addOglas(event){
+        this.dispatchEvent(
+            new CustomEvent(
+                "newOglas",
+                {detail: {oglas: event}}
+                )
+        );
+
+    }
+
+    zupanija(event){
+        this.dispatchEvent(
+            new CustomEvent(
+                "zupanije",
+                {detail: {zupanija: event}}
+                )
+        );
+    }
+}
+let controler=new Controler
+module.exports = controler;

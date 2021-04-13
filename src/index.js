@@ -2,8 +2,8 @@ M.AutoInit();
 import PrviStupac from "./components/PrviStupac"; 
 import TreciStupac from "./components/treciStupac";
 import controler from "./modelAndControler"; 
-
-localStorage["user"]=false;
+ /* 
+localStorage["user"]= false; */
 
 document.getElementById("stupac1").appendChild(new PrviStupac().rootElement); //Popunjava prvi stupac
 

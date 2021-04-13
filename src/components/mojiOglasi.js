@@ -41,7 +41,6 @@ class MojiOglasi extends Component {
   }
 
   dodanJeOglas(el) {
-    console.log(el);
     let oglas = new OglasTodoCard(
       el.id,
       el.opis,

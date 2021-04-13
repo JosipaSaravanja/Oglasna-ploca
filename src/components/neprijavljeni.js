@@ -19,23 +19,19 @@ class Neprijavljeni extends Component {
     let prijava = document.createElement("a");
     prijava.className = "waves-effect waves-light btn-small";
     prijava.innerHTML = "Prijava";
-    prijava.addEventListener("click", () => {
-      this.prijava();
-    });
-
+    prijava.addEventListener("click", () => {this.username.value!=="" && this.password.value!==false? this.prijava():  M.toast({ html: `Isputnite polja za Korisinčko ime i Lozinku`});
+  });
     let ili = document.createElement("p");
     ili.innerHTML = "ILI";
 
     let registracija = document.createElement("a");
     registracija.className = "waves-effect waves-light btn-small";
     registracija.innerHTML = "Registracija";
-    registracija.addEventListener("click", () => {
-      this.registracija(this.password);
+    registracija.addEventListener("click", () => {this.username.value!=="" && this.password.value!==false? this.registracija():  M.toast({ html: `Isputnite polja za Korisinčko ime i Lozinku`});
     });
 
     let niz = [naslov, this.username, this.password, prijava, ili, registracija];
     niz.forEach((el) => {
-      console.log(el);
       let col = document.createElement("div");
       col.className = "col s12";
       col.appendChild(el);
@@ -52,7 +48,6 @@ class Neprijavljeni extends Component {
       .then((querySnapshot)=> {
         querySnapshot.forEach((doc)=> {
           let podaci = doc.data();
-          console.log(podaci);
           if (podaci.password == this.password.value) {
             M.toast({ html: `Uspjesna prijava ${podaci.username}` });
             prijava = true; //korisnik se prijavio
@@ -60,7 +55,7 @@ class Neprijavljeni extends Component {
             location.reload();
           }
         });
-        prijava == false ? alert("Netocno korisnicko ime ili lozinka") : false; //korisnik se nije prijavio
+        prijava == false ?  M.toast({ html: `KNetocno korisnicko ime ili lozinka` }) : false; //korisnik se nije prijavio
       });
   }
 

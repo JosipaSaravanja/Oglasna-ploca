@@ -2,7 +2,7 @@ M.AutoInit();
 
 import PrviStupac from "./components/PrviStupac"; 
 import TreciStupac from "./components/treciStupac"; 
-import IspisOglasa from "./components/ispisOglasa";
+import PredmetOglasiCard from "./components/predmetOglasiCard";
 
 document.getElementById("stupac1").appendChild(new PrviStupac().rootElement); //Dodaje sadržaj prvom stupcu
 
@@ -15,7 +15,7 @@ database
       let korisnik = doc.data();
       korisnik.oglasi.forEach((el) => {
         if (el.predmet == "fizika") {
-          let oglas = new IspisOglasa( //za svaki oglas kojem je predmet="fizika" kreira katricu
+          let oglas = new PredmetOglasiCard( //za svaki oglas kojem je predmet="fizika" kreira katricu
             korisnik.kontakt,
             el.opis,
             korisnik.lokacija,
