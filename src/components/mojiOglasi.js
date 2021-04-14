@@ -1,4 +1,4 @@
-//Kad se korisnik ulogira ispisuje mu (u trecem stupcu) sve oglase koje je vec unio
+//Kad se korisnik ulogira ispisuje mu (u trecem stupcu) sve oglase koje je vec unio u firebase-u
 import Component from "../baseComponent";
 import OglasTodoCard from "./oglasTodoCard";
 import controler from "../modelAndControler";
@@ -29,7 +29,7 @@ class MojiOglasi extends Component {
             );
             this.spremljeniOglasi.insertBefore(
               oglas.rootElement, 
-              this.spremljeniOglasi.firstChild) 
+              this.spremljeniOglasi.firstChild) //dodaje oglas na početak
           });
         });
       });
@@ -37,7 +37,7 @@ class MojiOglasi extends Component {
     controler.addEventListener("newOglas", (event) => {
       this.dodanJeOglas(event.detail.oglas); //reagira kada je kreiran novi oglas
     });
-    this.addChildren([this.noviOglasi, this.spremljeniOglasi]);
+    this.addChildren([this.noviOglasi, this.spremljeniOglasi]);//dodaje i nove oglase i one koji su od ranije spremljeni
   }
 
   dodanJeOglas(el) {
@@ -53,7 +53,7 @@ class MojiOglasi extends Component {
     );
     this.noviOglasi.insertBefore(
       oglas.rootElement, 
-      this.noviOglasi.firstChild);}
+      this.noviOglasi.firstChild);}//dodaje oglas na početak
 }
 
 module.exports = MojiOglasi;

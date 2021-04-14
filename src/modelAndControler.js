@@ -2,7 +2,7 @@ class Controler extends EventTarget {
     constructor(){
         super(); 
         localStorage.getItem('user')== null?localStorage.setItem('user', false): false;
-        this.user=JSON.parse(localStorage["user"]);
+        this.user=JSON.parse(localStorage.getItem("user"));
         console.log(this.user)
     }
 

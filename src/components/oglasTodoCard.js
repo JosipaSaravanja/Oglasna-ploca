@@ -41,16 +41,16 @@ class OglasTodoCard extends Component {
     ocjena.className = "col s1";
 
     let like = document.createElement("i");
-    like.innerHTML = "thumb_down";
-    like.className = "material-icons";
-    like.style = "cursor: pointer; vertical-align :-10px;";
+    like.innerHTML = "thumb_up";
+    like.className = "material-icons ";
+    like.style = "cursor: pointer; vertical-align :-3px;";
     //like.addEventListener("click", /* */)
 
     let dislike = document.createElement("i");
-    dislike.innerHTML = "thumb_up";
+    dislike.innerHTML = "thumb_down";
     dislike.className = "material-icons";
-    dislike.style = "cursor: pointer; vertical-align :-3px;";
-
+    dislike.style = "cursor: pointer; vertical-align :-10px;";
+    
     let numberOfLikesElement = document.createElement("span");
     numberOfLikesElement.innerHTML = likes.length;
 
@@ -61,22 +61,22 @@ class OglasTodoCard extends Component {
     col2.className = "col s12";
 
     let button = document.createElement("a");
-    button.className = "col s12 waves-effect waves-light btn";
+    button.className = "col s12 waves-effect waves-light btn ";
     button.innerHTML = "OBRIŠI OGLAS";
     button.addEventListener("click", () => {
       this.removeSelf();
     });
-    col2.appendChild(button);
-
-    col.appendChild(opisElement);
-    col.appendChild(info);
-    col.appendChild(numberOfLikesElement);
-    col.appendChild(dislike);
-    col.appendChild(like);
-    col.appendChild(numberOfDislikesElement);
+    
+    col.appendChild(opisElement);//opis oglasa
+    col.appendChild(info);//informacije o oglasu
+    col.appendChild(numberOfLikesElement);//broj like-ova
+    col.appendChild(like);//icona like
+    col.appendChild(dislike);//icona dislike
+    col.appendChild(numberOfDislikesElement);//broj dislike-ova
+    col2.appendChild(button);//gumb za brisanje oglasa
     row.appendChild(col);
     row.appendChild(col2);
-    this.addChild(row);//kreira karticu za svaki oglas nakon što su mu poslani podatci
+    this.addChild(row);//kreira karticu za svaki oglas nakon što su mu poslani podatci s dva stupca u row
   }
 
   removeSelf() {
@@ -95,12 +95,10 @@ class OglasTodoCard extends Component {
               oglasi: korisnik.oglasi.filter((item) => item.id !== this.id),//filtrira array oglasi tako da ukloni onaj s id-om oglasa koji želimo ukoloniti
             }).then(() => {
               let parent = this.rootElement.parentNode;
-              parent.removeChild(this.rootElement);
+              parent.removeChild(this.rootElement);//briše korisniku oglas s zaslona
             });
         });
       });
-      
-    //kako napraviti da se katrica makne NAKON sto se odrise iz div na zaslonu ne mogu s this. jer mi ga ne pronalazi
   }
 }
 

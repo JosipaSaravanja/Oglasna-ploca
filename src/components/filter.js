@@ -6,7 +6,6 @@ import controler from "../modelAndControler";
 class Filter extends Component {
   constructor() {
     super("div");
-    
     this.select=document.createElement("select")
       this.select.id=`zupanije`
       this.select.className="browser-default"
@@ -33,25 +32,16 @@ class Filter extends Component {
         "Vukovarsko-srijemska županija",
         "Zadarska županija",
         "Zagrebačka županija"]
-      zupanijeNiz.forEach(el=>{
+      zupanijeNiz.forEach(el=>{ //kreira više option-a i ubacuije ih u select
         let option=document.createElement("option");
         option.innerHTML=el;
         option.value=el;
         this.select.appendChild(option);
       })
       this.select.addEventListener("change", ()=>{
-        controler.zupanija(this.select.value)
+        controler.zupanija(this.select.value) //kad se odabere select onda predcmetOglasiCard brise oglase kojima ase zupanija ne podudara s odabranom
       })
-     /*  $('.abc').click(()=>{alert("HELLO")}); */
-     /*  let button=document.createElement("a")
-      button.className="waves-effect waves-light btn"
-      button.innerHTML="Filtriraj"
-      button.addEventListener("click", this.filtriraj())
-
-       */
     this.addChildren([this.select]);
-  }
-  filtriraj(){
   }
 }
 
