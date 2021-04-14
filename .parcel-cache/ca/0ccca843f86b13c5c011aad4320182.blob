@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="4f238e2d966915235fe26b2d49ad461f" type="image/gif" sizes="16x16"><!--ikona-->
+    <!--ikona-->
+    <title>Korištenje</title>
+    <link rel="stylesheet" href="c33bfce7ecff96381885141f6202fc38">
+    <link href="34b262c05577a39fe2a2098b1cf7897f" rel="stylesheet">
+    <link rel="stylesheet" href="9c5450ed4353463e31c420a583dca5bc">
+    <!--poveznica na glavni css-->
+    <style data-parcel-key="e57adf9279a223ee8b2a7e6fd2889eea">
+         a.active {
+            border-left: 2px solid #4db6ac !important;
+            ;
+        } 
+        a:hover{
+            border-left: 1px solid #4db6ac !important;
+            ;
+        } 
+        /*Maleni dodatak za scrollspy koji je samo u ovom html dokumentu*/
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav-extended teal lighten-1" style="74ff2d51db3fbd516bfa81579dbd1c4b">
+        <div class="nav-wrapper ">
+            <a href="41ea87d0a69118c1ef043cd90529bf69" class="brand-logo"><i class="material-icons">cloud</i>Oglasnik</a>
+            <a href="" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="a905446a7805312085d1704a88cad315">Korištenje</a></li>
+                <li><a href="b1a799157e53766f14345b98f14ecdf2">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!--Zaglavlje kada je zaslon large-->
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="a905446a7805312085d1704a88cad315">Korištenje</a></li>
+        <li><a href="b1a799157e53766f14345b98f14ecdf2">Kontakt</a></li>
+    </ul>
+    <!--Zaglavlje kada je zaslon medium i manji--><br>
+
+    <div class="row">
+
+        <div class="col s12 l8 offset-l2">
+            <div class="col s12">
+                <div class="row z-depth-5" style="76172921646d398ddfb1f4a1396da68d">
+                    <div class="col s12 ">
+                        <h5><b>Upute za korištenje stranice: </b></h5><br>
+                        <div id="oglasi" class="section scrollspy">
+                            <p><b>1. Traženje oglasa</b><br>
+                                Ukoliko želite samo pogledati ponuđene oglase (bez da ih ocjenjujete ili objavljujete
+                                vlastite) to možete bez korisničkog računa. Otiđite na našu <a href="41ea87d0a69118c1ef043cd90529bf69">početnu
+                                    stranicu </a> i odaberite klikom predmet koji vas zanima. Otvorit će se svi oglasi
+                                za taj predmet. Na vrhu možete birat osnovne škole/srednje škole, a na vrhu (na
+                                računalima) ili bočno (na ostalim uređajima) možete filtrirat oglase po županijama. </p>
+                        </div>
+
+                        <div id="prijava" class="section scrollspy">
+                            <p><b>2. Prijava ili Registracija</b><br>
+                                Prilikom kreiranja korisničkog računa trebate unijeni korisničko ime (po mogućnosti vaše
+                                parvo ime radi lakšeg kontaktiranja) i lozinku te učiniti <b>Registraciju</b>. Ukoliko
+                                je uneseno korisničko ime
+                                već zauzeto trebate unijeti neko novo. Kad se prijavite ne morate unosit nikakve osobne
+                                podatke (poput lokacije i konakta) jer ih uvijek možete promjeniti, međutim ukoliko
+                                planirate objaviti oglas ti su podaci neophodni.
+                                <br>
+                                </p><div class="row">
+                                <img class="col s12 m6 l3 " src="65ce6d226505387270c2576d24191106"><br>
+                                </div><br>Ukoliko se odlučite unijeti osobne podatke, nakon što se prijavite ispunite obrazac
+                                i pritisnite <b>Spremi promjene</b>. Podaci će se automatski promjeniti na svim oglasima
+                                koje ste ranije objavili. Također možete mjenjati lozinku, ali ne i korisničko ime.
+                                <br>
+                                <div class="row">
+                                <img class="col s12 m6 l3" src="51e57c454063fa321eab303dbd432546"> <br>
+                                </div><br><span style="7cd1b65c2daa6ace2fb3225221e28bc6">Napomena: Samim zatvaranjem pretraživača <b>nećete</b>
+                                    se odjavit stoga se pobrinite da kada završite s korištenjem pritisnete
+                                    <b>Odjava</b>. Sljedeći put pri prijavi unesite
+                                    potrebne podatke i izvršite <b>Prijava</b>.</span>
+                            <p></p>
+                        </div>
+
+                        <div id="oglasi2" class="section scrollspy">
+                            <p><b>3. Objavljivanje oglasa</b> <br>
+                                Nakon prijave na desnoj strani ekrana (na računalima) ili na dnu (kod ostalih uređaja)
+                                pritisnite gumb <b>Dodaj oglas</b>. Obavezno unesite podatke koji vam se traže (predmet,
+                                razina...), jer će se prema njima kasinje filtrirati oglasi prilikiom pretrage.
+                                Lokacija, kontakt i ime autora će se automatski prikupiti iz vaših osobnih podataka.
+                                Kada unesete podatke za novi oglas pritisnite <b>Dodaj oglas</b>. Ispod prvospomenutog
+                                botuna vidjet ćete listu s svima vašim oglasima te ih po želji možete <b>trajno</b>
+                                izbrisati.<br>
+                                </p><div class="row">
+                                <img class="col s12 m6 l3" src="414f9e908ad0678c10879ca28a942b05"></div><br>
+                                Pritiskom ikone 
+                                <i class="material-icons" style="dc9add6d0f9fee960cd2d8c4a9d487af">thumb_up</i> ili 
+                                <i class="material-icons" style="7ea3649cce60074565166b36c3d9ad22">thumb_down</i>. Ocjenu uvijek možete poništiti ili promjeniti. 
+                                u listi svojih oglasa moći ćete vidjeti korisnička imena onih 
+                            <p></p>
+                        </div>
+
+                        <div id="oglasi3" class="section scrollspy">
+                            <p><b>4. Ocjenjivanje oglasa</b> <br>
+                                Da biste ocjenili oglas morate biti <b>prijavljeni</b>. Pronađite oglas koji želite ocjeniti i pritisnite ikonu 
+                                <i class="material-icons" style="cf4ab9b3786a96303f3ad6404968c29b">thumb_up</i> ili 
+                                <i class="material-icons" style="5eabfbae4a69612f215c1a83668367fa">thumb_down</i>. Ocjenu uvijek možete poništiti ili promjeniti. 
+                                <br>
+                                 <img class="col s12" src="b8d3631be9d776df15c3feed7cd772eb"> <br>
+                                 <br></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 l2">
+            <div class="col s12">
+
+                <div class="col hide-on-med-and-down l12">
+                    <ul id="scrollspy" class="section table-of-contents">
+                        <li><a href="#oglasi">Traženje oglasa</a></li>
+                        <li><a href="#prijava">Prijava ili Registracija</a></li>
+                        <li><a href="#oglasi2">Objavljivanje oglasa</a></li>
+                        <li><a href="#oglasi3">Ocjenjivanje oglasa</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--Treći 'stupac' s scrollSpyom-->
+
+    </div>
+
+    
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Footer Content</h5>
+                    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer
+                        content.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2021 Copyright Text
+                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+        </div>
+    </footer>
+    <!--footer iz materialize-a-->
+
+</body>
+
+<script src="ccb8b6d48adf87a74335b7aa1db7c4a8"></script>
+<script src="8ce92f3bf9afb25da2c3eaffa962e782"></script>
+<script src="a922e3395317adaaf07ef3d8d59343b9"></script>
+<!--poveznice za firebase-->
+
+<script type="text/javascript" src="3d737c9b0414b23373e9708fc18ba602"></script><!--Poveznica jer mi je izbacivalo greške za $-->
+<script src="b7100399ec56280b7a552731ce75b991"></script><!--poveznica za materialize-->
+<script data-parcel-key="8eacdb14e1d188e81145a0cbe3251a72">
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyCoxNflUYGE6BH3y9BCfso08Dkvm0edLME",
+        authDomain: "oglasnaploca-b08b2.firebaseapp.com",
+        projectId: "oglasnaploca-b08b2",
+        storageBucket: "oglasnaploca-b08b2.appspot.com",
+        messagingSenderId: "632061917497",
+        appId: "1:632061917497:web:aa956473578b00b40150e8",
+        measurementId: "G-0SJ67RN8CD"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+    $(document).ready(function () {
+        $('.scrollspy').scrollSpy();
+    });//nešto za dodatak materialize-a
+</script>
+
+</html>

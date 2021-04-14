@@ -1,0 +1,98 @@
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
+class OglasTodoCard extends _baseComponentDefault.default {
+  constructor(id, opis, cijena, predmet, razina, date, likes, dislikes) {
+    super("div");
+    this.rootElement.className = "card-panel grey lighten-5 z-depth-1";
+    this.id = id;
+    let row = document.createElement("div");
+    row.className = "row";
+    let col = document.createElement("div");
+    col.className = "col s12";
+    let opisElement = document.createElement("p");
+    opisElement.className = "black-text";
+    opisElement.innerHTML = opis;
+    let info = document.createElement("p");
+    info.innerHTML = `
+            ${_modelAndControlerDefault.default.user.lokacija.županija}, ${_modelAndControlerDefault.default.user.lokacija.grad}<br>
+            cijena:  ${cijena} <br>
+            predmet: ${predmet} <br>
+            razredi: ${razina} <br>
+            datum: ${date} <br>
+            autor: ${_modelAndControlerDefault.default.user.username}<br>
+            kontakt: ${_modelAndControlerDefault.default.user.kontakt} 
+        `;
+    let ocjena = document.createElement("div");
+    ocjena.className = "col s1";
+    let like = document.createElement("i");
+    like.innerHTML = "thumb_up";
+    like.className = "material-icons ";
+    like.style = "cursor: pointer; vertical-align :-3px;";
+    like.addEventListener("click", () => {
+      let listOfLikes = "";
+      likes.forEach(el => listOfLikes += `${el} <br>`);
+      M.toast({
+        html: `${listOfLikes}`
+      });
+    });
+    let dislike = document.createElement("i");
+    dislike.innerHTML = "thumb_down";
+    dislike.className = "material-icons";
+    dislike.style = "cursor: pointer; vertical-align :-10px;";
+    dislike.addEventListener("click", () => {
+      let listOfDislikes = "";
+      likes.forEach(el => listOfDislikes += `${el} <br>`);
+      M.toast({
+        html: `${listOfDislikes}`
+      });
+    });
+    let numberOfLikesElement = document.createElement("span");
+    numberOfLikesElement.innerHTML = likes.length;
+    let numberOfDislikesElement = document.createElement("span");
+    numberOfDislikesElement.innerHTML = dislikes.length;
+    let col2 = document.createElement("div");
+    col2.className = "col s12";
+    let button = document.createElement("a");
+    button.className = "col s12 waves-effect waves-light btn ";
+    button.innerHTML = "OBRIŠI OGLAS";
+    button.addEventListener("click", () => {
+      this.removeSelf();
+    });
+    col.appendChild(opisElement);
+    // opis oglasa
+    col.appendChild(info);
+    // informacije o oglasu
+    col.appendChild(numberOfLikesElement);
+    // broj like-ova
+    col.appendChild(like);
+    // icona like
+    col.appendChild(dislike);
+    // icona dislike
+    col.appendChild(numberOfDislikesElement);
+    // broj dislike-ova
+    col2.appendChild(button);
+    // gumb za brisanje oglasa
+    row.appendChild(col);
+    row.appendChild(col2);
+    this.addChild(row);
+  }
+  removeSelf() {
+    let database = firebase.firestore();
+    database.collection("korisnici").where("username", "==", _modelAndControlerDefault.default.user.username).get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        let korisnik = doc.data();
+        database.collection("korisnici").doc(doc.id).// pronalazi korisnika
+        update({
+          oglasi: korisnik.oglasi.filter(item => item.id !== this.id)
+        }).then(() => {
+          let parent = this.rootElement.parentNode;
+          parent.removeChild(this.rootElement);
+        });
+      });
+    });
+  }
+}
+module.exports = OglasTodoCard;

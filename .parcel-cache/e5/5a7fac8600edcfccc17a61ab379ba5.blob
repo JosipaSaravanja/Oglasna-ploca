@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="6fc5bcc11688d043199843751c9e85bc" type="image/gif" sizes="16x16"><!--ikona-->
+    <title>Kemija</title>
+    <link rel="stylesheet" href="7468796544d70aad1bc710361aad2d0c">
+    <link href="842f41d57a37e49fa8b84211197ca21e" rel="stylesheet">
+    <link rel="stylesheet" href="3a18bc984fa2d5361e41ab73e79549c4"><!--poveznica na glavni css-->
+</head>
+
+<body>
+    
+    <nav class="nav-extended teal lighten-1" style="53fdf648f373ade0e10ee8cabdeff94e">
+        <div class="nav-wrapper ">
+            <a href="060e608dc2d646a96fc808788410f36d" class="brand-logo" id="predmet-value" value="kemija">Oglasnik</a>
+            <a href="" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="dd1dc348863ffa1304e5ea0b9440b398">Korištenje</a></li>
+                <li><a href="c4c147db1158f18167819e10342c8347">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!--Zaglavlje kada je zaslon large-->
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="dd1dc348863ffa1304e5ea0b9440b398">Korištenje</a></li>
+        <li><a href="c4c147db1158f18167819e10342c8347">Kontakt</a></li>
+    </ul>
+    <!--Zaglavlje kada je zaslon medium i manji--><br>
+
+    <div class="row">
+        <div class="col s12 l2">
+            <div class="col s12">
+                <div class="row z-depth-5" id="stupac1">
+
+                </div>
+            </div>
+        </div>
+        <!--Prvi 'stupac' gdje se izmjenjuju prijava i korisnički račun-->
+
+        <div class="col s12 l8">
+            <div class="col s12">
+                <div class="row z-depth-5" style="6bbf19e61674d34dc6990289bcad2853">
+                    <div class="col s12" id="drugiStupac">
+                        <ul class="tabs">
+                            <li class="tab col s6"><a class="teal-text text-lighten-2 active" href="#osnovneSkole">Osnovne škole</a></li>
+                            
+                                    <li class="tab col s6"><a class="teal-text text-lighten-2" href="#srednjeSkole">Srednje
+                                    škola</a></li>
+                        </ul><!--tabs za promjenu osnovne škole-srednje škole-->
+                    </div>
+                    <div id="osnovneSkole" class="col s12"></div><!--Tu se dodaju oglasi iz firebase s znakom osnovne škole-->
+                    <div id="srednjeSkole" class="col s12"></div><!--Tu se dodaju oglasi iz firebase s znakom srednje škole-->
+                </div>
+            </div>
+        </div>
+        <!--Srednji 'stupac'-->
+
+
+       
+        <div class="col s12 l2">
+            <div class="col s12">
+                <div id="stupac3">
+
+                </div>
+            </div>
+        </div>
+            <!--Treći 'stupac'-->
+
+        </div>
+
+        
+        <div id="modal1" class="modal  modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Novi oglas</h4>
+                <p>
+                <input class="col s12" autocomplete="off" id="opis" placeholder="Opis">
+                <input class="col s12" autocomplete="off" id="cijena" placeholder="Cijena (navedite i vrijeme npr 60 kn/45min, 70kn/60min...)">
+                
+                    </p><div class="col s12">
+                        <label>Odaberite predmet</label>
+                        <select class="browser-default" id="predmet">
+                            <option value="matematika">Matematika</option>
+                            <option value="fizika">Fizika</option>
+                            <option value="kemija">Kemija</option>
+                            <option value="biologija">Biologija</option>
+                            <option value="hrvatski">Hrvatski</option>
+                            <option value="engleski">Engleski</option>
+                            <option value="njemački">Njemački</option>
+                            <option value="latinski">Latinski</option>
+                            <option value="talijanski">Talijanski</option>
+                        </select>    
+                    </div>
+                    <div class="col s12">
+                        <label>Odaberite razinu</label>
+                        <select class="browser-default" id="razina">
+                            <option value="osnovna škola">Osnovna škola</option>
+                            <option value="srednja škola">Srednja škola</option>
+                        </select>    
+                    </div>
+                <p></p>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <a id="dodajOglas" href="#!" class="modal-close waves-effect waves-green btn-flat">Spremi oglas</a>
+            </div>
+        </div>
+        <!--obrazac za unos novod oglasa. Postaje vidljiv samo na gumb iz dodajOglas.js Jel to treba biti pisano ovdje ili u DOM?-->
+
+        <footer class="page-footer">
+            <div class="container">
+              <div class="row">
+                <div class="col l6 s12">
+                  <h5 class="white-text">Footer Content</h5>
+                  <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                  <h5 class="white-text">Links</h5>
+                  <ul>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="footer-copyright">
+              <div class="container">
+              © 2021 Copyright Text
+              <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+              </div>
+            </div>
+          </footer><!--footer iz materialize-a-->
+    
+</body>
+
+<script src="de9f7f2020c3d192e58e19574ff22dca"></script>
+<script src="b7e3009038269e9896a37fe4dbe99ccc"></script>
+<script src="89458230ad6995ccaf30f80e67d2e5f1"></script> <!--poveznice za firebase-->
+
+<script type="text/javascript" src="b1e0ac0553d0b73500de8ae2a61b2140"></script><!--Poveznica jer mi je izbacivalo greške za $-->
+<script src="55d93a0b9ae6a3dea296762c2c874740"></script> <!--poveznica za materialize-->
+<script data-parcel-key="e98bcdac4485415f7bf1ddd53f7787bb">
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyA_bA0LS0eefdaWyqKe-qyL7U-zHuoOe-k",
+    authDomain: "oglasna-ploca.firebaseapp.com",
+    projectId: "oglasna-ploca",
+    storageBucket: "oglasna-ploca.appspot.com",
+    messagingSenderId: "738452914857",
+    appId: "1:738452914857:web:e02497ec7cfbd129e59fb8",
+    measurementId: "G-2L3E02TT43"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  
+  $(document).ready(function(){
+    $('.tooltipped').tooltip();
+  });//Za materialize elemente
+</script>
+<script src="1f8e9def66306eccc9859a14e86b587b"></script><!--poveznica za js-->
+</html>

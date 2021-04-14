@@ -44,13 +44,22 @@ class OglasTodoCard extends Component {
     like.innerHTML = "thumb_up";
     like.className = "material-icons ";
     like.style = "cursor: pointer; vertical-align :-3px;";
-    //like.addEventListener("click", /* */)
+    like.addEventListener("click", ()=>{
+      let listOfLikes="";
+      likes.forEach(el=>listOfLikes+=`${el} <br>`)
+      M.toast({html: `${listOfLikes}`});
+    });
 
     let dislike = document.createElement("i");
     dislike.innerHTML = "thumb_down";
     dislike.className = "material-icons";
     dislike.style = "cursor: pointer; vertical-align :-10px;";
-    
+    dislike.addEventListener("click", ()=>{
+      let listOfDislikes="";
+      dislikes.forEach(el=>listOfDislikes+=`${el} <br>`)
+      M.toast({html: `${listOfDislikes}`});
+    });
+
     let numberOfLikesElement = document.createElement("span");
     numberOfLikesElement.innerHTML = likes.length;
 

@@ -71,19 +71,23 @@
                                 već zauzeto trebate unijeti neko novo. Kad se prijavite ne morate unosit nikakve osobne
                                 podatke (poput lokacije i konakta) jer ih uvijek možete promjeniti, međutim ukoliko
                                 planirate objaviti oglas ti su podaci neophodni.
-                                <br>
-                                <img src="https://firebasestorage.googleapis.com/v0/b/oglasna-ploca.appspot.com/o/ime_prezime.jpg?alt=media&token=3920d410-666c-4f9f-85f5-14359aff4e0c"><br>
-                                <br>Ukoliko se odlučite unijeti osobne podatke, nakon što se prijavite ispunite obrazac
+                                
+                                </p><div class="row">
+                                <img class="col s12 m6 l3 " src="https://firebasestorage.googleapis.com/v0/b/oglasna-ploca.appspot.com/o/ime_prezime.jpg?alt=media&token=3920d410-666c-4f9f-85f5-14359aff4e0c"><br>
+                                </div>
+                                Ukoliko se odlučite unijeti osobne podatke, nakon što se prijavite ispunite obrazac
                                 i pritisnite <b>Spremi promjene</b>. Podaci će se automatski promjeniti na svim oglasima
                                 koje ste ranije objavili. Također možete mjenjati lozinku, ali ne i korisničko ime.
-                                <br>
-                                <img src="https://firebasestorage.googleapis.com/v0/b/oglasna-ploca.appspot.com/o/podaci.jpg?alt=media&token=b6fdeb94-cdb7-4e71-90c7-31fb1a5c5620"> <br>
-                                <br><span style="color:#ef5350
+                                
+                                <div class="row">
+                                <img class="col s12 m6 l3" src="https://firebasestorage.googleapis.com/v0/b/oglasna-ploca.appspot.com/o/podaci.jpg?alt=media&token=b6fdeb94-cdb7-4e71-90c7-31fb1a5c5620"> <br>
+                                </div>
+                                <span style="color:#ef5350
 ">Napomena: Samim zatvaranjem pretraživača <b>nećete</b>
                                     se odjavit stoga se pobrinite da kada završite s korištenjem pritisnete
                                     <b>Odjava</b>. Sljedeći put pri prijavi unesite
                                     potrebne podatke i izvršite <b>Prijava</b>.</span>
-                            </p>
+                            <p></p>
                         </div>
 
                         <div id="oglasi2" class="section scrollspy">
@@ -94,7 +98,16 @@
                                 Lokacija, kontakt i ime autora će se automatski prikupiti iz vaših osobnih podataka.
                                 Kada unesete podatke za novi oglas pritisnite <b>Dodaj oglas</b>. Ispod prvospomenutog
                                 botuna vidjet ćete listu s svima vašim oglasima te ih po želji možete <b>trajno</b>
-                                izbrisati.<br><img src="https://firebasestorage.googleapis.com/v0/b/oglasna-ploca.appspot.com/o/oglas.jpg?alt=media&token=7a5338b2-5540-4e59-93de-8bbbb916756d"><br></p>
+                                izbrisati.
+                                </p><div class="row">
+                                <img class="col s12 m6 l3" src="https://firebasestorage.googleapis.com/v0/b/oglasna-ploca.appspot.com/o/oglas.jpg?alt=media&token=7a5338b2-5540-4e59-93de-8bbbb916756d"></div>
+                                Pritiskom ikone 
+                                <i class="material-icons" style="cursor: pointer; vertical-align :-3px;
+">thumb_up</i> ili 
+                                <i class="material-icons" style="cursor: pointer; vertical-align :-10px;
+">thumb_down</i>
+                                u listi svojih oglasa moći ćete vidjeti korisnička imena onih koji su vam ocjenili oglas.
+                            <p></p>
                         </div>
 
                         <div id="oglasi3" class="section scrollspy">
@@ -104,9 +117,9 @@
 ">thumb_up</i> ili 
                                 <i class="material-icons" style="cursor: pointer; vertical-align :-10px;
 ">thumb_down</i>. Ocjenu uvijek možete poništiti ili promjeniti. 
-                                <br>
-                                <img src="https://firebasestorage.googleapis.com/v0/b/oglasna-ploca.appspot.com/o/ocjena.jpg?alt=media&token=2f4535fa-9dcc-4b49-b86c-918a04b8eaaf"> <br>
-                                <br></p>
+                                
+                                 <img class="col s12" src="https://firebasestorage.googleapis.com/v0/b/oglasna-ploca.appspot.com/o/ocjena.jpg?alt=media&token=2f4535fa-9dcc-4b49-b86c-918a04b8eaaf"> <br>
+                                 </p>
                         </div>
                     </div>
                 </div>
@@ -163,11 +176,10 @@
 
 <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
-<!--poveznice za firebase-->
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script> <!--poveznice za firebase-->
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script><!--Poveznica jer mi je izbacivalo greške za $-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script><!--poveznica za materialize-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> <!--poveznica za materialize-->
 <script>// modules are defined as an array
 // [ module function, map of requires ]
 //
@@ -310,12 +322,12 @@
       this[globalName] = mainExports;
     }
   }
-})({"j0eOB":[function(require,module,exports) {
+})({"6nYqJ":[function(require,module,exports) {
 var HMR_HOST = null;
-var HMR_PORT = 50853;
+var HMR_PORT = 1234;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d751713988987e9331980363e24189ce";
-module.bundle.HMR_BUNDLE_ID = "e9c0be0f0552b308ac13f450ea2d1c29";
+module.bundle.HMR_BUNDLE_ID = "effc282adfee86ac025b5c8087814cc7";
 // @flow
 /*global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE*/
 /*::
@@ -611,26 +623,26 @@ id) /*: string*/
   acceptedAssets[id] = true;
 }
 
-},{}],"26qhQ":[function(require,module,exports) {
+},{}],"77BC3":[function(require,module,exports) {
 // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    var firebaseConfig = {
-        apiKey: "AIzaSyCoxNflUYGE6BH3y9BCfso08Dkvm0edLME",
-        authDomain: "oglasnaploca-b08b2.firebaseapp.com",
-        projectId: "oglasnaploca-b08b2",
-        storageBucket: "oglasnaploca-b08b2.appspot.com",
-        messagingSenderId: "632061917497",
-        appId: "1:632061917497:web:aa956473578b00b40150e8",
-        measurementId: "G-0SJ67RN8CD"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyA_bA0LS0eefdaWyqKe-qyL7U-zHuoOe-k",
+    authDomain: "oglasna-ploca.firebaseapp.com",
+    projectId: "oglasna-ploca",
+    storageBucket: "oglasna-ploca.appspot.com",
+    messagingSenderId: "738452914857",
+    appId: "1:738452914857:web:e02497ec7cfbd129e59fb8",
+    measurementId: "G-2L3E02TT43"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  
     $(document).ready(function () {
         $('.scrollspy').scrollSpy();
     });//nešto za dodatak materialize-a
-},{}]},["j0eOB","26qhQ"], "26qhQ", "parcelRequire427e")
+},{}]},["6nYqJ","77BC3"], "77BC3", "parcelRequire427e")
 
 </script>
 
