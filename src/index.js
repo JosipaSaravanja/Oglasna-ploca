@@ -5,7 +5,7 @@ import controler from "./modelAndControler";
 
 document.getElementById("stupac1").appendChild(new PrviStupac().rootElement); //Popunjava prvi stupac
 
-controler.user!==false ? document.getElementById("stupac3").appendChild(new TreciStupac().rootElement) :fslse;
+controler.user!==false ? document.getElementById("stupac3").appendChild(new TreciStupac().rootElement) :false;
 //Ukoliko je netko prijavljen popunjava treći stupac
 
 console.log(JSON.parse(localStorage["user"]))

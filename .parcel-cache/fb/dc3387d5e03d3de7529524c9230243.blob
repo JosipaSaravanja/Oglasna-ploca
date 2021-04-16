@@ -1,0 +1,16 @@
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+var _neprijavljeni = require("./neprijavljeni");
+var _neprijavljeniDefault = _parcelHelpers.interopDefault(_neprijavljeni);
+var _prijavljeni = require("./prijavljeni");
+var _prijavljeniDefault = _parcelHelpers.interopDefault(_prijavljeni);
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
+class PrviStupac extends _baseComponentDefault.default {
+  constructor() {
+    super("div");
+    _modelAndControlerDefault.default.user == false ? this.addChild(new _neprijavljeniDefault.default().rootElement) : this.addChild(new _prijavljeniDefault.default().rootElement);
+  }
+}
+module.exports = PrviStupac;

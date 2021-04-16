@@ -452,7 +452,7 @@ var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler
 M.AutoInit();
 document.getElementById("stupac1").appendChild(new _componentsPrviStupacDefault.default().rootElement);
 // Popunjava prvi stupac
-_modelAndControlerDefault.default.user !== false ? document.getElementById("stupac3").appendChild(new _componentsTreciStupacDefault.default().rootElement) : fslse;
+_modelAndControlerDefault.default.user !== false ? document.getElementById("stupac3").appendChild(new _componentsTreciStupacDefault.default().rootElement) : false;
 // Ukoliko je netko prijavljen popunjava treći stupac
 console.log(JSON.parse(localStorage["user"]));
 console.log(localStorage["user"]);
@@ -552,7 +552,7 @@ class Neprijavljeni extends _baseComponentDefault.default {
           // korisnik se prijavio
           localStorage.setItem('user', JSON.stringify(podaci));
           location.reload();
-        } else {}
+        }
       });
       prijava == false ? M.toast({
         html: `Netočno korisnicko ime ili lozinka`
@@ -605,8 +605,8 @@ module.exports = Neprijavljeni;
 },{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"5zPz0":[function(require,module,exports) {
 class Controler extends EventTarget {
     constructor(){
-        super(); 
-        localStorage.getItem('user')== null?localStorage.setItem('user', false): false;
+        super();  
+        localStorage.getItem('user')== null?localStorage.setItem('user', false): false; 
         this.user=JSON.parse(localStorage.getItem("user"));
         console.log(this.user)
     }

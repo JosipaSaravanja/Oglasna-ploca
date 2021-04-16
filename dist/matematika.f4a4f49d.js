@@ -454,6 +454,9 @@ document.getElementById("stupac1").appendChild(new _componentsPrviStupacDefault.
 // Dodaje sadržaj prvom stupcu
 let predmet = document.getElementById("predmet-value").getAttribute("value");
 // određuje o kojem je predmetu riječ
+function myFunction(predmet) {
+  alert(predmet);
+}
 let database = firebase.firestore();
 database.collection("korisnici").get().then(querySnapshot => {
   querySnapshot.forEach(doc => {
@@ -564,7 +567,7 @@ class Neprijavljeni extends _baseComponentDefault.default {
           // korisnik se prijavio
           localStorage.setItem('user', JSON.stringify(podaci));
           location.reload();
-        } else {}
+        }
       });
       prijava == false ? M.toast({
         html: `Netočno korisnicko ime ili lozinka`
@@ -617,8 +620,8 @@ module.exports = Neprijavljeni;
 },{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"5zPz0":[function(require,module,exports) {
 class Controler extends EventTarget {
     constructor(){
-        super(); 
-        localStorage.getItem('user')== null?localStorage.setItem('user', false): false;
+        super();  
+        localStorage.getItem('user')== null?localStorage.setItem('user', false): false; 
         this.user=JSON.parse(localStorage.getItem("user"));
         console.log(this.user)
     }

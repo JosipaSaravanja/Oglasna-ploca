@@ -56,12 +56,12 @@ class Neprijavljeni extends Component {
       .then((querySnapshot)=> {
         querySnapshot.forEach((doc)=> {
           let podaci = doc.data();
-          if (podaci.password == this.password.value) {
-            M.toast({ html: `Uspješna prijava ${podaci.username}`});
+          if (podaci.password == this.password.value) { 
+            M.toast({html:`Uspješna prijava ${podaci.username}`}  );
             prijava = true; //korisnik se prijavio
             localStorage.setItem('user', JSON.stringify(podaci));
-            location.reload();
-          }else{}
+            location.reload(); 
+          }
         });
         prijava == false ?  M.toast({ html: `Netočno korisnicko ime ili lozinka` }) : false; //korisnik se nije prijavio jer nije pronađeno ime ili se lozinka nije podudarala
       });

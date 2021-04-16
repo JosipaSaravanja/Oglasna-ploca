@@ -7,6 +7,9 @@ import PredmetOglasiCard from "./components/predmetOglasiCard";
 document.getElementById("stupac1").appendChild(new PrviStupac().rootElement); //Dodaje sadržaj prvom stupcu
 let predmet = document.getElementById("predmet-value").getAttribute("value"); //određuje o kojem je predmetu riječ
 
+function myFunction(predmet){
+  alert(predmet)
+}
 let database = firebase.firestore();
 database
   .collection("korisnici")

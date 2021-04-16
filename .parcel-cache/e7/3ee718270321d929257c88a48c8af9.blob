@@ -1,0 +1,14 @@
+var _componentsPrviStupac = require("./components/PrviStupac");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _componentsPrviStupacDefault = _parcelHelpers.interopDefault(_componentsPrviStupac);
+var _componentsTreciStupac = require("./components/treciStupac");
+var _componentsTreciStupacDefault = _parcelHelpers.interopDefault(_componentsTreciStupac);
+var _modelAndControler = require("./modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
+M.AutoInit();
+document.getElementById("stupac1").appendChild(new _componentsPrviStupacDefault.default().rootElement);
+// Popunjava prvi stupac
+_modelAndControlerDefault.default.user !== false ? document.getElementById("stupac3").appendChild(new _componentsTreciStupacDefault.default().rootElement) : false;
+// Ukoliko je netko prijavljen popunjava treći stupac
+console.log(JSON.parse(localStorage["user"]));
+console.log(localStorage["user"]);
