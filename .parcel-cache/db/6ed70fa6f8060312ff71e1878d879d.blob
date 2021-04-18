@@ -10,7 +10,7 @@
     <title>Talijanski</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="/index.0f132b6c.css"><!--poveznica na glavni css-->
+    <link rel="stylesheet" href="/index.HASH_REF_1484d9a21a30cf8951b41e0f0f132b6c.css"><!--poveznica na glavni css-->
 </head>
 
 <body>
@@ -582,5 +582,5 @@ id) /*: string*/
 },{}]},["5kXYx","18MMl"], "18MMl", "parcelRequire427e")
 
 </script>
-<script src="/matematika.f4a4f49d.js"></script><!--poveznica za js-->
+<script src="/matematika.HASH_REF_d8d0851e7ff097b3b6f6e5daf4a4f49d.js"></script><!--poveznica za js-->
 </html>

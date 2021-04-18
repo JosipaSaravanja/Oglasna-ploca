@@ -6,30 +6,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/oglasna-ploca.appspot.com/o/icon.jpg?alt=media&token=df06298f-2ea6-42d2-895f-315c4cb5f157" type="image/gif" sizes="16x16"><!--ikona-->
+    <link rel="icon" href="53d96600ad993256833cc70aa7326386" type="image/gif" sizes="16x16"><!--ikona-->
     <title>Talijanski</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="index.css"><!--poveznica na glavni css-->
+    <link rel="stylesheet" href="8ca4744fb536e646175d32755bdd4af1">
+    <link href="8e453956213509fe27e29b5833f74db7" rel="stylesheet">
+    <link rel="stylesheet" href="4c08d6b83b3e3d92df099e0f88fc7dee"><!--poveznica na glavni css-->
 </head>
 
 <body>
     
-    <nav class="nav-extended teal lighten-1" style="padding: 20px">
+    <nav class="nav-extended teal lighten-1" style="55f3a8c5c207dd92064bbd3419c77e64">
         <div class="nav-wrapper ">
-            <a href="index.html" class="brand-logo" id="predmet-value" value="talijanski">Oglasnik</a>
+            <a href="56c6bebf01208940c6567b4fcc7add2d" class="brand-logo" id="predmet-value" value="talijanski">Oglasnik</a>
             <a href="" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="upute.html">Korištenje</a></li>
-                <li><a href="kontakt.html">Kontakt</a></li>
+                <li><a href="0844ca7ec1aa3d4383294e2a561edbd6">Korištenje</a></li>
+                <li><a href="015cef74abc394168a8817ae789e6a96">Kontakt</a></li>
             </ul>
         </div>
     </nav>
     <!--Zaglavlje kada je zaslon large-->
 
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="upute.html">Korištenje</a></li>
-        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="0844ca7ec1aa3d4383294e2a561edbd6">Korištenje</a></li>
+        <li><a href="015cef74abc394168a8817ae789e6a96">Kontakt</a></li>
     </ul>
     <!--Zaglavlje kada je zaslon medium i manji--><br>
 
@@ -45,13 +45,11 @@
 
         <div class="col s12 l8">
             <div class="col s12">
-                <div class="row z-depth-5" style="background-color: white;">
+                <div class="row z-depth-5" style="eb5051a4bf57ae24e7d2927bad4684cd">
                     <div class="col s12" id="drugiStupac">
                         <ul class="tabs">
-                            <li class="tab col s6"><a class="teal-text text-lighten-2 active"
-                                    href="#osnovneSkole">Osnovne škole</a></li>
-                            <li class="tab col s6"><a class="teal-text text-lighten-2" 
-                                href="#srednjeSkole">Srednje škola</a></li>
+                            <li class="tab col s6"><a class="teal-text text-lighten-2 active" href="#osnovneSkole">Osnovne škole</a></li>
+                            <li class="tab col s6"><a class="teal-text text-lighten-2" href="#srednjeSkole">Srednje škola</a></li>
                         </ul><!--tabs za promjenu osnovne škole-srednje škole-->
                     </div>
                     <div id="osnovneSkole" class="col s12"></div><!--Tu se dodaju oglasi iz firebase s znakom osnovne škole-->
@@ -63,7 +61,7 @@
 
         <div class="col s12 l2">
             <div class="col s12">
-                <div id="stupac3" >
+                <div id="stupac3">
 
                 </div>
             </div>
@@ -79,7 +77,7 @@
                 <input class="col s12" autocomplete="off" id="opis" placeholder="Opis">
                 <input class="col s12" autocomplete="off" id="cijena" placeholder="Cijena (navedite i vrijeme npr 60 kn/45min, 70kn/60min...)">
                 
-                <div class="col s12">
+                </p><div class="col s12">
                     <label>Odaberite predmet</label>
                     <select class="browser-default" id="predmet">
                         <option value="matematika">Matematika</option>
@@ -100,7 +98,7 @@
                         <option value="srednja škola">Srednja škola</option>
                     </select>    
                 </div>
-            </p>
+            <p></p>
         </div>
         <div class="modal-footer">
             <a id="dodajOglas" href="#!" class="modal-close waves-effect waves-green btn-flat">Spremi oglas</a>
@@ -111,13 +109,13 @@
     
 </body>
 
-<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script> <!--poveznice za firebase-->
+<script src="13c8aaac1d435023c0635a7785509b41"></script>
+<script src="5dae615166c7859dc83aaf1974254a4f"></script>
+<script src="60d9afac6b1369626d99495f3e580979"></script> <!--poveznice za firebase-->
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script><!--Poveznica jer mi je izbacivalo greške za $-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> <!--poveznica za materialize-->
-<script>
+<script type="text/javascript" src="732ff20da9d7cb32ae5fc0c602199adc"></script><!--Poveznica jer mi je izbacivalo greške za $-->
+<script src="e4997c94f25f4148b5add5be4b6d788e"></script> <!--poveznica za materialize-->
+<script data-parcel-key="24e57a1dc2a907ecaaea87a7900e98f7">
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   var firebaseConfig = {
@@ -137,5 +135,5 @@
     $('.tooltipped').tooltip();
   });//Za materialize elemente
 </script>
-<script src="src/predmeti.js"></script><!--poveznica za js-->
+<script src="243c4f182795d25b68fa08a5cbff2cdc"></script><!--poveznica za js-->
 </html>

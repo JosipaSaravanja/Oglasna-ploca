@@ -10,7 +10,7 @@
     <title>Talijanski</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="/index.0f132b6c.css"><!--poveznica na glavni css-->
+    <link rel="stylesheet" href="/index.HASH_REF_1484d9a21a30cf8951b41e0f0f132b6c.css"><!--poveznica na glavni css-->
 </head>
 
 <body>
@@ -108,6 +108,7 @@
     </div>
     <!--obrazac za unos novod oglasa. Postaje vidljiv samo na gumb iz dodajOglas.js Jel to treba biti pisano ovdje ili u DOM?-->
 
+        <!--footer iz materialize-a-->
     
 </body>
 
@@ -259,12 +260,12 @@
       this[globalName] = mainExports;
     }
   }
-})({"5kXYx":[function(require,module,exports) {
+})({"1OWui":[function(require,module,exports) {
 var HMR_HOST = null;
 var HMR_PORT = 1234;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d751713988987e9331980363e24189ce";
-module.bundle.HMR_BUNDLE_ID = "804f34dcb92331dd4cbe0babde8ded83";
+module.bundle.HMR_BUNDLE_ID = "2c5fdb8bdffd0d2262d7db7b540eb720";
 // @flow
 /*global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE*/
 /*::
@@ -560,7 +561,7 @@ id) /*: string*/
   acceptedAssets[id] = true;
 }
 
-},{}],"18MMl":[function(require,module,exports) {
+},{}],"4lO2M":[function(require,module,exports) {
 // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   var firebaseConfig = {
@@ -579,8 +580,8 @@ id) /*: string*/
   $(document).ready(function(){
     $('.tooltipped').tooltip();
   });//Za materialize elemente
-},{}]},["5kXYx","18MMl"], "18MMl", "parcelRequire427e")
+},{}]},["1OWui","4lO2M"], "4lO2M", "parcelRequire427e")
 
 </script>
-<script src="/matematika.f4a4f49d.js"></script><!--poveznica za js-->
+<script src="/matematika.HASH_REF_d8d0851e7ff097b3b6f6e5daf4a4f49d.js"></script><!--poveznica za js-->
 </html>
