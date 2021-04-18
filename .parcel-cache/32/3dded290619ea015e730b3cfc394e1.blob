@@ -1,0 +1,27 @@
+var _componentsPrviStupac = require("./components/PrviStupac");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _componentsPrviStupacDefault = _parcelHelpers.interopDefault(_componentsPrviStupac);
+var _componentsTreciStupac = require("./components/treciStupac");
+var _componentsTreciStupacDefault = _parcelHelpers.interopDefault(_componentsTreciStupac);
+var _componentsPredmetOglasiCard = require("./components/predmetOglasiCard");
+var _componentsPredmetOglasiCardDefault = _parcelHelpers.interopDefault(_componentsPredmetOglasiCard);
+M.AutoInit();
+document.getElementById("stupac1").appendChild(new _componentsPrviStupacDefault.default().rootElement);
+// Dodaje sadržaj prvom stupcu
+let predmet = document.getElementById("predmet-value").getAttribute("value");
+// određuje o kojem je predmetu riječ
+let database = firebase.firestore();
+database.collection("korisnici").get().then(querySnapshot => {
+  querySnapshot.forEach(doc => {
+    let korisnik = doc.data();
+    korisnik.oglasi.forEach(el => {
+      if (el.predmet == predmet) {
+        // kroz svaki doc firebase trazi u array oglasi onaj object s property predmet=odredeni predment
+        let oglas = new _componentsPredmetOglasiCardDefault.default(// za svaki oglas kojem je property predmet=ime predmeta, kreira katricu
+        korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.razina, el.date, el.ocjena.like, el.ocjena.dislike, el.id, korisnik.username);
+        el.razina == "osnovna škola" ? document.getElementById("osnovneSkole").insertBefore(oglas.rootElement, document.getElementById("osnovneSkole").firstChild) : document.getElementById("srednjeSkole").appendChild(oglas.rootElement);
+      }
+    });
+  });
+});
+document.getElementById("stupac3").appendChild(new _componentsTreciStupacDefault.default().rootElement);

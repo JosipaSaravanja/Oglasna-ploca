@@ -463,7 +463,7 @@ database.collection("korisnici").get().then(querySnapshot => {
         // kroz svaki doc firebase trazi u array oglasi onaj object s property predmet=odredeni predment
         let oglas = new _componentsPredmetOglasiCardDefault.default(// za svaki oglas kojem je property predmet=ime predmeta, kreira katricu
         korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.razina, el.date, el.ocjena.like, el.ocjena.dislike, el.id, korisnik.username);
-        el.razina == "osnovna škola" ? document.getElementById("osnovneSkole").insertBefore(oglas.rootElement, document.getElementById("osnovneSkole").firstChild) : document.getElementById("srednjeSkole").insertBefore(oglas.rootElement, document.getElementById("srednjeSkole").firstChild);
+        el.razina == "osnovna škola" ? document.getElementById("osnovneSkole").insertBefore(oglas.rootElement, document.getElementById("osnovneSkole").firstChild) : document.getElementById("srednjeSkole").appendChild(oglas.rootElement);
       }
     });
   });
@@ -1199,4 +1199,4 @@ module.exports = PredmetOglasiCard;
 
 },{"../baseComponent":"22hEl","../modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["23zPT","7jrko"], "7jrko", "parcelRequire427e")
 
-//# sourceMappingURL=matematika.f4a4f49d.js.map
+//# sourceMappingURL=matematika.HASH_REF_d8d0851e7ff097b3b6f6e5daf4a4f49d.js.map

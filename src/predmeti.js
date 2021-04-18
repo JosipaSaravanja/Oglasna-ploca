@@ -29,8 +29,8 @@ database
             korisnik.username
           );
           el.razina == "osnovna škola"
-            ? document.getElementById("osnovneSkole").appendChild(oglas.rootElement)
-            : document.getElementById("srednjeSkole").appendChild(oglas.rootElement);
+            ? document.getElementById("osnovneSkole").insertBefore(oglas.rootElement, document.getElementById("osnovneSkole").firstChild)
+            : document.getElementById("srednjeSkole").insertBefore(oglas.rootElement, document.getElementById("srednjeSkole").firstChild);
           //karticu prema razini ubacuje u div za osnovne ili srednje škole
         }
       });
