@@ -453,9 +453,6 @@ M.AutoInit();
 document.getElementById("stupac1").appendChild(new _componentsPrviStupacDefault.default().rootElement);
 // Popunjava prvi stupac
 _modelAndControlerDefault.default.user !== false ? document.getElementById("stupac3").appendChild(new _componentsTreciStupacDefault.default().rootElement) : false;
-// Ukoliko je netko prijavljen popunjava treći stupac
-console.log(JSON.parse(localStorage["user"]));
-console.log(localStorage["user"]);
 
 },{"./components/PrviStupac":"6Tngg","./components/treciStupac":"7dnyH","./modelAndControler":"5zPz0","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6Tngg":[function(require,module,exports) {
 var _baseComponent = require("../baseComponent");
@@ -530,7 +527,7 @@ class Neprijavljeni extends _baseComponentDefault.default {
     // ukoliko nesto nije popunjeno prilikom click-a obavještava korisnika, u suprotom potiva funkciju this.registracija()
     let niz = [naslov, this.username, this.password, prijava, ili, registracija];
     niz.forEach(el => {
-      // stavlja sve u zasebni red
+      // stavlja sve u zasebni col s12
       let col = document.createElement("div");
       col.className = "col s12";
       col.appendChild(el);
@@ -608,7 +605,6 @@ class Controler extends EventTarget {
         super();  
         localStorage.getItem('user')== null?localStorage.setItem('user', false): false; 
         this.user=JSON.parse(localStorage.getItem("user"));
-        console.log(this.user)
     }
 
     addOglas(event){
@@ -621,7 +617,7 @@ class Controler extends EventTarget {
 
     }
 
-    zupanija(event){
+    zupanija(event){//za filter
         this.dispatchEvent(
             new CustomEvent(
                 "zupanije",
@@ -700,15 +696,19 @@ class Prijavljeni extends _baseComponentDefault.default {
       this.select.appendChild(option);
     });
     this.select.value = _modelAndControlerDefault.default.user.lokacija.županija;
+    // value selecta je jednaka upisanom podatku u firebase
     this.grad = document.createElement("input");
     this.grad.placeholder = "Grad";
     this.grad.value = _modelAndControlerDefault.default.user.lokacija.grad;
+    // value inputa je jednaka upisanom podatku u firebase
     this.kontakt = document.createElement("input");
     this.kontakt.placeholder = "Kontakt";
     this.kontakt.value = _modelAndControlerDefault.default.user.kontakt;
+    // value inputa je jednaka upisanom podatku u firebase
     this.password = document.createElement("input");
     this.password.placeholder = "Lozinka";
     this.password.value = _modelAndControlerDefault.default.user.password;
+    // value inputa je jednaka upisanom podatku u firebase
     this.password.type = "password";
     let spremi = document.createElement("a");
     spremi.className = "waves-effect waves-light btn-small";
@@ -732,12 +732,14 @@ class Prijavljeni extends _baseComponentDefault.default {
       div.appendChild(el);
       col.appendChild(div);
     });
-    // svaki element je u svom div-u tako da svaki ima "vlastiti" red (s col s12 sve malo više stisne pa sam se odlucila za div) te je sve spremljeno u col s m6 pa slika i ostalo stoje jedno do drugoga na meduium ekranima
+    // svaki element je u svom div-u tako da svaki ima "vlastiti" red (s col s12 sve malo više stisne pa sam se odlucila za div) te je sve spremljeno u col s m6 pa slika stoji pored svega toga na meduium ekranima
     this.addChildren([img, col]);
   }
   spremi() {
+    // sprema promjene
     let database = firebase.firestore();
-    database.collection("korisnici").doc(_modelAndControlerDefault.default.user.id).update({
+    database.collection("korisnici").doc(_modelAndControlerDefault.default.user.id).// pronalazi prema id
+    update({
       password: this.password.value,
       lokacija: {
         županija: this.select.value,
@@ -795,7 +797,7 @@ class MojiOglasi extends _baseComponentDefault.default {
       querySnapshot.forEach(doc => {
         let korisnik = doc.data();
         korisnik.oglasi.forEach(el => {
-          // pronalazi sve oglase korisnika i ispisuje ih od kraja tako da su oni nedavno uneseni na vrhu
+          // pronalazi sve oglase korisnika i ispisuje ih
           let oglas = new _oglasTodoCardDefault.default(el.id, el.opis, el.cijena, el.predmet, el.razina, el.date, el.ocjena.like, el.ocjena.dislike);
           this.spremljeniOglasi.insertBefore(oglas.rootElement, this.spremljeniOglasi.firstChild);
         });
@@ -947,9 +949,7 @@ class DodajOglas extends _baseComponentDefault.default {
         if (korisnik.oglasi.length == false) {
           id = 0;
         } else {
-          let obj = korisnik.oglasi[korisnik.oglasi.length - 1];
-          // trazi posljednje uneseni oglas
-          id = obj.id + 1;
+          id = korisnik.oglasi[korisnik.oglasi.length - 1].id + 1;
         }
         let noviOglas = {
           cijena: cijena.value,
@@ -964,7 +964,7 @@ class DodajOglas extends _baseComponentDefault.default {
           date: new Date().getDate() + ". " + (new Date().getMonth() + 1) + ". " + new Date().getFullYear() + "."
         };
         korisnik.oglasi.push(noviOglas);
-        // trenutni niz oglasa push prima novonapravljeni oglas
+        // trenutni niz oglasa prima novonapravljeni oglas
         database.collection("korisnici").doc(doc.id).update({
           // update-a korisnik.oglasi u firebase-u
           oglasi: korisnik.oglasi
@@ -1009,7 +1009,7 @@ class Filter extends _baseComponentDefault.default {
     this.select.addEventListener("change", () => {
       _modelAndControlerDefault.default.zupanija(this.select.value);
     });
-    this.addChildren([this.select]);
+    this.addChild(this.select);
   }
 }
 module.exports = Filter;

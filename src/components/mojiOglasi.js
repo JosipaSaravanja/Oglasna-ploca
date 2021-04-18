@@ -16,7 +16,7 @@ class MojiOglasi extends Component {
       .then((querySnapshot) =>{
         querySnapshot.forEach((doc) => { 
           let korisnik = doc.data();
-          korisnik.oglasi.forEach((el) => {//pronalazi sve oglase korisnika i ispisuje ih od kraja tako da su oni nedavno uneseni na vrhu
+          korisnik.oglasi.forEach((el) => {//pronalazi sve oglase korisnika i ispisuje ih
             let oglas = new OglasTodoCard(
               el.id,
               el.opis,
@@ -37,7 +37,7 @@ class MojiOglasi extends Component {
     controler.addEventListener("newOglas", (event) => {
       this.dodanJeOglas(event.detail.oglas); //reagira kada je kreiran novi oglas
     });
-    this.addChildren([this.noviOglasi, this.spremljeniOglasi]);//dodaje i nove oglase i one koji su od ranije spremljeni
+    this.addChildren([this.noviOglasi, this.spremljeniOglasi]);//dodaje i novonapravljene oglase i one koji su od ranije spremljeni
   }
 
   dodanJeOglas(el) {

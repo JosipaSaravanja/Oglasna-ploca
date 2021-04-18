@@ -34,8 +34,7 @@ class DodajOglas extends Component {
           if (korisnik.oglasi.length == false) {
             id = 0;//ukoliko nema unesenih oglasa id je 0
           } else {
-            let obj = korisnik.oglasi[korisnik.oglasi.length - 1]; //trazi posljednje uneseni oglas
-            id = obj.id + 1; //id je za jedan veći od id-a posljednje unesenog oglasa
+            id = korisnik.oglasi[korisnik.oglasi.length - 1].id + 1; //id je za jedan veći od id-a posljednje unesenog oglasa
           }
           let noviOglas = {
             cijena: cijena.value,
@@ -46,7 +45,7 @@ class DodajOglas extends Component {
             razina: razina.value,
             date: new Date().getDate() +". " +(new Date().getMonth()+1) +". " +new Date().getFullYear() +"."
           };
-          korisnik.oglasi.push(noviOglas); //trenutni niz oglasa push prima novonapravljeni oglas 
+          korisnik.oglasi.push(noviOglas); //trenutni niz oglasa prima novonapravljeni oglas 
           database.collection("korisnici").doc(doc.id).update({ //update-a korisnik.oglasi u firebase-u
             oglasi: korisnik.oglasi
           });
@@ -61,7 +60,7 @@ class DodajOglas extends Component {
         opis.value="";
         cijena.value="";
         type.value="matematika";
-        razina.value="osnovna škola"; //briše values inputima da budu spremni za novi unos
+        razina.value="osnovna škola"; //briše value inputima da budu spremni za novi unos
       });
   }
 }

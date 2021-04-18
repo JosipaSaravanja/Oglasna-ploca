@@ -38,7 +38,7 @@ class Neprijavljeni extends Component {
     });//ukoliko nesto nije popunjeno prilikom click-a obavještava korisnika, u suprotom potiva funkciju this.registracija()
 
     let niz = [naslov, this.username, this.password, prijava, ili, registracija];
-    niz.forEach((el) => {//stavlja sve u zasebni red
+    niz.forEach((el) => {//stavlja sve u zasebni col s12
       let col = document.createElement("div");
       col.className = "col s12";
       col.appendChild(el);

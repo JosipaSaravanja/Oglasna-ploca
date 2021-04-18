@@ -7,6 +7,3 @@ document.getElementById("stupac1").appendChild(new PrviStupac().rootElement); //
 
 controler.user!==false ? document.getElementById("stupac3").appendChild(new TreciStupac().rootElement) :false;
 //Ukoliko je netko prijavljen popunjava treći stupac
-
-console.log(JSON.parse(localStorage["user"]))
-console.log(localStorage["user"])

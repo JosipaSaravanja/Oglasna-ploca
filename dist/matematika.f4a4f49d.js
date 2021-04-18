@@ -454,15 +454,13 @@ document.getElementById("stupac1").appendChild(new _componentsPrviStupacDefault.
 // Dodaje sadržaj prvom stupcu
 let predmet = document.getElementById("predmet-value").getAttribute("value");
 // određuje o kojem je predmetu riječ
-function myFunction(predmet) {
-  alert(predmet);
-}
 let database = firebase.firestore();
 database.collection("korisnici").get().then(querySnapshot => {
   querySnapshot.forEach(doc => {
     let korisnik = doc.data();
     korisnik.oglasi.forEach(el => {
       if (el.predmet == predmet) {
+        // kroz svaki doc firebase trazi u array oglasi onaj object s property predmet=odredeni predment
         let oglas = new _componentsPredmetOglasiCardDefault.default(// za svaki oglas kojem je property predmet=ime predmeta, kreira katricu
         korisnik.kontakt, el.opis, korisnik.lokacija, el.cijena, el.razina, el.date, el.ocjena.like, el.ocjena.dislike, el.id, korisnik.username);
         el.razina == "osnovna škola" ? document.getElementById("osnovneSkole").appendChild(oglas.rootElement) : document.getElementById("srednjeSkole").appendChild(oglas.rootElement);
@@ -545,7 +543,7 @@ class Neprijavljeni extends _baseComponentDefault.default {
     // ukoliko nesto nije popunjeno prilikom click-a obavještava korisnika, u suprotom potiva funkciju this.registracija()
     let niz = [naslov, this.username, this.password, prijava, ili, registracija];
     niz.forEach(el => {
-      // stavlja sve u zasebni red
+      // stavlja sve u zasebni col s12
       let col = document.createElement("div");
       col.className = "col s12";
       col.appendChild(el);
@@ -623,7 +621,6 @@ class Controler extends EventTarget {
         super();  
         localStorage.getItem('user')== null?localStorage.setItem('user', false): false; 
         this.user=JSON.parse(localStorage.getItem("user"));
-        console.log(this.user)
     }
 
     addOglas(event){
@@ -636,7 +633,7 @@ class Controler extends EventTarget {
 
     }
 
-    zupanija(event){
+    zupanija(event){//za filter
         this.dispatchEvent(
             new CustomEvent(
                 "zupanije",
@@ -715,15 +712,19 @@ class Prijavljeni extends _baseComponentDefault.default {
       this.select.appendChild(option);
     });
     this.select.value = _modelAndControlerDefault.default.user.lokacija.županija;
+    // value selecta je jednaka upisanom podatku u firebase
     this.grad = document.createElement("input");
     this.grad.placeholder = "Grad";
     this.grad.value = _modelAndControlerDefault.default.user.lokacija.grad;
+    // value inputa je jednaka upisanom podatku u firebase
     this.kontakt = document.createElement("input");
     this.kontakt.placeholder = "Kontakt";
     this.kontakt.value = _modelAndControlerDefault.default.user.kontakt;
+    // value inputa je jednaka upisanom podatku u firebase
     this.password = document.createElement("input");
     this.password.placeholder = "Lozinka";
     this.password.value = _modelAndControlerDefault.default.user.password;
+    // value inputa je jednaka upisanom podatku u firebase
     this.password.type = "password";
     let spremi = document.createElement("a");
     spremi.className = "waves-effect waves-light btn-small";
@@ -747,12 +748,14 @@ class Prijavljeni extends _baseComponentDefault.default {
       div.appendChild(el);
       col.appendChild(div);
     });
-    // svaki element je u svom div-u tako da svaki ima "vlastiti" red (s col s12 sve malo više stisne pa sam se odlucila za div) te je sve spremljeno u col s m6 pa slika i ostalo stoje jedno do drugoga na meduium ekranima
+    // svaki element je u svom div-u tako da svaki ima "vlastiti" red (s col s12 sve malo više stisne pa sam se odlucila za div) te je sve spremljeno u col s m6 pa slika stoji pored svega toga na meduium ekranima
     this.addChildren([img, col]);
   }
   spremi() {
+    // sprema promjene
     let database = firebase.firestore();
-    database.collection("korisnici").doc(_modelAndControlerDefault.default.user.id).update({
+    database.collection("korisnici").doc(_modelAndControlerDefault.default.user.id).// pronalazi prema id
+    update({
       password: this.password.value,
       lokacija: {
         županija: this.select.value,
@@ -810,7 +813,7 @@ class MojiOglasi extends _baseComponentDefault.default {
       querySnapshot.forEach(doc => {
         let korisnik = doc.data();
         korisnik.oglasi.forEach(el => {
-          // pronalazi sve oglase korisnika i ispisuje ih od kraja tako da su oni nedavno uneseni na vrhu
+          // pronalazi sve oglase korisnika i ispisuje ih
           let oglas = new _oglasTodoCardDefault.default(el.id, el.opis, el.cijena, el.predmet, el.razina, el.date, el.ocjena.like, el.ocjena.dislike);
           this.spremljeniOglasi.insertBefore(oglas.rootElement, this.spremljeniOglasi.firstChild);
         });
@@ -962,9 +965,7 @@ class DodajOglas extends _baseComponentDefault.default {
         if (korisnik.oglasi.length == false) {
           id = 0;
         } else {
-          let obj = korisnik.oglasi[korisnik.oglasi.length - 1];
-          // trazi posljednje uneseni oglas
-          id = obj.id + 1;
+          id = korisnik.oglasi[korisnik.oglasi.length - 1].id + 1;
         }
         let noviOglas = {
           cijena: cijena.value,
@@ -979,7 +980,7 @@ class DodajOglas extends _baseComponentDefault.default {
           date: new Date().getDate() + ". " + (new Date().getMonth() + 1) + ". " + new Date().getFullYear() + "."
         };
         korisnik.oglasi.push(noviOglas);
-        // trenutni niz oglasa push prima novonapravljeni oglas
+        // trenutni niz oglasa prima novonapravljeni oglas
         database.collection("korisnici").doc(doc.id).update({
           // update-a korisnik.oglasi u firebase-u
           oglasi: korisnik.oglasi
@@ -1024,7 +1025,7 @@ class Filter extends _baseComponentDefault.default {
     this.select.addEventListener("change", () => {
       _modelAndControlerDefault.default.zupanija(this.select.value);
     });
-    this.addChildren([this.select]);
+    this.addChild(this.select);
   }
 }
 module.exports = Filter;
@@ -1064,23 +1065,25 @@ class PredmetOglasiCard extends _baseComponentDefault.default {
     this.like.innerHTML = "thumb_up";
     this.like.className = "material-icons";
     this.like.style = "cursor: pointer; vertical-align :-3px;";
-    likes.includes(_modelAndControlerDefault.default.user.username) ? this.like.style.color = "rgb(100, 181, 246)" : false;
+    likes.includes(_modelAndControlerDefault.default.user.username) ? // ako je korisnikovo ime u listi osoba koje su pozitivno ocjenile, icona će svjetlit plavo
+    this.like.style.color = "rgb(100, 181, 246)" : false;
     this.like.addEventListener("click", () => {
+      // na klik poziva funkciju ili obavještava da se mora prijaviti
       _modelAndControlerDefault.default.user !== false ? this.likeFunc() : M.toast({
         html: `Morate se prijaviti da biste ocjenjivali oglase.`
       });
-      ;
     });
     this.dislike = document.createElement("i");
     this.dislike.innerHTML = "thumb_down";
     this.dislike.className = "material-icons";
     this.dislike.style = "cursor: pointer; vertical-align :-10px;";
-    dislikes.includes(_modelAndControlerDefault.default.user.username) ? this.dislike.style.color = "rgb(229, 115, 115)" : false;
+    dislikes.includes(_modelAndControlerDefault.default.user.username) ? // ako je korisnikovo ime u listi osoba koje su negativno ocjenile, icona će svjetlit crveno
+    this.dislike.style.color = "rgb(229, 115, 115)" : false;
     this.dislike.addEventListener("click", () => {
+      // na klik poziva funkciju ili obavještava da se mora prijaviti
       _modelAndControlerDefault.default.user !== false ? this.dislikeFunc() : M.toast({
         html: `Morate se prijaviti da biste ocjenjivali oglase.`
       });
-      ;
     });
     this.numberOfLikesElement = document.createElement("span");
     this.numberOfLikesElement.innerHTML = likes.length;
@@ -1101,19 +1104,19 @@ class PredmetOglasiCard extends _baseComponentDefault.default {
     row.appendChild(col);
     row.appendChild(ocjena);
     this.addChild(row);
-    // dijeli cijelu karticu na sva stupca da like i dislike stoje sa strane
+    // row dijeli cijelu karticu na dva stupca da icone za ocjenjivanje stoje sa strane
     _modelAndControlerDefault.default.addEventListener("zupanije", event => {
       this.zupanijaFilter(event.detail.zupanija);
     });
   }
   zupanijaFilter(zupanija) {
-    // ako this.zupanija!==zupaniji koju je korisnik odabrao onda se oglas brise...
-    this.rootElement.style.display = "block";
-    zupanija !== "Sve županije" && this.lokacija.županija !== zupanija ? this.rootElement.style.display = "none" : false;
+    // ako odabrana zupanija nije jednaka zupaniji oglasa, oglas se brise
+    zupanija !== "Sve županije" && this.lokacija.županija !== zupanija ? this.rootElement.style.display = "none" : this.rootElement.style.display = "block";
   }
   likeFunc() {
     let database = firebase.firestore();
-    database.collection("korisnici").where("username", "==", this.username).get().then(querySnapshot => {
+    database.collection("korisnici").where("username", "==", this.username).// traži prema imenu autora
+    get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         let korisnik = doc.data();
         korisnik.oglasi.map(oglas => {
@@ -1124,7 +1127,7 @@ class PredmetOglasiCard extends _baseComponentDefault.default {
             } else {
               oglas.ocjena.like.push(_modelAndControlerDefault.default.user.username);
               // dodaj korisnika u listu osoba koje su like-ale oglas
-              this.dislike.style.color == "rgb(229, 115, 115)" ? // ako je korisnik već prije dislike-ao oglas treba to poništit da ne like-a i dislike-a isti oglas
+              this.dislike.style.color == "rgb(229, 115, 115)" ? // ako je korisnik već prije dislike-ao oglas treba to poništit da ne likea i dislikea isti oglas
               oglas.ocjena.dislike = oglas.ocjena.dislike.filter(item => item !== _modelAndControlerDefault.default.user.username) : false;
             }
           }

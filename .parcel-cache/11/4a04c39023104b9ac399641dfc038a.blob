@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="ddf5e09cf8d12a063c2051a5c175802b" type="image/gif" sizes="16x16">
+    <!--ikona-->
+    <title>Oglasnik</title>
+    <link rel="stylesheet" href="adde4095d09000a5ca6821140bff57ee">
+    <link rel="stylesheet" href="6da58f23b66d8822d25707c0e6018524">
+    <link href="becaf4d23a968f1f509b81410707ddb9" rel="stylesheet">
+    <link rel="stylesheet" href="48dda07aa71f89ac18bd505cdfca1f0e">
+    <!--poveznica na glavni css-->
+    <!--poveznica na glavni css-->
+</head>
+
+<body>
+
+    <nav class="nav-extended teal lighten-1" style="60a8a86b006237232d8571162e3e35be">
+        <div class="nav-wrapper ">
+            <a href="b3634a65170f96ee8f903b3e0d74d772" class="brand-logo"><i class="material-icons">cloud</i>Oglasnik</a>
+            <a href="" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="66a1605e25714a90cd9151927fec9356">Korištenje</a></li>
+                <li><a href="e56879e01f728fb2d071147cca22025b">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!--Zaglavlje kada je zaslon large-->
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="66a1605e25714a90cd9151927fec9356">Korištenje</a></li>
+        <li><a href="e56879e01f728fb2d071147cca22025b">Kontakt</a></li>
+    </ul>
+    <!--Zaglavlje kada je zaslon medium i manji--><br>
+
+    <div class="row">
+
+        <div class="col s12 l8 offset-l2">
+            <div class="col s12">
+                <div class="row z-depth-5" style="57abc150a253c825d515998d902b41b4">
+                    <div class="col s12">
+                        <h5><b>U slučaju poteškoća s profilom ili potrebe za bilo kakvom pomoći obratite nam se: </b>
+                        </h5>
+                        <div class="row">
+                            <div class="col s12" style="43d7d3e74a0ea5a79e5c0e865c390c7e">
+                                <ul>
+                                    <li href="https://www.facebook.com/oglasna.ploca.31/"><a style="979937062d72d1d810e9f8c251fd15a0" class="fa fa-google"></a> oglasnik.edit@gmail.com</li>
+                                    <li><a style="1c210e06ed8b9daa35fb1f3f0c967cc1" class="fa fa-facebook"></a> oglasna.ploca.31</li>
+                                    <li><a style="5701ed2395889d699c50033d5c190cf6" class="fa fa-instagram"></a> oglasnik.edit</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+</div></div></body>
+
+
+<script src="fe0937fe9d326bc5e5206ee344e25560"></script>
+<script src="6b78609197a2d2cc6da5519718e79f42"></script>
+<script src="71c80caca0ce0162d9857660dc6b37e7"></script>
+<!--poveznice za firebase-->
+
+<script type="text/javascript" src="32c7ecf61cf96eeb765832d293efe829"></script>
+<!--Poveznica jer mi je izbacivalo greške za $-->
+<script src="d8c2f5f3113a489a2648a2d458f6c717"></script>
+<!--poveznica za materialize-->
+<script data-parcel-key="7ee18df3662bd234e8e8604a5be1a6fb">
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyA_bA0LS0eefdaWyqKe-qyL7U-zHuoOe-k",
+        authDomain: "oglasna-ploca.firebaseapp.com",
+        projectId: "oglasna-ploca",
+        storageBucket: "oglasna-ploca.appspot.com",
+        messagingSenderId: "738452914857",
+        appId: "1:738452914857:web:e02497ec7cfbd129e59fb8",
+        measurementId: "G-2L3E02TT43"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+    $(document).ready(function () {
+        $('.scrollspy').scrollSpy();
+    });//nešto za dodatak materialize-a
+</script>
+
+</html>

@@ -1,0 +1,168 @@
+var _baseComponent = require("../baseComponent");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _baseComponentDefault = _parcelHelpers.interopDefault(_baseComponent);
+var _modelAndControler = require("../modelAndControler");
+var _modelAndControlerDefault = _parcelHelpers.interopDefault(_modelAndControler);
+class PredmetOglasiCard extends _baseComponentDefault.default {
+  constructor(kontakt, opis, lokacija, cijena, razina, date, likes, dislikes, id, username) {
+    super("div");
+    this.id = id;
+    this.username = username;
+    this.lokacija = lokacija;
+    this.rootElement.className = "card-panel grey lighten-5 z-depth-1";
+    let row = document.createElement("div");
+    row.className = "row valign-wrapper";
+    let col = document.createElement("div");
+    col.className = "col s11";
+    let opisElement = document.createElement("p");
+    opisElement.className = "black-text";
+    opisElement.innerHTML = opis;
+    let info = document.createElement("p");
+    info.innerHTML = `
+        ${lokacija.županija}, ${lokacija.grad}<br>
+        cijena:  ${cijena} <br>
+        razredi: ${razina} <br>
+        datum: ${date} <br>
+        autor: ${username}<br>
+        kontakt: ${kontakt} <br>
+        `;
+    let ocjena = document.createElement("div");
+    ocjena.className = "col s1";
+    this.like = document.createElement("i");
+    this.like.innerHTML = "thumb_up";
+    this.like.className = "material-icons";
+    this.like.style = "cursor: pointer; vertical-align :-3px;";
+    likes.includes(_modelAndControlerDefault.default.user.username) ? // ako je korisnikovo ime u listi osoba koje su pozitivno ocjenile, icona će svjetlit plavo
+    this.like.style.color = "rgb(100, 181, 246)" : false;
+    this.like.addEventListener("click", () => {
+      // na klik poziva funkciju ili obavještava da se mora prijaviti
+      _modelAndControlerDefault.default.user !== false ? this.likeFunc() : M.toast({
+        html: `Morate se prijaviti da biste ocjenjivali oglase.`
+      });
+      ;
+    });
+    this.dislike = document.createElement("i");
+    this.dislike.innerHTML = "thumb_down";
+    this.dislike.className = "material-icons";
+    this.dislike.style = "cursor: pointer; vertical-align :-10px;";
+    dislikes.includes(_modelAndControlerDefault.default.user.username) ? // ako je korisnikovo ime u listi osoba koje su negativno ocjenile, icona će svjetlit crveno
+    this.dislike.style.color = "rgb(229, 115, 115)" : false;
+    this.dislike.addEventListener("click", () => {
+      // na klik poziva funkciju ili obavještava da se mora prijaviti
+      _modelAndControlerDefault.default.user !== false ? this.dislikeFunc() : M.toast({
+        html: `Morate se prijaviti da biste ocjenjivali oglase.`
+      });
+      ;
+    });
+    this.numberOfLikesElement = document.createElement("span");
+    this.numberOfLikesElement.innerHTML = likes.length;
+    this.numberOfDislikesElement = document.createElement("span");
+    this.numberOfDislikesElement.innerHTML = Number(dislikes.length);
+    col.appendChild(opisElement);
+    // opis oglasa
+    col.appendChild(info);
+    // podaci o oglasu
+    ocjena.appendChild(this.numberOfLikesElement);
+    // broj like-ova
+    ocjena.appendChild(this.like);
+    // icona like
+    ocjena.appendChild(this.dislike);
+    // icone dislike
+    ocjena.appendChild(this.numberOfDislikesElement);
+    // broj dislike-ova
+    row.appendChild(col);
+    row.appendChild(ocjena);
+    this.addChild(row);
+    // row dijeli cijelu karticu na dva stupca da icone za ocjenjivanje stoje sa strane
+    _modelAndControlerDefault.default.addEventListener("zupanije", event => {
+      this.zupanijaFilter(event.detail.zupanija);
+    });
+  }
+  zupanijaFilter(zupanija) {
+    // ako this.zupanija!==zupaniji koju je korisnik odabrao onda se oglas brise
+    this.rootElement.style.display = "block";
+    // sve oglase stvara
+    zupanija !== "Sve županije" && this.lokacija.županija !== zupanija ? this.rootElement.style.display = "none" : false;
+  }
+  likeFunc() {
+    let database = firebase.firestore();
+    database.collection("korisnici").where("username", "==", this.username).get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        let korisnik = doc.data();
+        korisnik.oglasi.map(oglas => {
+          if (oglas.id == this.id) {
+            // pronađi oglas prema id
+            if (oglas.ocjena.like.includes(_modelAndControlerDefault.default.user.username)) {
+              oglas.ocjena.like = oglas.ocjena.like.filter(item => item !== _modelAndControlerDefault.default.user.username);
+            } else {
+              oglas.ocjena.like.push(_modelAndControlerDefault.default.user.username);
+              // dodaj korisnika u listu osoba koje su like-ale oglas
+              this.dislike.style.color == "rgb(229, 115, 115)" ? // ako je korisnik već prije dislike-ao oglas treba to poništit da ne like-a i dislike-a isti oglas
+              oglas.ocjena.dislike = oglas.ocjena.dislike.filter(item => item !== _modelAndControlerDefault.default.user.username) : false;
+            }
+          }
+        });
+        database.collection("korisnici").doc(doc.id).update({
+          oglasi: korisnik.oglasi
+        }).then(() => {
+          // tek kad se sve spremi u firebase korisniku se mijenja boja icone i dobiva potvrdnu informaciju
+          if (this.like.style.color == "rgb(100, 181, 246)") {
+            this.like.style.color = "black";
+            // makni boju s like icone
+            this.numberOfLikesElement.innerHTML = Number(this.numberOfLikesElement.innerHTML) - 1;
+          } else {
+            this.like.style.color = "rgb(100, 181, 246)";
+            // pretvori u plavo
+            this.numberOfLikesElement.innerHTML = Number(this.numberOfLikesElement.innerHTML) + 1;
+            if (this.dislike.style.color == "rgb(229, 115, 115)") {
+              // ako je korisnik već prije dislike-ao oglas treba to poništit da ne like-a i dislike-a isti oglas
+              this.numberOfDislikesElement.innerHTML = Number(this.numberOfDislikesElement.innerHTML) - 1;
+              this.dislike.style.color = "black";
+            }
+          }
+        });
+      });
+    });
+  }
+  dislikeFunc() {
+    let database = firebase.firestore();
+    database.collection("korisnici").where("username", "==", this.username).get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        let korisnik = doc.data();
+        korisnik.oglasi.map(oglas => {
+          if (oglas.id == this.id) {
+            // pronađi oglas prema id
+            if (oglas.ocjena.dislike.includes(_modelAndControlerDefault.default.user.username)) {
+              oglas.ocjena.dislike = oglas.ocjena.dislike.filter(item => item !== _modelAndControlerDefault.default.user.username);
+            } else {
+              oglas.ocjena.dislike.push(_modelAndControlerDefault.default.user.username);
+              // dodaj korisnika u listu osoba koje su dislike-ale oglas
+              this.like.style.color == "rgb(100, 181, 246)" ? // ako je korisnik već prije like-ao oglas treba to poništit da ne like-a i dislike-a isti oglas
+              oglas.ocjena.like = oglas.ocjena.like.filter(item => item !== _modelAndControlerDefault.default.user.username) : false;
+            }
+          }
+        });
+        database.collection("korisnici").doc(doc.id).update({
+          oglasi: korisnik.oglasi
+        }).then(() => {
+          if (this.dislike.style.color == "rgb(229, 115, 115)") {
+            this.dislike.style.color = "black";
+            // makni boju s dislike icone
+            this.numberOfDislikesElement.innerHTML = Number(this.numberOfDislikesElement.innerHTML) - 1;
+          } else {
+            this.dislike.style.color = "rgb(229, 115, 115)";
+            // pretvori u crveno
+            this.numberOfDislikesElement.innerHTML = Number(this.numberOfDislikesElement.innerHTML) + 1;
+            // povećaj broj pored njega
+            if (this.like.style.color == "rgb(100, 181, 246)") {
+              // ako je korisnik već prije like-ao oglas treba to poništit da ne like-a i dislike-a isti oglas
+              this.numberOfLikesElement.innerHTML = Number(this.numberOfLikesElement.innerHTML) - 1;
+              this.like.style.color = "black";
+            }
+          }
+        });
+      });
+    });
+  }
+}
+module.exports = PredmetOglasiCard;

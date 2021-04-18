@@ -5,11 +5,8 @@ import TreciStupac from "./components/treciStupac";
 import PredmetOglasiCard from "./components/predmetOglasiCard";
 
 document.getElementById("stupac1").appendChild(new PrviStupac().rootElement); //Dodaje sadržaj prvom stupcu
-let predmet = document.getElementById("predmet-value").getAttribute("value"); //određuje o kojem je predmetu riječ
 
-function myFunction(predmet){
-  alert(predmet)
-}
+let predmet = document.getElementById("predmet-value").getAttribute("value"); //određuje o kojem je predmetu riječ
 let database = firebase.firestore();
 database
   .collection("korisnici")
@@ -18,7 +15,7 @@ database
     querySnapshot.forEach((doc) => {
       let korisnik = doc.data();
       korisnik.oglasi.forEach((el) => {
-        if (el.predmet == predmet) {
+        if (el.predmet == predmet) {//kroz svaki doc firebase trazi u array oglasi onaj object s property predmet=odredeni predment
           let oglas = new PredmetOglasiCard( //za svaki oglas kojem je property predmet=ime predmeta, kreira katricu
             korisnik.kontakt,
             el.opis,
@@ -40,4 +37,4 @@ database
     });
   });
 
-document.getElementById("stupac3").appendChild(new TreciStupac().rootElement); //dodaje promjenjivi sadržaj trećeg stupca
+document.getElementById("stupac3").appendChild(new TreciStupac().rootElement); //Dodaje  sadržaj trećeg stupca

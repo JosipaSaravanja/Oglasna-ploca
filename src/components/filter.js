@@ -39,9 +39,9 @@ class Filter extends Component {
         this.select.appendChild(option);
       })
       this.select.addEventListener("change", ()=>{
-        controler.zupanija(this.select.value) //kad se odabere select onda predcmetOglasiCard brise oglase kojima ase zupanija ne podudara s odabranom
+        controler.zupanija(this.select.value) //kad se odabere select onda predcmetOglasiCard briše oglase kojima se zupanija ne podudara s odabranom
       })
-    this.addChildren([this.select]);
+    this.addChild(this.select);
   }
 }
 

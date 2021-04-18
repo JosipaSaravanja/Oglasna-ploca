@@ -45,19 +45,19 @@ class Prijavljeni extends Component {
       option.value = el;
       this.select.appendChild(option);
     });
-    this.select.value = controler.user.lokacija.županija;
+    this.select.value = controler.user.lokacija.županija;//value selecta je jednaka upisanom podatku u firebase 
 
     this.grad = document.createElement("input");
     this.grad.placeholder = "Grad";
-    this.grad.value = controler.user.lokacija.grad;
+    this.grad.value = controler.user.lokacija.grad;//value inputa je jednaka upisanom podatku u firebase 
 
     this.kontakt = document.createElement("input");
     this.kontakt.placeholder = "Kontakt";
-    this.kontakt.value = controler.user.kontakt;
+    this.kontakt.value = controler.user.kontakt;//value inputa je jednaka upisanom podatku u firebase 
 
     this.password = document.createElement("input");
     this.password.placeholder = "Lozinka";
-    this.password.value = controler.user.password;
+    this.password.value = controler.user.password;//value inputa je jednaka upisanom podatku u firebase 
     this.password.type = "password";
 
     let spremi = document.createElement("a");
@@ -92,15 +92,15 @@ class Prijavljeni extends Component {
       div.appendChild(el);
       col.appendChild(div);
     }); 
-    //svaki element je u svom div-u tako da svaki ima "vlastiti" red (s col s12 sve malo više stisne pa sam se odlucila za div) te je sve spremljeno u col s m6 pa slika i ostalo stoje jedno do drugoga na meduium ekranima
+    //svaki element je u svom div-u tako da svaki ima "vlastiti" red (s col s12 sve malo više stisne pa sam se odlucila za div) te je sve spremljeno u col s m6 pa slika stoji pored svega toga na meduium ekranima
     this.addChildren([img, col]);
   }
 
-  spremi() {
+  spremi() {//sprema promjene 
     let database = firebase.firestore();
     database
       .collection("korisnici")
-      .doc(controler.user.id)
+      .doc(controler.user.id)//pronalazi prema id
       .update({
         password: this.password.value,
         lokacija: { županija: this.select.value, grad: this.grad.value },
@@ -114,9 +114,9 @@ class Prijavljeni extends Component {
           .then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
               localStorage["user"] = JSON.stringify(doc.data()); //localStorage["user"] poprimi nove podatke nakon što ih je korisnik update-ao
-              location.reload();
+              location.reload(); 
             });
-          });
+          }); 
       });
   }
 }
